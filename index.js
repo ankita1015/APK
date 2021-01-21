@@ -5,8 +5,9 @@ const app = express()
 //public STATIC PATH
 app.use(express.static(path.join(__dirname, '/public/')))
 //set Engine
-app.set('views', path.join(__dirname, 'views'))
+
 app.set('view engine', 'hbs')
+
 
 
 app.get('/', (req, res) => {
