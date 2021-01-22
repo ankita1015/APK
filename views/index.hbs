@@ -1,19 +1,27 @@
 <html>
 
 <head>
-<link rel='stylesheet' href="./style.css">
+<link rel='stylesheet' href="css/style.css">
 
-<link rel='stylesheet' href="./bootstrap.min.css">
+<link rel='stylesheet' href="css/bootstrap.min.css">
 
-<link rel='stylesheet' href="./font-awesome.css">
+<link rel='stylesheet' href="css/font-awesome.css">
 </head>
 <body>
     
-
+{{>header}}
     <div id="main-content">
       <div class="container">
         <div class="row">
             <div class="col-md-8">
+                 <form class="search-post" action="search.php" method ="GET">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Search .....">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </span>
+            </div>
+        </form>
                 <!-- post-container -->
                 <div class="post-container">
                   <h2 class="page-heading">Shops in mehsana</h2>
@@ -24,7 +32,7 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="inner-content clearfix">
-                                    <h3><a href='single.php'>Shop Name</a></h3>
+                                    <h3><a href='/single'>Shop Name</a></h3>
                                   
                                    <p class="description" ><i class="fa fa-address-book"  style="color:#1e90ff;"></i> &nbsp;
                                         s5,pooja aepartment,mehsana2,384002
@@ -222,7 +230,7 @@
                     </ul>
                 </div><!-- /post-container -->
             </div>
-            
+            {{>sidebar}}
         </div>
       </div>
     </div>
