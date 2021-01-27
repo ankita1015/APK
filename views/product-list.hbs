@@ -1,0 +1,88 @@
+<html>
+
+<head>
+{{>styleing}}
+<script src="./rating.js" type='text/javascript' ></script>
+</head>
+<body>
+    {{>header}}
+
+    <div id="main-content">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+         
+                <!-- post-container -->
+                <div class="post-container">
+                  <h2 class="page-heading">Shops in mehsana</h2>
+                    <div class="post-content">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="inner-content clearfix">
+                                    <h3><a href='#'>product Name</a></h3>
+                                     <table class='description-table'>
+                              <tr>
+                                <td><b>Product name</b></td>
+                                <td>abc indursty</td>
+                              </tr>
+                              <tr>
+                                <td><b>Shop name</b></td>
+                                <td>gujrat</td>
+                              </tr>
+                              <tr>
+                                <td><b>Description</b></td>
+                                <td>mehsana</td>
+                              </tr>
+                        
+                              <tr>
+                                <td><b>Email Address</b></td>
+                                <td>abc@gmail.com</td>
+                              </tr>
+                              <tr>
+                                <td><b>Website</b></td>
+                                <td>www.abc.com</td>
+                              </tr>
+                              <tr>
+                                <td><b>contact No</b></td>
+                                <td>987654321</td>
+                              </tr>
+                               <tr>
+                                <td><b>Price</b></td>
+                                <td>20,000</td>
+                              </tr>
+                            </table>
+                                      <br>
+                                      <span>
+                                    <a class='read-more  pull-left' href='/cart'>Add to cart</a> &nbsp;&nbsp;
+                                    <a class='read-more  pull-right' href='/single'>Order</a>
+                                    </span>
+                                </div>
+                            </div>
+     
+                        </div>
+         
+                    </div>
+        
+                  {{!-- for ratings  --}}
+               <div class="stars-outer">
+                   <div class="stars-inner">
+                   <i class="far fa-star" id='star-1'></i>
+                   <i class="far fa-star" id='star-2'></i>
+                   <i class="far fa-star" id='star-3'></i>
+                   <i class="far fa-star" id='star-4'></i>
+                   <i class="far fa-star" id='star-5'></i>
+                   </div>
+              </div>
+                   
+            </div>
+                <!-- /post-container -->
+        </div>
+         {{>sidebar}}
+       </div>
+    </div>
+</div>
+</body>
+</html>

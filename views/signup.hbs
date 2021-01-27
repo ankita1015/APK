@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-
-     <!-- Main CSS-->
-<link rel='stylesheet' href="./style.css">
-
-<link rel='stylesheet' href="./bootstrap.min.css">
-
-<link rel='stylesheet' href="./font-awesome.css">
+    <title>Registration form</title>
+    {{>styleing}}
 
 </head>
 <body>
@@ -20,9 +14,9 @@
 
         <h1>Sign up</h1>
         <div class="col-md-3"></div>
-        <div class="container col-md-5 ">
+        <div class="container col-md-7 ">
             <div class="sign-up-content">
-                <form method="POST" class="signup-form">
+                <form action="/" method="POST" class="signup-form">
                     <h3 class="form-title">What type of user are you ?</h3>
                     <hr>
                     <div class="form-radio">
@@ -32,9 +26,9 @@
                         <input type="radio" name="member_level" value="1" id="average" />
                         <label for="average">Customer</label>
                     </div>
-
+                    <p>{{error}}</p>
                     <div class="form-textbox">
-                        <label for="name">Full name</label>
+                        <label for="fname">Full name</label>
                         <input type="text" name="name" id="name" />
                     </div>
 
@@ -47,20 +41,22 @@
                         <label for="pass">Password</label>
                         <input type="password" name="pass" id="pass" />
                     </div>
-
-                    <div class="form-group">
-                        <input type="checkbox" name="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                    <div class="form-textbox">
+                        <label for="pass">confirm Password</label>
+                        <input type="password" name="cpass" id="cpass" />
                     </div>
+
+                    <hr>
 
                     <div class="form-textbox">
                         <input type="submit" name="submit" id="submit" class="submit" value="Create account" />
                     </div>
+                    <p class="loginhere">
+                    Already have an account ?<a href="/login" class="loginhere-link"> Log in</a>
+                </p>
                 </form>
 
-                <p class="loginhere">
-                    Already have an account ?<a href="#" class="loginhere-link"> Log in</a>
-                </p>
+                
             </div>
         </div>
 

@@ -44,8 +44,8 @@
     padding: 0;
     font-weight: bold;
     color: #222;
-    font-family: Poppins;
-    font-size: 24px;
+  
+    font-size: 20px;
     text-align: center;
     margin-bottom: 40px; }
   
@@ -53,14 +53,15 @@
     clear: both; }
   
   body {
-    font-size: 14px;
+    font-size: 10px;
     line-height: 1.8;
     color: #222;
-    background-image:linear-gradient(lightblue);
+   
     background-size:100%;
     background-position:fixed;
-    /* background: #e7f0fd; */
-    font-weight: 600;
+    background: #f1f1f1;
+    font-family: sans-serif,arial,Helvetica;
+    font-weight: 500;
 
     margin: 0px;
     }
@@ -72,7 +73,7 @@
   h1 {
     position: absolute;
     font-weight: 700;
-    font-size: 174px;
+    font-size: 170  px;
     color: #fff;
     opacity: 0.5;
     right: 105px;
@@ -82,10 +83,9 @@
   
   .container {
    
-    background: #fff;
+    
     margin: 0 auto;
-    box-shadow: 0px 10px 9.9px 0.1px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
+  
      }
   
   .sign-up-content {
@@ -135,8 +135,8 @@
     width: 100%;
     font-weight: 700;
     font-size: 14px;
-    font-family: Poppins;
-    padding: 16px 30px 16px 140px; }
+  
+    padding: 16px 30px 16px 170px; }
   
   .form-textbox {
     position: relative; }
@@ -163,39 +163,7 @@
     border-left: solid 2px #ebebeb;
     border-right: solid 2px #ebebeb; }
   
-  input[type=checkbox]:not(old) {
-    width: 2em;
-    margin: 0;
-    padding: 0;
-    font-size: 1em;
-    display: none; }
-  
-  input[type=checkbox]:not(old) + label {
-    display: inline-block;
-    margin-top: 27px;
-    margin-bottom: 45px; }
-  
-  input[type=checkbox]:not(old) + label > span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    margin-right: 15px;
-    margin-bottom: 5px;
-    border: 2px solid #ebebeb;
-    border-radius: 2px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    -ms-border-radius: 2px;
-  
-
-    vertical-align: bottom; }
-  
- 
-  
-  
-  
-  .term-service {
+    .term-service {
     color: #1da0f2;
     text-decoration: none; }
     .term-service:hover {
@@ -249,10 +217,7 @@
   /*# sourceMappingURL=style.css.map */
   /* ===================== */
 /* COMMOM CSS */
-body{
-  background: #f1f1f1;
-  font-family: sans-serif,arial,Helvetica;
-}
+
 
 a,
 a:hover,
@@ -277,11 +242,20 @@ padding: 0 5px 10px;
 border-bottom: 2px solid #333;
 }
 
-/* ===================== */
+/*upload img design*/
+#mediaFile{
+  
+  height: 30px;
+  
+  background-image: url('./images/news.jpg');
+  border-radius:5px;
+  
+  
+}
 
 /* ===================== */
-/* ADMIN Panel CSS START */
-/* ===================== */
+
+
 
 #wrapper-admin{
   padding: 100px 0 0;
@@ -300,16 +274,13 @@ img.logo{
 
 #header-admin .admin-logout{
   margin: 10px 0;
-  color: #1e90ff;
+  color: white;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
   display: inline-block;
 }
-.greeting{
-  
-  line-height: 3rem;
-}
+
 #header-admin .admin-logout:hover{
   text-decoration: underline;
 }
@@ -436,92 +407,9 @@ img {vertical-align: middle;}
 }
 
 /* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
+
 
 /* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active, .dot:hover {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
 .description-table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -533,7 +421,6 @@ td, th {
   text-align: left;
   padding: 8px;
 }
-
 
 
 /* Header Styling */
@@ -741,9 +628,16 @@ border: 3px solid #1e90ff;
   text-decoration: none;
 }
 
-i.fa{
-  color:#222;
+.fa-shopping-cart{
+  color:black;
 }
+.cart-det{
+  font-size:8px;
+}
+.fa-shopping-cart{
+  font-size: x-large;
+}
+
 
 /* Sidebar Styling */
 #sidebar h4{
