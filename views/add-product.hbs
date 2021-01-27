@@ -3,7 +3,7 @@
 <html>
     <head>
 {{>styleing}}
-{{>uploadcss}}
+{{!-- {{>uploadcss}} --}}
 </head>
 <body>
     {{>header}}
@@ -61,25 +61,18 @@
                         <input type="text" name="sec-num" id="sec-num" />
                     </div>
 					 <div class="form-textbox">
-                           <div id="profile">
-                           <div class="dashes"></div>
-                        
-                            </div>
-                            <input type="file" id="mediaFile" />
-                         </div>
-						 <div class="form-textbox">
-                          <div id="profile">
-                             <div class="dashes"></div>
-                          </div>
-                            <input type="file" id="mediaFile" />
-                         </div>
-                        <div class="form-textbox">
-                            <div id="profile">
-                            <div class="dashes"></div>
-                        
-                            </div>
-                        <input type="file" id="mediaFile" />
-                         </div>
+              <div class="center">
+                  <div class="form-input">
+                      <label for="file-ip-1">Upload Image</label>
+                      <input type="file" id='file-ip-1' accept="image/*" onchange="showpreview(event);">
+
+                  </div>
+    
+              </div>
+   
+        
+    
+                   </div>
                         <br>
                     <input type="submit" name="submit" id="submit" class="submit" value="Save" />
                     
