@@ -1,23 +1,23 @@
 
-{{!-- {{>styleing}} --}}	
+
 <html>
     <head>
-{{>styleing}}
+
 {{>uploadcss}}
 </head>
 <body>
-    {{>header}}
+    {{>seller_header}}
     <div id="main-content">
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
 					
 
 	
 				</div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                   <!-- post-container -->
-                    <div class="post-container">
+                    <div class="post-container col-md-12">
                         <div class="post-content single-post">
                             
                             <div class="post-information">
@@ -26,50 +26,90 @@
                             </div>
                            
                            <form method="POST" class="signup-form">
-                    <h3>Make Your Order</h3>
+                    <h3>Add Product</h3>
                     <hr>
                     
 
                     <div class="form-textbox">
-                        <label for="state">State</label>
-                        <input type="text" name="stat" id="state" />
+                        <label for="productname">Product Name</label>
+                        <input type="text" name="productname" id="state" />
                     </div>
 
                     <div class="form-textbox">
-                        <label for="city">City</label>
-                        <input type="city" name="city" id="city" />
-                    </div>
-                    
-                    <div class="form-textbox">
-                        <label for="city">Area Code</label>
-                        <input type="text" name="code" id="code" />
+                        <label for="batch">Batch Id</label>
+                        <input type="text" name="batch" id="city" />
                     </div>
                     
+                    <div class="form-textbox">
+                        <label for="des">description</label>
+                        <input type="text" name="des" id="code" />
+                    </div>
+                    
 
 
                     <div class="form-textbox">
-                        <label for="pass">Address</label>
-                        <input type="address" name="address" id="address" />
+                        <label for="pass">Price</label>
+                        <input type="text" name="address" id="address" />
                     </div>
                     
                     <div class="form-textbox">
                         <label for="num">Mobile No.</label>
                         <input type="text" name="num" id="num" />
                     </div>
-                     <div class="form-textbox">
-                        <label for="num">Mobile No.(alt)</label>
-                        <input type="text" name="sec-num" id="sec-num" />
-                    </div>
+                     
 					 <div class="form-textbox">
+              <div class="center">      
+                  <div class="form-input">
+                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
+                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
+                     <div class="preview">
+                         <img src="" alt="" id='file-ip-1-preview'>
+                     </div>
+                     
+                  </div>
+              </div>
+
+                <div class="center">
+                  <div class="form-input">
+                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
+                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
+                     <div class="preview">
+                         <img src="" alt="" id='file-ip-2-preview'>
+                     </div>
+                     
+                  </div>
+              </div>
               <div class="center">
                   <div class="form-input">
-                      <label for="file-ip-1">Upload Image</label>
-                      <input type="file" id='file-ip-1' accept="image/*" onchange="showpreview(event);">
-
+                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
+                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
+                     <div class="preview">
+                         <img src="" alt="" id='file-ip-3-preview'>
+                     </div>
+                     
                   </div>
-    
               </div>
-   
+                <div class="center">
+                  <div class="form-input">
+                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
+                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
+                     <div class="preview">
+                         <img src="" alt="" id='file-ip-4-preview'>
+                     </div>
+                     
+                  </div>
+              </div>
+                <div class="center">
+                  <div class="form-input">
+                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
+                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
+                     <div class="preview">
+                         <img src="" alt="" id='file-ip-5-preview'>
+                     </div>
+                     
+                  </div>
+              </div>
+
         
     
                    </div>
@@ -87,7 +127,7 @@
     </div>
 
 
-<script src="./jquery.min.js"></script>
+
 <script src="./file.js"></script>
 </body>
 </html>

@@ -62,6 +62,9 @@ app.get('/login',(req,res)=>{
 // seller side pages//
 app.get('/add-product',(req,res)=>{
     res.render('add-product');
+});
+app.get('/ourorders',(req,res)=>{
+    res.render('ourorders');
 })
 
 //Customer side Pages//
@@ -90,5 +93,5 @@ app.get('*',(req,res)=>{
 
 
 const PORT = process.env.PORT || 5000
-
+    
 app.listen(PORT, () => console.log(`server runnign at ${PORT}`))
