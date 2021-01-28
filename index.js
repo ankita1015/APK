@@ -2,7 +2,7 @@
 const express = require('express')
 const path = require('path');
 const app = express();
-const hbs=require('hbs');
+const hbs=require('hbs');kk
 //project modules//
 const UserDocument=require('./modals/schemas');
 
