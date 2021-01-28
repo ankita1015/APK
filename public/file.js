@@ -1,5 +1,5 @@
 let Src;
-
+eheh
 let divArray=[
   document.getElementById('file-ip-1-preview'),
   document.getElementById('file-ip-2-preview'),
