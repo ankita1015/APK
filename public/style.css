@@ -60,7 +60,7 @@
     background-size:100%;
     background-position:fixed;
     background: #f1f1f1;
-    font-family: sans-serif,arial,Helvetica;
+   font-family: Sans-serif;
     font-weight: 500;
 
     margin: 0px;
@@ -706,6 +706,56 @@ border: 3px solid #1e90ff;
   margin: 0;
   padding: 0;
   border: none;
+}
+
+#recent-post{
+  border:2px solid #e7e7e7;
+  width:13%;
+  display: inline-block;
+  background-color:white;
+  border-radius: 10px;
+  margin:0px 5px;
+  margin-top:10px;
+
+}
+#recent-post:hover{
+  cursor: pointer;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.13),0 -4px 3px rgba(0, 0, 0, 0.13);
+}
+#recent-post #post-content a{
+  color: #666;
+  background-color: rgba(0,0,0,0.09);
+  width:100%;
+  font-size: 11px;
+  padding: 5px;
+  display: block;
+  transition: all 0.3s;
+  margin-bottom:3px;
+}
+/* responsive css  for view page*/
+/* for mobile phones */
+@media only screen and (max-width:360px){
+#recent-post  {
+  width:100%;
+}
+
+}
+#recent-post img{
+  width:100%;
+  display: inline-block;
+border: 3px solid rgba(0,0,0,0.3);
+vertical-align: top;
+transition: border .3s;
+}
+#post-content{
+text-align:center ;
+width: 100%;
+display: inline-block;
+border: none;
+font-size: 12px;
+font-weight: bold;
+padding: 0 0 0 7px;
+margin: 0;
 }
 
 #sidebar .recent-post .post-img{

@@ -67,6 +67,10 @@ app.get('/add-product',(req,res)=>{
 app.get('/ourorders',(req,res)=>{
     res.render('ourorders');
 })
+//viw product//
+app.get('/view-product',(req,res)=>{
+    res.render('view');
+});
 //temp folder//
 app.get('/temp',(req,res)=>{
     res.render('temp');
