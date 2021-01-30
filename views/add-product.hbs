@@ -32,89 +32,51 @@
 
                     <div class="form-textbox">
                         <label for="productname">Product Name</label>
-                        <input type="text" name="productname" id="state" />
+                        <input type="text" name="productname" id="productname" />
                     </div>
 
                     <div class="form-textbox">
                         <label for="batch">Batch Id</label>
-                        <input type="text" name="batch" id="city" />
+                        <input type="text" name="batch" id="batch" />
                     </div>
                     
                     <div class="form-textbox">
                         <label for="des">description</label>
-                        <input type="text" name="des" id="code" />
+                        <input type="text" name="des" id="des" />
                     </div>
                     
 
 
                     <div class="form-textbox">
                         <label for="pass">Price</label>
-                        <input type="text" name="address" id="address" />
+                        <input type="text" name="price" id="price" />
                     </div>
                     
-                    <div class="form-textbox">
-                        <label for="num">Mobile No.</label>
-                        <input type="text" name="num" id="num" />
-                    </div>
                      
-					 <div class="form-textbox">
-              <div class="center">      
-                  <div class="form-input">
-                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
-                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
-                     <div class="preview">
-                         <img src="" alt="" id='file-ip-1-preview'>
-                     </div>
-                     
-                  </div>
-              </div>
-
-                <div class="center">
-                  <div class="form-input">
-                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
-                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
-                     <div class="preview">
-                         <img src="" alt="" id='file-ip-2-preview'>
-                     </div>
-                     
-                  </div>
-              </div>
-              <div class="center">
-                  <div class="form-input">
-                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
-                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
-                     <div class="preview">
-                         <img src="" alt="" id='file-ip-3-preview'>
-                     </div>
-                     
-                  </div>
-              </div>
-                <div class="center">
-                  <div class="form-input">
-                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
-                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
-                     <div class="preview">
-                         <img src="" alt="" id='file-ip-4-preview'>
-                     </div>
-                     
-                  </div>
-              </div>
-                <div class="center">
-                  <div class="form-input">
-                      <label for="file-ip-1"><i class="fa fa-plus"></i></label>
-                      <input type="file" id='file-ip-1' style="display: none;" accept="image/*" onchange="showpreview(event);">
-                     <div class="preview">
-                         <img src="" alt="" id='file-ip-5-preview'>
-                     </div>
-                     
-                  </div>
-              </div>
-
-        
-    
-                   </div>
-                        <br>
-                    <input type="submit" name="submit" id="submit" class="submit" value="Save" />
+	               <div id="upload_button">
+                       <label>
+                       <input type="file"   onchange="uploadFiles(event);" multiple>
+                       <span class="btn btn-primary">Upload Imges</span>
+                       </label>
+                       <div id='upload-container'>
+	                     <img src="" alt="" data-id=0 id="i1" onclick='removeImg(event);'>
+                       </div>
+                       <div id='upload-container' >
+	                     <img src="" alt="" data-id=1  id="i2" onclick='removeImg(event);'>
+                       </div>
+                       <div id='upload-container' >
+	                     <img src="" alt="" data-id=2  id="i3" onclick='removeImg(event);'>
+                       </div>
+                       <div id='upload-container'>
+		                 <img src="" alt="" data-id=3 id="i4" onclick='removeImg(event);'>
+                       </div>
+                       <div id='upload-container'>
+ 	                  	 <img src="" alt="" data-id=4 id="i5"onclick='removeImg(event);' >
+                       </div>
+                 </div>
+                  <br>
+                    
+                <input type="submit" name="submit" id="submit" class="submit" value="Save" />
                     
                 </form>
                         </div>
@@ -127,7 +89,7 @@
     </div>
 
 
-
+ <script src="./jquery.min.js"></script>
 <script src="./file.js"></script>
 </body>
 </html>

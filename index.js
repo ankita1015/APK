@@ -7,6 +7,7 @@ const hbs=require('hbs');
 const UserDocument=require('./modals/schemas');
 
 require('./db/conn');
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 // veiw Directory path
@@ -65,6 +66,11 @@ app.get('/add-product',(req,res)=>{
 });
 app.get('/ourorders',(req,res)=>{
     res.render('ourorders');
+})
+//temp folder//
+app.get('/temp',(req,res)=>{
+    res.render('temp');
+
 })
 
 //Customer side Pages//

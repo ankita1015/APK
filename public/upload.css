@@ -1,38 +1,58 @@
-.center{
 
-  margin-top:100px;
-  width:18%;
-  height: 20%;
-  display:inline-block;
- 
-  background:#fff;
-  border:2px dashed #555;
-box-sizing: border-box;
-}
-.form-input input{
-  display: none;
 
-}
-.form-input label{
-  margin-top:-90px;
-margin-left: -15px;
-  display: block;
-  width:15%;
-  top:0;
-  line-height: 60px;
-  text-align: center;
-  background: #333;
-  color: #fff;
-  font-size: 15px;
-  text-transform: uppercase;
-  padding:10px;
-  
-  border-radius:10px;
-}
-.form-input img{
-  width:100%;
-  height:100%;
-  float:right;
+
+
+ #upload_button input[type=file] {
   display:none;
+  margin:10px;
+  }
+  #upload_button input[type=file] + label {
+  display:inline-block;
+  margin-right:20px;
+  padding: 4px 32px;
+  background-color: #FFFFFF;
+ 
+  border-radius: 6px;
+  color:#666F77;
 
-}
+  }
+   input[type=file]:active + label {
+  background-image: none;
+ 
+  background-color:#2D6C7A;
+  color:#FFFFFF;
+  }
+ 
+  #upload-container{
+    border:2px solid grey;
+    padding:3px; 
+    height:13rem; 
+    width:13rem;
+    float: right;
+    margin-top:50px;
+    margin-right:10px;
+    left:0;
+    margin-bottom: 10px;
+
+  
+  }
+
+ #upload-container img{
+  
+    height:100%;
+    border: 1px solid black;
+    width:10%;
+    float:left;
+    cursor: pointer ;
+    display: none;
+  
+  }
+  .fa-remove{
+    display: none;
+  
+    font-size: 30px;
+ 
+
+  }
+
+
