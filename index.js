@@ -4,14 +4,15 @@ const path = require('path');
 const app = express();
 const hbs=require('hbs');
 //project modules//
-const UserDocument=require('./modals/schemas');
-
+const Schemas=require('./modals/schemas');
+const jwt=require('jsonwebtoken');
 require('./db/conn');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 // veiw Directory path
 const customerpath=path.join(__dirname,'./customermaster/views');
+//javascript files//
 
 
 //public STATIC PATH
@@ -34,25 +35,32 @@ app.get('/signup',(req,res)=>{
     res.render('signup');
 })
 app.post('/',async(req,res)=>{
-    
     try{
+    
         if(req.body.pass===req.body.cpass){
-           const User=new UserDocument({
-                   name:req.body.name,
-                   email:req.body.email,
-                   password:req.body.pass,
-                   role:req.body.member_level,
+            const User=new Schemas.UserDocument({
+                    name:req.body.name,
+                    email:req.body.email,
+                    password:req.body.pass,
+                    role:req.body.role,
                    });
-           const registred=await User.save();   
-           res.status(200).render('index');
-        }else{
-            res.render('signup',{
-                error:"Password Doesn't match",
-                        });
+                const token =await User.generateAuthoToken();
+                console.log(token);
+            const registred=await User.save();   
+           if(req.body.role==0){
+               res.render('add-shop');
+           }else{
+            res.status(200).render('index');
+           }
+         }else{
+             res.render('signup',{
+                 error:"Password Doesn't match",
+            });
         }
+    
               
     }catch(err){
-
+    res.status(500).send(err);
     }
 
 });
@@ -71,11 +79,34 @@ app.get('/ourorders',(req,res)=>{
 app.get('/view-product',(req,res)=>{
     res.render('view');
 });
-//temp folder//
-app.get('/temp',(req,res)=>{
-    res.render('temp');
+app.get('/shop',(req,res)=>{
+res.render('add-shop');
+});
+app.post('/shop',async(req,res)=>{
+try{
+    console.log(req.body.mobile);
+    const shop=new Schemas.ShopDocument({
+       shopname:req.body.shopname,
+       state:req.body.state,
+       city:req.body.city,
+       address:req.body.add,
+       area_code:req.body.code,
+       mobileNo:req.body.mobile,
+       email:req.body.email,
+       website:req.body.website,
 
-})
+    });
+  let shopCreated=await shop.save(); 
+  res.render('ourorders');  
+}catch(err){
+
+
+}
+});
+app.get('/total-selling',(req,res)=>{
+res.render('selling');
+
+});
 
 //Customer side Pages//
 app.get('/single',(req,res)=>{

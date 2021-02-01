@@ -1,0 +1,89 @@
+
+
+<html>
+    <head>
+
+{{>uploadcss}}
+{{>styleing}}
+</head>
+<body>
+ 
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-1">
+				</div>
+                <div class="col-md-10">
+                  <!-- post-container -->
+                    <div class="post-container col-md-12">
+                        <div class="post-content single-post">
+                            
+                            <div class="post-information" id='post-information'>
+                                
+                               
+                            </div>
+                           
+                           <form method="POST"  action='/shop' class="signup-form">
+                    <h3>Add Shop/company</h3>
+                    <hr>
+                    
+
+                    <div class="form-textbox">
+                          <label for="productname">Shop/company Name</label>
+                          <input type="text" name="shopname" id="shopname"  />
+                    </div>
+
+                    <div class="form-textbox">
+                 <label for="state">State</label>
+                        <input type="text" name="state" id="state" />
+                    </div>
+                    
+                    <div class="form-textbox">
+                 <label for="des">City</label>
+                        <input type="text" name="city" id="city" />
+                    </div>
+                    
+
+
+                    <div class="form-textbox">
+                 <label for="pass">Address</label>
+                        <input type="text" name="add" id="add" />
+                    </div>
+                    
+                    <div class="form-textbox">
+                 <label for="gst">Area Code</label>
+                        <input type="text" name="code" id="code" />
+                    </div>
+                    
+                           <div class="form-textbox">
+                 <label for="gst">Website</label>
+                        <input type="text" name="website" id="website" />
+                    </div>
+                          <div class="form-textbox">
+                 <label for="gst">Email</label>
+                        <input type="text" name='email' id="email" />
+                    </div>
+                          <div class="form-textbox">
+                 <label for="gst">Mobile No</label>
+                        <input type="text" name="mobile" id="mobile" />
+                    </div>
+	             
+                  <br>
+                    
+                <input type="submit" name="submit" id="submit" class="submit" value="Save" />
+                    
+                </form>
+                        </div>
+                    </div>
+                    <!-- /post-container -->
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+ <script src="./jquery.min.js"></script>
+<script src="./shop.js"></script>
+</body>
+</html>
