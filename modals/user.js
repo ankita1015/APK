@@ -1,3 +1,5 @@
+// require('dotenv').config();
+
 const mongoose=require('mongoose');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
@@ -14,7 +16,7 @@ email:{
     required:true,
 
  },
- hash_password:{
+ password:{
     type:String,
     required:true,
     trim:true,
@@ -28,24 +30,31 @@ email:{
          type:String,
          required:true
      }
- }]
+ }],
 });
 
 
 
 // genrate token//
-// Userscema.methods.generateAuthoToken=async function(){
-//    try{
-// const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
-// this.tokens=this.tokens.concat({token});
-// await this.save();
-// return token;
-//    }catch(err){
-// res.send(err);
-//    }
-// }
+Userscema.methods.generateAuthoToken=async function(){
+   try{
+const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
+this.tokens=this.tokens.concat({token});
+await this.save();
+return token;
+   }catch(err){
+res.send(err);
+   }
+}
 //password hashing//
- 
+ Userscema.pre('save',async function(next){
+    try{
+this.password=await bcrypt.hash(this.password,10);
+
+    }catch(err){
+console.log(err);
+    }
+ });
 
 
 const UserDocument=new mongoose.model('User',Userscema);

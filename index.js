@@ -1,16 +1,20 @@
 //npm modules 
+
 const express = require('express')
 const path = require('path');
 const app = express();
 const hbs=require('hbs');
+
 //project modules//
 const ShopDocument=require('./modals/shopmodal');
 const UserDocument=require('./modals/user');
+const cookieparser=require('cookie-parser');
+
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
-require('./db/conn');
 
 app.use(express.json());
+app.use(cookieparser());
 app.use(express.urlencoded({extended:false}));
 // veiw Directory path
 const customerpath=path.join(__dirname,'./customermaster/views');
@@ -31,23 +35,26 @@ app.set('view engine', 'hbs');
 
 
 app.get('/', (req, res) => {
-    res.render('index')
+    
+    res.render('index');
 })
 app.get('/signup',(req,res)=>{
     res.render('signup');
 })
-app.post('/',async(req,res)=>{
+app.post('/signup',async(req,res)=>{
     try{
-    
+
         if(req.body.pass===req.body.cpass){
-            const User=new Schemas.UserDocument({
+            const User=new UserDocument({
                     name:req.body.name,
                     email:req.body.email,
                     password:req.body.pass,
                     role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();
-                
+            res.cookie('user',token,{
+                httponly:true
+            });
             const registred=await User.save();   
            if(req.body.role==0){
                res.render('add-shop');
@@ -82,11 +89,15 @@ app.post('/login',async(req,res)=>{
           });
         }else{
             
-            const isMatch=await bcrypt.compare(req.body.pass,userEmail.password);
-            console.log(isMatch);
+            const isMatch=await bcrypt.hash(req.body.pass,10);
+ 
             const token =await userEmail.generateAuthoToken();
-            console.log(token);
-            if(isMatch){
+            res.cookie('user',token,{
+                secure:true,
+                httpOnly:true,
+                
+            });
+            if(isMatch==userEmail.password){
                
              if(userEmail.role==0){
                 res.status(200).render('ourorders');
@@ -131,7 +142,7 @@ try{
        mobileNo:req.body.mobile,
        email:req.body.email,
        website:req.body.website,
-
+      
     });
   let shopCreated=await shop.save(); 
   res.render('ourorders');  
@@ -170,6 +181,6 @@ app.get('*',(req,res)=>{
 
 
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
     
 app.listen(PORT, () => console.log(`server runnign at ${PORT}`))
