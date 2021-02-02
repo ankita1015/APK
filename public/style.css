@@ -96,7 +96,7 @@
     z-index: 99; 
   }
   .login-up-content{
-    text-align: center;
+    
     margin: auto;
     width:40%;
     position: relative;
@@ -180,6 +180,7 @@
     font-family: Poppins;
     border-radius: 5px;
    }
+
     .submit:hover {
       background: #0c85d0; }
   
@@ -217,6 +218,12 @@
     .form-textbox label {
       left: 15px; }
   
+     }
+     /* error */
+     .error{
+       left:0;
+       font-weight: normal;
+       color:red;
      }
 
 /* COMMOM CSS */

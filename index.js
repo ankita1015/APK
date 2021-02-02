@@ -4,8 +4,10 @@ const path = require('path');
 const app = express();
 const hbs=require('hbs');
 //project modules//
-const Schemas=require('./modals/schemas');
+const ShopDocument=require('./modals/shopmodal');
+const UserDocument=require('./modals/user');
 const jwt=require('jsonwebtoken');
+const bcrypt=require('bcryptjs');
 require('./db/conn');
 
 app.use(express.json());
@@ -45,7 +47,7 @@ app.post('/',async(req,res)=>{
                     role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();
-                console.log(token);
+                
             const registred=await User.save();   
            if(req.body.role==0){
                res.render('add-shop');
@@ -68,6 +70,41 @@ app.post('/',async(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login');
 })
+app.post('/login',async(req,res)=>{
+    try{
+        const userEmail=await UserDocument.findOne({email:req.body.email});
+      
+      
+        if(userEmail===null){
+          res.status(500).render('login',{
+            email:req.body.email,
+            error:'User not found',
+          });
+        }else{
+            
+            const isMatch=await bcrypt.compare(req.body.pass,userEmail.password);
+            console.log(isMatch);
+            const token =await userEmail.generateAuthoToken();
+            console.log(token);
+            if(isMatch){
+               
+             if(userEmail.role==0){
+                res.status(200).render('ourorders');
+            }else if(userEmail.role==1){
+            res.status(200).render('index');
+            }
+        }else{
+            res.status(500).render('login',{
+                error_pasword:'Password Does not match',
+               });
+
+        }
+        }
+
+    }catch(err){
+console.log(err);
+    }
+})
 // seller side pages//
 app.get('/add-product',(req,res)=>{
     res.render('add-product');
@@ -85,7 +122,7 @@ res.render('add-shop');
 app.post('/shop',async(req,res)=>{
 try{
     console.log(req.body.mobile);
-    const shop=new Schemas.ShopDocument({
+    const shop=new ShopDocument({
        shopname:req.body.shopname,
        state:req.body.state,
        city:req.body.city,
