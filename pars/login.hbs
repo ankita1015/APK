@@ -1,0 +1,117 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Login modal</title>
+</head>
+<body>
+  
+
+
+<!-- Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog" id='modal-dialog' role="document">
+    <div class="modal-content">
+      <button type="button" class="close" id='close' data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active" id='loginform'><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Account Login</a></li>
+        <li role="presentation" class='active'id='signform'><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Create an Account</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content" id='tab-content'>
+        <div role="tabpanel" id='tabpanel' class="tab-pane" id="login">
+          <div class="modal-header">
+            <h5>If you already have an online account, please enter your email address and password below.</h5>
+          </div>
+          
+          <div class="modal-body">
+            <form action="/login" method="POST">
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Email" data-parsley-trigger="change" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name='pass'class="form-control" id="password" placeholder="Password" data-parsley-trigger="change" required>
+              </div>
+              <button type="submit" class="btn btn-grey">Log in Now</button>
+            </form>
+            
+          </div>
+
+          <div class="modal-footer">
+            <h5>Forgot your password?</h5>
+            <p><a class="" role="button" data-toggle="collapse" href="#forgot-password-collapse" aria-expanded="false" aria-controls="forgot-password-collapse">Click here</a> to have a new one sent to you.</p>
+            
+            <div class="collapse" id="forgot-password-collapse">
+              <h5>Password Assistance</h5>
+              <p>Please enter the email address you used to create your WSJwine account, and we will send a new password.</p>
+              <form>
+                <div class="form-group">
+                  <label for="forgot-password-email">Email address</label>
+                  <input type="email" class="form-control" id="forgot-password-email" placeholder="Email">
+                </div>
+                <button type="submit" class="btn btn-grey">Send me my password</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane " id="register">
+         
+        <div class="modal-body">
+             
+          <div class="modal-header">
+            <h5>New Account Registration</h5>
+          </div>
+            <form class="row">
+            
+              <div class="new-customer clearfix">
+                 <div class="form-group col-sm-6">
+                  <label for="name">full name</label>
+                  <input type="text" class="form-control" id='name' placeholder="Full name">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="email-address">Email Address</label>
+                  <input type="email" class="form-control" id="email-address" placeholder="Email">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="confirm-password">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirm-password" placeholder="Password">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="password">Role</label>
+                   <select name='role'>
+                     <option selected disabled>Select Role</option>
+                     <option value="0">Customer</option>
+                     <option value="1">Seller</option>
+                   </select>
+                </div>
+                <small class="col-xs-12">Password must be a minimum of 8 characters and contain at least 1 number and 1 letter.</small>
+                <div class="checkbox col-xs-12">
+          
+                </div>
+              
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-grey create-account">Create Account</button>
+                <button type="submit" class="btn btn-grey verify-account hide">Verify Account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  
+</body>
+</html>
+<script src="./popup.js"></script>

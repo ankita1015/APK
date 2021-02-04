@@ -79,12 +79,12 @@
     top: -149px;
     z-index: 9; }
   
-  .container {
+  /* .container {
    
     
     margin: 0 auto;
   
-     }
+     } */
   
   .sign-up-content {
     
@@ -401,10 +401,115 @@ img.logo{
 }
 
 form{
-  background: #fff;
-  padding: 25px;
   box-shadow:0 1px 3px rgba(0, 0, 0, 0.13);
 }
+.main-container{
+  background-color: #fff;
+  padding:10px;
+}
+#category-post{
+  width:70px;
+  
+}
+
+.container-post-img{
+  width:100%;
+}
+.category-content{
+  text-align: center;
+}
+@media only screen and (max-width:360px){
+  #header-admin{
+    background-color: #1E90FF;
+    padding: 10px 0;
+  }
+  
+  #header-admin .admin-logout{
+    margin: 5px 0;
+    color: white;
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+  
+  #header-admin .admin-logout:hover{
+    text-decoration: underline;
+  }
+  
+  #admin-menubar{
+    background-color: #fff;
+  }
+  #admin-menubar .admin-menu{
+    font-size: 0;
+  }
+  #admin-menubar .admin-menu li{
+    display: inline-block;
+    margin: 0 5px 0 0;
+  }
+  #admin-menubar .admin-menu li a{
+    color: #1E90FF;
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    display: block;
+    transition: all 0.3s;
+  }
+  
+  #admin-menubar .admin-menu li a:hover{
+    color: #fff;
+    background-color: #1E90FF;
+  }
+
+  #sidebar .search-post{
+    margin-left:0px;
+
+  }
+  #sidebar .search-post input{
+    color: #606060;
+    width:20%;
+  }
+  #sidebar .search-post input:focus{
+    box-shadow: none;
+    border-color: #999;
+  }
+  
+  #sidebar .search-post .btn{
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 4px 6px;
+    background-color: #1E90FF;
+    border-color: #1E90FF;
+    outline: none;
+  }
+  
+  
+  
+  
+  .category-container{
+ 
+  display: inline-block;
+    }
+    .main-container{
+      background-color: #fff;
+      padding:4px;
+    }
+    #category-post{
+      width:25px;
+  margin: 0px;
+      
+    }
+    .container-post-img{
+      width:100%;
+    }
+    .category-content,h5{
+      text-align: center;
+      font-size: 7px;
+      
+    }
+  }
+
 
 .mySlides {display: none}
 img {vertical-align: middle;}
@@ -454,6 +559,7 @@ td, th {
   background: #333;
   text-align: center;
 }
+
 
 #menu-bar .menu > li{
   display: inline-block;
@@ -721,7 +827,7 @@ border: 3px solid #1e90ff;
 
 #recent-post{
   border:2px solid #e7e7e7;
-  width:13%;
+  width:20rem;
   display: inline-block;
   background-color:white;
   border-radius: 10px;
@@ -768,6 +874,8 @@ font-weight: bold;
 padding: 0 0 0 7px;
 margin: 0;
 }
+
+
 
 #sidebar .recent-post .post-img{
 display: inline-block;

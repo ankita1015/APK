@@ -6,12 +6,10 @@ const app = express();
 const hbs=require('hbs');
 
 //project modules//
-const ShopDocument=require('./modals/shopmodal');
-const UserDocument=require('./modals/user');
-const cookieparser=require('cookie-parser');
 
-const jwt=require('jsonwebtoken');
-const bcrypt=require('bcryptjs');
+const cookieparser=require('cookie-parser');
+const auth=require('./middleware/auth');
+
 
 app.use(express.json());
 app.use(cookieparser());
@@ -32,8 +30,6 @@ app.set('view engine', 'hbs');
 
 
 
-
-
 app.get('/', (req, res) => {
     
     res.render('index');
@@ -41,117 +37,27 @@ app.get('/', (req, res) => {
 app.get('/signup',(req,res)=>{
     res.render('signup');
 })
-app.post('/signup',async(req,res)=>{
-    try{
+app.post('/',require('./controller/signup'));
 
-        if(req.body.pass===req.body.cpass){
-            const User=new UserDocument({
-                    name:req.body.name,
-                    email:req.body.email,
-                    password:req.body.pass,
-                    role:req.body.role,
-                   });
-                const token =await User.generateAuthoToken();
-            res.cookie('user',token,{
-                httponly:true
-            });
-            const registred=await User.save();   
-           if(req.body.role==0){
-               res.render('add-shop');
-           }else{
-            res.status(200).render('index');
-           }
-         }else{
-             res.render('signup',{
-                 error:"Password Doesn't match",
-            });
-        }
-    
-              
-    }catch(err){
-    res.status(500).send(err);
-    }
 
-});
-
-app.get('/login',(req,res)=>{
-    res.render('login');
-})
-app.post('/login',async(req,res)=>{
-    try{
-        const userEmail=await UserDocument.findOne({email:req.body.email});
-      
-      
-        if(userEmail===null){
-          res.status(500).render('login',{
-            email:req.body.email,
-            error:'User not found',
-          });
-        }else{
-            
-            const isMatch=await bcrypt.hash(req.body.pass,10);
- 
-            const token =await userEmail.generateAuthoToken();
-            res.cookie('user',token,{
-                secure:true,
-                httpOnly:true,
-                
-            });
-            if(isMatch==userEmail.password){
-               
-             if(userEmail.role==0){
-                res.status(200).render('ourorders');
-            }else if(userEmail.role==1){
-            res.status(200).render('index');
-            }
-        }else{
-            res.status(500).render('login',{
-                error_pasword:'Password Does not match',
-               });
-
-        }
-        }
-
-    }catch(err){
-console.log(err);
-    }
-})
+app.post('/login',require('./controller/login'));
 // seller side pages//
-app.get('/add-product',(req,res)=>{
+app.get('/add-product',auth,(req,res)=>{
+    console.log(auth());
     res.render('add-product');
 });
-app.get('/ourorders',(req,res)=>{
+app.get('/ourorders',auth,(req,res)=>{
     res.render('ourorders');
 })
 //viw product//
-app.get('/view-product',(req,res)=>{
+app.get('/view-product',auth,(req,res)=>{
     res.render('view');
 });
-app.get('/shop',(req,res)=>{
+app.get('/shop',auth,(req,res)=>{
 res.render('add-shop');
 });
-app.post('/shop',async(req,res)=>{
-try{
-    console.log(req.body.mobile);
-    const shop=new ShopDocument({
-       shopname:req.body.shopname,
-       state:req.body.state,
-       city:req.body.city,
-       address:req.body.add,
-       area_code:req.body.code,
-       mobileNo:req.body.mobile,
-       email:req.body.email,
-       website:req.body.website,
-      
-    });
-  let shopCreated=await shop.save(); 
-  res.render('ourorders');  
-}catch(err){
-
-
-}
-});
-app.get('/total-selling',(req,res)=>{
+app.post('/shop',auth,require('./controller/shop'));
+app.get('/total-selling',auth,(req,res)=>{
 res.render('selling');
 
 });
@@ -163,15 +69,24 @@ app.get('/single',(req,res)=>{
 app.get('/product-list',(req,res)=>{
     res.render('product-list');
 });
-app.get('/cart',(req,res)=>{
+app.get('/cart',auth,(req,res)=>{
     res.render('cart');
 })
-app.get('/order',(req,res)=>{
+app.get('/order',auth,(req,res)=>{
     res.render('order');
 })
 app.get('/history',(req,res)=>{
     res.render('history');
 })
+app.get('/logout',auth,async(req,res)=>{
+    res.clearCookie('user');
+    console.log('logout sucessfully');
+    await req.user.save();
+    res.render('login');
+    
+    
+});
+
 
 app.get('*',(req,res)=>{
     res.status(404).render('404');

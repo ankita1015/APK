@@ -1,0 +1,109 @@
+body {
+  height: 100%;
+  background-color: grey;
+}
+.btn-modal {
+  margin: 2em;
+}
+.btn {
+  border-radius: 0;
+  border: none;
+  -webkit-transition: background-color ease-out 0.5s;
+  -moz-transition: background-color ease-out 0.5s;
+  -o-transition: background-color ease-out 0.5s;
+  transition: background-color ease-out 0.5s;
+}
+.btn:hover {
+  -webkit-transition: box-shadow ease-out 0.3s;
+  -moz-transition: box-shadow ease-out 0.3s;
+  -o-transition: box-shadow ease-out 0.3s;
+  transition: box-shadow ease-out 0.3s;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+.btn-grey {
+  background: #797979;
+  color: #fff;
+}
+.btn-grey:hover {
+  background: #575757;
+  color: #fff;
+}
+.close {
+  opacity: 0.4;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  z-index: 1;
+}
+.form-control {
+  border-radius: 0;
+  box-shadow: none;
+}
+.form-control:focus {
+  box-shadow: none;
+  border-color: #999;
+}
+
+#myModal .modal-content {
+  border-radius: 0;
+  border: none;
+}
+#myModal .modal-content form label {
+  font-weight: normal;
+  margin-bottom: 2px;
+}
+#myModal .modal-footer {
+  text-align: left;
+}
+.nav-tabs > li {
+  width: 50%;
+}
+.nav-tabs > li a {
+  margin: 0;
+  border-radius: 0;
+  text-align: center;
+  font-weight: 600;
+}
+/* Optional Styling */
+.nav-tabs > li > a {
+  background-color: #ccc;
+  color: #666;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus {
+  background-color: #f7f7f7;
+  color: #5a5a5a;
+}
+.modal-content {
+  background-color: #f7f7f7;
+}
+/*.form-control {
+  border: none;
+}
+*/
+/* Form validation */
+.parsley-error {
+  border-color: #c00;
+  color: #c00;
+  background-color: #FFD9D9;
+}
+/* Forgot Password Section */
+#forgot-password-collapse {
+  border-top: 2px dashed #999;
+  margin-top: 30px;
+}
+#forgot-password-collapse h5 {
+  margin-top: 15px;
+}
+#forgot-password-collapse form {
+  margin-top: 20px;
+}
+.existing-customer {
+  display: none;
+}
+#register{
+  display: block;
+}
+#tab-content{
+  display: block;
+}
