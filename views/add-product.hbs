@@ -25,42 +25,55 @@
                                
                             </div>
                            
-                           <form method="POST" class="signup-form">
-                    <h3>Add Product</h3>
-                    <hr>
-                    
+              <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+  
 
-                    <div class="form-textbox">
-                        <label for="productname">Product Name</label>
-                        <input type="text" name="productname" id="productname" />
-                    </div>
+      <!-- Tab panes -->
 
-                    <div class="form-textbox">
-                        <label for="batch">Batch Id</label>
-                        <input type="text" name="batch" id="batch" />
-                    </div>
-                    
-                    <div class="form-textbox">
-                        <label for="des">description</label>
-                        <input type="text" name="des" id="des" />
-                    </div>
-                    
-
-
-                    <div class="form-textbox">
-                        <label for="pass">Price</label>
-                        <input type="text" name="price" id="price" />
-                    </div>
-                    
-                    <div class="form-textbox">
-                        <label for="gst">Gst</label>
-                        <input type="text" name="gst" id="gst" />
-                    </div>
-                    
-                     
-	               <div id="upload_button">
+        <div role="tabpanel" class="tab-pane" id="register">
+          <div class="modal-header">
+            <h5>Add Product to {company}</h5>
+          </div>
+          <div class="modal-body">
+            <form action='/shop' method='POST'class="row">
+        
+              
+   
+                
+                <div class="checkbox col-xs-12">
+                 
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="product-name">Product</label>
+                  <input type="text" class="form-control" name="product" id="company-name" placeholder="Product Name*">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="batchid">batch id</label>
+                  <input type="text" class="form-control" name='batchid' id="address-one" placeholder="Batch Id">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="Description">Description</label>
+                  <input type="text" class="form-control" name="description" id="address-two" placeholder="Description*">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="gst">Gst</label>
+                  <input type="text" class="form-control" name='gst' id="zip-code" placeholder="Gst(%)">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="price">Price</label>
+                  <input type="text" class="form-control" name='price'id="city" placeholder="Price*">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="total_price">total Price(gst)</label>
+                  <input type="text" class="form-control" id="state" name="total_price" placeholder="Total Price" readonly>
+                </div>
+             
+              </div>
+                 <div id="upload_button" class="col-md-12">
                        <label>
-                       <input type="file"   onchange="uploadFiles(event);" multiple>
+                       <input type="file"   onchange="uploadFiles(event);" multiple/>
                        <span class="btn btn-primary">Upload Imges</span>
                        </label>
                        <div id='upload-container'>
@@ -79,19 +92,27 @@
  	                  	 <img src="" alt="" data-id=4 id="i5"onclick='removeImg(event);' >
                        </div>
                  </div>
-                  <br>
-                    
-                <input type="submit" name="submit" id="submit" class="submit" value="Save" />
-                    
-                </form>
-                        </div>
-                    </div>
-                    <!-- /post-container -->
-                </div>
-               
-            </div>
+              
+              <div class="modal-footer">
+                    <button type="submit" class="btn btn-grey create-account">Add Product</button>
+    
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+                  
+                    
+
+         
+
+
+
+                    
+
 
 
  <script src="./jquery.min.js"></script>

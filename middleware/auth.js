@@ -16,7 +16,7 @@ const auth=async(req,res,next)=>{
         next();
          
     }catch(err){
-        res.render('login');
+         res.render('index');
 
     }
 

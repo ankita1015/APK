@@ -66,36 +66,35 @@
           <div class="modal-header">
             <h5>New Account Registration</h5>
           </div>
-            <form class="row">
+            <form  action='/' method='POST' class="row">
             
               <div class="new-customer clearfix">
                  <div class="form-group col-sm-6">
                   <label for="name">full name</label>
-                  <input type="text" class="form-control" id='name' placeholder="Full name">
+                  <input type="text"  name='name' class="form-control" id='name' placeholder="Full name">
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="email-address">Email Address</label>
-                  <input type="email" class="form-control" id="email-address" placeholder="Email">
+                  <input type="email"  name='email' class="form-control" id="email-address" placeholder="Email">
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="Password">
+                  <input type="password" name='password' class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="confirm-password">Confirm Password</label>
-                  <input type="password" class="form-control" id="confirm-password" placeholder="Password">
+                  <input type="password" name='cpassword' class="form-control" id="confirm-password" placeholder="Password">
                 </div>
-                <div class="form-group col-sm-6">
-                  <label for="password">Role</label>
-                   <select name='role'>
-                     <option selected disabled>Select Role</option>
-                     <option value="0">Customer</option>
-                     <option value="1">Seller</option>
-                   </select>
-                </div>
+
+              
                 <small class="col-xs-12">Password must be a minimum of 8 characters and contain at least 1 number and 1 letter.</small>
-                <div class="checkbox col-xs-12">
-          
+                <div class="form-group col-sm-6">
+                  <label for="role">Role</label>
+                  <select name='role'>
+                    <option selected disabled>Select Role</option>
+                    <option value="0">Seller</option>
+                    <option value='1'>Customer</option>
+                  </select>
                 </div>
               
               </div>

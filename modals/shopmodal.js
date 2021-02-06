@@ -20,7 +20,11 @@ const Shopschema=new mongoose.Schema({
     },
     address:{
         type:String,
-        required:true
+        required:true,
+    },
+    address2:{
+        type:String,
+        required:true,
     },
     area_code:{
         type:String,
@@ -31,20 +35,29 @@ const Shopschema=new mongoose.Schema({
        required:true,
   
     },
-    email:{
-        type:String,
-        required:true,
-  },
-  website:{
-  type:String,
-  default:''
-  
-  },
-  userID:{
+   userID:{
       type:String,
        required:true,
-  }
+  },
+  tokens:[{
+      token:{
+          type:String,
+          required:true
+      }
+  }]
   });
+
+
+Shopschema.methods.generateAuthoToken=async function(){
+    try{
+    const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
+    this.tokens=this.tokens.concat({token});
+    await this.save();
+    return token;
+}catch(err){
+   res.send(err);
+ }
+}
   
   const ShopDocument=new mongoose.model('Shop',Shopschema);
   module.exports=ShopDocument;

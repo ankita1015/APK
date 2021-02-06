@@ -1,89 +1,75 @@
-
-
-<html>
-    <head>
-
-{{>uploadcss}}
-{{>styleing}}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Login modal</title>
+  <link rel="stylesheet" href="./login.css">
+  {{>styleing}}
 </head>
 <body>
- 
-    <div id="main-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1">
-				</div>
-                <div class="col-md-10">
-                  <!-- post-container -->
-                    <div class="post-container col-md-12">
-                        <div class="post-content single-post">
-                            
-                            <div class="post-information" id='post-information'>
-                                
-                               
-                            </div>
-                           
-                           <form method="POST"  action='/shop' class="signup-form">
-                    <h3>Add Shop/company</h3>
-                    <hr>
-                    
 
-                    <div class="form-textbox">
-                          <label for="productname">Shop/company Name</label>
-                          <input type="text" name="shopname" id="shopname"  />
-                    </div>
+<!-- Modal -->
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+  
 
-                    <div class="form-textbox">
-                 <label for="state">State</label>
-                        <input type="text" name="state" id="state" />
-                    </div>
-                    
-                    <div class="form-textbox">
-                 <label for="des">City</label>
-                        <input type="text" name="city" id="city" />
-                    </div>
-                    
+      <!-- Tab panes -->
 
-
-                    <div class="form-textbox">
-                 <label for="pass">Address</label>
-                        <input type="text" name="add" id="add" />
-                    </div>
-                    
-                    <div class="form-textbox">
-                 <label for="gst">Area Code</label>
-                        <input type="text" name="code" id="code" />
-                    </div>
-                    
-                           <div class="form-textbox">
-                 <label for="gst">Website</label>
-                        <input type="text" name="website" id="website" />
-                    </div>
-                          <div class="form-textbox">
-                 <label for="gst">Email</label>
-                        <input type="text" name='email' id="email" />
-                    </div>
-                          <div class="form-textbox">
-                 <label for="gst">Mobile No</label>
-                        <input type="text" name="mobile" id="mobile" />
-                    </div>
-	             
-                  <br>
-                    
-                <input type="submit" name="submit" id="submit" class="submit" value="Save" />
-                    
-                </form>
-                        </div>
-                    </div>
-                    <!-- /post-container -->
+        <div role="tabpanel" class="tab-pane" id="register">
+          <div class="modal-header">
+            <h5>Create A Company</h5>
+          </div>
+          <div class="modal-body">
+            <form action='/shop' method='POST'class="row">
+        
+              
+   
+                
+                <div class="checkbox col-xs-12">
+                 
                 </div>
-               
-            </div>
+                <div class="form-group col-sm-12">
+                  <label for="company-name">Company Name</label>
+                  <input type="text" class="form-control" name="shopname" id="company-name" placeholder="Company Name">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="address-one">Address 1</label>
+                  <input type="text" class="form-control" name='address1' id="address-one" placeholder="House #, Street">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="address-two">Address 2</label>
+                  <input type="text" class="form-control" name="address2" id="address-two" placeholder="Apt./Unit #">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="zip-code">Zip Code</label>
+                  <input type="tel" class="form-control" name='code' id="zip-code" placeholder="6 digit zip">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" name='city'id="city" placeholder="City, Town">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" id="state" name="state" placeholder="State">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="phone">Phone</label>
+                  <input type="tel" class="form-control" name="mobileNo" id="phone" placeholder="Phone number">
+                </div>
+              </div>
+              
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-grey create-account">Create Account</button>
+    
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-
-
- <script src="./jquery.min.js"></script>
-<script src="./shop.js"></script>
+  </div>
+</div>
+  <script src="./popup.js"></script>
 </body>
 </html>

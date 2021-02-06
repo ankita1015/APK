@@ -2,11 +2,11 @@ const UserDocument=require('../modals/user');
 module.exports=async(req,res)=>{
     try{
 
-        if(req.body.pass===req.body.cpass){
+        if(req.body.password===req.body.cpassword){
             const User=new UserDocument({
                     name:req.body.name,
                     email:req.body.email,
-                    password:req.body.pass,
+                    password:req.body.password,
                     role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();

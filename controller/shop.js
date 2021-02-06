@@ -9,14 +9,19 @@ module.exports=async(req,res)=>{
               shopname:req.body.shopname,
               state:req.body.state,
               city:req.body.city,
-              address:req.body.add,
+              address:req.body.address1,
+              address2:req.body.address2,
               area_code:req.body.code,
-              mobileNo:req.body.mobile,
-              email:req.body.email,
-              website:req.body.website,
-              userId:req.user._id,
+              mobileNo:req.body.mobileNo,
+              userID:req.user._id,
            });
-         await shop.save(); 
+         const shoptoken=await shop.generateAuthoToken();
+         res.cookie('Shop',shoptoken,{
+           httpOnly:true,
+              
+         })
+         await shop.save();
+               
          res.render('ourorders');  
        }catch(err){
        console.log(err);

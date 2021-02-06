@@ -1,12 +1,14 @@
-const 
-const jwt=require('jsonwebtoken');
+const express=require('express');
+const app=express();
+
 const cookieparser=require('cookie-parser');
 
-
+app.use(cookieparser());
 module.exports=async(req,res)=>{
-res.clearcookie('user');
-console.log('Logout successfully');
+res.clearCookie('user');
+
 await req.user.save();
+res.render('index');
 }
 
 

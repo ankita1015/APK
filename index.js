@@ -9,7 +9,7 @@ const hbs=require('hbs');
 
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
-
+const Shopauth=require('./middleware/shopauth');
 
 app.use(express.json());
 app.use(cookieparser());
@@ -42,22 +42,22 @@ app.post('/',require('./controller/signup'));
 
 app.post('/login',require('./controller/login'));
 // seller side pages//
-app.get('/add-product',auth,(req,res)=>{
-    console.log(auth());
+app.get('/add-product',auth,Shopauth,(req,res)=>{
+    
     res.render('add-product');
 });
-app.get('/ourorders',auth,(req,res)=>{
+app.get('/ourorders',auth,Shopauth,(req,res)=>{
     res.render('ourorders');
 })
 //viw product//
-app.get('/view-product',auth,(req,res)=>{
+app.get('/view-product',auth,Shopauth,(req,res)=>{
     res.render('view');
 });
 app.get('/shop',auth,(req,res)=>{
 res.render('add-shop');
 });
-app.post('/shop',auth,require('./controller/shop'));
-app.get('/total-selling',auth,(req,res)=>{
+app.post('/shop',auth,Shopauth,require('./controller/shop'));
+app.get('/total-selling',Shopauth,auth,(req,res)=>{
 res.render('selling');
 
 });
@@ -78,14 +78,7 @@ app.get('/order',auth,(req,res)=>{
 app.get('/history',(req,res)=>{
     res.render('history');
 })
-app.get('/logout',auth,async(req,res)=>{
-    res.clearCookie('user');
-    console.log('logout sucessfully');
-    await req.user.save();
-    res.render('login');
-    
-    
-});
+app.get('/logout',auth,require('./controller/logout'));
 
 
 app.get('*',(req,res)=>{
