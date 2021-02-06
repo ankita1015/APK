@@ -16,7 +16,7 @@ module.exports=async(req,res)=>{
               userID:req.user._id,
            });
          const shoptoken=await shop.generateAuthoToken();
-         res.cookie('Shop',shoptoken,{
+         res.cookie('shop',shoptoken,{
            httpOnly:true,
               
          })

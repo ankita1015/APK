@@ -44,7 +44,9 @@ app.post('/login',require('./controller/login'));
 // seller side pages//
 app.get('/add-product',auth,Shopauth,(req,res)=>{
     
-    res.render('add-product');
+    res.render('add-product',{
+        shopname:req.shopname,
+    });
 });
 app.get('/ourorders',auth,Shopauth,(req,res)=>{
     res.render('ourorders');
@@ -56,7 +58,7 @@ app.get('/view-product',auth,Shopauth,(req,res)=>{
 app.get('/shop',auth,(req,res)=>{
 res.render('add-shop');
 });
-app.post('/shop',auth,Shopauth,require('./controller/shop'));
+app.post('/shop',auth,require('./controller/shop'));
 app.get('/total-selling',Shopauth,auth,(req,res)=>{
 res.render('selling');
 
