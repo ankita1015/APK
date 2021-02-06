@@ -4,7 +4,6 @@ const ShopDocument=require('../modals/shopmodal');
 
 
 const Shopauth=async(req,res,next)=>{
-
     try{
         const token=req.cookies.shop;
       
