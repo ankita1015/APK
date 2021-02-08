@@ -541,8 +541,10 @@ img {vertical-align: middle;}
 }
 
 td{
+  font-size:14px;
   text-align: center;
   border: 1px solid #dddddd;
+  padding:5px 0px ;
 }
 
 
