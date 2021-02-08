@@ -5,12 +5,13 @@ const path = require('path');
 const app = express();
 const hbs=require('hbs');
 
+
 //project modules//
 
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 const Shopauth=require('./middleware/shopauth');
-
+// const upload=require('./middleware/upload');
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({extended:false}));
@@ -47,6 +48,11 @@ app.get('/add-product',auth,Shopauth,(req,res)=>{
     res.render('add-product',{
         shopname:req.shopname,
     });
+});
+
+app.post('/product',Shopauth,(req,res)=>{
+    
+  
 });
 app.get('/ourorders',auth,Shopauth,(req,res)=>{
     res.render('ourorders');

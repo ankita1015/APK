@@ -6,44 +6,33 @@
   display:none;
   
   }
-  #upload_button input[type=file] + label {
+
+  #upload_button  label {
   display:inline-block;
-  
+  height:10rem;
+  width:8rem;
   margin-right:20px;
-  padding: 4px 32px;
-  background-color: #FFFFFF;
- 
+  align-items: center;
+  background-color:#FFFFFF;
+  border:2px solid grey;
   border-radius: 6px;
-  color:#666F77;
+  
 
   }
+#upload_button label i{
+margin-top: 10px;
+font-size: 50px;
+font-weight: 100;
 
- 
-  #upload-container{
-    border:2px solid grey;
-    padding:3px; 
-    height:10rem; 
-    width:8rem;
-    float: right;
-    margin-top:6px;
-    margin-right:8px;
-    left:0;
-    margin-bottom: 5px;
-    
 
-  
-  }
+color:grey;
+z-index:1;
+margin:25px;
+position: absolute;
+}
 
- #upload-container img{
-  
-    height:100%;
-    border: 1px solid black;
-    width:10%;
-    float:left;
-    cursor: pointer ;
-    display: none;
-  
-  }
+
+
   .fa-remove{
     display: none;
     font-size: 30px;

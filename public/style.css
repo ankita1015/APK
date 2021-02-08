@@ -529,12 +529,20 @@ img {vertical-align: middle;}
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  
 }
 
-td, th {
+ th {
+
   border: 1px solid #dddddd;
   text-align: left;
-  padding: 8px;
+  width:200px;
+  text-align: center;
+}
+
+td{
+  text-align: center;
+  border: 1px solid #dddddd;
 }
 
 
