@@ -31,6 +31,10 @@ images:[{
     type:Array,
     default:''
 }],
+qty:{
+    type:Number,
+    default:0
+},
 shopid:{
     type:String,
     required:true

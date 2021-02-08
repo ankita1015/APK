@@ -4,6 +4,18 @@ const express = require('express')
 const path = require('path');
 const app = express();
 const hbs=require('hbs');
+const multer=require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, '/public/uploadimg/');
+    },
+    filename: function (req, file, callback) {
+      callback(null, file.fieldname + '-' + Date.now());
+    }
+  });
+  
+  var upload = multer({ storage : storage }).single('images');
 
 
 //project modules//
@@ -51,11 +63,25 @@ app.get('/add-product',auth,Shopauth,(req,res)=>{
 });
 
 app.post('/product',Shopauth,(req,res)=>{
-    
+    upload(req,res,function(err) {
+        //console.log(req.body);
+        //console.log(req.files);
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
   
+    res.send();
 });
 app.get('/ourorders',auth,Shopauth,(req,res)=>{
-    res.render('ourorders');
+    res.render('ourorders',{
+        shopname:req.shopname
+    });
+})
+//view order//
+app.get('/view-order',(req,res)=>{
+    res.render('view-order');
 })
 //viw product//
 app.get('/view-product',auth,Shopauth,(req,res)=>{
