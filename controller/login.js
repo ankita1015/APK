@@ -9,7 +9,7 @@ module.exports=async(req,res)=>{
         }else{
           let ismatch=await bcrypt.compare(req.body.password.toString(),userEmail.password);
           if(ismatch==true){
-            console.log('password match');
+          
                const token =await userEmail.generateAuthoToken();
                
                res.cookie('user',token,{
@@ -17,10 +17,10 @@ module.exports=async(req,res)=>{
                 httponly:true
                
              });
-               console.log('page rendering');
+              
               const check=userEmail.role=='0' ? true:false;
               if(check){
-                console.log('add shop page');
+               
                 res.status(200).render('add-shop');
               }else{
                 res.status(200).render('index');

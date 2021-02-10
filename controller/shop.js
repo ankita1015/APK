@@ -4,7 +4,7 @@ const ShopDocument=require('../modals/shopmodal');
 module.exports=async(req,res)=>{
 
     try{
-      
+            
         const shop=new ShopDocument({
               shopname:req.body.shopname,
               state:req.body.state,
@@ -15,9 +15,9 @@ module.exports=async(req,res)=>{
               mobileNo:req.body.mobileNo,
               userID:req.user._id,
            });
-         let shoptoken=shop;
-         res.cookie('shop',shoptoken,{
-           httpOnly:true,
+         let shopToken=shop;
+         res.cookie('shop',shopToken,{
+              httpOnly:true,
               
          })
          await shop.save();

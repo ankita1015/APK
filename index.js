@@ -12,7 +12,8 @@ const storage=multer.diskStorage({
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 const Shopauth=require('./middleware/shopauth');
-const { ok } = require('assert');
+const Shopcookie=require('./middleware/shopcookie');
+const ShopDocument = require('./modals/shopmodal');
 
 // const upload=require('./middleware/upload');
 app.use(express.json());
@@ -63,13 +64,11 @@ app.get('/view-order',(req,res)=>{
 app.get('/view-product',auth,Shopauth,(req,res)=>{
     res.render('view');
 });
-app.get('/shop',auth,(req,res)=>{
-
-
-
+app.get('/shop',auth,Shopauth,async(req,res)=>{
+  res.status(200).render('ourorders');
 });
 app.post('/shop',auth,require('./controller/shop'));
-app.get('/total-selling',Shopauth,auth,(req,res)=>{
+app.get('/total-selling',auth,Shopauth,(req,res)=>{
 res.render('selling');
 
 });
@@ -90,7 +89,7 @@ app.get('/order',auth,(req,res)=>{
 app.get('/history',(req,res)=>{
     res.render('history');
 })
-app.get('/logout',auth,require('./controller/logout'));
+app.get('/logout',auth,Shopauth,require('./controller/logout'));
 
 
 app.get('*',(req,res)=>{
