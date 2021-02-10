@@ -5,15 +5,12 @@ const ShopDocument=require('../modals/shopmodal');
 
 const Shopauth=async(req,res,next)=>{
     try{
-        const token=req.cookies.shop;
-      
-        const verifyShop=await jwt.verify(token,'mynameiskunjanbarotprogrammer');
-        const shop=await ShopDocument.findOne({_id:verifyShop._id});
-        
-        req.shoptoken=token;
+        const shoptoken=req.cookies.shop;
+        console.log(shoptoken);
+        const shop=await ShopDocument.findOne({_id:_id,shopname:shopname});
+        req.shoptoken=shop;
         req.shop=shop;
         req.shopname=shop.shopname;
-        
         next();
        
     }catch(err){

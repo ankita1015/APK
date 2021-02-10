@@ -1,36 +1,23 @@
 //npm modules 
-
 const express = require('express')
 const path = require('path');
 const app = express();
 const hbs=require('hbs');
 const multer=require('multer');
+const storage=multer.diskStorage({
 
-var storage = multer.diskStorage({
-    destination: function (req, file, callback) {
-      callback(null, '/public/uploadimg/');
-    },
-    filename: function (req, file, callback) {
-      callback(null, file.fieldname + '-' + Date.now());
-    }
-  });
-  
-  var upload = multer({ storage : storage }).single('images');
-
+});
 
 //project modules//
-
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 const Shopauth=require('./middleware/shopauth');
+const { ok } = require('assert');
+
 // const upload=require('./middleware/upload');
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({extended:false}));
-// veiw Directory path
-const customerpath=path.join(__dirname,'./customermaster/views');
-//javascript files//
-
 
 //public STATIC PATH
 app.use(express.static(path.join(__dirname, '/public/')))
@@ -38,10 +25,7 @@ app.use(express.static(path.join(__dirname, '/public/js')))
 
 //set Engine
 hbs.registerPartials(path.join(__dirname, './pars'));
-
 app.set('view engine', 'hbs');
-
-
 
 app.get('/', (req, res) => {
     
@@ -54,6 +38,7 @@ app.post('/',require('./controller/signup'));
 
 
 app.post('/login',require('./controller/login'));
+
 // seller side pages//
 app.get('/add-product',auth,Shopauth,(req,res)=>{
     
@@ -63,16 +48,7 @@ app.get('/add-product',auth,Shopauth,(req,res)=>{
 });
 
 app.post('/product',Shopauth,(req,res)=>{
-    upload(req,res,function(err) {
-        //console.log(req.body);
-        //console.log(req.files);
-        if(err) {
-            return res.end("Error uploading file.");
-        }
-        res.end("File is uploaded");
-    });
   
-    res.send();
 });
 app.get('/ourorders',auth,Shopauth,(req,res)=>{
     res.render('ourorders',{
@@ -88,7 +64,9 @@ app.get('/view-product',auth,Shopauth,(req,res)=>{
     res.render('view');
 });
 app.get('/shop',auth,(req,res)=>{
-res.render('add-shop');
+
+
+
 });
 app.post('/shop',auth,require('./controller/shop'));
 app.get('/total-selling',Shopauth,auth,(req,res)=>{

@@ -39,25 +39,11 @@ const Shopschema=new mongoose.Schema({
       type:String,
        required:true,
   },
-  tokens:[{
-      token:{
-          type:String,
-          required:true
-      }
-  }]
+ 
   });
 
 
-Shopschema.methods.generateAuthoToken=async function(){
-    try{
-    const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
-    this.tokens=this.tokens.concat({token});
-    await this.save();
-    return token;
-}catch(err){
-   res.send(err);
- }
-}
+
   
   const ShopDocument=new mongoose.model('Shop',Shopschema);
   module.exports=ShopDocument;

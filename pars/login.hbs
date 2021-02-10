@@ -31,33 +31,20 @@
             <form action="/login" method="POST">
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Email" data-parsley-trigger="change" required>
+                <input type="email" name="email" class="form-control" id="login-email" placeholder="Email"  required>
+                <p id='e-error'></p>
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name='pass'class="form-control" id="password" placeholder="Password" data-parsley-trigger="change" required>
+                <p id='p-error'></p>
               </div>
-              <button type="submit" class="btn btn-grey">Log in Now</button>
+              <button type="submit" class="btn  btn-grey" id='login-btn'>Log in Now</button>
             </form>
             
           </div>
 
-          <div class="modal-footer">
-            <h5>Forgot your password?</h5>
-            <p><a class="" role="button" data-toggle="collapse" href="#forgot-password-collapse" aria-expanded="false" aria-controls="forgot-password-collapse">Click here</a> to have a new one sent to you.</p>
-            
-            <div class="collapse" id="forgot-password-collapse">
-              <h5>Password Assistance</h5>
-              <p>Please enter the email address you used to create your WSJwine account, and we will send a new password.</p>
-              <form>
-                <div class="form-group">
-                  <label for="forgot-password-email">Email address</label>
-                  <input type="email" class="form-control" id="forgot-password-email" placeholder="Email">
-                </div>
-                <button type="submit" class="btn btn-grey">Send me my password</button>
-              </form>
-            </div>
-          </div>
+        
         </div>
         <div role="tabpanel" class="tab-pane " id="register">
          
@@ -113,4 +100,6 @@
   
 </body>
 </html>
+<script src="./jquery.min.js"></script>
 <script src="./popup.js"></script>
+<script src="./login-ajax.js"></script>

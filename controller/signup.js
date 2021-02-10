@@ -1,12 +1,14 @@
 const UserDocument=require('../modals/user');
+const bcrypt=require('bcryptjs');
 module.exports=async(req,res)=>{
     try{
-
         if(req.body.password===req.body.cpassword){
+            let password=await bcrypt.hash(req.body.password,10);
+            console.log(req.body);
             const User=new UserDocument({
                     name:req.body.name,
                     email:req.body.email,
-                    password:req.body.password,
+                    password,
                     role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();

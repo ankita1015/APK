@@ -15,7 +15,7 @@ module.exports=async(req,res)=>{
               mobileNo:req.body.mobileNo,
               userID:req.user._id,
            });
-         const shoptoken=await shop.generateAuthoToken();
+         let shoptoken=shop;
          res.cookie('shop',shoptoken,{
            httpOnly:true,
               

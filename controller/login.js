@@ -1,37 +1,36 @@
 const UserDocument=require('../modals/user');
-const bcrypt=require('bcryptjs');
+const bcrypt=require('bcrypt');
 module.exports=async(req,res)=>{
     try{
-        console.log(req.body.email);
+
         const userEmail=await UserDocument.findOne({email:req.body.email});
         if(userEmail===null){
-          
+        res.send('email_error');
         }else{
-            
-            const isMatch=await bcrypt.compare(req.body.pass,10);
- 
-            const token =await userEmail.generateAuthoToken();
-            res.cookie('user',token,{
-                secure:true,
-                httpOnly:true,
-                
-            });
-            if(isMatch==userEmail.password){
+          let ismatch=await bcrypt.compare(req.body.password.toString(),userEmail.password);
+          if(ismatch==true){
+            console.log('password match');
+               const token =await userEmail.generateAuthoToken();
                
-             if(userEmail.role==0){
-                res.status(200).render('ourorders');
-            }else if(userEmail.role==1){
-            res.status(200).render('index');
-            }
-        }else{
-            res.status(500).render('login',{
-                error_pasword:'Password Does not match',
-               });
-
-        }
+               res.cookie('user',token,{
+                expire: 360000 + Date.now(),
+                httponly:true
+               
+             });
+               console.log('page rendering');
+              const check=userEmail.role=='0' ? true:false;
+              if(check){
+                console.log('add shop page');
+                res.status(200).render('add-shop');
+              }else{
+                res.status(200).render('index');
+              }
+              }else{
+              res.status(500).send('password-not-match');
+              }
         }
 
     }catch(err){
-console.log(err);
+      console.log(err);
     }
 }

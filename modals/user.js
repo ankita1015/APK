@@ -3,7 +3,7 @@
 const mongoose=require('mongoose');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
- require('../db/conn');
+require('../db/conn');
 
 
 const Userscema=new mongoose.Schema({
@@ -14,12 +14,13 @@ const Userscema=new mongoose.Schema({
 email:{
     type:String,
     required:true,
-
+    unique:true,
+   
  },
  password:{
     type:String,
-    required:true,
-    trim:true,
+    required:true
+   
  },
  role:{
     type:String,
@@ -38,23 +39,16 @@ email:{
 // genrate token//
 Userscema.methods.generateAuthoToken=async function(){
    try{
-const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
-this.tokens=this.tokens.concat({token});
-await this.save();
-return token;
+    const token=jwt.sign({_id:this._id},'mynameiskunjanbarotprogrammer');
+    this.tokens=this.tokens.concat({token});
+    await this.save();
+    return token;
    }catch(err){
-res.send(err);
+    res.send(err);
    }
 }
 //password hashing//
- Userscema.pre('save',async function(next){
-    try{
-this.password=await bcrypt.hash(this.password,10);
 
-    }catch(err){
-console.log(err);
-    }
- });
 
 
 const UserDocument=new mongoose.model('User',Userscema);
