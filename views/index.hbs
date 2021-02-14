@@ -120,11 +120,11 @@
     <input type="radio" id="s-4" name="slider-control">
     <input type="radio" id="s-5" name="slider-control">
     <ul class="s-content">
-      <li class="s-item s-item-1"></li>
-      <li class="s-item s-item-2"></li>
-      <li class="s-item s-item-3"></li>
-      <li class="s-item s-item-4"></li>
-      <li class="s-item s-item-5"></li>
+      <img src="" class="s-item s-item-1">
+      <img src="" class="s-item s-item-2">
+      <img src="" class="s-item s-item-3">
+      <img src="" class="s-item s-item-4">
+      <img src="" class="s-item s-item-5">
     </ul>
     <div class="s-control">
       <label class="s-c-1" for="s-1"></label>
@@ -145,6 +145,23 @@
     </div>
   </div>
 </div>
+  </div>
+  <div class="container-fluid" style="padding:10px;">
+    {{#each products}}
+  <div class="products">
+    <div id='product'>
+      <img src='/images/bgimg.jpg' alt='product'>
+
+    </div>
+    <div id='product-content'>
+    <h6><b>{{this.productname}}</b></h6>
+    <h6>{{this.price}}/-</h6>
+    <h6>Shop name</h6>
+    <span><a href="#" id='cart'>Add to cart</a></span>
+    </div>
+  </div>
+  
+  {{/each}}
   </div>
   <script src='./jquery.min.js'></script>
   <script src="./popup.js"></script>

@@ -7,27 +7,11 @@
 </head>
 <body>
     {{>seller_header}}
-    <div id="main-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-1">
-					
-
-	
-				</div>
-                <div class="col-md-10">
-                  <!-- post-container -->
-                    <div class="post-container col-md-12">
-                        <div class="post-content single-post">
-                            
-                            <div class="post-information">
-                                
-                               
-                            </div>
-                           
-              <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    
+        
+    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
   
 
       <!-- Tab panes -->
@@ -37,14 +21,8 @@
             <h5>Add Product to {{shopname}}</h5>
           </div>
           <div class="modal-body">
-            <form action='/product' method='POST' enctype="multipart/form-data" class="row">
+            <form action='/product' method='POST' enctype="multipart/form-data" class="row" id='productform'>
         
-              
-   
-                
-                <div class="checkbox col-xs-12">
-                 
-                </div>
                 <div class="form-group col-sm-12">
                   <label for="product-name">Product</label>
                   <input type="text" class="form-control" name="product" id="company-name" placeholder="Product Name*">
@@ -59,7 +37,7 @@
                 </div>
                 <div class="form-group col-sm-3">
                   <label for="gst">Gst</label>
-                  <input type="text" class="form-control" name='gst' id="zip-code" placeholder="Gst(%)">
+                  <input type="number" class="form-control" name='gst' id="gst" placeholder="Gst(%)">
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="Qty">Quantity</label>
@@ -67,51 +45,31 @@
                 </div>
                 <div class="form-group col-sm-6">
                   <label for="price">Price</label>
-                  <input type="text" class="form-control" name='price'id="city" placeholder="Price*">
+                  <input type="number" class="form-control" name='price' id="price" placeholder="Price*">
                 </div>
                 <div class="form-group col-sm-3">
                   <label for="total_price">total Price(gst)</label>
-                  <input type="text" class="form-control" id="state" name="total_price" placeholder="Total Price" readonly>
+                  <input type="text" class="form-control" id="total_price" name="total_price" placeholder="Total Price" readonly>
                 </div>
              
               </div>
-                 <div id="upload_button" class="col-md-12">
+            
+                 <div id="upload_button" class="col-md-3">
                        <label id='uploadlabel'>
 	                       
                           <i class="fa fa-plus"></i>
                           <input type="file" id='input' name='images' multiple/>
+                        
                          </label>
-                                         <label id='uploadlabel'>
-	                       
-                          <i class="fa fa-plus"></i>
-                          <input type="file" id='input' name='image'/>
-                         </label>
-                          <label id='uploadlabel'>
-	                       
-                          <i class="fa fa-plus"></i>
-                          <input type="file" id='input' name='image'/>
-                         </label>
-                                         <label id='uploadlabel'>
-	                       
-                          <i class="fa fa-plus"></i>
-                          <input type="file" id='input' name='image'/>
-                         </label>
-                                         <label id='uploadlabel'>
-	                       
-                          <i class="fa fa-plus"></i>
-                          <input type="file" id='input' name='image'/>
-                         </label>
-     
-     
-     
-     
-     
-                      
-                    
-                 </div>
-              
+                      </div>
+                          <p id='upload-error'></p>
+
+               <div id='imges'>
+
+               </div>
+            <br>
               <div class="modal-footer">
-                    <button type="submit" class="btn btn-grey create-account">Add Product</button>
+                    <button type="submit" class="btn btn-grey create-account" id='add-product'>Add Product</button>
     
               </div>
             </form>
@@ -119,20 +77,8 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-                  
-                    
-
-         
-
-
-
-                    
-
-
-
- <script src="./jquery.min.js"></script>
+  
+<script src="./jquery.min.js"></script>
 <script src="./file.js"></script>
 </body>
 </html>

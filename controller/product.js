@@ -1,24 +1,33 @@
 const productDocument=require('../modals/productmodal');
-
+const upload=require('../middleware/upload');
 
 module.exports=async(req,res)=>{
+  let images=Array();
+  upload(req,res,(err)=>{
+    req.files.forEach(element => {
+      images.push(element);
+    });
+})
 
 try{
- let gstAmount = (req.body.price * req.body.gst)/100;
- let total_price=gstAmount+req.body.price;
-    const product=new productDocument({
-      productname:req.body.product,
-      batchid:req.body.batchid,
-      description:req.body.description,
-      gst:req.body.gst,
-      price:req.body.price,
-      total_price,
-      images:,
-      shopid:req.shop._id,
+const product=new productDocument({
+       productname:'flang',
+       batchid:'123',
+       description:'hdjfbvdhffvbhbjhfv f',
+       gst:10,
+       qty:22,
+       price:2000,
+       total_price:2200,
+      //  images:images,
+       shopid:req.shop._id,
     });
 
-}catch(err){
-
+const productCreated=await product.save();
+if(productCreated){
+    res.status(200).render('view');
+}
+  }catch(err){
+console.log(err);
 }
 
 }

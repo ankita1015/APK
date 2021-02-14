@@ -16,7 +16,8 @@ description:{
 },
 gst:{
     type:Number,
-    required:true
+    default:'',
+
 },
 price:{
     type:Number,
@@ -26,11 +27,11 @@ total_price:{
 type:Number,
 required:true
 },
-images:[{
+images:{
 
-    type:Array,
+    type:String,
     default:''
-}],
+},
 qty:{
     type:Number,
     default:0

@@ -1,5 +1,5 @@
 const UserDocument=require('../modals/user');
-const bcrypt=require('bcrypt');
+const bcrypt=require('bcryptjs');
 module.exports=async(req,res)=>{
     try{
 

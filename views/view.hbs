@@ -20,7 +20,8 @@
                 <div class="post-container">
                   <h2 class="page-heading">product-list</h2>
                     <div class="post-content">
-                        <div class="row">
+                           {{#each products}}
+                        <div class="row" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
 
                             <div class="col-md-2">
                                 <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
@@ -28,46 +29,51 @@
                             <div class="col-md-8">
                                 <div class="inner-content clearfix">
                                     <span id='post-details'>
+                                        
                                        <table class="orders">
+                                   
                                         <tr>
                                    <td>product Name</td>
-                                   <td>flange</td>
+                                   <td>{{this.productname}}</td>
                                    </tr>
                                          <tr>
                                    <td>Description</td>
-                                   <td>adfghjkl qwertyuiozxcvbnm</td>
+                                   <td>{{this.description}}</td>
                                    </tr>
                     
                                         <tr>
                                    <td>Quantity</td>
-                                   <td>22</td>
+                                   <td>{{this.qty}}</td>
                                    </tr>
                                    <tr>
                                    <td>Price</td>
-                                   <td>20000</td>
+                                   <td>{{this.price}}</td>
                                    </tr>
                                       <tr>
                                    <td>Gst(%)</td>
-                                   <td>10%</td>
+                                   <td>{{this.gst}}%</td>
                                    </tr>
                                   
                                     <tr>
                                    <td>Total Price(Gst%)</td>
-                                   <td>22000</td>
+                                   <td>{{this.total_price}}</td>
                                    </tr>
-                                   
+                                  
                                    </table> 
                                  </span>
-                                 <hr>
-                                 <input type="submit" value="Add more"/>
+                                 
+                                 <button><a href="" >Add more</a></button>
                                 </div>
-                                      <br>
+                                      
                                    
 
                                 </div>
                             </div>
+                            {{/each}}
+                                                    
+                             <hr style='width:100%;color:black;'>
                             </div>
-                           <hr>
+                          
                           
                         </div>
                     </div>
@@ -101,217 +107,3 @@
 
 
 
-{{!-- <html>
-<head>
-  {{>styleing}}
-</head>
-{{>seller_header}}
-<div class="main-post-container container">
-
-<div id="sidebar" class="row">
-    <!-- search box -->
-    <div class="search-box-container col-md-12" style="margin-top: 10px;">
-        
-        <form class="search-post" action="search.php" method ="GET">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search .....">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-danger">Search</button>
-                </span>
-            </div>
-        </form>
-    </div>
-    <!-- /search box -->
-    <!-- recent posts box -->
-   
-    <div  class="row">
-        <h3>Products</h3>
-        <hr style="color: black;">
-        <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4 col-xs-12">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-        <div  id='recent-post' class="col-md-4 col-xs-12">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-        <div  id='recent-post' class="col-md-4 col-xs-12">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-         <div  id='recent-post' class="col-md-4">
-             <a class="post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div  id='post-content'>
-                <h5><a href="/product-list">flange</a></h5>
-                <span>hari hardware</span>
-                 <br>
-                <span>
-                Price:20,000
-                </span><br>
-                 
-                  </div>
-             </div>
-       
-    <!-- /recent posts box -->
-      </div>
-   </div>
-</div>
-
-</body>
-</html>  --}}
