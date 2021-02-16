@@ -27,18 +27,19 @@ total_price:{
 type:Number,
 required:true
 },
-images:{
+images:[{
 
     type:String,
     default:''
-},
+
+}],
 qty:{
     type:Number,
     default:0
 },
 shopid:{
-    type:String,
-    required:true
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'shop'
 }
 
 

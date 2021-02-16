@@ -10,6 +10,7 @@ const bodyparser=require('body-parser');
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 const Shopauth=require('./middleware/shopauth');
+const cart=require('./middleware/cart');
 
 const ShopDocument = require('./modals/shopmodal');
 
@@ -72,8 +73,10 @@ app.get('/product-list',(req,res)=>{
     res.render('product-list');
 });
 app.get('/cart',auth,(req,res)=>{
-    res.render('cart');
+    cart(req,res);
 })
+app.get('/add-cart',auth,require('./controller/add-cart'));
+
 app.get('/order',auth,(req,res)=>{
     res.render('order');
 })

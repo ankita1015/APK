@@ -5,12 +5,12 @@ require('../db/conn');
 
 const cartSchema=new mongoose.Schema({
 productId:{
-    type:String,
-    required:true
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'product'
 },
 userId:{
-    type:String,
-    required:true
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'User'
 },
 date:{
     type:String,

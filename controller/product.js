@@ -1,15 +1,25 @@
 const productDocument=require('../modals/productmodal');
 const upload=require('../middleware/upload');
 
-module.exports=async(req,res)=>{
-  let images=Array();
-  upload(req,res,(err)=>{
+module.exports=(req,res)=>{
+  let uploadimages=Array();
+    upload(req,res,(err)=>{
+   
     req.files.forEach(element => {
-      images.push(element);
-    });
+      //get path from images//
+       let imgpath=element.path;
+     //make path correct with splite function//
+       let  fixpath=imgpath.split('\\')
+      //make array of path//
+        uploadimages.push(`/${fixpath[1]}/${fixpath[2]}`);
+     });
+     
+     product(uploadimages);
 })
-
+async function product(uploadimages){
 try{
+ 
+// let uplaodimg=new productDocument();
 const product=new productDocument({
        productname:'flang',
        batchid:'123',
@@ -18,7 +28,7 @@ const product=new productDocument({
        qty:22,
        price:2000,
        total_price:2200,
-      //  images:images,
+       images:uploadimages,
        shopid:req.shop._id,
     });
 
@@ -29,5 +39,5 @@ if(productCreated){
   }catch(err){
 console.log(err);
 }
-
+}
 }

@@ -11,10 +11,11 @@ module.exports=async(req,res)=>{
       let i=0;
       let lastproduct=Array();
       while(i<5){
-      let lastproduct=products[len-1];
+      lastproduct=products[len-1];
       i++;
 
       }
+      
          res.status(200).render('index',{
              products,
              lastproduct
