@@ -31,6 +31,8 @@ app.get('/',require('./controller/show-product'));
 app.get('/signup',(req,res)=>{
     res.render('signup');
 })
+app.post('/add-cart',auth,require('./controller/add-cart'));
+app.get('/delete-cart-product',require('./controller/delete-cart'),cart);
 app.post('/',require('./controller/signup'));
 
 
@@ -75,7 +77,7 @@ app.get('/product-list',(req,res)=>{
 app.get('/cart',auth,(req,res)=>{
     cart(req,res);
 })
-app.get('/add-cart',auth,require('./controller/add-cart'));
+
 
 app.get('/order',auth,(req,res)=>{
     res.render('order');

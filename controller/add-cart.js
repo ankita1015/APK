@@ -7,7 +7,8 @@ module.exports=async(req,res)=>{
       ];
       
       
-        let id=req.query.id;
+        let id=req.body.id;
+        
       
         let date=new Date().getDate();
         let month=new Date().getMonth();
@@ -26,10 +27,9 @@ module.exports=async(req,res)=>{
         });
         let cartCreated=await cart.save();
         if(cartCreated){
-            res.status(200).render('index');    
-        }else{
-            res.render('index');
+            res.send('1');
         }
+        
     }catch(err){
  console.log(err);
     }

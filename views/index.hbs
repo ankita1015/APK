@@ -158,7 +158,7 @@
     <h6><b>{{this.productname}}</b></h6>
     <h6>{{this.price}}/-</h6>
     <h6>Shop name</h6>
-    <span><a href="/add-cart?id={{this._id}}" id='cart'>Add to cart</a></span>
+    <span><button id='cart' data-id='{{this._id}}'>Add to cart</button></span>
     </div>
   </div>
   
@@ -166,5 +166,6 @@
   </div>
   <script src='./jquery.min.js'></script>
   <script src="./popup.js"></script>
+  <script src="./add-cart.js"></script>
 
 

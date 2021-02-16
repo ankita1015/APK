@@ -2,10 +2,7 @@ const mongoose=require('mongoose');
 require('../db/conn');
 
 const productSchema=new mongoose.Schema({
-productname:{
-    type:String,
-    required:true
-},
+
 batchid:{
     type:String,
     required:true
@@ -40,6 +37,10 @@ qty:{
 shopid:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'shop'
+},
+categoryId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'category',
 }
 
 

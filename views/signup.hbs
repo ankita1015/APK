@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Login modal</title>
+  {{>styleing}}
+  {{>login}}
+</head>
+<body>
+  
+
+
+<!-- Modal -->
+<div class="modal" id='myModel'>
+  <div class="modal-dialog" id='modal-dialog' role="document">
+    <div class="modal-content">
+      <button type="button" class="close" id='close' data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active" id='loginform'><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Account Login</a></li>
+        <li role="presentation" class='active'id='signform'><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Create an Account</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content" id='tab-content'>
+        <div role="tabpanel" id='tabpanel' class="tab-pane" id="login">
+          <div class="modal-header">
+            <h5>If you already have an online account, please enter your email address and password below.</h5>
+          </div>
+          
+          <div class="modal-body">
+            <form action="/login" method="POST">
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" name="email" class="form-control" id="login-email" placeholder="Email"  required>
+                <p id='e-error'></p>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name='pass'class="form-control" id="password" placeholder="Password" data-parsley-trigger="change" required>
+                <p id='p-error'></p>
+              </div>
+              <button type="submit" class="btn  btn-grey" id='login-btn'>Log in Now</button>
+            </form>
+            
+          </div>
+
+        
+        </div>
+        <div role="tabpanel" class="tab-pane " id="register">
+         
+        <div class="modal-body">
+             
+          <div class="modal-header">
+            <h5>New Account Registration</h5>
+          </div>
+            <form  action='/' method='POST' class="row">
+            
+              <div class="new-customer clearfix">
+                 <div class="form-group col-sm-6">
+                  <label for="name">full name</label>
+                  <input type="text"  name='name' class="form-control" id='name' placeholder="Full name">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="email-address">Email Address</label>
+                  <input type="email"  name='email' class="form-control" id="email-address" placeholder="Email">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="password">Password</label>
+                  <input type="password" name='password' class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="confirm-password">Confirm Password</label>
+                  <input type="password" name='cpassword' class="form-control" id="confirm-password" placeholder="Password">
+                </div>
+
+              
+                <small class="col-xs-12">Password must be a minimum of 8 characters and contain at least 1 number and 1 letter.</small>
+                <div class="form-group col-sm-6">
+                  <label for="role">Role</label>
+                  <select name='role'>
+                    <option selected disabled>Select Role</option>
+                    <option value="0">Seller</option>
+                    <option value='1'>Customer</option>
+                  </select>
+                </div>
+              
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-grey create-account">Create Account</button>
+                <button type="submit" class="btn btn-grey verify-account hide">Verify Account</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  
+</body>
+</html>
+<script src="./jquery.min.js"></script>
+{{!-- <script src="./popup.js"></script> --}}
+<script src="./login-ajax.js"></script>

@@ -96,11 +96,11 @@
   margin-top: 20px;
 }
 .existing-customer {
-  display: none;
+  /* display: none; */
 }
 #register{
-  display: block;
+  /* display: block; */
 }
 #tab-content{
-  display: block;
+  /* display: block; */
 }
