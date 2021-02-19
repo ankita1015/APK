@@ -99,13 +99,17 @@ app.get('/admin-login',(req,res)=>{
 app.get('/admin-index',(req,res)=>{
     res.render('admin-index');
 })
-app.get('/add-category',(req,res)=>{
+app.get('/category',(req,res)=>{
     let id=req.query.id;
-    
-    res.render('add-category',{
+ 
+    res.render('category',{
         cat_id:id,
     });
 })
+app.get('/add-category',(req,res)=>{
+res.render('add-category');
+});
+app.post('/load-all-category',require('./controller/load-all-category'));
 app.post('/add-products',require('./controller/add-product'));
 app.post('/show-products',require('./controller/show-product'));
 app.post('/delete-product',require('./controller/delete-product'))

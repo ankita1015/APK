@@ -1,0 +1,74 @@
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+    {{>admin_header}}
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                  <!-- post-container -->
+                  
+                           <a href="/add-category" class='add-new-category' >Add Category</a>
+                      
+                    <div class="post-container" style="margin-bottom: 20px;">
+                        
+                        <div class="det">
+                       <input type="hidden" id='cat_id' value="{{cat_id}}">
+                      
+                         
+                        </div>
+                            <h4 id='product-tit' style="text-align: center;"></h4>
+                    <hr>
+                    <div id='categorys'>
+
+                    </div>
+                              
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <script src='./jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+         
+         const loadcategorys=()=>{
+             let id=$('#cat_id').val();
+             let c=1;
+         
+             $.ajax({
+                 url:'/categorys',
+                 type:'POST',
+                 data:{id},
+                 success:function(data){
+                     $('#product-tit').text(`Types of ${data[0].productId.productname}`);
+ let output="<table id='description-table'style='margin:auto;'><tr><th>Sr No</th><th>Product Name</th><th>Category</th><th>Description</th><th>view</th></tr>";
+                     data.forEach(element=>{
+                          
+                    output=output.concat(`<tr>
+                                        <td>${c}</td>
+                                        <td>${element.productId.productname}</td>
+                                        <td>${element.categoryname}</td>
+                                        <td>${element.decription}</td>
+                                        <td> <a href="/edit-category" data-id=${element._id}>Edit</a>
+                                             <a href="/delete-category" data-id=${element._id}>Del</a>
+                                        </td>
+                                    </tr>`);
+                                    c++;
+                     })
+                    output=output.concat('</table>');
+                    
+                   $('#categorys').html(output);  
+
+                 }
+             })
+         } 
+         loadcategorys(); 
+      });
+    </script>
+</body>
+</html>
