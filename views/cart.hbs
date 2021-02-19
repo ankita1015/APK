@@ -1,9 +1,8 @@
-<html>
 
-<head>
+
+
 {{>styleing}}
-</head>
-<body>
+
     
 {{>header}}
     <div id="main-content">
@@ -31,7 +30,7 @@
                                             <table class='description-table'>
                                 <tr>
                                   <td><b>Product name</b></td>
-                                  <td>{{this.productId.productname}}</td>
+                                  <td>{{this.categoryId.productname}}</td>
                                 </tr>
                                  <tr>
                                   <td><b>batch id</b></td>
@@ -56,7 +55,7 @@
                               </table>
                                     <br>
                                     
-                                      <a class='read-more pull-left' href='/delete-cart-product?id={{this._id}}'>Remove from cart</a>
+                                      <a class='read-more pull-left'  href='#' id='remove-cart' data-id={{this._id}}>Remove from cart</a>
                                       <a class='read-more pull-right' href='/order'>Order</a>
                                   </div>
                             </div>
@@ -66,12 +65,32 @@
        
                     
                     
-                   
+                 <input type="hidden" id='total-cart-product'value="{{records}}"/>  
                 </div><!-- /post-container -->
             </div>
-     
+          </div>
         </div>
       </div>
-    </div>
-</body>
-</html>
+   
+    <script src='./jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+      
+          
+  
+     $(document).on('click','#remove-cart',function(){
+            let id=$(this).data('id');
+            
+           $.ajax({
+                 url:'/delete-cart-product',
+                 type:'POST',
+                 data:{id},
+                 success:function(data){
+                window.location.assign('/cart')
+                }
+             })
+        
+        });
+      });
+    </script>
+

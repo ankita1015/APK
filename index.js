@@ -11,8 +11,9 @@ const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 const Shopauth=require('./middleware/shopauth');
 const cart=require('./middleware/cart');
-
+const order=require('./middleware/order');
 const ShopDocument = require('./modals/shopmodal');
+const { request } = require('http');
 
 // const upload=require('./middleware/upload');
 app.use(bodyparser.json());
@@ -27,14 +28,18 @@ app.use(express.static(path.join(__dirname, '/public/js')))
 hbs.registerPartials(path.join(__dirname, './pars'));
 app.set('view engine', 'hbs');
 
-app.get('/',require('./controller/show-product'));
+app.get('/',require('./controller/show-shop-product'));
 app.get('/signup',(req,res)=>{
     res.render('signup');
 })
-app.post('/add-cart',auth,require('./controller/add-cart'));
-app.get('/delete-cart-product',require('./controller/delete-cart'),cart);
-app.post('/',require('./controller/signup'));
 
+
+app.post('/add-cart',auth,require('./controller/add-cart'));
+app.post('/delete-cart-product',require('./controller/delete-cart'),cart);
+app.post('/',require('./controller/signup'));
+app.get('/make-order',auth,order,(req,res)=>{
+    res.status(200).render('make-order');
+})
 
 app.post('/login',require('./controller/login'));
 
@@ -58,7 +63,7 @@ app.get('/view-order',(req,res)=>{
 })
 //viw product//
 app.get('/view-product',auth,Shopauth,require('./controller/view'));
-app.get('/shop',auth,Shopauth,async(req,res)=>{
+app.get('/shop',auth,Shopauth,(req,res)=>{
   res.status(200).render('ourorders');
 });
 app.post('/shop',auth,require('./controller/shop'));
@@ -77,17 +82,35 @@ app.get('/product-list',(req,res)=>{
 app.get('/cart',auth,(req,res)=>{
     cart(req,res);
 })
+app.post('/total-cart-product',auth,require('./controller/total-product-cart'));
 
-
-app.get('/order',auth,(req,res)=>{
-    res.render('order');
+app.post('/customer',auth,require('./controller/make-order'));
+app.get('/order',auth,order,(req,res)=>{
+    res.status(200).render('order');
 })
 app.get('/history',(req,res)=>{
     res.render('history');
 })
 app.get('/logout',auth,Shopauth,require('./controller/logout'));
-
-
+//admin panel//
+app.get('/admin-login',(req,res)=>{
+    res.render('admin-login');
+})
+app.get('/admin-index',(req,res)=>{
+    res.render('admin-index');
+})
+app.get('/add-category',(req,res)=>{
+    let id=req.query.id;
+    
+    res.render('add-category',{
+        cat_id:id,
+    });
+})
+app.post('/add-products',require('./controller/add-product'));
+app.post('/show-products',require('./controller/show-product'));
+app.post('/delete-product',require('./controller/delete-product'))
+app.post('/add-category',require('./controller/add-category'));
+app.post('/categorys',require('./controller/load-category'));
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

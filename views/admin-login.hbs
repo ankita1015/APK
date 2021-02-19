@@ -1,0 +1,49 @@
+
+
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+ 
+    
+        
+    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+  
+
+      <!-- Tab panes -->
+
+        <div role="tabpanel" class="tab-pane" id="register">
+          <div class="modal-header">
+            <h5>Admin Login</h5>
+          </div>
+          <div class="modal-body">
+            <form action='/admin-login' method='POST' enctype="multipart/form-data" class="row" id='productform'>
+        
+                <div class="form-group col-sm-12">
+                  <label for="product-name">Email</label>
+                  <input type="text" class="form-control" name="email" id="company-name" placeholder="Admin email*">
+                </div>
+  
+                <div class="form-group col-sm-12">
+                  <label for="password">password</label>
+                  <input type="password" class="form-control" name='password' id="address-one" placeholder="Password#$*">
+               
+            <div class="modal-footer">
+                    <button type="submit" class="btn btn-grey create-account" id='add-product'>Add Product</button>
+    
+              </div>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<script src="./jquery.min.js"></script>
+
+</body>
+</html>

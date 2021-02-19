@@ -1,4 +1,4 @@
-const productDocument=require('../modals/productmodal');
+const productDocument=require('../modals/shopproductmodal');
 
 
 module.exports=async(req,res)=>{

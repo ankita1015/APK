@@ -1,4 +1,4 @@
-const productDocument=require('../modals/productmodal');
+const productDocument=require('../modals/shopproductmodal');
 const categoryDocument=require('../modals/categorymodel');
 const upload=require('../middleware/upload');
 
@@ -19,22 +19,23 @@ module.exports=(req,res)=>{
 })
 async function product(uploadimages){
 try{
+  console.log(req.body);
  const category=new categoryDocument({
-   productname:'flang',
-   category:'3ench'
+   productname:req.body.product,
+   category:req.body.category
  })
 const categorydoc=await category.save();
 
 const product=new productDocument({
-       batchid:'123',
-       description:'hdjfbvdhffvbhbjhfv f',
-       gst:10,
-       qty:22,
-       price:2000,
-       total_price:2200,
+       batchid:req.body.batchid,
+       description:req.body.description,
+       gst:req.body.gst,
+       qty:req.body.Qty,
+       price:req.body.price,
+       total_price:req.body.total_price,
        images:uploadimages,
        shopid:req.shop._id,
-       category:category._id,
+       categoryId:category._id,
 
     });
 

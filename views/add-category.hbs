@@ -1,0 +1,77 @@
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+    {{>admin_header}}
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                  <!-- post-container -->
+                  
+                           <a href="#" class='add-new-category' >Add Category</a>
+                      
+                    <div class="post-container" style="margin-bottom: 20px;">
+                        
+                        <div class="det">
+                       <input type="hidden" id='cat_id' value="{{cat_id}}">
+                      
+                         
+                        </div>
+                            <h4 style="text-align: center;">Types of Products</h4>
+                    <hr>
+                                <table id='description-table'style="margin:auto;">
+                                    <tr>
+                                        <th>Sr No</th>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Description</th>
+                                        <th>view</th>
+
+
+                                    </tr>
+                                       <tr>
+                                        <td>1</td>
+                                        <td>flang</td>
+                                         <td>3.4ench</td>
+                                          <td>abcddkdek</td>
+                                        <td>
+                                            <a href="/add-category">Edit</a>
+                                            <a href="/add-category">Del</a>
+                                        </td>
+                                    </tr>
+           
+                        
+                                </table>
+                               
+                       
+                        </div>
+                    
+                    <!-- /post-container -->
+   
+                </div>
+               
+            </div>
+        </div>
+    </div>
+      <script src='./jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+         const loadcategorys=(){
+             let id=$('#cat_id').val();
+             $.ajax({
+                 url:'/categorys',
+                 type:'POST',
+                 data:{id},
+                 success:function(data){
+
+                 }
+             })
+         } 
+         loadcategorys();
+      })
+    </script>
+</body>
+</html>

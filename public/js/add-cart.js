@@ -1,20 +1,17 @@
-const addcartbtn=document.getElementById('cart')
-
-
-
-addcartbtn.addEventListener('click',()=>{
-    let id=$(addcartbtn).data('id');
-    if(addcartbtn.innerText=='Add to cart'){
-    $.ajax({
-        url:'/add-cart',
-        type:'POST',
-        data:{id},
-        success:function(data){
+$(document).ready(function(){
+   $(document).on('click','#cart',function(){
+       let id=$(this).data('id');
+       if($(this).text()=='Add to cart'){
+        $.ajax({
+            url:'/add-cart',
+            type:'POST',
+            data:{id},
+            success:function(data){
             if(data==1){
-        addcartbtn.innerText='Added..';
-        addcartbtn.style.color='red';
+            $(this).text('added..');                }
             }
-        }
-    })
-}
-})
+        })
+    }
+   });
+  
+});

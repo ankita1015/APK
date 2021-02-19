@@ -2,15 +2,19 @@ const mongoose=require('mongoose');
 require('../db/conn');
 
 const catgorySchema=new mongoose.Schema({
-productname:{
-    type:String,
-    required:true,
+productId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'product'
 },    
-category:{
+categoryname:{
     type:String,
     required:true
-}
+},
+decription:{
+    type:String,
+    required:true
 
+}
 });
 
 

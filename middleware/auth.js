@@ -15,7 +15,9 @@ const auth=async(req,res,next)=>{
         next();
          
     }catch(err){
-         res.render('index');
+         res.render('index',{
+             err:'1',
+         });
 
     }
 }

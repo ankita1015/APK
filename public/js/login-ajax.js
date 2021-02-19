@@ -30,9 +30,12 @@ login_btn.addEventListener('click',(e)=>{
        type:'POST',
        data:{email,password},
        success:function(data){
-
+           if(data==0){
+window.location.assign('/');
+       }else{
+        window.location.assign('/shop'); 
        }
-
+    }
      });
 
     

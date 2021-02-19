@@ -148,16 +148,17 @@
 </div>
   </div>
   <div class="container-fluid" style="padding:10px;">
+    <div id='product-title'>Products</div>
     {{#each products}}
   <div class="products">
     <div id='product'>
-      <img src='/images/bgimg.jpg' alt='product'>
+      <img src='{{this.images.[0]}}' alt='product'>
 
     </div>
     <div id='product-content'>
     <h6><b>{{this.productname}}</b></h6>
-    <h6>{{this.price}}/-</h6>
-    <h6>Shop name</h6>
+    <h6><b>Rs.{{this.price}}</b></h6>
+    <h6><b>Shop name</b></h6>
     <span><button id='cart' data-id='{{this._id}}'>Add to cart</button></span>
     </div>
   </div>

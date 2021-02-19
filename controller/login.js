@@ -21,9 +21,9 @@ module.exports=async(req,res)=>{
               const check=userEmail.role=='0' ? true:false;
               if(check){
                
-                res.status(200).render('add-shop');
+               res.send('0')
               }else{
-                res.status(200).render('index');
+                res.send('1')
               }
               }else{
               res.status(500).send('password-not-match');

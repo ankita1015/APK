@@ -21,20 +21,16 @@
                        </div>
                   </form>
                     </div>
-                    <div class="col-md-offset-2  col-md-1">
+                    <div class="col-md-offset-4  col-md-1">
                     
             
 
 
                         <a href="/logout" class="admin-logout" >Logout</a>
+                        
                     </div>
-                     <div class="col-md-1">
-               
-                        <a href='#' class="admin-logout" id='loginbtn'>Login</a>
-                    </div>
-                    <div class="col-md-1">
-                          <a href="/cart"><p class='cart-det admin-logout'style='font-size:10px;'></p><i class="fal fa-shopping-cart admin-logout"></i></a>
-                    </div>
+                  
+                   
                     <!-- /LOGO-Out -->
                 </div>
             </div>
@@ -47,45 +43,20 @@
                     <div class="col-md-11">
                        <ul class="admin-menu">
                            <li>
-                                <a href="/">home</a>
-                            </li>
-                           
-                            <li>
-                                <a href="/order">Orders</a>
+                                <a href="/admin-index">home</a>
                             </li>
                             <li>
-                                <a href="/history">History</a>
+                                <a href="/admin">Admins</a>
                             </li>
+                            
+                            
                         </ul>
                     </div>
                     <div class='col-md-1'>
-                        <ul>
-                        <li>
-                              
-                            </li>
-                        </ul>
+                       
                     </div>
                      
                 </div>
             </div>
         </div>
-        <script src="./popup.js"></script>
-          <script src='./jquery.min.js'></script>
-    <script>
-      $(document).ready(function(){
-        
-            
-           $.ajax({
-                 url:'/total-cart-product',
-                 type:'POST',
-                 success:function(data){
-                     if(data>=0){
-                    $('.cart-det').text(data);
-                     }
-                }
-             })
-        
-        });
-      
-    </script>
         <!-- /Menu Bar -->
