@@ -109,12 +109,15 @@ app.get('/category',(req,res)=>{
 app.get('/add-category',(req,res)=>{
 res.render('add-category');
 });
+app.get('/edit-category',require('./controller/edit-category'));
+app.post('/updated-category',require('./controller/updated-category'));
 app.post('/load-all-category',require('./controller/load-all-category'));
 app.post('/add-products',require('./controller/add-product'));
 app.post('/show-products',require('./controller/show-product'));
 app.post('/delete-product',require('./controller/delete-product'))
 app.post('/add-category',require('./controller/add-category'));
 app.post('/categorys',require('./controller/load-category'));
+app.post('/delete-category',require('./controller/delete-category'));
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

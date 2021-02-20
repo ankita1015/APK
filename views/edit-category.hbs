@@ -18,31 +18,37 @@
 
         <div role="tabpanel" class="tab-pane" id="register">
           <div class="modal-header">
-            <h5>Add category</h5>
+            <h5><b>Edit category</b></h5>
           </div>
           <div class="modal-body">
-            <form action='/add-category' method='POST'  class="row" id='productform'>
-        
+            <form action='/updated-category' method='POST'  class="row" id='productform'>
+                {{#each category}}
                 <div class="form-group col-sm-12">
-                  <label for="product-name">Product</label>
+                  <label for="product-name">Product name</label>
+                 
+                  <input type="hidden" id='categoryid' name="categoryid" value="{{this._id}}"/>
+                 
+                  <input type="hidden" id='productid' name="productid" value="{{this.productId}}"/>
                  <select class="form-control" id='products'name='product'>
-                   <option selected disabled>Select Products</option>
+                
                  </select>
                 </div>
+             
                     <div class="form-group col-sm-12">
                   <label for="category">Category</label>
-                  <input type="text" class="form-control" name="category" id="company-name" placeholder="Add category*">
+                  <input type="text" class="form-control" value='{{this.categoryname}}' name="category" id="company-name" placeholder="Add category*">
                 </div>
                   <div class="form-group col-sm-12">
                   <label for="description">Description</label>
-                  <textarea type="text" class="form-control" name="description" id="company-name" placeholder="Add Decription*"></textarea>
+                  <input type="text" class="form-control" value='{{this.decription}}' name="description"  placeholder="Add Decription*" >
                 </div>
                
             <br>
               <div class="modal-footer">
-                    <button type="submit" class="btn btn-grey create-account" id='add-product'>Add Product</button>
+                    <button type="submit" class="btn btn-grey create-account" id='add-product'>Update Product</button>
     
               </div>
+              {{/each}}
             </form>
            
           </div>
@@ -53,12 +59,17 @@
 <script src="./jquery.min.js"></script>
 <script>
     $(document).ready(function(){
+        let productId=$('#productid').val();
         $.ajax({
             url:'/load-all-category',
             type:'POST',
             success:function(data){
                     data.forEach(element=>{
+                        if(productId==element._id){
+                            $('#products').append(`<option value=${element._id} selected>${element.productname}</option>`);
+                        }else{
                         $('#products').append(`<option value=${element._id}>${element.productname}</option>`)
+                        }
                     })
       
            }

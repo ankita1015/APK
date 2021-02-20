@@ -54,8 +54,8 @@
                                         <td>${element.productId.productname}</td>
                                         <td>${element.categoryname}</td>
                                         <td>${element.decription}</td>
-                                        <td> <a href="/edit-category" data-id=${element._id}>Edit</a>
-                                             <a href="/delete-category" data-id=${element._id}>Del</a>
+                                        <td> <a href="/edit-category?id=${element._id}">Edit</a>
+                                             <a href="#" id='delete-category' data-id=${element._id}>Del</a>
                                         </td>
                                     </tr>`);
                                     c++;
@@ -68,6 +68,22 @@
              })
          } 
          loadcategorys(); 
+         $(document).on('click','#delete-category',function(){
+              let id=$(this).data('id');
+              let ans=confirm('are you sure you want to remove this item');
+              if(ans){
+                  $.ajax({
+                       url:'/delete-category',
+                       type:"POST",
+                       data:{id},
+                       success:function(data){
+                        if(data){
+                            loadcategorys();
+                        }
+                       }
+                  })
+              }
+         })
       });
     </script>
 </body>
