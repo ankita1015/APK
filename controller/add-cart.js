@@ -1,5 +1,5 @@
 const cartDocument=require('../modals/cartmodal');
-hu
+
 module.exports=async(req,res)=>{
     try{
         const monthNames = ["January", "February", "March", "April", "May", "June",
