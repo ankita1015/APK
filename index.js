@@ -109,6 +109,10 @@ app.get('/category',(req,res)=>{
 app.get('/add-category',(req,res)=>{
 res.render('add-category');
 });
+app.get('/add-admin',(req,res)=>{
+    res.render('add-admin');
+})
+app.post('/add-admin',require('./controller/add-admin'));
 app.get('/edit-category',require('./controller/edit-category'));
 app.post('/updated-category',require('./controller/updated-category'));
 app.post('/load-all-category',require('./controller/load-all-category'));
