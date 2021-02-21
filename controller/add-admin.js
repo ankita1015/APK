@@ -5,20 +5,24 @@ module.exports=async(req,res)=>{
     try{
       
         if(req.body.password===req.body.confirm_password){
-            const password=await bcrypt.hash(req.body.password,'10');
-            console.log(password);
+            const password=await bcrypt.hash(req.body.password,10);
             const admin=new adminDocument({
-           email:req.body.email,
-           password:password,
-         });
+             email:req.body.email,
+             password:password,
+            });
             await admin.save();
-          res.render('add-admin');
+            console.log(admin,);
+            res.cookie('admin',admin._id,{
+                httponly:true,
+               
+            });
+            res.render('add-admin');
         }else{
             res.render('add-admin',{
-                err:'Password not match',
-            })
-        }
+             err:'Password not match',
+           })
+       }
     }catch(err){
-
+        console.log(err);
     }
 }

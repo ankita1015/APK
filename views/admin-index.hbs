@@ -27,7 +27,7 @@
                     <div class="post-container">
                          <h4>{{shopname}}</h4>
 
-                            
+                           
 
                             <h4 style="text-align: center;">view Products</h4>
                     <hr>
@@ -111,7 +111,37 @@
              })
              }
 
-        });  
+        }); 
+        
+        $('#search-btn').click(function(e){
+            e.preventDefault();
+            c=1;
+            let value=$('#search-input').val();
+        
+            $.ajax({
+             url:'/search-product',
+             type:'POST',
+             data:{value},
+             success:function(data){
+                     let output="<table id='description-table'style='margin:auto;'><tr><th>Sr No</th><th>Product Name</th><th>view</th></tr>";
+                     data.forEach(element=>{
+                          
+                    output=output.concat(`<tr>
+                                        <td>${c}</td>
+                                        <td>${element.productname}</td>
+                                        <td><a href="/category?id=${element._id}">View</a>
+                                             <a href="#" id="delete" data-id=${element._id}>Del</a>    
+                                        </td>
+                                    </tr>`);
+                                    c++;
+                     })
+                    output=output.concat('</table>');
+                    $('#product-table').html(output); 
+             }        
+            })
+        })
+
+     
         });
     </script>
 </body>
