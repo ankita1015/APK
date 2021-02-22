@@ -113,10 +113,9 @@
 
         }); 
         
-        $('#search-btn').click(function(e){
-            e.preventDefault();
+        $('#search-input').keyup(function(){
             c=1;
-            let value=$('#search-input').val();
+            let value=$(this).val();
         
             $.ajax({
              url:'/search-product',
