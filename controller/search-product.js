@@ -7,9 +7,7 @@ module.exports=async(req,res)=>{
       const products=await productDocument.find({productname:value}).exec((err,data)=>{
 
        res.send(data);
-      
-   
-   });
+     });
   
 
 
