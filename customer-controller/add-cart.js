@@ -10,7 +10,7 @@ module.exports=async(req,res)=>{
         let id=req.body.id;
         let cat_id=req.body.cat_id;
         
-      console.log(id);
+  
         let date=new Date().getDate();
         let month=new Date().getMonth();
         let year=new Date().getFullYear('');

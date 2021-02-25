@@ -1,5 +1,5 @@
 const productDocument=require('../modals/shopproductmodal');
-const categoryDocument=require('../modals/categorymodel');
+const categoryDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
     try{
@@ -15,7 +15,8 @@ module.exports=async(req,res)=>{
        i++;
 
       }
-    //   console.log(category);
+  
+    
          res.status(200).render('index',{
              products,
              lastproduct,

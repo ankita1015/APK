@@ -3,8 +3,8 @@ require('../db/conn');
 
 const customerSchema=new mongoose.Schema({
  userId:{
-     type:String,
-     required:true
+ type:mongoose.Schema.Types.ObjectId,
+ ref:'User'
  },
  Address:{
      type:String,

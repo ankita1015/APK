@@ -2,10 +2,13 @@ const categoryDocument=require('../modals/categorymodel');
 
 module.exports=async(req,res)=>{
 try{
-    let id=req.body.id;
+    let id=req.query.product_id;
  
     const category=await categoryDocument.find({productId:id}).populate('productId').exec((err,data)=>{
-        res.send(data);
+        
+        res.render('product-list',{
+            data,
+        });
 
     });
   

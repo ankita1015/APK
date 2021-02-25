@@ -1,4 +1,4 @@
-const { insertMany } = require('../modals/categorymodel');
+
 const customerDocument=require('../modals/customermodal');
 
 module.exports=async(req,res)=>{

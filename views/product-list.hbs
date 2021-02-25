@@ -8,81 +8,37 @@
     {{>header}}
 
     <div id="main-content">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+          
+            <div class="col-md-12">
          
                 <!-- post-container -->
                 <div class="post-container">
-                  <h2 class="page-heading">Shops in mehsana</h2>
+                  <h2 class="page-heading">Types of</h2>
                     <div class="post-content">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="inner-content clearfix">
-                                    <h3><a href='#'>product Name</a></h3>
-                                     <table class='description-table'>
-                              <tr>
-                                <td><b>Product name</b></td>
-                                <td>abc indursty</td>
-                              </tr>
-                              <tr>
-                                <td><b>Shop name</b></td>
-                                <td>gujrat</td>
-                              </tr>
-                              <tr>
-                                <td><b>Description</b></td>
-                                <td>mehsana</td>
-                              </tr>
-                        
-                              <tr>
-                                <td><b>Email Address</b></td>
-                                <td>abc@gmail.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>Website</b></td>
-                                <td>www.abc.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>contact No</b></td>
-                                <td>987654321</td>
-                              </tr>
-                               <tr>
-                                <td><b>Price</b></td>
-                                <td>20,000</td>
-                              </tr>
-                            </table>
-                                      <br>
-                                      <span>
-                                    <a class='read-more  pull-left' href='/cart'>Add to cart</a> &nbsp;&nbsp;
-                                    <a class='read-more  pull-right' href='/single'>Order</a>
-                                    </span>
-                                </div>
-                            </div>
-     
-                        </div>
-         
-                    </div>
-        
-                  {{!-- for ratings  --}}
-               <div class="stars-outer">
-                   <div class="stars-inner">
-                   <i class="far fa-star" id='star-1'></i>
-                   <i class="far fa-star" id='star-2'></i>
-                   <i class="far fa-star" id='star-3'></i>
-                   <i class="far fa-star" id='star-4'></i>
-                   <i class="far fa-star" id='star-5'></i>
-                   </div>
-              </div>
-                   
-            </div>
-                <!-- /post-container -->
-        </div>
-         {{>sidebar}}
+                     <div class="row">
+        {{#each data}}  
+<div class="products">
+    <div id='product'>
+      <img src='{{this.images.[1]}}' alt='product'>
+
+    </div>
+       <div id='product-content'>
+         <h6>(<b>{{this.categoryname}}</b>)</h6>
+         <h6><b>Rs.{{this.total_price}}</b></h6>
+         <span><button id='cart' data-id='{{this._id}}' data-cat_id='{{this.categoryId._id}}'>Add to cart</button></span>
+      </div>
+    </div>
+    {{/each}}
+
+                         </div> 
+                      </div>                         
+  
        </div>
     </div>
+</div>
+</div>
 </div>
 </body>
 </html>

@@ -11,6 +11,9 @@
     <div id="main-content">
       <div class="container-fluid">
         <div class="row main-container">
+
+          {{#each category}}
+          
             <div class="col-md-1 category-container">
                  <div  id='category-post'>
              <a class="category-post-img" href="">
@@ -18,95 +21,12 @@
                      {{!-- for ratings  --}}
              </a>
            <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
+                <h5><a href="/product-list?product_id={{this._id}}">{{this.productname}}</a></h5>
                  
                   </div>
              </div>
             </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
-             <div class="col-md-1 category-container">
-                 <div  id='category-post'>
-             <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list">flange</a></h5>
-                 
-                  </div>
-             </div>
-            </div>
+           {{/each}}
 </div>          
                 <!-- post-container -->
                   
@@ -121,11 +41,11 @@
     <input type="radio" id="s-5" name="slider-control">
     <ul class="s-content">
    
-      <li style="background-image:url("{{lastproduct.images.[0]}}");" class="s-item s-item-1"></li>
-      <li style="background-image:url("{{lastproduct.images.[1]}}");" class="s-item s-item-2"></li>
-      <li style="background-image:url("{{lastproduct.images.[2]}}");" class="s-item s-item-3"></li>
-      <li style="background-image:url("{{lastproduct.images.[0]}}");" class="s-item s-item-4"></li>
-      <li style="background-image:url("{{lastproduct.images.[1]}}");" class="s-item s-item-5"></li>
+      <li src='{{lastproduct.[0].images.[0]}}' class="s-item s-item-1"></li>
+      <li src='{{lastproduct.images.[1]}}' class="s-item s-item-2"></li>
+      <li src='{{lastproduct.images.[2]}}' class="s-item s-item-3"></li>
+      <li src='{{lastproduct.images.[0]}}' class="s-item s-item-4"></li>
+      <li src='{{lastproduct.images.[1]}}' class="s-item s-item-5"></li>
     </ul>
     <div class="s-control">
       <label class="s-c-1" for="s-1"></label>
@@ -152,7 +72,7 @@
     {{#each products}}
   <div class="products">
     <div id='product'>
-      <img src='{{this.images.[0]}}' alt='product'>
+      <img src='{{this.images.[1]}}' alt='product'>
 
     </div>
     <div id='product-content'>

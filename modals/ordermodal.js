@@ -3,12 +3,12 @@ require('../db/conn');
 
 const orderSchema=new mongoose.Schema({
 productId:{
-    type:String,
-    required:true
+  type:mongoose.Schema.Types.ObjectId,
+  ref:'shop-product',
 },
 userId:{
-   type:String,
-   required:true
+   type:mongoose.Schema.Types.ObjectId,
+   ref:'User'
 },
 payment:{
     type:String,
@@ -19,9 +19,10 @@ date_time:{
     required:true
 },
 customerId:{
-    type:String,
-    required:true
-}
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Customer'
+},
+
 });
 
 const Ordermodal=new mongoose.model('Order',orderSchema);

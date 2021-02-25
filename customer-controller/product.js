@@ -19,7 +19,7 @@ module.exports=(req,res)=>{
 })
 async function product(uploadimages){
 try{
-  console.log(req.body);
+ 
   const product=new productDocument({
        
        batchid:req.body.batchid,
@@ -28,7 +28,7 @@ try{
        price:req.body.price,
        total_price:req.body.total_price,
        images:uploadimages,
-       shopid:req.shop._id,
+     
        productId:req.body.product,
        categoryId:req.body.category,
 

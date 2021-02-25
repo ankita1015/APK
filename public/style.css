@@ -1,4 +1,6 @@
-
+*{
+  padding: 0px;
+}
   
  
   a:focus, a:active {
@@ -60,7 +62,7 @@
     background-size:100%;
     background-position:fixed;
     background: #f1f1f1;
-   font-family: Sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 500;
 
     margin: 0px;
@@ -414,7 +416,7 @@ form{
 }
 .main-container{
   background-color: #fff;
-  padding:10px;
+ 
 }
 #category-post{
   width:70px;
@@ -471,31 +473,9 @@ form{
     background-color: #1E90FF;
   }
 
-  #sidebar .search-post{
-    margin-left:0px;
 
-  }
-  #sidebar .search-post input{
-    color: #606060;
-    width:20%;
-  }
-  #sidebar .search-post input:focus{
-    box-shadow: none;
-    border-color: #999;
-  }
   
-  #sidebar .search-post .btn{
-    font-weight: 300;
-    text-transform: uppercase;
-    padding: 4px 6px;
-    background-color: #1E90FF;
-    border-color: #1E90FF;
-    outline: none;
-  }
-  
-  
-  
-  
+ 
   .category-container{
  
   display: inline-block;
@@ -520,17 +500,6 @@ form{
   }
 
 
-.mySlides {display: none}
-img {vertical-align: middle;}
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-}
-
-/* Next & previous buttons */
 
 
 /* Position the "next button" to the right */
@@ -542,8 +511,9 @@ img {vertical-align: middle;}
 }
 
  th {
-  background-color:#1e90ff;
+  background-color:#666;
   border: 1px solid #dddddd;
+  border-radius: 5px;
   text-align: left;
   width:200px;
   text-align: center;
@@ -553,8 +523,9 @@ img {vertical-align: middle;}
 td{
   font-size:14px;
   text-align: center;
-  border: 1px solid #dddddd;
+  border-radius:5px;
   padding:5px 0px ;
+  border: 1px solid #dddddd;
 }
 td a{
   
@@ -563,7 +534,8 @@ td a{
   text-decoration: none ;
   background-color:#1e90ff;
   color: #fff;
-  border-radius: 3px;
+  border:1px solid #dddddd;
+  border-radius:3px;
 
 }
 td a:hover{
@@ -725,14 +697,15 @@ height: 100%;
 }
 
 #main-content .post-content .post-img{
-border: 3px solid #e7e7e7;
+border: 2px solid #e7e7e7;
 display: block;
-height: 145;
-overflow: hidden;
+height:100px;
+/* overflow: hidden; */
 transition: border .3s;
+margin: 0px;
 }
 #main-content .post-content .post-img:hover{
-border: 3px solid #1e90ff;
+border: 1px solid #1e90ff;
 }
 
 
@@ -874,7 +847,11 @@ border: 3px solid #1e90ff;
 .fa-shopping-cart{
   font-size: x-large;
 }
-
+/* //order-page */
+.order-container{
+  border:3px solid #cccccc;
+  padding: 10px;
+}
 
 /* Sidebar Styling */
 #sidebar h4{
@@ -888,44 +865,7 @@ border: 3px solid #1e90ff;
   border-left: 3px solid #1e90ff;
 }
 
-#sidebar .search-box-container{
-  background-color: #fff;
-  padding: 20px;
-  margin: 0 0 30px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
-}
 
-#sidebar .search-post{
-  padding: 0;
-}
-#sidebar .search-post input{
-  color: #606060;
-}
-#sidebar .search-post input:focus{
-  box-shadow: none;
-  border-color: #999;
-}
-
-#sidebar .search-post .btn{
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 6px 8px;
-  background-color: #1E90FF;
-  border-color: #1E90FF;
-  outline: none;
-}
-
-#sidebar .search-post .btn:hover,
-#sidebar .search-post .btn:focus{
-  text-shadow: 0 0 3px #333;
-}
-
-#sidebar .search-post i.fa{
-  font-size: 16px;
-  color: #999999;
-  line-height: 40px;
-  float:right;
-}
 
 #sidebar .recent-post-container{
   padding: 20px;
@@ -936,7 +876,7 @@ border: 3px solid #1e90ff;
 #sidebar .recent-post{
   border-bottom: 1px solid #e7e7e7;
   padding: 0 0 15px;
-  margin: 0 0 15px;
+ 
 }
 
 #sidebar .recent-post:last-child{
@@ -951,7 +891,7 @@ border: 3px solid #1e90ff;
   display: inline-block;
   background-color:white;
   border-radius: 10px;
-  margin:0px 5px;
+
   margin-top:10px;
 
 }

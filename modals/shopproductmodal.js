@@ -31,10 +31,6 @@ qty:{
     type:Number,
     default:0
 },
-shopid:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Shop'
-},
 productId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'product',
