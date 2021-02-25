@@ -1,6 +1,7 @@
 const adminDocument=require('../modals/adminmodal');
 const bcrypt=require('bcryptjs');
 
+
 module.exports=async(req,res)=>{
     try{
       
