@@ -7,10 +7,7 @@ batchid:{
     type:String,
     required:true
 },
-description:{
-    type:String,
-    required:true
-},
+
 gst:{
     type:Number,
     default:'',
@@ -36,7 +33,7 @@ qty:{
 },
 shopid:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:'shop'
+    ref:'Shop'
 },
 productId:{
     type:mongoose.Schema.Types.ObjectId,

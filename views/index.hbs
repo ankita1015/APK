@@ -156,10 +156,11 @@
 
     </div>
     <div id='product-content'>
-    <h6><b>{{this.productname}}</b></h6>
-    <h6><b>Rs.{{this.price}}</b></h6>
+    <h6><b>{{this.productId.productname}}</b></h6>
+    <h6>(<b>{{this.categoryId.categoryname}}</b>)</h6>
+    <h6><b>Rs.{{this.total_price}}</b></h6>
     <h6><b>Shop name</b></h6>
-    <span><button id='cart' data-id='{{this._id}}'>Add to cart</button></span>
+    <span><button id='cart' data-id='{{this._id}}' data-cat_id='{{this.categoryId._id}}'>Add to cart</button></span>
     </div>
   </div>
   

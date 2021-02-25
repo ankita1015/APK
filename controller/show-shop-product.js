@@ -3,8 +3,9 @@ const categoryDocument=require('../modals/categorymodel');
 
 module.exports=async(req,res)=>{
     try{
-      let  products=await productDocument.find({}).sort({_id:-1}).limit(20);
+      let  products=await productDocument.find({}).populate(['shopid','productId','categoryId']).sort({_id:-1}).limit(20);
       let  category=await categoryDocument.find({}).limit(15);
+  
       if(products){
        let len=products.length; 
        let i=0;
@@ -22,7 +23,7 @@ module.exports=async(req,res)=>{
          });
      }
     }catch(err){
-
+console.log(err);
     }
 
 

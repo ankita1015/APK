@@ -20,22 +20,17 @@ module.exports=(req,res)=>{
 async function product(uploadimages){
 try{
   console.log(req.body);
- const category=new categoryDocument({
-   productname:req.body.product,
-   category:req.body.category
- })
-const categorydoc=await category.save();
-
-const product=new productDocument({
+  const product=new productDocument({
+       
        batchid:req.body.batchid,
-       description:req.body.description,
        gst:req.body.gst,
        qty:req.body.Qty,
        price:req.body.price,
        total_price:req.body.total_price,
        images:uploadimages,
        shopid:req.shop._id,
-       categoryId:category._id,
+       productId:req.body.product,
+       categoryId:req.body.category,
 
     });
 
