@@ -1,0 +1,79 @@
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+    {{>admin_header}}
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                  <!-- post-container -->
+                  
+
+                      
+                    <div class="post-container" style="margin-bottom: 20px;">
+                           <h4 style="text-align: center;">User</h4>                      
+                        <div class="det">
+                     
+                      
+                         
+                        </div>
+                            <h4 id='product-tit' style="text-align: center;"></h4>
+                    <hr>
+                    <div id='categorys'>
+
+                    </div>
+                              
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <script src='./jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+         
+         const loadcategorys=()=>{
+           
+             let c=1;
+         
+             $.ajax({
+                 url:'/users',
+                 type:'POST',
+                 success:function(data){
+               
+                   let output="<table id='description-table'style='margin:auto;'><tr><th>Sr No</th><th>User Name</th><th>Email</th><th>Role</th></tr>";
+                    data.forEach(element=>{
+                          
+                    output=output.concat(`<tr>
+                                        <td>${c}</td>
+                                        <td>${element.name}</td>
+                                        <td>${element.email}</td>`);
+                                        if(element.role=='0'){                  
+                                        output=output.concat(`<td>Customer</td>`);
+                                        }else{
+                                        output=output.concat(`<td>Seller</td>`);  
+                                        }
+                                    
+                                
+                                    c++;
+                     })
+                    output=output.concat('</table>');
+            
+                   $('#categorys').html(output);  
+
+                 }
+             })
+         } 
+         loadcategorys(); 
+
+               
+           
+        
+      });
+    </script>
+</body>
+</html>

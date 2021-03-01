@@ -3,11 +3,35 @@ require('../db/conn');
 
 const productSchema=new mongoose.Schema({
 
-productname:{
+product:{
     type:String,
     required:true,
-    unique:true
-}
+  
+},
+product_cat:{
+    type:String,
+    required:true,
+},
+images:[{
+
+    type:String,
+    default:''
+
+}],
+gst:{
+    type:Number,
+    default:'',
+
+},
+price:{
+    type:Number,
+    required:true
+},
+total_price:{
+type:Number,
+required:true
+},
+
 
 
 

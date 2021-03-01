@@ -1,6 +1,4 @@
-*{
-  padding: 0px;
-}
+
   
  
   a:focus, a:active {
@@ -62,7 +60,7 @@
     background-size:100%;
     background-position:fixed;
     background: #f1f1f1;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+   font-family: Sans-serif;
     font-weight: 500;
 
     margin: 0px;
@@ -416,7 +414,7 @@ form{
 }
 .main-container{
   background-color: #fff;
- 
+  padding:10px;
 }
 #category-post{
   width:70px;
@@ -473,9 +471,12 @@ form{
     background-color: #1E90FF;
   }
 
+  
+
 
   
- 
+  
+  
   .category-container{
  
   display: inline-block;
@@ -500,6 +501,17 @@ form{
   }
 
 
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
 
 
 /* Position the "next button" to the right */
@@ -511,9 +523,8 @@ form{
 }
 
  th {
-  background-color:#666;
+  background-color:#1e90ff;
   border: 1px solid #dddddd;
-  border-radius: 5px;
   text-align: left;
   width:200px;
   text-align: center;
@@ -523,9 +534,11 @@ form{
 td{
   font-size:14px;
   text-align: center;
-  border-radius:5px;
-  padding:5px 0px ;
   border: 1px solid #dddddd;
+  padding:5px ;
+}
+td img{
+  border-radius: 3px;
 }
 td a{
   
@@ -534,8 +547,7 @@ td a{
   text-decoration: none ;
   background-color:#1e90ff;
   color: #fff;
-  border:1px solid #dddddd;
-  border-radius:3px;
+  border-radius: 3px;
 
 }
 td a:hover{
@@ -675,7 +687,7 @@ border-radius:5px;
 
 /* Main Content Styling */
 #main-content{
-  padding: 30px 0;
+ 
   min-height: 750px;
 }
 
@@ -853,37 +865,7 @@ border: 1px solid #1e90ff;
   padding: 10px;
 }
 
-/* Sidebar Styling */
-#sidebar h4{
-  color: #1A1A1A;
-  font-size: 17px;
-  line-height: 27px;
-  font-weight:600;
-  text-transform: uppercase;
-  padding: 0 0 0 5px;
-  margin: 0 0 21px;
-  border-left: 3px solid #1e90ff;
-}
 
-
-
-#sidebar .recent-post-container{
-  padding: 20px;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
-}
-
-#sidebar .recent-post{
-  border-bottom: 1px solid #e7e7e7;
-  padding: 0 0 15px;
- 
-}
-
-#sidebar .recent-post:last-child{
-  margin: 0;
-  padding: 0;
-  border: none;
-}
 
 #recent-post{
   border:2px solid #e7e7e7;
@@ -891,7 +873,7 @@ border: 1px solid #1e90ff;
   display: inline-block;
   background-color:white;
   border-radius: 10px;
-
+  margin:0px 5px;
   margin-top:10px;
 
 }
@@ -937,67 +919,6 @@ margin: 0;
 
 
 
-#sidebar .recent-post .post-img{
-display: inline-block;
-width: 33%;
-border: 3px solid rgba(0,0,0,0.3);
-vertical-align: top;
-transition: border .3s;
-}
-
-#sidebar .recent-post .post-img:hover{
-border: 3px solid #1e90ff;
-}
-
-#sidebar .recent-post .post-img img{
-  width: 100%;
-}
-
-#sidebar .recent-post .post-content{
-  width: 65%;
-  display: inline-block;
-  border: none;
-  padding: 0 0 0 7px;
-  margin: 0;
-}
-
-#sidebar .recent-post h5{
-  font-size: 14px;
-  line-height: 20px;
-  margin: 0 0 5px;
-}
-#sidebar .recent-post h5 a{
-  color: #1E90FF;
-}
-
-#sidebar .recent-post span{
-  color: #666;
-  font-size: 11px;
-  display: inline-block;
-  margin: 0 5px 10px 0;
-}
-
-#sidebar .recent-post span a{
-  color: #666;
-}
-#sidebar .recent-post span i{
-  color: #1E90FF;
-}
-
-#sidebar .recent-post a.read-more{
-  color: #666;
-  background-color: rgba(0,0,0,0.09);
-  width: 65px;
-  font-size: 11px;
-  text-align: center;
-  padding: 0;
-  display: block;
-  transition: all 0.3s;
-}
-
-#sidebar .recent-post a.read-more:hover{
-  box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
 
 /* Footer Styling */
 #footer{

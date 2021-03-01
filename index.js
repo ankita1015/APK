@@ -13,8 +13,10 @@ const auth=require('./middleware/auth');
 
 const cart=require('./middleware/cart');
 const customer=require('./middleware/order');
+const shopAuth=require('./middleware/shopauth');
 
 const adminauth=require('./middleware/adminauth');
+
 
 
 // const upload=require('./middleware/upload');
@@ -48,26 +50,26 @@ app.post('/login',require('./customer-controller/login'));
 // seller side pages//
 app.get('/add-product',auth,(req,res)=>{
     
-    res.render('add-product',{
+    res.render('add-shop-product',{
         shopname:req.shopname,
     });
 });
-
-app.post('/product',auth,require('./customer-controller/product'));
-app.get('/ourorders',auth,(req,res)=>{
-  
+app.post('/load-all-products',require('./shop-controller/load-all-products'))
+app.post('/product',require('./shop-controller/product'));
+app.get('/ourorders',auth,shopAuth,(req,res)=>{
+  res.render('ourorders');
 })
 //view order//
 app.get('/view-order',(req,res)=>{
     res.render('view-order');
 })
 //viw product//
-app.get('/view-product',auth,require('./customer-controller/view'));
-app.get('/shop',auth,(req,res)=>{
+app.get('/view-product',auth,shopAuth,require('./customer-controller/view'));
+app.get('/shop',auth,shopAuth,(req,res)=>{
   res.status(200).render('ourorders');
 });
-
-app.get('/total-selling',auth,(req,res)=>{
+app.post('/shop',auth,require('./shop-controller/shop'));
+app.get('/total-selling',auth,shopAuth,(req,res)=>{
 res.render('selling');
 
 });
@@ -90,36 +92,33 @@ app.get('/history',(req,res)=>{
 })
 app.get('/logout',auth,require('./customer-controller/logout'));
 //admin panel//
-app.get('/admin-login',(req,res)=>{
+app.get('admin/admin-login',(req,res)=>{
     res.render('admin-login');
 })
-app.get('/admin-index',adminauth,(req,res)=>{
+app.get('/admin',adminauth,(req,res)=>{
     res.render('admin-index');
 })
-app.get('/category',adminauth,(req,res)=>{
-    let id=req.query.id;
- 
-    res.render('category',{
-        cat_id:id,
-    });
+app.get('/add-products',adminauth,(req,res)=>{
+    res.render('add-product');
 })
-app.get('/add-category',adminauth,(req,res)=>{
-res.render('add-category');
-});
+
+
 app.get('/add-admin',adminauth,(req,res)=>{
     res.render('add-admin');
 });
+app.get('/users',adminauth,(req,res)=>{
+    res.render('users');
+})
+
+app.post('/users',require('./admin-controller/show-users'))
+app.post('/products',require('./admin-controller/show-product'))
 app.post('/admin-login',require('./admin-controller/admin-login'));
 app.post('/admin-details',require('./admin-controller/add-admin'));
-app.get('/edit-category',require('./admin-controller/edit-category'));
-app.post('/updated-category',require('./admin-controller/updated-category'));
-app.post('/load-all-category',require('./admin-controller/load-all-category'));
-app.post('/add-products',require('./admin-controller/add-product'));
+app.post('/admin-product',require('./admin-controller/add-product'));
 app.post('/show-products',require('./admin-controller/show-product'));
-app.post('/delete-product',require('./admin-controller/delete-product'))
-app.post('/add-category',require('./admin-controller/add-category'));
-app.post('/categorys',require('./admin-controller/load-category'));
-app.post('/delete-category',require('./admin-controller/delete-category'));
+app.get('/edit-product',require('./admin-controller/edit-product'))
+app.post('/updated-product',require('./admin-controller/update-product'))
+app.post('/delete-products',require('./admin-controller/delete-product'))
 app.post('/search-product',require('./admin-controller/search-product'));
 app.get('/admin-logout',require('./admin-controller/admin-logout'));
 app.get('*',(req,res)=>{

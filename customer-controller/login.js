@@ -18,12 +18,12 @@ module.exports=async(req,res)=>{
                
              });
               
-              const check=userEmail.role=='0' ? true:false;
+              const check=userEmail.role=='1' ? true:false;
               if(check){
                
-               res.send('0')
+               res.send('1')
               }else{
-                res.send('1')
+                res.send('0')
               }
               }else{
               res.status(500).send('password-not-match');

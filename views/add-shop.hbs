@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Login modal</title>
+  <link rel="stylesheet" href="./login.css">
+  {{>styleing}}
+</head>
+<body>
+
+<!-- Modal -->
+<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+  
+
+      <!-- Tab panes -->
+
+        <div role="tabpanel" class="tab-pane" id="register">
+          <div class="modal-header">
+            <h5>Create A Company</h5>
+          </div>
+          <div class="modal-body">
+            <form action='/shop' method='POST'class="row">
+        
+              
+   
+                
+                <div class="checkbox col-xs-12">
+                 
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="company-name">Company Name</label>
+                  <input type="text" class="form-control" name="shopname" id="company-name" placeholder="Company Name">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="address-one">Address 1</label>
+                  <input type="text" class="form-control" name='address1' id="address-one" placeholder="House #, Street">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="address-two">Address 2</label>
+                  <input type="text" class="form-control" name="address2" id="address-two" placeholder="Apt./Unit #">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="zip-code">Zip Code</label>
+                  <input type="tel" class="form-control" name='code' id="zip-code" placeholder="6 digit zip">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" name='city'id="city" placeholder="City, Town">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="state">State</label>
+                  <input type="text" class="form-control" id="state" name="state" placeholder="State">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="phone">Phone</label>
+                  <input type="tel" class="form-control" name="mobileNo" id="phone" placeholder="Phone number">
+                </div>
+              </div>
+              
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-grey create-account">Create Account</button>
+    
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="./popup.js"></script>
+</body>
+</html>

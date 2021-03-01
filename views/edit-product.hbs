@@ -1,0 +1,72 @@
+
+
+<html>
+    <head>
+
+
+</head>
+<body>
+    {{>admin_header}}
+    
+        
+    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+  
+
+      <!-- Tab panes -->
+
+        <div role="tabpanel" class="tab-pane" id="register">
+          <div class="modal-header">
+            <h5><b>Edit Product</b></h5>
+          </div>
+          <div class="modal-body">
+            <form action='/updated-product' method='POST'  class="row" id='productform'>
+                {{#each product}}
+                <div class="form-group col-sm-12">
+                  <label for="product-name">Product name</label>
+                 <input type="text" class='form-control'  id="company-name" name="product" value="{{this.product}}"/>
+                
+                 <input type="hidden" id='productid' name="productid" value="{{this._id}}"/>
+                
+                </div>
+             
+                    <div class="form-group col-sm-12">
+                  <label for="category">Category</label>
+                  <input type="text" class="form-control" value='{{this.product_cat}}' name="category" id="company-name" placeholder="Add category*">
+                </div>
+                    <div class="form-group col-sm-3">
+                  <label for="gst">Gst</label>
+                  <input type="number" class="form-control" name='gst' id="gst"value={{this.gst}} placeholder="Gst(%)">
+                </div>
+                
+                <div class="form-group col-sm-4">
+                  <label for="price">Price</label>
+                  <input type="number" class="form-control" name='price' id="price" value="{{this.price}}" placeholder="Price*">
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="total_price">total Price(gst)</label>
+                  <input type="text" class="form-control" id="total_price" value="{{this.total_price}}" name="total_price" placeholder="Total Price" readonly>
+                </div>
+               
+            <br>
+                   
+                    <button type="submit" class="btn btn-grey create-account" id='add-product'>Update Product</button>
+    <hr>
+            
+              {{/each}}
+            </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  
+<script src="./jquery.min.js"></script>
+<script src="./file.js"></script>
+
+<script>
+  
+</script>
+</body>
+</html>

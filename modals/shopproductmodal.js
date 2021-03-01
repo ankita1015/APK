@@ -8,38 +8,13 @@ batchid:{
     required:true
 },
 
-gst:{
-    type:Number,
-    default:'',
 
-},
-price:{
-    type:Number,
-    required:true
-},
-total_price:{
-type:Number,
-required:true
-},
-images:[{
-
-    type:String,
-    default:''
-
-}],
-qty:{
-    type:Number,
-    default:0
-},
 productId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'product',
   
 },
-categoryId:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'category',
-}
+
 
 
 });

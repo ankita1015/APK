@@ -9,16 +9,18 @@ module.exports=async(req,res)=>{
                     name:req.body.name,
                     email:req.body.email,
                     password,
-                    
+                    role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();
                 res.cookie('user',token,{
                    httponly:true
                 });
             const registred=await User.save();   
-        
+           if(req.body.role==1){
+               res.render('add-shop');
+           }else{
             res.status(200).render('index');
-         
+           }
          }else{
              res.render('signup',{
                  error:"Password Doesn't match",

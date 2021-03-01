@@ -6,6 +6,8 @@ module.exports=async(req,res,next)=>{
         let id=req.query.id;
         let cus_id=req.customer;
         let user_id=req.user;
+        console.log(id);
+      console.log(req.customer);
   
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
