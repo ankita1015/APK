@@ -1,7 +1,7 @@
 const cartDocument=require('../modals/cartmodal');
 const url=require('url');
 
-module.exports=async(req,res)=>{
+module.exports=async(req,res,next)=>{
     try{
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -28,7 +28,7 @@ module.exports=async(req,res)=>{
 
         });
         let cartCreated=await cart.save();
-       
+      
     
     }catch(err){
  console.log(err);

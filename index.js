@@ -4,14 +4,14 @@ const path = require('path');
 const app = express();
 const hbs=require('hbs');
 const bodyparser=require('body-parser');
-//sing godi
+
 
 
 //project modules//
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 
-const cart=require('./middleware/cart');
+
 const customer=require('./middleware/order');
 const shopAuth=require('./middleware/shopauth');
 
@@ -39,7 +39,7 @@ app.get('/signup',(req,res)=>{
 
 
 app.get('/add-cart',auth,require('./customer-controller/add-cart'));
-app.post('/delete-cart-product',require('./customer-controller/delete-cart'),cart);
+app.post('/delete-cart-product',require('./customer-controller/delete-cart'));
 app.post('/',require('./customer-controller/signup'));
 app.get('/make-order',auth,customer,(req,res)=>{
     res.status(200).render('make-order');
@@ -78,9 +78,10 @@ res.render('selling');
 //Customer side Pages//
 
 app.get('/product-list',auth,require('./customer-controller/load-category-product'));
-app.get('/cart',auth,(req,res)=>{
-    cart(req,res);
+app.get('/cart',auth,(req,res)=>{   
+  res.render('cart');
 })
+app.post('/load-cart-products',auth,require('./customer-controller/cart'));
 app.post('/total-cart-product',auth,require('./customer-controller/total-product-cart'));
 
 app.post('/customer',auth,require('./customer-controller/make-order'));
