@@ -76,7 +76,7 @@ res.render('selling');
 });
 
 // Customer side Pages
-// kkkf
+
 app.get('/product-list',auth,require('./customer-controller/load-category-product'));
 app.get('/cart',auth,(req,res)=>{   
   res.render('cart');
