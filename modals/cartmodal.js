@@ -6,11 +6,7 @@ require('../db/conn');
 const cartSchema=new mongoose.Schema({
 productId:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:'shop-product'
-},
-categoryId:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'category'
+    ref:'product'
 },
 userId:{
     type:mongoose.Schema.Types.ObjectId,

@@ -38,7 +38,7 @@ app.get('/signup',(req,res)=>{
 })
 
 
-app.post('/add-cart',auth,require('./customer-controller/add-cart'));
+app.get('/add-cart',auth,require('./customer-controller/add-cart'));
 app.post('/delete-cart-product',require('./customer-controller/delete-cart'),cart);
 app.post('/',require('./customer-controller/signup'));
 app.get('/make-order',auth,customer,(req,res)=>{
@@ -56,6 +56,7 @@ app.get('/add-product',auth,(req,res)=>{
 });
 app.post('/load-all-products',require('./shop-controller/load-all-products'))
 app.post('/product',require('./shop-controller/product'));
+app.get('/single-product',require('./customer-controller/single-product'));
 app.get('/ourorders',auth,shopAuth,(req,res)=>{
   res.render('ourorders');
 })
@@ -75,9 +76,7 @@ res.render('selling');
 });
 
 //Customer side Pages//
-app.get('/single',(req,res)=>{
-    res.render('single');
-})
+
 app.get('/product-list',auth,require('./customer-controller/load-category-product'));
 app.get('/cart',auth,(req,res)=>{
     cart(req,res);

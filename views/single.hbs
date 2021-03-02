@@ -4,56 +4,69 @@
 
 </head>
 <body>
+    {{>header}}
     <div id="main-content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                
+                <div class="col-md-12">
                   <!-- post-container -->
                     <div class="post-container">
                         <div class="post-content single-post">
-                            <h3>Shop Name</h3>
-                            <div class="post-information">
+                           {{#each data}} 
+                    
+                            <div class="post-information container order-container">
+                               <div class="order-img row ">
+                                   <div class="col-md-1 side-images">
+                                     {{#each this.images}}
+                                        <img class='view-img' src="{{this}}">
+                                      
+                                      {{/each}}
+                                   </div>
+                        <div class="col-md-3 img-container">
+                         <img id='order-img' src="{{this.images.[0]}}">
+                       
+                               </div>
+                               <div class="col-md-1"></div>
+                               <div class="col-md-5 orders-detail">
+                                   <h4>{{this.product}}</h4>
+                                   <p>{{product_cat}}</p>
+                                   <p>{{this.total_price}}</p>
+                                   <hr>
+                                   
+                                 <a class="read-more pull-left cart"   href="/add-cart?id={{this._id}}">Add to Cart</a>
                                 
+                                                              
+                                 <a class="read-more pull-left order"   href="#">Order</a>
+                               </div>
+
+                               <div>
+                                 <p>{{msg}}</p>
+                               </div>
+                               </div> 
                                
                             </div>
-                            <img class="single-feature-image" src="images/post_1.jpg" alt=""/>
-                            <table class='description-table'>
-                              <tr>
-                                <td><b>shop name</b></td>
-                                <td>abc indursty</td>
-                              </tr>
-                              <tr>
-                                <td><b>State</b></td>
-                                <td>gujrat</td>
-                              </tr>
-                              <tr>
-                                <td><b>city</b></td>
-                                <td>mehsana</td>
-                              </tr>
-                              <tr>
-                                <td><b>Address</b></td>
-                                <td>tbroad,nr sarvodya bank,mehsana-2,3840002</td>
-                              </tr>
-                              <tr>
-                                <td><b>Email Address</b></td>
-                                <td>abc@gmail.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>Website</b></td>
-                                <td>www.abc.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>contact No</b></td>
-                                <td>987654321</td>
-                              </tr>
-                            </table>
+                           
+                           {{/each}}
+                           <hr>
                         </div>
                     </div>
                     <!-- /post-container -->
                 </div>
-                {{>sidebar}}
+               
             </div>
         </div>
     </div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        $('.view-img').click(function(){
+            let src=$(this).attr('src');
+            const order_img=document.getElementById('order-img');
+            console.log(order_img);
+            order_img.src=src;
+      
+    
+        });
+    </script>
 </body>
 </html>

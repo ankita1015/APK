@@ -70,18 +70,17 @@
   <div class="container-fluid" style="padding:10px;">
     <div id='product-title'>Products</div>
     {{#each products}}
-  <div class="products">
+  <div class="products" data-id={{this._id}}>
     <div id='product'>
-      <img src='{{this.images.[1]}}' alt='product'>
-
+     <a href="/single-product?product_id={{this._id}}">
+     <img src='{{this.images.[0]}}' alt='product'>
+     </a>
     </div>
     <div id='product-content'>
-    <h6><b>{{this.productId.productname}}</b></h6>
-    <h6>(<b>{{this.categoryId.categoryname}}</b>)</h6>
+    <h6><b>{{this.product}}</b></h6>
     <h6><b>Rs.{{this.total_price}}</b></h6>
-    <h6><b>Shop name</b></h6>
-    <span><button id='cart' data-id='{{this._id}}' data-cat_id='{{this.categoryId._id}}'>Add to cart</button></span>
-    </div>
+    
+        </div>
   </div>
   
   {{/each}}
@@ -91,5 +90,20 @@
   <script src='./jquery.min.js'></script>
   <script src="./popup.js"></script>
   <script src="./add-cart.js"></script>
-
+<script>
+  $(document).ready(function(){
+    $('.products').click(function(){
+      let id=$(this).data('id');
+      
+         $.ajax({
+           url:'/single-product',
+           type:'POST',
+           data:{id},
+           success:function(data){
+             
+           }
+         })
+    })
+  })
+</script>
 

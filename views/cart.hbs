@@ -26,11 +26,11 @@
                      {{#each data}}
                    <tr>
                                <td style="padding: 0px;">
-                                <img src="{{this.productId.images.[0]}}" alt=""style='width:5rem;height:5rem;'/>
+                                <img src="{{data.images.[0]}}" alt=""style='width:5rem;height:5rem;'/>
                               </td>
-                              <td>{{this.productId.productname}}</td>
-                              <td>{{this.categoryId.categoryname}}</td>
-                              <td>{{this.productId.total_price}}</td>
+                              <td>{{this.product}}</td>
+                              
+                              <td>{{this.total_price}}</td>
                               <td style="padding:10px;width:5rem;">
                                  <a class='read-more pull-left'  href='#' id='remove-cart' data-id={{this._id}}>Remove</a>
                                 <a class='read-more pull-right' href='/insert-order?id={{this.productId._id}}'>Order</a></td>
