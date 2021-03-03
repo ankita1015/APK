@@ -4,7 +4,7 @@ require('../db/conn');
 const orderSchema=new mongoose.Schema({
 productId:{
   type:mongoose.Schema.Types.ObjectId,
-  ref:'shop-product',
+  ref:'product',
 },
 userId:{
    type:mongoose.Schema.Types.ObjectId,

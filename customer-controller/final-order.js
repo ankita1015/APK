@@ -1,13 +1,12 @@
 const orderDocment=require('../modals/ordermodal');
 
-module.exports=async(req,res,next)=>{
+module.exports=async(req,res)=>{
     try{
 
         let id=req.query.id;
         let cus_id=req.customer;
         let user_id=req.user;
-        console.log(id);
-      console.log(req.customer);
+
   
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -33,8 +32,10 @@ module.exports=async(req,res,next)=>{
         let orderDoc=await orders.save();
     
          req.order=orders;
-        res.render('order');
-next();
+        res.render('cart',{
+          msg:'You have been Ordered....',
+        });
+
     }catch(err){
 console.log(err);
     }

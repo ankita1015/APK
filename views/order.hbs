@@ -18,8 +18,9 @@
                             <div class="post-information container order-container">
                                <div class="order-img row ">
                                    <div class="col-md-1 side-images">
-                                        <img class='view-img' src="{{this.productId.images.[0]}}">
-                                        <img class='view-img' src="{{this.productId.images.[1]}}">
+                                       {{#each this.productId.images}}
+                                        <img class='view-img' src="{{this}}">
+                                       {{/each}}
                                    </div>
                         <div class="col-md-3 img-container">
                          <img id='order-img' src="{{this.productId.images.[0]}}">
@@ -27,26 +28,20 @@
                                </div>
                                <div class="col-md-1"></div>
                                <div class="col-md-5 orders-detail">
-                                   <p>{{this.shopId.shopname}}</p>
-                                   <p>Decription about Products</p>
-                                   <p>category</p>
-                                   <p>{{this.productId.price}}</p>
-                                   <p>{{this.productId.total_price}}</p>
-                                   <hr>
-                                   <h4>Store Details</h4>
-                                   <hr> 
-                                   <p>{{this.shopId.shopname}}</p>
-                                   <p>{{this.shopId.address}}</p>
-                                   <p>{{this.shopId.mobileNo}}</p>
+                                   <h4>{{this.productId.product}}</h4>
+                                   <p>{{this.productId.product_cat}}</p>
+                                    <p>Rs.{{this.productId.total_price}}</p>
+                                
+            
                                    <hr>
                                    <h4>Personal Details</h4>
-                                   <hr>
+                                   
                                    <p>Delivery Address:</p>
                                    <p>{{this.customerId.Address}}</p>
-                                 <a class="read-more pull-left"   href="#">Change Address</a>
+                                 <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                  <br>
                                   <hr>                              
-                                 <a class="read-more pull-left"   href="#">Cancle Order</a>
+                                <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancle Order</a>
                                </div>
                                </div> 
                                
@@ -67,8 +62,22 @@
         $('.view-img').click(function(){
             let src=$(this).attr('src');
             const order_img=document.getElementById('order-img');
-            console.log(order_img);
+          
             order_img.src=src;
+        });
+        $('.cancle-order').click(function(){
+            let id=$(this).data('id');
+             $.ajax({
+                 url:'/delete-order',
+                 type:'post',
+                 data:{id},
+                 success:function(data){
+                     alert(data)
+              if(data==1){
+           window.location.assign('/order'); 
+     }
+                 }
+             })
         })
     </script>
 </body>

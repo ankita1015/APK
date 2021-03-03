@@ -28,8 +28,10 @@ module.exports=async(req,res,next)=>{
 
         });
         let cartCreated=await cart.save();
-      
-    
+        res.render('cart',{
+            
+        });
+         
     }catch(err){
  console.log(err);
     }
