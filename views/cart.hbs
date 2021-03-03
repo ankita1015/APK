@@ -13,13 +13,19 @@
       
                 <!-- post-container -->
                 <div class="post-container">
+
                   <h2 class="page-heading">My cart</h2>
                     <div class="post-content">
                 
                     </div>
        
                     
-                    
+                   <p id='order-msg' style="font-size:larger;
+                        color:green;
+                        border:1px solid #dddd;
+                        padding:10px;
+                        text-align:center;
+                        background-color:lightgreen;">{{msg}}</p> 
                  <input type="hidden" id='total-cart-product'value="{{records}}"/>  
                 </div><!-- /post-container -->
             </div>
@@ -30,13 +36,18 @@
     <script src='./jquery.min.js'></script>
     <script>
       $(document).ready(function(){
+        loadProduct();
     function loadProduct(){
     
-      let output="<table class='description-table'><tr><th></th><th>Products Name</th><th>Type</th><th>Price(%)</th><th>action</th></tr>";
+      let output="<table class='description-table'><tr><th></th><th>Products Name</th><th>Discription</th><th>Price(%)</th><th>action</th></tr>";
          $.ajax({
             url:'/load-cart-products',
             type:'POST',
             success:function(data){
+              if(data==''){
+            $('.post-content').html('<div id="cart_error" style="border:1px solid #dddd;padding:10px;text-align:center;background-color:#eee;font-size:15px;">Your Cart Currently empty</div>')
+            return;
+              }else{
               data.forEach(element=>{
                  output=output.concat(`<tr>
                                <td style="padding: 0px;">
@@ -46,16 +57,18 @@
                               <td>${element.productId.product_cat}</td>
                               <td>${element.productId.total_price}</td>
                               <td style="padding:10px;width:5rem;">
-                                 <a class='read-more pull-left'  href='#' id='remove-cart' data-id=${element._id}>Remove</a>
-                                 <a class='read-more pull-right' href='/insert-order?id=${element.productId._id}}'>Order</a></td>
+                                 <a class='read-more pull-left'  href='#' id="remove-cart" data-id=${element._id}>Remove</a>
+                                 <a class='read-more pull-right' href="/insert-order?id=${element.productId._id}">Order</a></td>
 
                    </tr>`);
                 
-              })
+               })
+             }
                  output=output.concat('</table>');
 
                    $('.post-content').html(output);
             }
+          
          })
 
     }
@@ -75,6 +88,9 @@
                 }
              })
         
+        });
+        $('#order-msg').click(function(){
+          $(this).hide();
         });
       });
     </script>
