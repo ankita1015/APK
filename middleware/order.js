@@ -5,13 +5,19 @@ const order=async(req,res,next)=>{
         const user=req.user;
     
         const customer=await customerDocument.find({userId:user._id});
-
-        req.customer=customer;
+        if(customer!=[]){
      
+        req.customer=customer;
+        console.log(customer);
         next();
+        }else{
+            res.render('make-order');  
+        }
+     
+      
     }catch(err){
-       
-     res.render('make-order');
+        res.render('make-order');
+  
     }
 }
 
