@@ -33,14 +33,20 @@
                                     <p>Rs.{{product.[0].total_price}}</p>
                                     
                                  <div class="col-sm-3">
-                         
+                                <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
+                                <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
+
                                 <input type="number" class="form-control" name='cat' id="category" placeholder="/ench">
                                  </div>
                                  
                                    <div class="col-sm-3">
-                  
-                                <input type="number" class="form-control" name='class' id="class" placeholder="class*">
-                                 </div><br>
+                                    <input type="number" class="form-control" name='class' id="class" placeholder="class*">
+                                 </div>
+                                 <div class="col-sm-3">
+                                    <input type="number" class="form-control" name="qty" id='qty' placeholder="#Qty">                 
+
+                                 </div>
+                                 <br>
                                    <hr>
                                    <div class="col-md-12">
                                        
@@ -58,7 +64,7 @@
                                  <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                  <br>
                                   <hr>
-                                <a class="read-more pull-left order" data-id="{{this._id}}"   href="#">Confirm Order</a>                              
+                                <a class="read-more pull-left confirm-order" data-id="{{this._id}}"   href="#">Confirm Order</a>                              
                                 <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancel Order</a>
                                </div>
                                </div> 
@@ -96,6 +102,23 @@
      }
                  }
              })
+        $('.confirm-order').click(function(){
+            let product_id=$("#product_id").val();
+            let customer_id=$("#customer_id").val(); 
+            let qty=$('#qty').val();
+            let pclass=$('#class').val();
+            let  category=$('#category').val();
+
+            $.ajax({
+                url:"/confirm-order",
+                type:"POST",
+                data:{product_id,customer_id,qty,pclass,category},
+                success:function(data){
+
+                }
+            })
+
+        })
         })
     </script>
 </body>
