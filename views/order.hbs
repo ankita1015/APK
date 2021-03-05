@@ -13,53 +13,59 @@
                   <!-- post-container -->
                     <div class="post-container">
                         <div class="post-content single-post">
-                           {{#each data}} 
+                        
                     
                             <div class="post-information container order-container">
                                <div class="order-img row ">
                                    <div class="col-md-1 side-images">
-                                       {{#each this.productId.images}}
+                                       {{#each product.[0].images}}
                                         <img class='view-img' src="{{this}}">
                                        {{/each}}
                                    </div>
                         <div class="col-md-3 img-container">
-                         <img id='order-img' src="{{this.productId.images.[0]}}">
+                         <img id='order-img' src="{{product.[0].images.[0]}}">
                        
                                </div>
                                <div class="col-md-1"></div>
                                <div class="col-md-5 orders-detail">
-                                   <h4>{{this.productId.product}}</h4>
-                                   <p>{{this.productId.product_cat}}</p>
-                                    <p>Rs.{{this.productId.total_price}}</p>
-                                 <div class="col-sm-6">
-                  
-                                <input type="text" class="form-control" name='category' id="category" placeholder="Category*">
+                                   <h4>{{product.[0].product}}</h4>
+                                   <p>{{product.[0].product_cat}}</p>
+                                    <p>Rs.{{product.[0].total_price}}</p>
+                                    
+                                 <div class="col-sm-3">
+                         
+                                <input type="number" class="form-control" name='cat' id="category" placeholder="/ench">
                                  </div>
+                                 
                                    <div class="col-sm-3">
                   
-                                <input type="number" class="form-control" name='qty' id="qty" placeholder="Qty*">
+                                <input type="number" class="form-control" name='class' id="class" placeholder="class*">
                                  </div><br>
                                    <hr>
+                                   <div class="col-md-12">
+                                       
+                                       <p> * only Cash on delivery</p>
+                                       <p> * no return policy</p>
+                                       <p> * extra delivery charges</p>   
+                                   </div>
+                                   <br>
                                    <h4>Personal Details</h4>
                                    
                                    <p>Delivery Address:</p>
-                                   <p>{{this.customerId.Address}}</p>
+                                   {{#each customerData}}
+                                   <p>{{this.Address}}</p>
+                                   {{/each}}
                                  <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                  <br>
-<<<<<<< HEAD
                                   <hr>
                                 <a class="read-more pull-left order" data-id="{{this._id}}"   href="#">Confirm Order</a>                              
-                                <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancle Order</a>
-=======
-                                  <hr>                              
                                 <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancel Order</a>
->>>>>>> d213adf29eb06abf33f7964183e7c838558bc8a6
                                </div>
                                </div> 
                                
                             </div>
                            
-                           {{/each}}
+                        
                            <hr>
                         </div>
                     </div>

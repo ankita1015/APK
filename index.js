@@ -84,8 +84,8 @@ app.get('/cart',auth,(req,res)=>{
 app.post('/load-cart-products',auth,require('./customer-controller/cart'));
 app.post('/total-cart-product',auth,require('./customer-controller/total-product-cart'));
 
-app.post('/customer',auth,require('./customer-controller/make-order'));
-app.get('/order',auth,customer,require('./customer-controller/view-our-order'));
+app.post('/customer',auth,require('./customer-controller/customer'));
+// app.get('/order',auth,customer,require('./customer-controller/view-our-order'));
 app.get('/insert-order',auth,customer,require('./customer-controller/order-preview'))
 app.post('/delete-order',require('./customer-controller/delete-order'));
 app.get('/history',(req,res)=>{
