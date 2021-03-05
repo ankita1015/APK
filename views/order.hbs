@@ -31,8 +31,14 @@
                                    <h4>{{this.productId.product}}</h4>
                                    <p>{{this.productId.product_cat}}</p>
                                     <p>Rs.{{this.productId.total_price}}</p>
-                                
-            
+                                 <div class="col-sm-6">
+                  
+                                <input type="text" class="form-control" name='category' id="category" placeholder="Category*">
+                                 </div>
+                                   <div class="col-sm-3">
+                  
+                                <input type="number" class="form-control" name='qty' id="qty" placeholder="Qty*">
+                                 </div><br>
                                    <hr>
                                    <h4>Personal Details</h4>
                                    
@@ -40,8 +46,14 @@
                                    <p>{{this.customerId.Address}}</p>
                                  <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                  <br>
+<<<<<<< HEAD
+                                  <hr>
+                                <a class="read-more pull-left order" data-id="{{this._id}}"   href="#">Confirm Order</a>                              
+                                <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancle Order</a>
+=======
                                   <hr>                              
                                 <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancel Order</a>
+>>>>>>> d213adf29eb06abf33f7964183e7c838558bc8a6
                                </div>
                                </div> 
                                
