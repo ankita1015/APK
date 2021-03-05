@@ -11,11 +11,12 @@
     <div id="main-content">
       <div class="container-fluid">
         <div class="row main-container">
-
+       
           {{#each category}}
           
             <div class="col-md-1 category-container">
                  <div  id='category-post'>
+                    
              <a class="category-post-img" href="">
                 <img src="images/post-format.jpg" alt=""/>
                      {{!-- for ratings  --}}
@@ -41,11 +42,11 @@
     <input type="radio" id="s-5" name="slider-control">
     <ul class="s-content">
    
-      <li src='{{lastproduct.[0].images.[0]}}' class="s-item s-item-1"></li>
-      <li src='{{lastproduct.images.[1]}}' class="s-item s-item-2"></li>
-      <li src='{{lastproduct.images.[2]}}' class="s-item s-item-3"></li>
-      <li src='{{lastproduct.images.[0]}}' class="s-item s-item-4"></li>
-      <li src='{{lastproduct.images.[1]}}' class="s-item s-item-5"></li>
+      <li style='background-image:url("{{uniqueProduct.images.[0]}}")' class="s-item s-item-1"></li>
+      <li style='background-image:url("{{uniqueProduct.images.[1]}}")' class="s-item s-item-2"></li>
+      <li style='background-image:url("{{uniqueProduct.images.[2]}}")' class="s-item s-item-3"></li>
+      <li style='background-image:url("{{uniqueProduct.images.[0]}}")' class="s-item s-item-4"></li>
+      <li style='background-image:url("{{uniqueProduct.images.[1]}}")' class="s-item s-item-5"></li>
     </ul>
     <div class="s-control">
       <label class="s-c-1" for="s-1"></label>

@@ -5,7 +5,9 @@ module.exports=async(req,res)=>{
     try{
       
       let  products=await productDocument.find({}).limit(15);
-  
+        let uniqueProduct =await productDocument.find({}).sort({product:-1})
+        
+        
       if(products){
           
     
@@ -14,7 +16,7 @@ module.exports=async(req,res)=>{
     
          res.status(200).render('index',{
              products,
-             
+             uniqueProduct,
             
          });
      }
