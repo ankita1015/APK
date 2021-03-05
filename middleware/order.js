@@ -1,7 +1,7 @@
 "use strict"
 const customerDocument=require('../modals/customermodal');
 
-// hii
+// hii hhh
 const order=async(req,res,next)=>{
     try{
         const user=req.user;
