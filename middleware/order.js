@@ -1,19 +1,23 @@
+"use strict"
 const customerDocument=require('../modals/customermodal');
+
 
 const order=async(req,res,next)=>{
     try{
         const user=req.user;
-    
-        const customer=await customerDocument.find({userId:user._id});
-        if(customer!=[]){
-     
-        req.customer=customer;
-        console.log(customer);
-        next();
-        }else{
-            res.render('make-order');  
-        }
-     
+        
+        const customer=await customerDocument.find({userId:user._id}).exec((err,data)=>{
+          
+            if(data.length==0 || data==undefined){
+
+                res.render('make-order');
+            }else{
+                req.customer=data;
+              
+                next();
+            }
+        });
+       
       
     }catch(err){
         res.render('make-order');
