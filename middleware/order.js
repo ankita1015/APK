@@ -1,4 +1,4 @@
-"use strict"
+
 const customerDocument=require('../modals/customermodal');
 
 // hii hhh
