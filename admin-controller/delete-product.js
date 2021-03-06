@@ -4,21 +4,21 @@ const fs=require('fs');
 module.exports=async(req,res)=>{
     try{
         let id=req.body.id;
-        let pt= path.join(__dirname,'./public');
-        const product=await productDocument.find({_id:id}).exec((err,data)=>{
-            // console.log(data);
+    
+        const product=await productDocument.find({_id:id}).exec(async(err,data)=>{
+          
+            await productDocument.deleteOne({_id:id});
+             
+            res.send('1'); 
             data[0].images.forEach(element=>{
-                pt=pt.replace('\\','/');
-                console.log(pt);
-                fs.unlinkSync(`${element}`)
-
-            })
+     
+            
+                fs.unlinkSync(`./public${element}`);
+               })
+               
         });
-        // const removed= await productDocument.deleteOne({_id:id});
-       
-        if(removed){
-         res.send('1');  
-        }
+    
+      
     }catch(err){
 
     }
