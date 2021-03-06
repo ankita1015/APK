@@ -6,6 +6,18 @@ productId:{
   type:mongoose.Schema.Types.ObjectId,
   ref:'product',
 },
+qty:{
+    type:Number,     
+    default:1,
+},
+category:{
+    type:String,
+    required:true
+},
+pclass:{
+    type:String,
+    required:true
+},
 userId:{
    type:mongoose.Schema.Types.ObjectId,
    ref:'User'

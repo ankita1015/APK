@@ -20,9 +20,9 @@ const adminauth=require('./middleware/adminauth');
 
 
 // const upload=require('./middleware/upload');
-app.use(bodyparser.json());
+app.use(express.json());
 app.use(cookieparser());
-app.use(bodyparser.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:false}));
 
 //public STATIC PATH
 app.use(express.static(path.join(__dirname, '/public/')))
@@ -37,13 +37,18 @@ app.get('/signup',(req,res)=>{
     res.render('signup');
 })
 
-
+app.post('/order',auth,require('./customer-controller/view-our-order'));
 app.get('/add-cart',auth,require('./customer-controller/add-cart'));
 app.post('/delete-cart-product',require('./customer-controller/delete-cart'));
 app.post('/',require('./customer-controller/signup'));
+app.post('/confirm-order',auth,customer,require('./customer-controller/final-order'));
 app.get('/make-order',auth,customer,(req,res)=>{
     res.status(200).render('make-order');
 })
+app.get('/order',(req,res)=>{
+    res.render('order');
+})
+
 
 app.post('/login',require('./customer-controller/login'));
 
