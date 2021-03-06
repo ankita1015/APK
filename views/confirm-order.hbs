@@ -25,23 +25,23 @@
                                         <img class='view-img' src="{{this}}">
                                        {{/each}}
                                    </div>
-                        <div class="col-md-3 img-container">
-                         <img id='order-img' src="{{product.[0].images.[0]}}">
+                                <div class="col-md-3 img-container">
+                                <img id='order-img' src="{{product.[0].images.[0]}}">
                        
-                               </div>
-                               <div class="col-md-1"></div>
-                               <div class="col-md-5 orders-detail">
-                                   <h4>{{product.[0].product}}</h4>
-                                   <p>{{product.[0].product_cat}}</p>
+                                 </div>
+                                 <div class="col-md-1"></div>
+                                  <div class="col-md-5 orders-detail">
+                                    <h4>{{product.[0].product}}</h4>
+                                    <p>{{product.[0].product_cat}}</p>
                                     <p>Rs.{{product.[0].total_price}}</p>
                                     
                                  <div class="col-sm-3">
-                                <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
-                                <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
+                                    <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
+                                    <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
 
-                                <input type="text" class="form-control" name='cat' id="category" placeholder="/ench">
-                                <p id='err_cat'></p>
-                                 </div>
+                                    <input type="text" class="form-control" name='cat' id="category" placeholder="/ench">
+                                    <p id='err_cat'></p>
+                                    </div>
                                  
                                    <div class="col-sm-3">
                                     <input type="text" class="form-control" name='class' id="class" placeholder="class*">
@@ -57,22 +57,22 @@
                                    <hr>
                                    <div class="col-md-12">
                                        
-                                       <p> * only Cash on delivery</p>
-                                       <p> * no return policy</p>
-                                       <p> * extra delivery charges</p>   
+                                    <p> * only Cash on delivery</p>
+                                    <p> * no return policy</p>
+                                    <p> * extra delivery charges</p>   
                                    </div>
                                    <br>
                                    <h4>Personal Details</h4>
                                    
-                                   <p>Delivery Address:</p>
-                                   {{#each customerData}}
-                                   <p>{{this.Address}}</p>
-                                   {{/each}}
-                                 <a class="read-more pull-left change-address"   href="#">Change Address</a>
-                                 <br>
-                                  <hr>
-                                <a class="read-more pull-left confirm-order" data-id="{{product.[0]._id}}" href="#">Confirm Order</a>                              
-                                <a class="read-more pull-left cancle-order"   href="#">Cancel Order</a>
+                                    <p>Delivery Address:</p>
+                                    {{#each customerData}}
+                                    <p>{{this.Address}}</p>
+                                    {{/each}}
+                                    <a class="read-more pull-left change-address"   href="#">Change Address</a>
+                                  <br>
+                                   <hr>
+                                 <a class="read-more pull-left confirm-order" data-id="{{product.[0]._id}}" href="#">Confirm Order</a>                              
+                               
                                </div>
                                </div> 
                                
