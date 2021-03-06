@@ -1,0 +1,117 @@
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+    {{>header}}
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="col-md-12">
+                  <!-- post-container -->
+                <div id='order-msg'>
+
+                </div>
+                    <div class="post-container">
+                        <div class="post-content single-post">
+                        
+                    
+                            <div class="post-information container order-container">
+                        
+                       
+                            </div> 
+                               
+                            </div>
+                           
+                        
+                           <hr>
+                        </div>
+                    </div>
+                    <!-- /post-container -->
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <script src="./jquery.min.js"></script>
+    <script>
+        $.ajax({
+            url:'/order',
+            type:"POST",
+            success:function(data){
+                
+              let output='';
+              data.forEach(element=>{
+                  output=output.concat("<div class='order-img row'><div class='col-md-1 side-images'>");
+                   element.productId.images.forEach(img=>{
+                     output=output.concat(`<img class='view-img' src="${img}">`);
+                   })
+                    output=output.concat('</div>');
+                    output=output.concat(`<div class="col-md-3 img-container">
+                                          <img id='order-img' src="${element.productId.images[0]}">
+                                          </div>
+                                         <div class="col-md-1"></div>
+                                           <div class="col-md-5 orders-detail">
+                                            <h4>${element.productId.product}</h4>
+                                            <span>${element.category}/inch</span>
+                                            <span>${element.pclass}/class</span>
+                                            <span>Qty:-${element.qty}</span>
+                                            <p>Rs.${element.productId.total_price}</p>
+                                           </div>
+                                    
+                                         
+                                         <hr>
+                                       <div class="col-md-12">
+                                       
+                                         <p> * only Cash on delivery</p>
+                                         <p> * no return policy</p>
+                                         <p> * extra delivery charges</p>   
+                                       </div>
+                                    
+
+                                         <div class="col-md-12">
+                                          <h4>Personal Details</h4>
+                                   
+                                          <p>Delivery Address:</p>
+                                          <p>${element.customerId.Address}</p>
+                                    
+                                       <br>
+                                        </div>
+                                        </div>`);
+               })
+             $('.order-container').html(output);
+
+             }
+          })
+
+
+        $('.view-img').click(function(){
+             let src=$(this).attr('src');
+             const order_img=document.getElementById('order-img');
+          
+             order_img.src=src;
+        });
+        $('.cancle-order').click(function(){
+             let id=$(this).data('id');
+             $.ajax({
+                 url:'/delete-order',
+                 type:'post',
+                 data:{id},
+                 success:function(data){
+            
+                  if(data==1){
+                  window.location.assign('/order'); 
+                  }
+                }
+             })
+        });
+      
+
+         
+  
+       
+    </script>
+</body>
+</html>

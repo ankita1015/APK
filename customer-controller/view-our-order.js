@@ -7,12 +7,9 @@ module.exports=async(req,res)=>{
      let user=req.user;
  
       const orders=await orderDocment.find({userId:user._id}).populate(['productId','customerId']).exec((err,data)=>{
+    
+        res.send(data);
 
-        
-      
-        res.status(200).render('order',{
-               data,
-        })
       });
 
  

@@ -11,6 +11,9 @@
                 
                 <div class="col-md-12">
                   <!-- post-container -->
+                <div id='order-msg'>
+
+                </div>
                     <div class="post-container">
                         <div class="post-content single-post">
                         
@@ -36,14 +39,18 @@
                                 <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
                                 <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
 
-                                <input type="number" class="form-control" name='cat' id="category" placeholder="/ench">
+                                <input type="text" class="form-control" name='cat' id="category" placeholder="/ench">
+                                <p id='err_cat'></p>
                                  </div>
                                  
                                    <div class="col-sm-3">
-                                    <input type="number" class="form-control" name='class' id="class" placeholder="class*">
+                                    <input type="text" class="form-control" name='class' id="class" placeholder="class*">
+                                <p id='err_class'></p>
+                                 
                                  </div>
                                  <div class="col-sm-3">
                                     <input type="number" class="form-control" name="qty" id='qty' placeholder="#Qty">                 
+                                <p id='err_qty'></p>
 
                                  </div>
                                  <br>
@@ -64,8 +71,8 @@
                                  <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                  <br>
                                   <hr>
-                                <a class="read-more pull-left confirm-order" data-id="{{this._id}}"   href="#">Confirm Order</a>                              
-                                <a class="read-more pull-left cancle-order"  data-id={{this._id}}  href="#">Cancel Order</a>
+                                <a class="read-more pull-left confirm-order" data-id="{{product.[0]._id}}" href="#">Confirm Order</a>                              
+                                <a class="read-more pull-left cancle-order"   href="#">Cancel Order</a>
                                </div>
                                </div> 
                                
@@ -84,42 +91,65 @@
     <script src="./jquery.min.js"></script>
     <script>
         $('.view-img').click(function(){
-            let src=$(this).attr('src');
-            const order_img=document.getElementById('order-img');
+             let src=$(this).attr('src');
+             const order_img=document.getElementById('order-img');
           
-            order_img.src=src;
+             order_img.src=src;
         });
         $('.cancle-order').click(function(){
-            let id=$(this).data('id');
+             let id=$(this).data('id');
              $.ajax({
                  url:'/delete-order',
                  type:'post',
                  data:{id},
                  success:function(data){
-                     alert(data)
-              if(data==1){
-           window.location.assign('/order'); 
-     }
-                 }
+            
+                  if(data==1){
+                  window.location.assign('/order'); 
+                  }
+                }
              })
+        });
         $('.confirm-order').click(function(){
             let product_id=$("#product_id").val();
             let customer_id=$("#customer_id").val(); 
             let qty=$('#qty').val();
             let pclass=$('#class').val();
             let  category=$('#category').val();
+         if(category==''){
+            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter category</p>");
+
+         }else if(pclass==''){
+            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter class</p>");
+
+
+         }else if(qty==''){
+            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter qty</p>");
+
+
+
+         }else{
+
 
             $.ajax({
                 url:"/confirm-order",
                 type:"POST",
                 data:{product_id,customer_id,qty,pclass,category},
                 success:function(data){
+                  if(data==1){
+
+                    window.location.assign('/order'); 
+                  $('#order-msg').html("<p style='font-size:larger;color:green;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightgreen;'>Your Orders is Confirmed</p>");
+                    }
 
                 }
             })
-
-        })
-        })
+         }
+             $('#order-msg').click(function(){
+                 $(this).hide();
+             });
+  
+        });
     </script>
 </body>
 </html>
