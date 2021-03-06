@@ -83,8 +83,8 @@ app.get('/cart',auth,(req,res)=>{
 })
 app.post('/load-cart-products',auth,require('./customer-controller/cart'));
 app.post('/total-cart-product',auth,require('./customer-controller/total-product-cart'));
-
 app.post('/customer',auth,require('./customer-controller/customer'));
+
 // app.get('/order',auth,customer,require('./customer-controller/view-our-order'));
 app.get('/insert-order',auth,customer,require('./customer-controller/order-preview'))
 app.post('/delete-order',require('./customer-controller/delete-order'));
@@ -92,6 +92,7 @@ app.get('/history',(req,res)=>{
     res.render('history');
 })
 app.get('/logout',auth,require('./customer-controller/logout'));
+
 //admin panel//
 app.get('admin/admin-login',(req,res)=>{
     res.render('admin-login');
@@ -102,15 +103,12 @@ app.get('/admin',adminauth,(req,res)=>{
 app.get('/add-products',adminauth,(req,res)=>{
     res.render('add-product');
 })
-
-
 app.get('/add-admin',adminauth,(req,res)=>{
     res.render('add-admin');
 });
 app.get('/users',adminauth,(req,res)=>{
     res.render('users');
 })
-
 app.post('/users',require('./admin-controller/show-users'))
 app.post('/products',require('./admin-controller/show-product'))
 app.post('/admin-login',require('./admin-controller/admin-login'));
