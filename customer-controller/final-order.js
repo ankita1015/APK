@@ -10,8 +10,7 @@ module.exports=async(req,res)=>{
       let pclass=req.body.pclass;
       let category=req.body.category;
       let user_id=req.user;
-        
-  console.log(productId);
+ 
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ];
@@ -39,7 +38,7 @@ module.exports=async(req,res)=>{
         let orderDoc=await orders.save();
     
          req.order=orders;
-         console.log(orderDoc);
+      
           res.send('1');
 
 
