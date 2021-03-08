@@ -1,0 +1,98 @@
+<html>
+    <head>
+{{>styleing}}
+
+</head>
+<body>
+    {{>admin_header}}
+    <div id="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                  <!-- post-container -->
+                  
+                           
+                    <div class="post-container" style="margin-bottom: 20px;">
+                        
+                        <div class="det">
+                     
+                      
+                         
+                        </div>
+                            <h4 id='product-tit' style="text-align: center;"></h4>
+                    <hr>
+                    <div id='categorys'>
+
+                    </div>
+                              
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <script src='./jquery.min.js'></script>
+    <script>
+      $(document).ready(function(){
+         
+         const loadorders=()=>{
+           
+             let c=1;
+         
+             $.ajax({
+                 url:'/orders',
+                 type:'POST',
+                 success:function(data){
+                
+ let output="<table id='description-table'style='margin:auto;'><tr><th>Order No</th><th>Product Name</th><th>Category</th><th>Qty</th><th>Net Price</th><th>Picture</th><th>Payment</th><th>Action</th></tr>";
+                    data.forEach(element=>{
+                          
+                    output=output.concat(`<tr>
+                                        <td>${c}</td>
+                                        <td>${element.productId.product}</td>
+                                        <td>${element.productId.product_cat}</td>
+                                        <td>${element.qty}</td>
+                                        <td>${element.productId.total_price}</td>
+                                        <td><img src='${element.productId.images[0]}'></td>`);
+                                        if(element.payment == 'complete'){
+                                            output=output.concat(`<td> <a href="#" data-id=${element._id} id="process" style='background-color:lightgreen'>${element.payment}</a></td>`)
+                                        }
+                                        else{
+                                            output=output.concat(`<td> <a href="#" data-id=${element._id} id="process">${element.payment}</a></td>`)
+                                        }
+                                        output=output.concat(`<td> <a href="#" data-id=${element._id} id="info"> More Info</a></td></tr>`);
+                                    c++;
+                     })
+                    output=output.concat('</table>');
+            
+                   $('#categorys').html(output);  
+
+                 }
+             })
+         } 
+         loadorders(); 
+         $(document).on('click','#process',function(){
+             var pt_text=$(this).text();
+             if(pt_text ==='process'){
+                  
+                 var id = $(this).data('id');
+                
+                 $.ajax({
+                     
+                     url:'/payment',
+                     type:'POST',
+                     data:{mt:'complete',id},
+                     success:function(data){
+                          loadorders()
+
+                     }
+                 })
+             }
+             else if(pt_text === 'complete'){
+                 $(this).css('background-color','lightgreen')
+             }
+         })
+    });
+    </script>
+</body>
+</html>
