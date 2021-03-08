@@ -12,22 +12,22 @@
       <div class="container-fluid">
         <div class="row main-container">
        
-          {{#each category}}
-          
+        
+          {{#each uniqueProduct}}
             <div class="col-md-1 category-container">
                  <div  id='category-post'>
                     
              <a class="category-post-img" href="">
-                <img src="images/post-format.jpg" alt=""/>
+                <img src="{{this.images.[0]}}" alt=""/>
                      {{!-- for ratings  --}}
              </a>
            <div class="category-content" >
-                <h5><a href="/product-list?product_id={{this._id}}">{{this.productname}}</a></h5>
+                <h5><a href="/product-list?product_name={{this.product}}">{{this.product}}</a></h5>
                  
                   </div>
              </div>
             </div>
-           {{/each}}
+          {{/each}}
 </div>          
                 <!-- post-container -->
                   

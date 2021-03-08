@@ -413,7 +413,7 @@ form{
   box-shadow:0 1px 3px rgba(0, 0, 0, 0.13);
 }
 .main-container{
-  background-color: #fff;
+
   padding:10px;
 }
 #category-post{
@@ -482,7 +482,7 @@ form{
   display: inline-block;
     }
     .main-container{
-      background-color: #fff;
+    
       padding:4px;
     }
     #category-post{
@@ -579,7 +579,8 @@ div #product #post-details{
 /* //.orders page */
 .img-container{
   padding: 0px;
-  height: 30rem;
+  width:20rem;
+  height: 20rem;
   
 }
 .img-container img{
@@ -592,7 +593,7 @@ border-radius:5px;
   margin-top:5px;
   padding:0px;
   
-  border:2px solid gray;
+  border:1px solid gray;
 
 }
 .orders-detail a{
@@ -803,7 +804,7 @@ border: 1px solid #1e90ff;
   width: 70%;
   margin: 0 auto 20px;
   display: block;
-  border: 3px solid #e7e7e7;
+  /* border: 3px solid #e7e7e7; */
 }
 
 /* Pagination  Styling */
