@@ -130,8 +130,10 @@ app.post('/search-product',require('./admin-controller/search-product'));
 app.get('/admin-order',adminauth,(req,res)=>{
     res.render('admin-side-order');
 })
+app.get('/admin-order-details',require('./admin-controller/order-details'));
 app.post('/payment',require('./admin-controller/payment'));
 app.post('/orders',require('./admin-controller/order'));
+app.post('/load-shop',require('./admin-controller/load-shop'));
 app.get('/admin-logout',require('./admin-controller/admin-logout'));
 app.get('*',(req,res)=>{
     res.status(404).render('404');

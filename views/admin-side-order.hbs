@@ -60,7 +60,7 @@
                                         else{
                                             output=output.concat(`<td> <a href="#" data-id=${element._id} id="process">${element.payment}</a></td>`)
                                         }
-                                        output=output.concat(`<td> <a href="#" data-id=${element._id} id="info"> More Info</a></td></tr>`);
+                                        output=output.concat(`<td> <a href="/admin-order-details?id=${element._id}"  id="info"> More Info</a></td></tr>`);
                                     c++;
                      })
                     output=output.concat('</table>');
