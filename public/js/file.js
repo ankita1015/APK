@@ -18,7 +18,7 @@ $(document).ready(function(){
      const imagesArray=event.target.files;
      const uplaodImg=document.getElementById('imges');
      
-     if(imagesArray.length<5){
+     if(imagesArray.length<=5){
      for(item in imagesArray){
        
      
