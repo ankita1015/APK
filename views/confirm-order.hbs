@@ -75,7 +75,7 @@
                                
                                </div>
                                </div> 
-                               
+                                  <input type="hidden" id="cart_id" value="{{cart_id}}" >
                             </div>
                            
                         
@@ -111,6 +111,7 @@
              })
         });
         $('.confirm-order').click(function(){
+            let cart_id=$('#cart_id').val();
             let product_id=$("#product_id").val();
             let customer_id=$("#customer_id").val(); 
             let qty=$('#qty').val();
@@ -134,7 +135,7 @@
             $.ajax({
                 url:"/confirm-order",
                 type:"POST",
-                data:{product_id,customer_id,qty,pclass,category},
+                data:{product_id,customer_id,qty,pclass,category,cart_id},
                 success:function(data){
                   if(data==1){
 

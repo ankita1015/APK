@@ -7,7 +7,7 @@ module.exports = async(req,res)=>{
        state=state.toLowerCase();
 
        await shopDocument.find({$or: [{state:state}, {city:city}]}).exec((err,data)=>{
-           console.log(data);
+          res.send(data);
        })
     }catch(err){
 

@@ -46,7 +46,7 @@ app.post('/confirm-order',auth,customer,require('./customer-controller/final-ord
 app.get('/make-order',auth,customer,(req,res)=>{
     res.status(200).render('make-order');
 })
-app.get('/order',(req,res)=>{
+app.get('/order',(req,res)=>{ 
     res.render('order');
 })
 
@@ -125,10 +125,12 @@ app.get('/edit-product',require('./admin-controller/edit-product'))
 app.post('/updated-product',require('./admin-controller/update-product'))
 app.post('/delete-products',require('./admin-controller/delete-product'))
 app.post('/search-product',require('./admin-controller/search-product'));
+app.post('/load-single-shop',require('./admin-controller/load-single-shop'));
 app.get('/admin-order',adminauth,(req,res)=>{
     res.render('admin-side-order');
 })
 app.get('/admin-order-details',require('./admin-controller/order-details'));
+app.post('/shop-side-order',require('./admin-controller/shop-side-order'));
 app.post('/payment',require('./admin-controller/payment'));
 app.post('/orders',require('./admin-controller/order'));
 app.post('/load-shop',require('./admin-controller/load-shop'));

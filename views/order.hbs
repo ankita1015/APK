@@ -27,6 +27,8 @@
     </div>
     <script src="./jquery.min.js"></script>
     <script>
+    function loadorder(){
+     
         $.ajax({
             url:'/order',
             type:"POST",
@@ -72,26 +74,29 @@
                      })
                   $('.single-post').html(output);
                }
-          })
-
-
+          })    
+    }
+  loadorder();
     $(document).on('click','.view-img',function(){
             let src=$(this).attr('src');
             const order_img=document.getElementById('order-img');
             order_img.src=src;
     });
     $(document).on('click','.cancle-order',function(){
+      let ans=confirm('Do you want to cancel this order');
+      if(ans){
             let id=$(this).data('id');
             $.ajax({
               url:'/delete-order',
               type:'post',
               data:{id},
               success:function(data){
-                if(data==1){
-                window.location.assign('/order'); 
-              }
+              
+                loadorder();
+                
             }
           })
+      }
         });
 </script>
 </body>

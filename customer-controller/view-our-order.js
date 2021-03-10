@@ -9,7 +9,7 @@ module.exports=async(req,res)=>{
       const orders=await orderDocment.find({userId:user._id}).populate(['productId','customerId']).exec((err,data)=>{
     
         res.send(data);
-
+        
       });
 
  

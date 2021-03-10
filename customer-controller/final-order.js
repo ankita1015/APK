@@ -1,4 +1,5 @@
 const orderDocment=require('../modals/ordermodal');
+const cart=require('../modals/cartmodal')
 
 module.exports=async(req,res)=>{
     try{
@@ -10,6 +11,7 @@ module.exports=async(req,res)=>{
       let pclass=req.body.pclass;
       let category=req.body.category;
       let user_id=req.user;
+      let cart_id=req.body.cart_id;
  
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -36,6 +38,7 @@ module.exports=async(req,res)=>{
        
         });
         let orderDoc=await orders.save();
+        let removecart=await cart.deleteMany({_id:cart_id});
     
          req.order=orders;
       
