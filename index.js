@@ -129,6 +129,9 @@ app.post('/load-single-shop',require('./admin-controller/load-single-shop'));
 app.get('/admin-order',adminauth,(req,res)=>{
     res.render('admin-side-order');
 })
+app.get('/tempshop',(req,res)=>{
+    res.render('tempshop');
+})
 app.get('/admin-order-details',require('./admin-controller/order-details'));
 app.post('/shop-side-order',require('./admin-controller/shop-side-order'));
 app.post('/payment',require('./admin-controller/payment'));
