@@ -2,23 +2,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Responsive Login modal</title>
+  <title>Add Company/Shop</title>
   <link rel="stylesheet" href="./login.css">
   {{>styleing}}
 </head>
 <body>
-
+{{>seller_header}}
 <!-- Modal -->
-<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div class='col-md-8'>
+  <div >
+    <div class='shop-register'>
   
 
       <!-- Tab panes -->
 
-        <div role="tabpanel" class="tab-pane" id="register">
+        <div role="tabpanel"  >
           <div class="modal-header">
-            <h5>Create A Company</h5>
+            <h5>Create Company/Shop</h5>
           </div>
           <div class="modal-body">
             <form action='/shop' method='POST'class="row">
@@ -63,12 +63,16 @@
                 <button type="submit" class="btn btn-grey create-account">Create Account</button>
     
               </div>
+
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class='col-md-3'>
+
 </div>
   <script src="./popup.js"></script>
 </body>

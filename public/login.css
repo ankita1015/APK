@@ -25,6 +25,10 @@
   background: #575757;
   color: #fff;
 }
+.shop-register{
+  background-color: #fff;
+  margin-top: 10px;
+}
 .close {
   opacity: 0.4;
   position: absolute;
