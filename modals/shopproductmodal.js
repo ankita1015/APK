@@ -14,6 +14,10 @@ productId:{
     ref:'product',
   
 },
+shopId:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Shop',
+}
 
 
 

@@ -67,21 +67,47 @@
                                     <p>Delivery Address:</p>
                                     {{#each customerData}}
                                     <p>{{this.Address}}</p>
+                                    <input type="hidden" id='cust_city' value="{{this.city}}"/>
+                                    <input type="hidden" id='cust_state' value="{{this.state}}"/>
+
+                                    
                                     {{/each}}
                                     <a class="read-more pull-left change-address"   href="#">Change Address</a>
                                   <br>
                                    <hr>
-                                 <a class="read-more pull-left confirm-order" data-id="{{product.[0]._id}}" href="#">Confirm Order</a>                              
-                               
+                                 <a class="read-more pull-left confirm-order" data-id="{{product.[0]._id}}" href="#">Confirm Order</a>                        
+                              
                                </div>
+                             
                                </div> 
                                   <input type="hidden" id="cart_id" value="{{cart_id}}" >
+                          
                             </div>
                            
-                        
                            <hr>
                         </div>
+                       
                     </div>
+                      <div class="col-md-12 order-shop-div">
+                          <h4 style="text-align: center;">Select Your Shop/Company</h4>
+                             <hr>
+                              <table id='shop-order'>
+                                   <tr>
+                                       <th></th>
+                                       <th>Shop Name</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                       <th>Address</th>
+                                       <th>Mobile No</th>
+                                       <th>Available</th>
+                                       <th>Cofirm Order</th>
+                                       
+                                   </tr>
+                                   <tr>
+                                     
+                                   </tr>
+                               </table>
+                        </div>
                     <!-- /post-container -->
                 </div>
                
@@ -151,6 +177,18 @@
              });
   
         });
+        var city=$('#cust_city').val();
+        var state=$('#cust_state').val();
+        var p_id=$('.confirm-order').data('id');
+        $.ajax({
+            url:'/load-shop',
+            type:'POST',
+            data:{city,state,p_id},
+            success:function(data){
+                
+            }
+        })
+    
     </script>
 </body>
 </html>

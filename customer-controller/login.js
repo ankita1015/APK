@@ -11,12 +11,19 @@ module.exports=async(req,res)=>{
           if(ismatch==true){
           
                const token =await userEmail.generateAuthoToken();
-               
+                if(userEmail.role=='0'){
                res.cookie('user',token,{
                 expire: 360000 + Date.now(),
                 httponly:true
                
              });
+            }else{
+              res.cookie('shopuser',token,{
+                expire: 360000 + Date.now(),
+                httponly:true
+               
+             });
+            }
               
               const check=userEmail.role=='1' ? true:false;
               if(check){

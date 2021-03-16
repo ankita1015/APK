@@ -865,6 +865,17 @@ border: 1px solid #1e90ff;
   border:3px solid #cccccc;
   padding: 10px;
 }
+.order-shop-div{
+  border: 1px solid black;
+     height: 30rem;
+     overflow-y: scroll;
+}
+.order-shop-div th{
+  font-size: small;
+}
+.order-shop-div td{
+  font-size:12px;
+}
 
 
 
@@ -913,7 +924,7 @@ width: 100%;
 display: inline-block;
 border: none;
 font-size: 12px;
-font-weight: bold;
+
 padding: 0 0 0 7px;
 margin: 0;
 }

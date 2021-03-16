@@ -1,5 +1,6 @@
 body {
-    
+padding: 0px;
+margin: 0px;    
 }
 
 .form-control:focus {
@@ -20,4 +21,51 @@ body {
 
 .mt-200 {
     margin-top: 200px
+}
+#main-img-div{
+    width:100%;
+    height:50vh;
+    border:1px solid black;
+}
+#adimg1{
+    float:left;
+  
+   height:10rem;
+    width:60rem;
+    margin-top: -8rem;
+    line-height: 15rem;
+    background-color: white;
+    margin-right: 20px;
+}
+#img-ul li img{
+    width:15rem;
+    height:10rem;
+    margin-left:30px;
+    background-color: white;
+}
+
+#img-ul li{
+    
+    float:left;
+    list-style: none;
+    
+}
+#img-ul li p{
+    color: lightslategray;
+    font-size:15px;
+    text-align:center;
+    
+    margin-top:-5rem;
+
+
+}
+.top-banner{
+
+    height:10rem;
+    font-size:25px;
+}
+.top-banner img{
+    width:60%;
+    height: 100%;
+
 }

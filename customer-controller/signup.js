@@ -12,12 +12,18 @@ module.exports=async(req,res)=>{
                     role:req.body.role,
                    });
                 const token =await User.generateAuthoToken();
+                if(User.role=='0'){
                 res.cookie('user',token,{
                    httponly:true
                 });
+            }else{
+                res.cookie('shopuser',token,{
+                    httponly:true
+                 });
+                }
             const registred=await User.save();   
            if(req.body.role==1){
-               res.render('add-shop');
+               res.send('1');
            }else{
             res.status(200).render('index');
            }

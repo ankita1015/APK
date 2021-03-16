@@ -16,7 +16,7 @@ const customer=require('./middleware/order');
 const shopAuth=require('./middleware/shopauth');
 
 const adminauth=require('./middleware/adminauth');
-const { response } = require('express');
+const shopuser = require('./middleware/shop_user_auth');
 
 
 
@@ -54,16 +54,16 @@ app.get('/order',(req,res)=>{
 app.post('/login',require('./customer-controller/login'));
 
 // seller side pages//
-app.get('/add-product',auth,(req,res)=>{
+app.get('/add-product',shopuser,(req,res)=>{
     
     res.render('add-shop-product',{
         shopname:req.shopname,
     });
 });
 app.post('/load-all-products',require('./shop-controller/load-all-products'))
-app.post('/product',require('./shop-controller/product'));
+app.post('/product',shopuser,shopAuth,require('./shop-controller/product'));
 app.get('/single-product',require('./customer-controller/single-product'));
-app.get('/ourorders',auth,shopAuth,(req,res)=>{
+app.get('/ourorders',shopuser,shopAuth,(req,res)=>{
   res.render('ourorders');
 })
 //view order//
@@ -71,12 +71,12 @@ app.get('/view-order',(req,res)=>{
     res.render('view-order');
 })
 //viw product//
-app.get('/view-product',auth,shopAuth,require('./customer-controller/view'));
-app.get('/shop',auth,shopAuth,(req,res)=>{
+app.get('/view-product',shopuser,shopAuth,require('./customer-controller/view'));
+app.get('/shop',shopuser,shopAuth,(req,res)=>{
   res.status(200).render('ourorders');
 });
-app.post('/shop',auth,require('./shop-controller/shop'));
-app.get('/total-selling',auth,shopAuth,(req,res)=>{
+app.post('/shop',shopuser,require('./shop-controller/shop'));
+app.get('/total-selling',shopuser,shopAuth,(req,res)=>{
 res.render('selling');
 
 });
@@ -100,7 +100,7 @@ app.get('/history',(req,res)=>{
 app.get('/logout',auth,require('./customer-controller/logout'));
 
 //admin panel//
-app.get('admin/admin-login',(req,res)=>{
+app.get('/admin-login',(req,res)=>{
     res.render('admin-login');
 })
 app.get('/admin',adminauth,(req,res)=>{
@@ -136,7 +136,7 @@ app.get('/admin-order-details',require('./admin-controller/order-details'));
 app.post('/shop-side-order',require('./admin-controller/shop-side-order'));
 app.post('/payment',require('./admin-controller/payment'));
 app.post('/orders',require('./admin-controller/order'));
-app.post('/load-shop',require('./admin-controller/load-shop'));
+app.post('/load-shop',shopuser,shopAuth,require('./admin-controller/load-shop'));
 app.get('/admin-logout',require('./admin-controller/admin-logout'));
 app.get('*',(req,res)=>{
     res.status(404).render('404');

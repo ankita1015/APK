@@ -4,7 +4,7 @@ const ShopDocument=require('../modals/shopmodal');
 module.exports=async(req,res)=>{
 
     try{
-            
+        console.log(req.body);    
         const shop=new ShopDocument({
               shopname:req.body.shopname,
               state:req.body.state,
@@ -13,7 +13,7 @@ module.exports=async(req,res)=>{
               address2:req.body.address2,
               area_code:req.body.code,
               mobileNo:req.body.mobileNo,
-              userID:req.user._id,
+              userID:req.shopuser._id,
            });
          let shopToken=shop;
          res.cookie('shop',shopToken,{
@@ -22,7 +22,7 @@ module.exports=async(req,res)=>{
          })
          await shop.save();
                
-         res.render('ourorders');  
+         res.send('1')  
        }catch(err){
        console.log(err);
        
