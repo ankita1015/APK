@@ -91,22 +91,7 @@
                       <div class="col-md-12 order-shop-div">
                           <h4 style="text-align: center;">Select Your Shop/Company</h4>
                              <hr>
-                              <table id='shop-order'>
-                                   <tr>
-                                       <th></th>
-                                       <th>Shop Name</th>
-                                       <th>State</th>
-                                       <th>City</th>
-                                       <th>Address</th>
-                                       <th>Mobile No</th>
-                                       <th>Available</th>
-                                       <th>Cofirm Order</th>
-                                       
-                                   </tr>
-                                   <tr>
-                                     
-                                   </tr>
-                               </table>
+                    
                         </div>
                     <!-- /post-container -->
                 </div>
@@ -180,12 +165,38 @@
         var city=$('#cust_city').val();
         var state=$('#cust_state').val();
         var p_id=$('.confirm-order').data('id');
+       var output=`<table id='shop-order'>
+                                   <tr>
+                                       <th>Shop Name</th>
+                                       <th>State</th>
+                                       <th>City</th>
+                                       <th>Address</th>
+                                       <th>Pincode</th>
+                                       <th>Mobile No</th>
+                                       <th>Available</th>
+                                       <th>Cofirm Order</th>
+                                       
+                                   </tr>`
+
         $.ajax({
-            url:'/load-shop',
+            url:'/load-order-shop',
             type:'POST',
             data:{city,state,p_id},
             success:function(data){
-                
+                data.forEach(element=>{
+                    output=output.concat(`<tr> 
+                        <td>${element.shopId.shopname}</td>
+                        <td>${element.shopId.state}</td>
+                        <td>${element.shopId.city}</td>
+                        <td><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
+                        <td>${element.shopId.area_code}</td>
+                        <td>${element.shopId.mobileNo}</td>
+                        <td><button style='background-color:lightgray;width:55px;padding:3px;,color<:lightgray' >Available</button></td>
+                        <td><a href='/confirm-order?id=${element.productId}'>confirm order</a></td>
+                    </tr>`)
+                })
+               output=output.concat(`</table>`);
+               $('.order-shop-div').html(output)   
             }
         })
     

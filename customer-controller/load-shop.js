@@ -6,8 +6,8 @@ module.exports = async(req,res)=>{
        let productId=req.body.p_id;
        city=city.toLowerCase();
        state=state.toLowerCase();
-
-       await shop_productDocument.find({productId}).populate.exec((err,data)=>{
+      
+       await shop_productDocument.find({productId}).populate(['shopId']).exec((err,data)=>{
          console.log(data);
          res.send(data);
        })
