@@ -22,5 +22,5 @@ shopId:{
 
 
 });
-const productmodal=new mongoose.model('shop-product',productSchema);
+const productmodal=new mongoose.model('shop_product',productSchema);
 module.exports=productmodal;
