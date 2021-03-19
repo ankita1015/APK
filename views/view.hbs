@@ -20,56 +20,22 @@
                 <div class="post-container">
                   <h2 class="page-heading">product-list</h2>
                     <div class="post-content">
-                           {{#each products}}
-                        <div class="row" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
-
-                            <div class="col-md-2">
-                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="inner-content clearfix">
-                                    <span id='post-details'>
-                                        
-                                       <table class="orders">
-                                   
-                                        <tr>
-                                   <td>product Name</td>
-                                   <td>{{this.productname}}</td>
-                                   </tr>
-                                         <tr>
-                                   <td>Description</td>
-                                   <td>{{this.description}}</td>
-                                   </tr>
+                           
+                        <div class="row order-shop-div" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
                     
-                                        <tr>
-                                   <td>Quantity</td>
-                                   <td>{{this.qty}}</td>
-                                   </tr>
-                                   <tr>
-                                   <td>Price</td>
-                                   <td>{{this.price}}</td>
-                                   </tr>
-                                      <tr>
-                                   <td>Gst(%)</td>
-                                   <td>{{this.gst}}%</td>
-                                   </tr>
-                                  
-                                    <tr>
-                                   <td>Total Price(Gst%)</td>
-                                   <td>{{this.total_price}}</td>
-                                   </tr>
-                                  
-                                   </table> 
-                                 </span>
-                                 
-                                 <button><a href="" >Add more</a></button>
-                                </div>
+                        
+
+                          
+                               
+                               
+                               
+                         </div>
                                       
                                    
 
                                 </div>
                             </div>
-                            {{/each}}
+                           
                                                     
                              <hr style='width:100%;color:black;'>
                             </div>
@@ -87,6 +53,47 @@
         </div>
       </div>
     </div>
+    <script src='./jquery.min.js'></script>
+     <script>
+         $(document).ready(function(){
+            $.ajax({
+                url:'/load-all-shop-products',
+                type:'POST',
+                success:function(data){
+                    let c=1;
+    
+                let output=`<table id='shop-order'>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>Product name</th>
+                                <th>Size</th>
+                                <th>Price</th>
+                                <th>Batch Id</th>
+                                <th>img</th>
+                                <th>Action</th>
+
+
+                          </tr>`;
+                data.forEach(element=>{
+                    output=output.concat(`
+                    <tr>
+                      <td>${c}</td>
+                        <td>${element.productId.product}</td>
+                        <td>${element.productId.product_cat}</td>
+                        <td>${element.productId.total_price}</td>
+                        <td>${element.batchid}</td>
+                        <td><img src='${element.productId.images[0]}' alt='product image' style='width:5rem;height:5rem;'> </td>
+                        <td><a href='#'>Add more</a></td>
+                    </tr>`);
+                    c++;
+                });
+                  output=output.concat('</table>')
+                  $('.order-shop-div').html(output);
+                }
+            });
+         });
+     </script>
+
 </body>
 </html>
 

@@ -1,20 +1,6 @@
-<html> <head> </head><body> 
-    {/* *
-    SmartWizard v4 .3 .1 *
-    The awesome jQuery step wizard plugin with Bootstrap support *
-    http: //www.techlaboratory.net/smartwizard
-    *
-    *
-    Created by Dipu Raj *
-    http: //dipuraj.me
-    *
-    *
-    Licensed under the terms of the MIT License *
-    https: //github.com/techlab/SmartWizard/blob/master/LICENSE
-    * */}
-    /! function(t, s, e, n) {
-        `use strict`;
 
+     const temp=function(t, s, e, n) {
+    
         function i(s, e) {
             this.options = t.extend(!0, {}, o, e),
                 this.main = t(s),
@@ -28,7 +14,7 @@
                 this.init()
         }
         var o = {
-            `selected: 0,
+            selected: 0,
             keyNavigation: !0,
             autoAdjustHeight: !0,
             cycleSteps: !1,
@@ -37,22 +23,22 @@
             showStepURLhash: !0,
             lang: {
                 next: "Next",
-                previous: "Previous"`
+                previous: "Previous"
             },
-            toolbarSettings: {`
+            toolbarSettings: {
                 toolbarPosition: "bottom",
                 toolbarButtonPosition: "end",
                 showNextButton: !0,
                 showPreviousButton: !0,
-                toolbarExtraButtons: []`
+                toolbarExtraButtons: []
             },
-            anchorSettings: {`
-                anchorClickable: !0,
-                enableAllAnchors: !1,
-                markDoneStep: !0,
-                markAllPreviousStepsAsDone: !0,
-                removeDoneStepOnNavigateBack: !1,
-                enableAnchorOnDoneStep: !0`
+            anchorSettings: {
+                anchorClickable: 0,
+                enableAllAnchors:1,
+                markDoneStep:0,
+                markAllPreviousStepsAsDone:0,
+                removeDoneStepOnNavigateBack:1,
+                enableAnchorOnDoneStep:0
             },
             contentURL: null,
             contentCache: !0,
@@ -71,11 +57,11 @@
                 var e = this.options.selected;
                 if (this.options.useURLhash) {
                     var n = s.location.hash;
-                    if (n & amp; & amp; n.length & gt; 0) {
+                    if (n & amp & amp n.length & gt 0) {
                         var i = t("a[href*='" + n + "']", this.nav);
-                        if (i.length & gt; 0) {
+                        if (i.length & gt>0) {
                             var o = this.steps.index(i);
-                            e = o & gt; = 0 ? o : e
+                            e = o & gt  0 ? o : e
                         }
                     }
                 }

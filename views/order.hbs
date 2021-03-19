@@ -33,11 +33,20 @@
             url:'/order',
             type:"POST",
             success:function(data){
-                
+              if(data==1){
+              let msg=` <p id='order-msg' style="font-size:larger;
+                        color:black;
+                        border:1px solid #ddd ;
+                        padding:10px;
+                        text-align:center;
+                        background-color:lightgrey;">You have not Ordered Yet</p> `;
+                                         $('.single-post').html(msg);
+                                         return;
+              } 
               let output='';
               data.forEach(element=>{
            
-                     output=output.concat("<div class='post-information container order-container'><div class='order-img row'><div class='col-md-1 side-images'>");
+                     output=output.concat("<div class='post-information container '><div class='order-img row'><div class='col-md-1 side-images'>");
                      element.productId.images.forEach(img=>{
                           output=output.concat(`<img class='view-img' src="${img}">`);
                         })
@@ -59,7 +68,18 @@
                                            <p> * no return policy</p>
                                            <p> * extra delivery charges</p>   
                                          </div>
+                                     <div class="col-md-12">
+                                           <h4>Shop Details</h4>
+                                           <p>${element.shopId.shopname}</p>
+                                           <p>${element.shopId.city},${element.shopId.state}</p>
+                                           <p>${element.shopId.address}</p>
+                                           <p>${element.shopId.address2}</p>
+                                           <p>${element.shopId.mobileNo}</p>
+
+
                                     
+                                           <br>
+                                         </div>
 
                                          <div class="col-md-12">
                                            <h4>Personal Details</h4>
@@ -70,7 +90,7 @@
                                            <br>
                                          </div>
                                          <a class="read-more pull-left cancle-order" data-id=${element._id}  href="#">Cancel Order</a>
-                                         </div></div></div>`);
+                                         </div></div></div><hr>`);
                      })
                   $('.single-post').html(output);
                }

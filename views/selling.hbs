@@ -24,39 +24,8 @@
                 <div class="post-container">
                   <h2 class="page-heading">View Selling</h2>
                     <div class="post-content">
-                        <div class="row">
-
-                            <div class="col-md-2">
-                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="inner-content clearfix">
-                                    <h3><a href="">Product Name</a></h3>
-                                      <p>Description</p>
-                                      <p>Date</p>
-                                      <br>
-                                   
-
-                                </div>
-                            </div>
-                            </div>
-                           <hr>
-                           <div class="row">
-
-                            <div class="col-md-2">
-                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="inner-content clearfix">
-                                    <h3><a href="">Product Name</a></h3>
-                                      <p>Description</p>
-                                      <p>Date</p>
-                                      <br>
-                                   
-
-                                </div>
-                            </div>  
-                        </div>
+                   
+                         
                     </div>
         
                     
@@ -68,5 +37,46 @@
         </div>
       </div>
     </div>
+      <script src='./jquery.min.js'></script>
+      <script>
+          $(document).ready(function(){
+              const totalselling=()=>{
+                  $.ajax({
+                      url:'/total-selling',
+                      type:'POST',
+                      success:function(data){
+                          let output=''
+                        data.forEach(element=>{
+                            output=output.concat(`     <div class="row">
+
+                            <div class="col-md-2">
+                                <a class="post-img" href='#'><img src="${element.productId.images[0]}" alt=""/></a>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="inner-content clearfix">
+                                    <h4><a href="">${element.productId.product}</a></h4>
+                                      <p>${element.productId.product_cat}</p>
+                                      <p>${element.date_time}</p>
+                                      <h5>Customer Details</h5>
+                                      <p>${element.userId.name}</p>
+                                      <p><span>${element.customerId.city},${element.customerId.state}</span></p>
+                                      <p>${element.customerId.Address}</p>
+                                      <p>${element.customerId.mobile_no}</p>
+
+                                      <br>
+                                   
+
+                                </div>
+                            </div>
+                            </div>
+                           <hr>`)
+                        })
+                    $('.post-content').html(output);
+                      }
+                  })   
+              }
+              totalselling();
+          })
+      </script>
 </body>
 </html>

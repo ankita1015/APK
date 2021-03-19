@@ -865,16 +865,30 @@ border: 1px solid #1e90ff;
   border:3px solid #cccccc;
   padding: 10px;
 }
-.order-shop-div{
-  border: 1px solid black;
-     height: 30rem;
-     overflow-y: scroll;
-}
+
 .order-shop-div th{
+  background-color: light;
   font-size: small;
 }
 .order-shop-div td{
   font-size:12px;
+
+}
+.order-shop-div td button{
+  font-size:10px;
+  border:none;
+  padding:5px;
+  border-radius:3px;
+ 
+}
+.order-shop-div td a{
+  font-size:10px;
+  border:none;
+  padding:5px;
+  border-radius: 3px;
+}
+.order-shop-div td{
+  width:5rem;
 }
 
 

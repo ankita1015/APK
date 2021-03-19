@@ -1,8 +1,8 @@
-const orderDocument = require('../modals/ordermodal');
+const shoporderDocument = require('../modals/shopordermodal');
 module.exports=async(req,res)=>{
     try{
          let _id = req.query.id;
-         await orderDocument.find({_id}).populate(['productId','customerId','userId']).exec((err,data)=>{
+         await shoporderDocument.find({_id}).populate(['productId','customerId','userId']).exec((err,data)=>{
              
             res.render('order-details',{data});
          })

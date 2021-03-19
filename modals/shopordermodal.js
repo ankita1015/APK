@@ -1,10 +1,6 @@
 const mongoose=require('mongoose');
 require('../db/conn');
 const shopOrderSchema=new mongoose.Schema({
-    orderId:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Order',
-    },
     customerId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Customer',
@@ -16,6 +12,34 @@ const shopOrderSchema=new mongoose.Schema({
     productId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'product',
+    },
+    date_time:{
+        type:String,
+        required:true
+    },
+    qty:{
+        type:String,
+        required:true,
+    },
+    payment:{
+        type:String,
+        required:true,
+    },
+    category:{
+        type:String,
+        required:true
+    },
+    pclass:{
+        type:String,
+        required:true
+    },
+    userId:{
+       type:mongoose.Schema.Types.ObjectId,
+       ref:'User'
+    },
+    status:{
+        type:String,
+        required:true
     }
 
 

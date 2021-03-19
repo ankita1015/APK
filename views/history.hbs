@@ -9,10 +9,10 @@
 {{>header}}
 
     <div id="main-content">
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-md-2"></div>
-            <div class="col-md-8">
+          
+            <div class="col-md-12">
                  <form class="search-post" action="search.php" method ="GET">
             <div class="input-group">
                 <input type="text" name="search" class="form-control" placeholder="Search .....">
@@ -27,65 +27,82 @@
                     <div class="post-content">
                         <div class="row">
 
-                            <div class="col-md-4">
-                                <a class="post-img" href='/single'><img src="images/post-format.jpg" alt=""/></a>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="inner-content clearfix">
-                                    <h3><a href='/single'>product</a></h3>
-                                  
-                                           <table class='description-table'>
-                              <tr>
-                                <td><b>Product name</b></td>
-                                <td>abc indursty</td>
-                              </tr>
-                              <tr>
-                                <td><b>Shop name</b></td>
-                                <td>gujrat</td>
-                              </tr>
-                              <tr>
-                                <td><b>Description</b></td>
-                                <td>mehsana</td>
-                              </tr>
-                        
-                              <tr>
-                                <td><b>Email Address</b></td>
-                                <td>abc@gmail.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>Website</b></td>
-                                <td>www.abc.com</td>
-                              </tr>
-                              <tr>
-                                <td><b>contact No</b></td>
-                                <td>987654321</td>
-                              </tr>
-                               <tr>
-                                <td><b>Price</b></td>
-                                <td>20,000</td>
-                              </tr>
-                              <tr>
-                                <td><b>Date</b></td>
-                                <td>wen,20-1-2020</td>
-                              </tr>
-                            </table>
-                                   <br>
-                                   
-                                    <a class="read-more pull-left"   href="#">Get Bill</a>
-                                    <a class='read-more pull-right' href='#'>Order</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
+
+                            <div class="col-md-12">
+                            
                     
-                    
-                   
+                   <a class="read-more pull-left"   href="#">Get Bill</a>
+
                 </div><!-- /post-container -->
             </div>
      
         </div>
       </div>
     </div>
+    <script src="./jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        
+        $.ajax({
+          url:'/order-history',
+          type:"POST",
+          success:function(data){
+         
+            data.forEach(element=>{
+                let d=element.date_time.split('||');
+                 
+               let yy=d[1].split('/')
+               y=yy[2];
+               let mm=yy[1];
+     
+                output=`<h5 style='text-align:center; '>${mm}-${y}</h5><hr><table id="shop-order-div">
+             <tr>
+               <th>Sr No</th>
+               <th>img</th>
+               <th>Product Name</th>
+               <th>size</th>
+               <th>Class</th>
+               <th>Price</th>
+               
+            </tr>`
+              let date=element.date_time.split('||');
+              
+               let year=date[1].split('/')
+               y=year[2];
+               let month=year[1];
+               let day=year[0];
+              
+        
+                data.forEach(ele=>{
+                  let c=1;
+                    let subdate=ele.date_time.split('||');
+                    let subyear=subdate[1].split('/');
+                  
+                        suby=subyear[2];
+                    let subm=subyear[1];
+                    let subd=subyear[0];
+                    if(y==suby &&  month==subm && day==subd){
+                        output=output.concat(`<tr>
+                          <td>${c}</td>
+                          <td><img src='${ele.productId.images[0]}' style='width:5rem;height:5rem;'></td>
+                          <td>${ele.productId.product}</td>
+                          <td>${ele.category} inch</td>
+                          <td>${ele.pclass} class</td>
+                          <td>${ele.productId.total_price}</td>
+                        </tr>`);
+                    }
+                    c++;
+                })
+           
+                 output=output.concat('</table>');
+               $('.post-content').html(output); 
+            })
+
+          }
+        })
+
+      })
+    </script>
+
 </body>
 </html>

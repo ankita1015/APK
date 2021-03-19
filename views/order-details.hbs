@@ -1,11 +1,11 @@
 <html>
     <head>
 {{>styleing}}
-<link rel='stylesheet' href='./popupstyle.css'>
+
 </head>
 <body>
     
-    {{>admin_header}}
+    {{>seller_header}}
      
    
     <div id="main-content">
@@ -34,18 +34,19 @@
                                  <div class="col-md-1"></div>
                                   <div class="col-md-5 orders-detail">
                                     <h4>{{data.[0].productId.product}}</h4>
-                                    <p>{{data.[0].category}}</p>
-                                    <p>{{data.[0].pclass}}</p>
+                                    <p><span>{{data.[0].category}}/inch,{{data.[0].pclass}}/class</span></p>
+                                    <p>Qty.{{data.[0].qty}}</p>     
                                     <p>Rs.{{data.[0].productId.total_price}}</p>
-                                    <p>Qty.{{data.[0].qty}}</p>      
+                           
                                    <hr>   
                                    <div class="col-md-10 orders-detail">
                                    <h4>Customer Details</h4>
-                                   <p><b>Customer Name:</b>{{data.[0].userId.name}}</p>
-                                   <p><b>Customer Email:</b>{{data.[0].userId.email}}</p>
-                                   <p><b>Customer mobileNo:</b>{{data.[0].customerId.mobile_no}}</p>
-                                   <p><b>Customer State:</b>{{data.[0].customerId.state}}</p>
-                                   <p><b>Customer City:</b>{{data.[0].customerId.city}}</p>
+                                   <p><b></b>{{data.[0].userId.name}}</p>
+                                   <p><b></b>{{data.[0].userId.email}}</p>
+                                   <p><b></b>{{data.[0].customerId.mobile_no}}</p>
+                                   <p><b></b>{{data.[0].customerId.city}}</p>
+                                   <p><b></b>{{data.[0].customerId.state}}</p>
+                                 
                                     <p><b>Delivery Address:</b></p>
                                     <p>{{data.[0].customerId.Address}},{{data.[0].customerId.area_code}}</p>
                                     </div>
@@ -59,10 +60,7 @@
                                
                                
                                </div> 
-                               <h3 id='ct'>Related Shops in Your City</h3>
-                               <div id="shoptbl" >
-                                    
-                                </div>
+                              
 
                             </div>
                            
@@ -78,15 +76,7 @@
         <div id='load-single-shop'>
 
         </div>
-       {{!-- <div id="popup1" class="overlay">
-	        <div class="popup">
-		        <h2>Here i am</h2>
-		        <a class="close" href="#">&times;</a>
-		        <div class="content">
-			        Thank to pop me out of that button, but now i'm done so you can close this window.
-		        </div>
-	        </div>
-        </div> --}}
+     
     </div>
     <script src="./jquery.min.js"></script>
     <script>
@@ -96,101 +86,7 @@
           
              order_img.src=src;
         });
-        var city = $("#city").val();
-        var state = $("#state").val();
-        const loadshop=()=>{
-
-        
-        $.ajax({
-            url:'/load-shop',
-            type:'POST',
-            data:{city,state},
-            success:function(data){
-                $ ('#ct').text(`Related Shops in ${data[0].state}`);
-                let output=` <table id='description-table'>
-                    <tr><th>SR NO.</th>
-                    <th>Shop Name.</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Address</th> 
-                    <th>Mobile No.</th>
-                    <th>Order</th></tr>`
-                let c=1;
-                data.forEach(sun=>{
-                    output=output.concat(`<tr>
-                        <td>${c}</td>
-                        <td>${sun.shopname}</td>
-                        <td>${sun.city}</td>
-                        <td>${sun.state}</td>
-                        <td>${sun.address}</td>
-                        <td>${sun.mobileNo}</td>`)
-                      
-                        output=output.concat(`<td><a href='#'id='shoporder' data-id=${sun._id}  style='background-color:lightgreen'>Details</a></td>`)
-                        output=output.concat('</tr>')
-                        
-                })
-                output=output.concat("</table>")
-                $('#shoptbl').html(output)
-            }
-        })
-        }
-        loadshop();
-        $(document).on('click','#shoporder',function(){
-            let orderdata=$('#ordid').val(); 
-           
-           let id=$(this).data('id');
-           
-          $.ajax({
-              url:'/load-single-shop',
-              type:'POST',
-              data:{id,orderdata},
-              success:function(data){
-                  console.log(data);
-                  let output=`<div id="popup1" class="overlay">  <div class="popup">
-		        <h2>Shop Details</h2>
-                <a class="close" href="#">&times;</a>
-                <div class="content">`
-                    data[0].forEach(element=>{
-                        console.log(element);
-                      output=output.concat(`<h4>Shop Name:    ${element.shopname}</h4>
-                        <h4> Mobile No:    ${element.mobileNo}</h4>
-                        <h4>Address:    ${element.address}</h4>
-                        <h4>${element.address2},${element.area_code}</h4>
-                        <h4>City:    ${element.city}</h4>
-                        <h4>State:    ${element.state}</h4> `)
-                    })
-                    output=output.concat(`<h2>Order Details</h2>
-                    <table><tr>
-                        <th>Image</th>
-                        <th>Product Name</th>
-                        <th>Size</th>
-                        <th>Class</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>`)
-                    data[1].forEach(prodelement=>{
-                     output=output.concat(`<tr>
-                        <td><img src='${prodelement.productId.images[0]}'></td>
-                        <td>${prodelement.productId.product}</td>
-                        <td>${prodelement.category}</td>
-                        <td>${prodelement.pclass}</td>
-                        <td>${prodelement.qty}</td>
-                        <td>${prodelement.productId.total_price}</td>
-                    </tr>`)
-                    })
-                     output=output.concat('</table>')
-                  
-                    output=output.concat('</div></div>');
-
-                    $('#load-single-shop').html(output)
-                }
-          })
-            
-        })
-        $(document).on('click','.close',function(){
-            $('.overlay').hide();
-        })
-        
+       
     </script>
 </body>
 </html>
