@@ -2,7 +2,7 @@ const UserDocument=require('../modals/user');
 const bcrypt=require('bcryptjs');
 module.exports=async(req,res)=>{
     try{
-        if(req.body.password===req.body.cpassword){
+        
             let password=await bcrypt.hash(req.body.password,10);
           
             const User=new UserDocument({
@@ -27,11 +27,7 @@ module.exports=async(req,res)=>{
            }else{
             res.status(200).render('index');
            }
-         }else{
-             res.render('signup',{
-                 error:"Password Doesn't match",
-            });
-        }
+         
     
               
     }catch(err){
