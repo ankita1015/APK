@@ -45,6 +45,8 @@
                         </ul>
                         <div>
                             <div id="step-1">
+                                <p id='e-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
+
                                 <div class="row">
                                     <div class="col-md-6"> <input type="text" class="form-control" id='name' placeholder="Name" required> </div>
                                     <div class="col-md-6"> <input type="text" class="form-control" id='email' placeholder="Email" required> </div>
@@ -58,7 +60,8 @@
 
                             </div>
                             <div id="step-2">
-                              
+                                <p id='e-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
+
                                 <div class="row">
                                     <div class="col-md-6"> <input type="text" class="form-control" id="shopname" placeholder="Company Name" required> </div>
                                     <div class="col-md-6"> <input type="text" class="form-control" id="address1" placeholder="Address" required> </div>
@@ -75,7 +78,6 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6"> <input type="text" class="form-control" id="mobileNo" placeholder="Phone Number" required> </div>
                                 </div>
-                               
                             </div>
                             <div id="step-3" class="">
                                 <div class="row">
@@ -83,7 +85,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6"> 
-                                        <br><br><input type="checkbox"  id="gst"  required><label for="phone">I  Don't have a GST Number</label> <br><br><br>
+                                        <br><br><input type="checkbox"  id="gst"  required><label for="phone">  I  Don't have a GST Number</label> <br><br><br>
                                     </div>
                                      
                                 </div>
@@ -115,82 +117,8 @@
 </div>
  </div> 
  
-<script>
+<script src="./shop-validation.js"></script>
 
     
-    $(".save").click(function(){
-      var name=$('#name').val();  
-      var email=$('#email').val()
-      var password=$('#password').val()
-      var cpassword=$('#re_password').val()
-     
-     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
-         if(name=='' || name==undefined){
-               alert("name can't be blank")  
-               return
-         } if(email=='' || email==undefined){
-               alert("email can't be blank")  
-               return
-         } else if(!filter.test(email)){
-               alert("invalid email")
-               return
-         }
-         if(password=='' || password==undefined){
-               alert("password can't be blank")  
-                return
-          }
-         if(cpassword=='' || cpassword==undefined){
-               alert("confirm password can't be blank")  
-                return
-          }
-
-           if(password!=cpassword){
-               alert("password and confirm password both are not same")  
-                return
-          }
-         let role=1
-         $.ajax({
-                 url:'/',
-                 type:"POST",
-                 data:{name,email,password,cpassword,role},
-                 success:function(data){
-        if(data==1){  
-        $('#name').val("")  
-        $('#email').val("")
-        $('#password').val("")
-        $('#re_password').val("")    
-            $('.sw-btn-next').show();
-        }
-
-
-                 }
-             });
-        });
-
-    $('.create-account').click(function(e){
-        e.preventDefault()
-       var shopname=$('#shopname').val()
-       var address1=$('#address1').val()
-       var address2=$('#address2').val()
-       var city=$('#city').val()
-       var state=$('#state').val()
-       var code=$('#code').val()
-       var mobileNo=$('#mobileNo').val()
-
-       var gst=$('#gst').val()
-         
- 
-         $.ajax({
-             url:'/shop',
-             type:'POST',
-             data:{shopname,address1,address2,city,state,code,gst,mobileNo},
-             success:function(data){
-           window.location.assign('/ourorders'); 
-             }
-         })
-    })
-
-  
-</script>
+   
 
