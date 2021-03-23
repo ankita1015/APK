@@ -78,8 +78,8 @@ $(".save").click(function(){
  
       var gst=$('#gst').val()
 
-      $('#shopname').keyup(function)
-      $
+      
+      
     $('.create-account').click(function(e){
       e.preventDefault()
 
