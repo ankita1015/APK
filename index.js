@@ -133,6 +133,11 @@ app.post('/updated-product',require('./admin-controller/update-product'))
 app.post('/delete-products',require('./admin-controller/delete-product'))
 app.post('/search-product',require('./admin-controller/search-product'));
 app.get('/admin-logout',require('./admin-controller/admin-logout'));
+app.post('/add-category',require('./admin-controller/add-category'));
+app.post('/load-all-category',require('./admin-controller/load-category'));
+app.get('/category',adminauth,(req,res)=>{
+    res.render('add-category');
+})
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

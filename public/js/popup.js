@@ -10,8 +10,8 @@ document.getElementById('close').addEventListener('click',()=>{
 });
 
 document.getElementById('signform').addEventListener('click',()=>{
-  document.getElementById('signform').style.border='2px solid black';
-  document.getElementById('loginform').style.border='none';
+ // document.getElementById('signform').style.border='2px solid black';
+  //document.getElementById('loginform').style.border='none';
     
     
   document.getElementById('tabpanel').style.display='none';
@@ -20,8 +20,8 @@ document.getElementById('signform').addEventListener('click',()=>{
 });
 
 document.getElementById('loginform').addEventListener('click',()=>{
-  document.getElementById('signform').style.border='none';
-  document.getElementById('loginform').style.border='2px solid black';
+  //document.getElementById('signform').style.border='none';
+  //document.getElementById('loginform').style.border='2px solid black';
     
   document.getElementById('tabpanel').style.display='block';
   document.getElementById('register').style.display='none';
