@@ -1,0 +1,152 @@
+
+
+<html>
+<head>
+<link rel="stylesheet" href="./popupstyle.css"> 
+
+</head>
+<body>
+    {{>admin_header}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                 <form action="/add-category" method="POST" style="background-color: white; margin-top:30px;padding:10px" >
+                 <h3 style="text-align: center;">Add Sub-Category</h3>
+                 <div class="form-group">
+                <label>Select Category</label>
+                <select name='categoryname' id='category' class="form-control">
+                 <option selected disabled>Select Category</option>
+                </select>
+                 </div>
+                 <div class="form-group">
+                 <label for="Add-category">Add Sub-Category</label>
+                 <input type="text" class="form-control" name="size" id="add-category"  placeholder="Enter Size">
+                 </div>
+                 <button type="submit" class="btn btn-primary" style="margin-left:43%;">Add</button>
+                 </form>
+            </div>
+            <div class="col-md-1">
+
+            </div>
+            <div class="col-md-6" style="text-align: center; background-color:white;margin-top:30px; padding:10px;">
+              <h3 >List of Categories</h3>
+              <hr>
+              <div class="load-category" >
+                  
+              </div>
+             
+            </div>
+        </div>
+    </div>
+ 
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+ 
+
+</div>
+
+    
+<script src="./jquery.min.js"></script>
+<script src="./file.js"></script>
+
+
+  <script>
+    $(document).ready(function(){
+        function loadcategory(){
+        $.ajax({
+            url:'/load-all-category',
+            type:'POST',
+            success:function(data){
+                if(data.length==0){
+                    $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
+                    return;
+                }
+                    let output=` <table>
+                  <tr>
+                      <th>Sr.No</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                  </tr>`
+                  var c=1;
+                    data.forEach(element=>{
+                     output=output.concat(`<tr>
+                         <td>${c}</td>
+                         <td>${element.categoryname}</td>
+                         <td>
+                             <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
+                             <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
+                         </td>
+                         </tr>`)
+                         c++;
+                        })
+                    output=output.concat(`</table>`);
+                    $('.load-category').html(output);
+
+                }
+            
+        });
+        }
+        loadcategory();
+        $(document).on('click','#delete-category',function(){
+            let id = $(this).data('id');
+            $.ajax({
+                url:'/delete-category',
+                type:'POST',
+                data:{id},
+                success:function(data){
+                      if(data==1){
+                          loadcategory();
+                      }
+                }
+            })
+        })
+        $(document).on('click','#edit-category',function(){
+            let id=$(this).data('id');
+            $.ajax({
+                url:'/edit-category',
+                type:'POST',
+                data:{id},
+                success:function(data){
+                      let modal = ` <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <form action="/update-category" method="POST" style=" margin-top:30px;padding:10px" >
+                                    <h3 style="text-align: center;">Edit Category</h3>
+                                    <div class="form-group">
+                                    <label for="Add-category">Edit category</label>
+                                    <input type="hidden" value="${data[0]._id}" class="form-control" name="category_id">
+                                    <input type="text" value="${data[0].categoryname}" class="form-control" name="category"  placeholder="Enter Category">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" style="margin-left:43%;">Update</button>
+                                    </form>
+                                    </div>`
+
+                     // Get the modal
+
+                    var modal_frm = document.getElementById("myModal");
+                    modal_frm.innerHTML=modal;
+                    modal_frm.style.display = "block";
+                }
+            })
+            
+        })
+          $(document).on('click','.close',function(){
+              $('#myModal').hide();
+          })  
+           $.ajax({
+            url:'/load-all-category',
+            type:'POST',
+            success:function(data){
+                    data.forEach(element=>{
+                        $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
+                    })
+            
+           }
+        });     
+    });
+
+</script>
+</body>
+</html>

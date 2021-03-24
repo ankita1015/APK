@@ -17,18 +17,20 @@ login_btn.addEventListener('click',(e)=>{
         document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>Invalid email</span>";
         $('#e-error').css("display","block");
         return;
-    }else{
-        document.getElementById('e-error').innerHTML="";
     }
+    // else{
+    //     document.getElementById('e-error').innerHTML="";
+    // }
 
     if(password==''){
      document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span> Password can't be blank</span>";
      $('#e-error').css("display","block");
      return;
-     }else{
-        document.getElementById('e-error').innerHTML="";
-        $('#e-error').css("display","block");
      }
+    //  else{
+    //     document.getElementById('e-error').innerHTML="";
+    //     $('#e-error').css("display","block");
+    //  }
     
     
      
