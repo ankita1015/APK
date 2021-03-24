@@ -25,6 +25,8 @@
         
              <div class="form-group col-sm-12">
                   <label for="product-name">Product</label>
+                  <p id='e-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
+
                  <select class="form-control" id='products'name='product'>
                    <option selected disabled>Select Products</option>
                  </select>
@@ -35,7 +37,7 @@
                 </div>
                 <div class="form-group col-sm-12">
                   <label for="batchid">batch id</label>
-                  <input type="text" class="form-control" name='batchid' id="address-one" placeholder="Batch Id">
+                  <input type="text" class="form-control" name='batchid' id="batchid" placeholder="Batch Id">
                 </div>
                 
              
@@ -56,6 +58,9 @@
 
   <script>
     $(document).ready(function(){
+      $(document).on('click','.error-icon',function(){
+        $('#e-error').hide();
+      })
         $.ajax({
             url:'/load-all-products',
             type:'POST',
@@ -67,25 +72,27 @@
       
            }
         });
-       $('#products').on('change',function(){
-         var id=$(this).val();
-let output="<select class='form-control' id='category' name='category'><option selected disabled>Select Category</option>";
-         $.ajax({
-           url:'/categorys',
-           type:'POST',
-           data:{id},
-           success:function(data){
-           
-              data.forEach(element=>{
-                      output=output.concat(`<option value=${element._id}>${element.categoryname}</option>`)
-                 })
-                  output=output.concat('</select>');
-                  $('#category').html(output);
-            }
-           
-         })
+        $('#productform').submit(function(e){
+         let product=$('#products').val();
+         let batchid=$('#batchid').val();
 
-       }) 
+          if(product==undefined || product==''){
+            e.preventDefault();
+              document.getElementById('e-error').innerHTML=`<span class='error-icon' 
+          style='margin-right:40%;cursor:pointer'>X</span><span>Select Product</span>`;
+         $('#e-error').css("display","block");  
+        return   
+          }
+          if(batchid==undefined || batchid==''){
+             e.preventDefault();
+              document.getElementById('e-error').innerHTML=`<span class='error-icon' 
+          style='margin-right:40%;cursor:pointer'>X</span><span>Batch Id can't be blank </span>`;
+         $('#e-error').css("display","block");  
+        return 
+          }
+         
+        })
+      
     });
 
 </script>

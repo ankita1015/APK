@@ -23,13 +23,11 @@
                            
                         <div class="row order-shop-div" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
                     
+                  <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'></p> 
                         
 
                           
-                               
-                               
-                               
-                         </div>
+                    </div>
                                       
                                    
 
@@ -60,6 +58,8 @@
                 url:'/load-all-shop-products',
                 type:'POST',
                 success:function(data){
+                
+                  if(data.length!=0){
                     let c=1;
     
                 let output=`<table id='shop-order'>
@@ -89,7 +89,11 @@
                 });
                   output=output.concat('</table>')
                   $('.order-shop-div').html(output);
-                }
+                }else{
+                   document.getElementById('e-error').innerHTML=`<span>You have not Added Products</span>`;
+ 
+              }
+              }
             });
          });
      </script>
