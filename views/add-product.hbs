@@ -22,7 +22,12 @@
           </div>
           <div class="modal-body">
             <form action='/admin-product' method='POST' enctype="multipart/form-data" class="row" id='productform'>
-        
+             <div class="form-group col-sm-12">
+               <label>Select Category</label>
+               <select name='categoryname' id='category' class="form-control">
+                 <option selected disabled>Select Category</option>
+               </select>
+             </div>
              <div class="form-group col-sm-12">
                   <label for="product-name">Product</label>
                   <input type="text" class="form-control" name='product' id="address-one" placeholder="Add products">
@@ -85,7 +90,7 @@
             type:'POST',
             success:function(data){
                     data.forEach(element=>{
-                        $('#products').append(`<option value=${element._id}>${element.productname}</option>`)
+                        $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
                     })
       
            }

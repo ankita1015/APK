@@ -3,8 +3,8 @@ module.exports = async(req,res)=>{
     try{
 
         let _id = req.body.id;
-        await categorydocument.updateMany({_id}).exec((error,data)=>{
-           console.log(data);
+        await categorydocument.find({_id}).exec((error,data)=>{
+           res.send(data);
            
         })
     }
