@@ -45,6 +45,8 @@
                       url:'/total-selling',
                       type:'POST',
                       success:function(data){
+                         
+                          if(data.length!=0){
                           let output=''
                         data.forEach(element=>{
                             output=output.concat(`     <div class="row">
@@ -72,7 +74,13 @@
                            <hr>`)
                         })
                     $('.post-content').html(output);
+                      }else{
+              
+                      $('.post-content').html(` <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>You don't have Selling Yet</span></p>`);
+                          
                       }
+                      }
+                     
                   })   
               }
               totalselling();
