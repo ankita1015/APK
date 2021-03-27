@@ -2,10 +2,10 @@ const productDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
 try{
-    let product=req.query.product_name;
+    let product=req.query.product_id;
 
 
-    await productDocument.find({product}).exec((err,data)=>{
+    await productDocument.find({category:product}).exec((err,data)=>{
         
         res.render('product-list',{
             data,

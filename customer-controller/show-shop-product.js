@@ -1,26 +1,20 @@
-
+const categorydocument=require('../modals/categorymodel')
 const productDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
     try{
-    //   ttt
+ 
       let  products=await productDocument.find({}).limit(15);
-        let uniqueProduct =await productDocument.find({}).sort({product:-1})
+      await productDocument.find({}).sort({product:-1}).exec(async(err,products)=>{
+          await categorydocument.find({}).limit(15).exec((err,uniqueProduct)=>{
+            res.status(200).render('index',{
+                products,
+                uniqueProduct,
+               
+            });
+          })
+      })
         
-        
-      if(products){
-          
-    
-      
-  
-    
-         res.status(200).render('index',{
-             products,
-             uniqueProduct,
-            
-         });
-     }
-    
 
     }catch(err){
 console.log(err);

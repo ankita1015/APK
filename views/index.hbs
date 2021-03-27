@@ -16,13 +16,9 @@
           {{#each uniqueProduct}}
             <div class="col-md-1 category-container">
                  <div  id='category-post'>
-                    
-             <a class="category-post-img" href="">
-                <img src="{{this.images.[0]}}" alt=""/>
-                     {{!-- for ratings  --}}
-             </a>
-           <div class="category-content" >
-                <h5><a href="/product-list?product_name={{this.product}}">{{this.product}}</a></h5>
+        
+                    <div class="category-content" >
+                <h5><a href="/product-list?product_id={{this._id}}">{{this.categoryname}}</a></h5>
                  
                   </div>
              </div>
@@ -79,7 +75,7 @@
     </div>
     <div id='product-content'>
     <h6><b>{{this.product}}</b></h6>
-    <h6><b>Rs.{{this.total_price}}</b></h6>
+
     
         </div>
   </div>
