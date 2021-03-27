@@ -137,17 +137,7 @@ $(".save").click(function(){
     $('#mobileNo').mouseout(function(){
       var mobileNo=$('#mobileNo').val()
 
-<<<<<<< HEAD
-       if(mobileNo=='' ||mobileNo ==undefined){
-        document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-        style='margin-right:40%;cursor:pointer'>X</span><span>Mobile No can't be blank</span>`;
-        $('#s-error').css("display","block");  
-        return   
-       }
-    })
-=======
       
->>>>>>> 844c1714e1fc2ab3dd83aafe19d2b538fe4a9a7a
       
     $('.create-account').click(function(e){
       var shopname=$('#shopname').val()  
