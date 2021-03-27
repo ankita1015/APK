@@ -19,11 +19,20 @@
                 <!-- post-container -->
                 <div class="post-container">
                   <h2 class="page-heading">product-list</h2>
-                    <div class="post-content">
-                           
-                        <div class="row order-shop-div" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
+                    <div class="post-content row">
+                          
+                             <div class="form-group col-md-6">
+                               <label>Select Product Category</label>
+                               <select class="form-control" id='category'>
+                                 <option selected disabled>Select Category</option>
+
+                               </select>
+                             </div>
+
+                          
+                        <div class="col-md-12 order-shop-div" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
                     
-                  <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'></p> 
+                  <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'>Select Category</p> 
                         
 
                           
@@ -54,9 +63,12 @@
     <script src='./jquery.min.js'></script>
      <script>
          $(document).ready(function(){
-            $.ajax({
+           $('#category').change(function(){
+              let id=$(this).val();
+               $.ajax({
                 url:'/load-all-shop-products',
                 type:'POST',
+                data:{id},
                 success:function(data){
                 
                   if(data.length!=0){
@@ -75,12 +87,13 @@
 
                           </tr>`;
                 data.forEach(element=>{
+              
                     output=output.concat(`
                     <tr>
                       <td>${c}</td>
                         <td>${element.productId.product}</td>
-                        <td>${element.productId.product_cat}</td>
-                        <td>${element.productId.total_price}</td>
+                        <td>${element.product_cat}</td>
+                        <td>${element.total_price}</td>
                         <td>${element.batchid}</td>
                         <td><img src='${element.productId.images[0]}' alt='product image' style='width:5rem;height:5rem;'> </td>
                         <td><a href='#'>Add more</a></td>
@@ -94,7 +107,20 @@
  
               }
               }
-            });
+            });  
+           })
+           
+             $.ajax({
+            url:'/load-all-category',
+            type:'POST',
+            success:function(data){
+                  let=1;
+                    data.forEach(element=>{
+                        $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
+                    })
+              }
+        });
+
          });
      </script>
 

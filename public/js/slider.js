@@ -173,3 +173,72 @@ class DXslider{
 function easingInOutQuad(t){
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; 
 }
+
+
+
+
+$(document).ready(function(){
+  let total_price;
+  $('#price').keyup(function(){
+    
+    let price=$(this).val();
+    let gst=$('#gst').val();
+    let gstAmount = (price * gst)/100;
+    total_price=Number(gstAmount)+Number(price);
+    $('#total_price').val(total_price);
+  
+    
+  });
+ 
+
+   $(document).on('change','#input',function(event){
+     const imagesArray=event.target.files;
+     const uplaodImg=document.getElementById('imges');
+     
+     if(imagesArray.length<=5){
+     for(item in imagesArray){
+       
+     
+      let src=URL.createObjectURL(imagesArray[item]);
+      let img=document.createElement('img');
+      let div=document.createElement('div');
+      img.style.width='100%';
+    
+      img.style.height='100%';
+      img.style.borderRadius='5px';
+      img.style.marginRight='3px';
+      img.src=src;
+      let parent=$(this).parent();
+    // console.log(parent).
+      let child=$(parent).children('i');
+        
+      $(child).css('z-index:-1');
+      $(parent).children(uplaodImg).html(div).append(img)
+      // $(uplaodImg).append(div).append(img);
+      $('#upload-error').text('');
+    }
+  }else{
+    $(this).val(null);
+    $('#upload-error').text('You can not upload more then 5 images');
+  }
+  });
+  });
+
+
+
+
+
+
+const removeImg=(e)=>{
+
+var cfm=confirm('Do You want to Remove this image?');
+if(cfm===true){  
+
+
+document.getElementById(e.path[0].id).src='';
+document.getElementById(e.path[0].id).style.display='none';
+
+count--;
+
+}
+}

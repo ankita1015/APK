@@ -14,10 +14,33 @@ productId:{
     ref:'product',
   
 },
+category:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'category'
+},
+sub_category:{
+    type:Object,
+    required:true
+},
 shopId:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'Shop',
-}
+},
+gst:{
+    type:Number,
+    default:'',
+
+},
+price:{
+    type:Number,
+    required:true
+},
+total_price:{
+type:Number,
+required:true
+},
+
+
 
 
 

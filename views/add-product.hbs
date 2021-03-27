@@ -9,51 +9,30 @@
     {{>admin_header}}
     
         
-    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-      <div class="modal-content">
   
 
       <!-- Tab panes -->
-
-        <div role="tabpanel" class="tab-pane" id="register">
-          <div class="modal-header">
-            <h5>Add Product</h5>
-          </div>
+       
+           <div class=" col-lg-offset-3 col-md-6">
+             
           <div class="modal-body">
-            <form action='/admin-product' method='POST' enctype="multipart/form-data" class="row" id='productform'>
-             <div class="form-group col-sm-12">
+             <div class="row" style="background-color:#1E90FF;color:lightgrey;">       
+             <h5 style="text-align:center;font-size:25x;">Add Product</h5>
+          </div>
+            <form action='/admin-product' method='POST' enctype="multipart/form-data" class="row" id='productform' style="background-color: white;">
+             <div class="form-group col-sm-12 ">
                <label>Select Category</label>
                <select name='categoryname' id='category' class="form-control">
                  <option selected disabled>Select Category</option>
                </select>
              </div>
+                   
+
              <div class="form-group col-sm-12">
                   <label for="product-name">Product</label>
                   <input type="text" class="form-control" name='product' id="address-one" placeholder="Add products">
                 </div>
-                    <div class="form-group col-sm-12">
-                  <label for="category">Category</label>
-                  <textarea type="text" class="form-control" name='category' id="address-one" placeholder="Add Description About products"></textarea>
-                 
-                  
-                </div>
-               
-                <div class="form-group col-sm-3">
-                  <label for="gst">Gst</label>
-                  <input type="number" class="form-control" name='gst' id="gst" placeholder="Gst(%)">
-                </div>
                 
-                <div class="form-group col-sm-3">
-                  <label for="price">Price</label>
-                  <input type="number" class="form-control" name='price' id="price" placeholder="Price*">
-                </div>
-                <div class="form-group col-sm-3">
-                  <label for="total_price">total Price(gst)</label>
-                  <input type="text" class="form-control" id="total_price" name="total_price" placeholder="Total Price" readonly>
-                </div>
-             
-             
              <div class="row"> 
                  <div id="upload_button" class="col-md-2" style="margin-top:0px;margin-right:10px;">
                        <label id='uploadlabel'>
@@ -65,21 +44,19 @@
                  </div>
                           <p id='upload-error'></p>
 
-                       <div id='imges' class="col-md-9">
+                       <div id='images' class="col-md-9">
 
                         </div>
             </div>
-          <hr>
-                    <button type="submit" class="btn btn-grey" id='add-product'>Add Product</button>
+          
+                    <button type="submit" class="btn btn-primary" style='item-align:center;' id='add-product'>Add Product</button>
     
             
             </form>
            
        
         </div>
-      </div>
-    </div>
-  </div>
+      
 <script src="./jquery.min.js"></script>
 <script src="./file.js"></script>
 
@@ -92,28 +69,10 @@
                     data.forEach(element=>{
                         $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
                     })
-      
-           }
+              }
         });
-       $('#products').on('change',function(){
-         var id=$(this).val();
-let output="<select class='form-control' id='category' name='category'><option selected disabled>Select Category</option>";
-         $.ajax({
-           url:'/categorys',
-           type:'POST',
-           data:{id},
-           success:function(data){
-           
-              data.forEach(element=>{
-                      output=output.concat(`<option value=${element._id}>${element.categoryname}</option>`)
-                 })
-                  output=output.concat('</select>');
-                  $('#category').html(output);
-            }
-           
-         })
-
-       }) 
+     
+      
     });
 
 </script>

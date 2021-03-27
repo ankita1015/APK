@@ -8,6 +8,7 @@ const bodyparser=require('body-parser');
 
 
 //project modules//
+
 const cookieparser=require('cookie-parser');
 const auth=require('./middleware/auth');
 
@@ -24,7 +25,6 @@ const shopuser = require('./middleware/shop_user_auth');
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({extended:false}));
-
 //public STATIC PATH
 app.use(express.static(path.join(__dirname, '/public/')))
 app.use(express.static(path.join(__dirname, '/public/js')))
@@ -141,9 +141,15 @@ app.post('/update-category',require('./admin-controller/update-category'));
 app.get('/sub-category',adminauth,(req,res)=>{
      res.render('add-sub-category');
 })
+app.post('/sub-category',require('./admin-controller/add-sub-category'));
 app.get('/category',adminauth,(req,res)=>{
     res.render('add-category');
 })
+app.post('/load-sub-category',require('./admin-controller/load-sub-category'))
+app.get('/add-slider-img',adminauth,(req,res)=>{
+    res.render('update-slider')
+})
+app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

@@ -316,8 +316,8 @@ img.logo{
 }
 #admin-menubar .admin-menu li a{
   color: #1E90FF;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
   padding: 7px 15px;
   display: block;

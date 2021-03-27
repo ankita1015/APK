@@ -8,34 +8,22 @@ product:{
     required:true,
   
 },
-product_cat:{
-    type:String,
-    required:true,
-},
 images:[{
 
     type:String,
     default:''
 
 }],
-gst:{
-    type:Number,
-    default:'',
-
-},
-price:{
-    type:Number,
-    required:true
-},
-total_price:{
-type:Number,
-required:true
-},
 
 category:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'category'
-}
+},
+subcategory:[{
+     type:String,
+     required:true
+
+}]
 
 
 

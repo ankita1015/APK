@@ -18,16 +18,11 @@ module.exports=(req,res)=>{
 })
 async function product(uploadimages){
 try{
-     console.log(req.body)
   const product=new productDocument({
        
      product:req.body.product,
-     product_cat:req.body.category,
      images:uploadimages,
-     gst:req.body.gst,
-     price:req.body.price,
-     total_price:req.body.total_price,
-     category:req.body.categoryname
+     category:req.body.categoryname,
     });
     
 const productCreated=await product.save();

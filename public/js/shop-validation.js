@@ -1,11 +1,3 @@
-
-$(document).on('click','.sw-btn-next',function(){
-
-    
-});
-
-
-
 $(".save").click(function(){
     var name=$('#name').val();  
     var email=$('#email').val()

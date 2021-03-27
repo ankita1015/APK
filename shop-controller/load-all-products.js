@@ -2,8 +2,9 @@ const productDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
     try{
-     const products=await productDocument.find({})
-
+        let id=req.body.id;
+     const products=await productDocument.find({category:id})
+ console.log(products);
      res.send(products);
      
     }catch(err){

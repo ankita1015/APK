@@ -3,6 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="./popupstyle.css"> 
+{{>styleing}}
 
 </head>
 <body>
@@ -10,19 +11,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                 <form action="/add-category" method="POST" style="background-color: white; margin-top:30px;padding:10px" >
+                 <form action="/sub-category"  method="POST" style="background-color: white; margin-top:30px;padding:10px" >
                  <h3 style="text-align: center;">Add Sub-Category</h3>
                  <div class="form-group">
-                <label>Select Category</label>
-                <select name='categoryname' id='category' class="form-control">
+                 <label>Select Category</label>
+                 <select name='categoryname' id='category' class="form-control">
                  <option selected disabled>Select Category</option>
-                </select>
+                 </select>
                  </div>
                  <div class="form-group">
                  <label for="Add-category">Add Sub-Category</label>
-                 <input type="text" class="form-control" name="size" id="add-category"  placeholder="Enter Size">
+                 <input type="text" class="form-control" name='sub_cat_name[]' id="sub-category-name"  placeholder="Enter Category Name">
+                   <br>
+                 <input type="text" class="form-control" name='sub_cat[]' id="add-category"  placeholder="Enter Category">
+                  <a href="#" style="padding:5px;border-radius:50%;" id='more-category-btn'><i class="fa fa-plus"></i>&nbsp;Add more Category</a>
                  </div>
-                 <button type="submit" class="btn btn-primary" style="margin-left:43%;">Add</button>
+                 <div class="form-group more-category-field" style="display: none;">
+                 <label for="add-standerd">Category Name</label>
+                  <input type="text" class="form-control" name="sub_cat_name[]" id="category_name"  placeholder="Enter Category Name">
+                   <br>
+                 <input type="text" class="form-control" name="sub_cat[]" id="add-more-category"  placeholder="Enter Category[ ]">
+                  </div>
+                 <div class="form-group">
+                 <label for="add-standerd">Mutirial Standard</label>
+                 <input type="text" class="form-control" name="sat" id="add-sat"  placeholder="Enter Mutirial Satndard">
+                  </div>
+                 
+                 <button type="submit" class="btn btn-primary add-sub-category" style="margin-left:43%;">Add</button>
                  </form>
             </div>
             <div class="col-md-1">
@@ -30,6 +45,12 @@
             </div>
             <div class="col-md-6" style="text-align: center; background-color:white;margin-top:30px; padding:10px;">
               <h3 >List of Categories</h3>
+               <div class="form-group">
+                 <label>Select Category</label>
+                 <select name='categoryname' id='load_category' class="form-control">
+                 <option selected disabled>Select Category</option>
+                 </select>
+                 </div>
               <hr>
               <div class="load-category" >
                   
@@ -44,6 +65,7 @@
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
+  
  
 
 </div>
@@ -55,40 +77,68 @@
 
   <script>
     $(document).ready(function(){
-        function loadcategory(){
-        $.ajax({
-            url:'/load-all-category',
-            type:'POST',
-            success:function(data){
-                if(data.length==0){
-                    $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
-                    return;
-                }
-                    let output=` <table>
-                  <tr>
+       $('.add-sub-category').click(function(e){
+           e.preventDefault();
+           let categoryId=$('#category').val();
+           let category_name=$('input[name="sub_cat_name[]"]').map(function(){
+               return this.value;
+               })
+           let category_value=$('input[name="sub_cat[]"]').map(function(){
+               return this.value;
+                })
+           let standerd=$('#add-sat').val(); 
+          
+           fetch('/sub-category',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+               category_name:category_name,
+               category_value:category_value,
+               categoryId:categoryId,
+               standerd:standerd
+            })
+       })
+    })
+
+$('#more-category-btn').click(function(){
+           $('.more-category-field').show();
+})
+ function loadcategory(){
+    $.ajax({
+        url:'/load-all-sub-category',
+        type:'POST',
+        success:function(data){
+            if(data.length==0){
+                $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
+                return;
+            }
+             let output=` <table>
+               <tr>
                       <th>Sr.No</th>
                       <th>Category Name</th>
                       <th>Action</th>
-                  </tr>`
-                  var c=1;
-                    data.forEach(element=>{
-                     output=output.concat(`<tr>
+                 </tr>`
+                 var c=1;
+                data.forEach(element=>{
+                    output=output.concat(`<tr>
                          <td>${c}</td>
                          <td>${element.categoryname}</td>
                          <td>
                              <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
                              <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
                          </td>
-                         </tr>`)
-                         c++;
-                        })
-                    output=output.concat(`</table>`);
-                    $('.load-category').html(output);
+                    </tr>`)
+                    c++;
+                 })
+                 output=output.concat(`</table>`);
+                $('.load-category').html(output);
 
-                }
+            }
             
         });
-        }
+    }
         loadcategory();
         $(document).on('click','#delete-category',function(){
             let id = $(this).data('id');
@@ -141,10 +191,64 @@
             success:function(data){
                     data.forEach(element=>{
                         $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
+                        $('#load_category').append(`<option value=${element._id}>${element.categoryname}</option>`)
                     })
             
            }
-        });     
+        });
+    $('#load_category').change(function(){
+        var id=$(this).val();
+        $.ajax({
+            url:'/load-sub-category',
+            type:'POST',
+            data:{id},
+            success:function(data){
+                let sub_category_table=`<table class='shop-table'><tr>
+                    <th>Sr No</th>
+                    <th>Category Name</th>`;
+                data.forEach(element=>{
+                    let cnt=1;
+                    let a=true
+                    let i=0;
+                    while(a){
+                         let cat_name=element.subcategory.category_name[i];
+                        if(cat_name=='' || cat_name==undefined){
+                            a=false
+                        }else{
+                         sub_category_table=sub_category_table.concat(`<th>${cat_name}</th>`);
+                     i++
+                      }
+
+                    }
+                    
+                   sub_category_table=sub_category_table.concat(`<th>Standard</th>
+                                                                 <th>Action</th></tr>`)
+                   sub_category_table=sub_category_table.concat(`<tr>
+                                                          <td>${cnt}</td>
+                                                          <td>${element.categoryId.categoryname}</td>`);
+                                                          a=true
+                                                          i=0
+                                                          while(a){
+                                                              let cat_value=element.subcategory.category_value[i];
+                                                              if(cat_value=='' || cat_value==undefined){
+                                                                 a=false;           
+                                                              }else{
+                                                                sub_category_table=sub_category_table.concat(`<td>${cat_value}</td>`)
+                                                                i++;                   
+                                                              }              
+                                                           }
+                                                           sub_category_table=sub_category_table.concat(`<td>${element.standard}</td>
+                                                                                                          <td>  <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
+                                                                                                           <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
+                                                                                                           </td><tr>`)    
+                                                                       
+                 cnt++; 
+                })
+                sub_category_table=sub_category_table.concat('</table>');
+             $('.load-category').html(sub_category_table);   
+            }
+        })
+    })     
     });
 
 </script>
