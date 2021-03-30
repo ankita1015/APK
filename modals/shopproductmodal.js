@@ -1,3 +1,4 @@
+const { text } = require('body-parser');
 const mongoose=require('mongoose');
 require('../db/conn');
 
@@ -18,6 +19,7 @@ category:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'category'
 },
+
 sub_category:{
     type:Object,
     required:true

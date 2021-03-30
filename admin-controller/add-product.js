@@ -23,6 +23,7 @@ try{
      product:req.body.product,
      images:uploadimages,
      category:req.body.categoryname,
+     description:req.body.details,
     });
     
 const productCreated=await product.save();

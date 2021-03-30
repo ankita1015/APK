@@ -18,6 +18,7 @@ try{
         price:req.body.price,
         total_price:req.body.total_price,
         batchid:req.body.batchid,
+        
         shopId,      
       })
    let product=await product_added.save();

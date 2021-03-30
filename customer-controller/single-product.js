@@ -5,9 +5,12 @@ module.exports=async(req,res)=>{
 
 
 const product=await productDocument.find({_id}).populate(['category']).exec((err,data)=>{
-   console.log(data);
+     
+       
+     
     res.render('single',{
-        data
+        data,
+        
     })
 });
 

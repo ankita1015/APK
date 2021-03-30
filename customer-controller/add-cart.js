@@ -1,5 +1,5 @@
 const cartDocument=require('../modals/cartmodal');
-const url=require('url');
+
 
 module.exports=async(req,res,next)=>{
     try{
@@ -8,9 +8,12 @@ module.exports=async(req,res,next)=>{
       ];
       
       
-        let id=req.query.id;
+       
     
-   
+        let category={category_name:req.body.category_name,
+                      category_value:req.body.category_value
+                      }
+            
   
         let date=new Date().getDate();
         let month=new Date().getMonth();
@@ -22,15 +25,18 @@ module.exports=async(req,res,next)=>{
         let curDate=`${curTime}||${date}/${monthNames[month]}/${year}`;
         
         let cart=new cartDocument({
-            productId:id,
+            productId:req.body.productid,
             userId:req.user._id,
             date:curDate,
+            category:req.body.categoryId,
+            price:req.body.total_price,
+            qty:req.body.qty,
+            shopId:req.body.shopId,
+            sub_category:category,
 
         });
         let cartCreated=await cart.save();
-        res.render('cart',{
-            
-        });
+       res.send('1');
          
     }catch(err){
  console.log(err);

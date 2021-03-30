@@ -779,9 +779,12 @@ border: 1px solid #1e90ff;
   background-color: #1E90FF;
   font-size: 12px;
   text-transform: capitalize;
-  padding: 3px 8px;
+  padding: 10px 10px;
   border-radius: 2px;
   transition: all 0.3s;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 20px;
 }
 
 #main-content .post-content a.read-more:hover{

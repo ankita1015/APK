@@ -12,7 +12,7 @@
                 <div class="post-container">
 
                   <h2 class="page-heading">My cart</h2>
-                    <div class="post-content">
+                    <div class="order-shop-div">
                 
                     </div>
        
@@ -31,7 +31,7 @@
         loadProduct();
     function loadProduct(){
     
-      let output="<table class='description-table'><tr><th></th><th>Products Name</th><th>Discription</th><th>Price(%)</th><th>action</th></tr>";
+      let output="<table id='shop-order'><tr><th>img</th><th>product Name</th><th>Category</th>";
          $.ajax({
             url:'/load-cart-products',
             type:'POST',
@@ -40,17 +40,27 @@
             $('.post-content').html('<div id="cart_error" style="border:1px solid #dddd;padding:10px;text-align:center;background-color:#eee;font-size:15px;">Your Cart Currently empty</div>')
             return;
               }else{
+                data[0].sub_category.category_name.forEach(title=>{
+                   
+                       output=output.concat(`<th>${title}</th>`);
+              
+                })
+                output=output.concat('<th>Price(%)</th><th>action</th></tr>');
               data.forEach(element=>{
+               
                  output=output.concat(`<tr>
                                <td style="padding: 0px;">
                                 <img src="${element.productId.images}" alt=""style='width:5rem;height:5rem;'/>
                               </td>
                               <td>${element.productId.product}</td>
-                              <td>${element.productId.product_cat}</td>
-                              <td>${element.productId.total_price}</td>
-                              <td style="padding:10px;width:5rem;">
-                                 <a class='read-more pull-left'  href='#' id="remove-cart" data-id=${element._id}>Remove</a>
-                                 <a class='read-more pull-right' href="/insert-order?id=${element.productId._id}&cart_id=${element._id}">Order</a></td>
+                              <td>${element.category.categoryname}`);
+                              element.sub_category.category_value.forEach(value=>{
+                                output=output.concat(`<td>${value}</td>`);
+                              });
+                              output=output.concat(`<td>${element.price}</td>
+                              <td style="width:5rem;">
+                                 <a   href='#' id="remove-cart" data-id=${element._id} style='background-color:red;'><i class='fa fa-trash'></i></a>
+                                 <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}" style='background-color:green;'>Order</a></td>
 
                    </tr>`);
                 
@@ -58,7 +68,7 @@
              }
                  output=output.concat('</table>');
 
-                   $('.post-content').html(output);
+                   $('.order-shop-div').html(output);
             }
           
          })

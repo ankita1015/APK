@@ -39,7 +39,7 @@ app.get('/signup',(req,res)=>{
 })
 
 app.post('/order',auth,require('./customer-controller/view-our-order'));
-app.get('/add-cart',auth,require('./customer-controller/add-cart'));
+app.post('/add-cart',auth,require('./customer-controller/add-cart'));
 app.post('/delete-cart-product',require('./customer-controller/delete-cart'));
 app.post('/',require('./customer-controller/signup'));
 app.post('/confirm-order',auth,customer,require('./customer-controller/final-order'));

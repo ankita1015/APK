@@ -21,37 +21,35 @@
                             <div class="post-information container order-container">
                                <div class="order-img row ">
                                    <div class="col-md-1 side-images">
-                                       {{#each product.[0].images}}
+                                       {{#each product.[0].productId.images}}
                                         <img class='view-img' src="{{this}}">
                                        {{/each}}
                                    </div>
                                 <div class="col-md-3 img-container">
-                                <img id='order-img' src="{{product.[0].images.[0]}}">
+                                <img id='order-img' src="{{product.[0].productId.images.[0]}}">
                        
                                  </div>
                                  <div class="col-md-1"></div>
                                   <div class="col-md-5 orders-detail">
-                                    <h4>{{product.[0].product}}</h4>
-                                    <p>{{product.[0].product_cat}}</p>
-                                    <p>Rs.{{product.[0].total_price}}</p>
+                                    <h3>{{product.[0].productId.product}}</h3>
+                                    <p style="display: none;" id='category_name'>{{product.[0].sub_category.category_name}}</p>
+                                    <p style="display: none;" id='category_value'>{{product.[0].sub_category.category_value}}</p>
+                                    <div class="sub_catagory_div">
+
+                                    </div>
+                                    {{!-- <p>Qty:-{{product[0].}}</p> --}}
+                                    <div class="col-md-3">
+                                    <input type="number" class='form-control'id='qty' value="{{qty}}" placeholder="Qty">
+                                     </div>
+                                     <input type="hidden" id='price' value={{product.[0].total_price}}>
+                       
+                                    <p id='total_price' data-price={{price}}>Rs.{{price}}</p>
                                     
                                  <div class="col-sm-3">
                                     <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
                                     <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
-
-                                    <input type="text" class="form-control" name='cat' id="category" placeholder="/ench">
-                                    <p id='err_cat'></p>
-                                    </div>
-                                 
-                                   <div class="col-sm-3">
-                                    <input type="text" class="form-control" name='class' id="class" placeholder="class*">
-                                <p id='err_class'></p>
-                                 
-                                 </div>
-                                 <div class="col-sm-3">
-                                    <input type="number" class="form-control" name="qty" id='qty' placeholder="#Qty">                 
-                                <p id='err_qty'></p>
-
+    
+                                    
                                  </div>
                                  <br>
                                    <hr>
@@ -66,17 +64,17 @@
                                    
                                     <p>Delivery Address:</p>
                                     {{#each customerData}}
-                                    <p>{{this.Address}}</p>
-                                    <input type="hidden" id='cust_city' value="{{this.city}}"/>
-                                    <input type="hidden" id='cust_state' value="{{this.state}}"/>
-
-                                    
-                                    {{/each}}
-                                    <a class="read-more pull-left change-address"   href="#">Change Address</a>
+                                    <p>{{this.city}},{{this.state}}</p>
+                                    <p>{{this.Address}},{{this.city}},{{this.area_code}}</p>
+                                 
+                                   {{/each}}
+                                    <a class="change-address btn btn-primary"   href="#">Change Address</a>
+                                     
                                   <br>
-                                   <hr>
+     
                                                        
-                              
+                            <a class="read-more pull-left"   href="#">confirm-order</a>
+
                                </div>
                              
                                </div> 
@@ -152,45 +150,7 @@
              });
   
         });
-        var city=$('#cust_city').val();
-        var state=$('#cust_state').val();
-        var p_id=$('#productid').val();
-        var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
-                             <hr><table id='shop-order'>
-                                   <tr>
-                                       <th>Shop Name</th>
-                                       <th>State</th>
-                                       <th>City</th>
-                                       <th>Address</th>
-                                       <th>Pincode</th>
-                                       <th>Mobile No</th>
-                                       <th>Available</th>
-                                       <th>Cofirm Order</th>
-                                       
-                                   </tr>`
-
-        $.ajax({
-            url:'/load-order-shop',
-            type:'POST',
-            data:{city,state,p_id},
-            success:function(data){
-                data.forEach(element=>{
-                    output=output.concat(`<tr> 
-                        <td>${element.shopId.shopname}</td>
-                        <td>${element.shopId.state}</td>
-                        <td>${element.shopId.city}</td>
-                        <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
-                        <td>${element.shopId.area_code}</td>
-                        <td>${element.shopId.mobileNo}</td>
-                        <td><button style='background-color:lightgreen;width:50px;padding:3px;' >available</button></td>
-                        <td><a href='#' class='confirm-order'  data-shop_id=${element.shopId._id}>confirm order</a></td>
-                    </tr>`)
-                })
-               output=output.concat(`</table>`);
-               $('.order-shop-div').html(output)   
-            }
-    
-        });
+       
           $('.change-address').click(function(){
            let customer_id=$("#customer_id").val();
            
@@ -212,8 +172,34 @@
         }) 
 
     });
-       
+    let category_name=$('#category_name').text();
     
-    </script>
+    let category_value=$('#category_value').text();
+    
+    category_name=category_name.split(',');
+    category_value=category_value.split(',');
+    let printCategory='<div>';
+        let sc=0;
+     category_name.forEach(name=>{
+         printCategory=printCategory.concat(`<p>${name}:-${category_value[sc]}</p>`)
+         sc++;
+     }) 
+    printCategory=printCategory.concat('</div>');
+    
+     $('.sub_catagory_div').append(printCategory);
+     $('#qty').change(function(){
+       let qty = $(this).val();
+       if(qty<=0){
+           return;
+            $('#total_price').text(`Rs.${price}`);
+       }
+        let price= $('#price').val();
+       
+        let totalprice= $('#total_price').data('price');
+       
+         $('#total_price').text(`Rs.${price*qty}`);
+
+     });
+     </script>
 </body>
 </html>

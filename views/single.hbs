@@ -12,11 +12,11 @@
                 <div class="col-md-12">
                   <!-- post-container -->
                     <div class="post-container">
-                        <div class="post-content single-post">
+                        <div class="post-content single-post" style='padding:20px;height:max-content;'>
                            {{#each data}} 
                     
-                            <div class="post-information container order-container">
-                               <div class="order-img row ">
+                            <div class="post-information container ">
+                               <div class="order-img row">
                                    <div class="col-md-1 side-images">
                                      {{#each this.images}}
                                         <img class='view-img' src="{{this}}">
@@ -26,41 +26,70 @@
                         <div class="col-md-3 img-container">
                          <img id='order-img' src="{{this.images.[0]}}">
                        
+                            
+                                 <a class="read-more pull-left cart"   href="#">Add to Cart</a>
+                                
+                                                              
+                                 <a class="read-more pull-left order"   href="#">Order</a>
+                       
                                </div>
                                <div class="col-md-1"></div>
                                <div class="col-md-5 orders-detail">
                                    <h3>{{this.product}}</h3>
                                    <h5>{{this.category.categoryname}}</h5>
                                    <hr>
+                                   
                                    <input type="hidden" id='product-category' value={{this.category._id}}> 
                                    <input type="hidden" id='productid' value={{this._id}} >
-
+                                   <input type='hidden' id='shopid'>
+                                   
                                    <div id='sub-category'>
 
                                    </div>
-                                   <h4>Rs.{{this.total_price}}</h4>
+                                  
+                                  
+                                   <div class="form-group   col-md-3">
+                                     <input type='number' class='form-control' id='qty' placeholder="Qty*" style="display: none;">
+                                     
+                                   </div>
+                                     <div class="col-md-5">
+                                        <h4 id='price'></h4>
+                                      </div>
+                                   <div class=" col-md-offset-1 col-md-3 gst-div">
+                                     <button class="btn btn-primary cnt-gst" style="display: none;">Count Gst</button>
+                                   </div>
+                                   <div class="col-md-12">
+                                   <h4>product Details <span id='up-down'><i class="fas fa-chevron-down"></i></span></h4>
                                    <hr>
+                                   <input type='hidden' id='description' value="{{this.description}}">
+                                   <div class="product-details" style="display: none;">
+                                     
+                                    
                                    
-                                 <a class="read-more pull-left cart"   href="/add-cart?id={{this._id}}">Add to Cart</a>
-                                
-                                                              
-                                 <a class="read-more pull-left order"   href="/insert-order?id={{this._id}}">Order</a>
-                               </div>
-
+                                   </div>
+                                  </div>
+                                    </div>
+                                 
+                                  
+                
+              
                                <div>
+                                
                                  <p>{{msg}}</p>
                                </div>
                                </div> 
+                             
                                
                             </div>
                            
                            {{/each}}
-                           <hr>
+                           
+                            
                         </div>
                     </div>
                     <!-- /post-container -->
                 </div>
-               
+             
             </div>
         </div>
         <div class="col-md-12 order-shop-div" style="margin-top: 20px;margin-bottom:20px;padding:10px;background-color:white">
@@ -69,112 +98,7 @@
         </div>
     </div>
     <script src="./jquery.min.js"></script>
-    <script>
-        $('.view-img').click(function(){
-            let src=$(this).attr('src');
-            const order_img=document.getElementById('order-img');
-            console.log(order_img);
-            order_img.src=src;
-      
+    <script src='./single.js'></script>
     
-        });
-        let id=$('#product-category').val()
-        
-        $.ajax({
-          url:'/load-single-sub-category',
-          type:'POST',
-          data:{id},
-          success:function(data){
-            let sub_category='';
-            console.log(data);
-            
-            let a=true
-            let ab=true;
-            let cnt=0;
-            let i=0;
-            data.forEach(sub_title=>{
-              
-                  while(a){
-                    console.log(sub_title)
-                    let cat_name=sub_title.subcategory.category_name[i];
-                          if(cat_name=='' || cat_name==undefined){
-                           a=false
-                          }else{
-                          sub_category=sub_category.concat(`<div class="form-group col-sm-6 sub1">
-                            <input type='hidden' name='category_name' value=${sub_title.subcategory.category_name[i]}>
-                            <label>Select ${sub_title.subcategory.category_name[i]}</label>
-                            <select name='sub_category' id='sub_category' class="form-control">
-                            <option selected disabled>Select ${sub_title.subcategory.category_name[i]}</option>`);
-                           i++; 
-                           
-                          while(ab){
-
-                          let cat_value=sub_title.subcategory.category_value[cnt];
-                          console.log(`${cat_value} ${cnt}`);
-                          if(cat_value=='' || cat_value==undefined){
-                            a=false;
-                          }else{
-                            let sub_value=cat_value.split(',');
-                            sub_value.forEach(val=>{
-                                sub_category=sub_category.concat(`<option value='${val}'>${val}</option>`);
-                               
-                            });
-                            cnt++;
-                          }
-                          break;
-                          }
-                          }        
-                            
-                           sub_category=sub_category.concat(`</select>
-                           </div>`);               
-                  }
-            })
-           
-       $('#sub-category').html(sub_category);
-          }
-
-        })
-      
-      
-        var p_id=$('#productid').val();
-        
-        var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
-                             <hr><table id='shop-order'>
-                                   <tr>
-                                       <th>Shop Name</th>
-                                       <th>State</th>
-                                       <th>City</th>
-                                       <th>Address</th>
-                                       <th>Pincode</th>
-                                       <th>Mobile No</th>
-                                       <th>Available</th>
-                                       <th>Select</th>
-                                       
-                                   </tr>`
-
-        $.ajax({
-            url:'/load-order-shop',
-            type:'POST',
-            data:{p_id},
-            success:function(data){
-                data.forEach(element=>{
-
-                    output=output.concat(`<tr> 
-                        <td>${element.shopId.shopname}</td>
-                        <td>${element.shopId.state}</td>
-                        <td>${element.shopId.city}</td>
-                        <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
-                        <td>${element.shopId.area_code}</td>
-                        <td>${element.shopId.mobileNo}</td>
-                        <td><button style='background-color:lightgreen;width:50px;padding:3px;' >available</button></td>
-                        <td><button style='background-color:lightgreen;width:50px;padding:3px;' class='confirm-order'  data-shop_id=${element.shopId._id}>Select</button></td>
-                    </tr>`)
-                })
-               output=output.concat(`</table>`);
-               $('.order-shop-div').html(output)   
-            }
-    
-        });
-    </script>
 </body>
 </html>

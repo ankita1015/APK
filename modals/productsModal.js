@@ -14,19 +14,15 @@ images:[{
     default:''
 
 }],
+description:{
+    type:String,
+    required:true,
+},
 
 category:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'category'
-},
-subcategory:[{
-     type:String,
-     required:true
-
-}]
-
-
-
+}
 });
 const productmodal=new mongoose.model('product',productSchema);
 module.exports=productmodal;
