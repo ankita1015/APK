@@ -60,7 +60,7 @@
                               output=output.concat(`<td>${element.price}</td>
                               <td style="width:5rem;">
                                  <a   href='#' id="remove-cart" data-id=${element._id} style='background-color:red;'><i class='fa fa-trash'></i></a>
-                                 <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}" style='background-color:green;'>Order</a></td>
+                                 <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}&cart_id=${element._id}" style='background-color:green;' >Order</a></td>
 
                    </tr>`);
                 

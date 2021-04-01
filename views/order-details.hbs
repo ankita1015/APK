@@ -34,9 +34,13 @@
                                  <div class="col-md-1"></div>
                                   <div class="col-md-5 orders-detail">
                                     <h4>{{data.[0].productId.product}}</h4>
-                                    <p><span>{{data.[0].category}}/inch,{{data.[0].pclass}}/class</span></p>
+                                     <p style="display: none;" id='category_name'>{{data.[0].sub_category.category_name}}</p>
+                                    <p style="display: none;" id='category_value'>{{data.[0].sub_category.category_value}}</p>
+                                  <div class="sub_catagory_div">
+
+                                  </div>
                                     <p>Qty.{{data.[0].qty}}</p>     
-                                    <p>Rs.{{data.[0].productId.total_price}}</p>
+                                    <p>Rs.{{data.[0].price}}</p>
                            
                                    <hr>   
                                    <div class="col-md-10 orders-detail">
@@ -86,6 +90,22 @@
           
              order_img.src=src;
         });
+         
+       let category_name=$('#category_name').text();
+    
+     let category_value=$('#category_value').text();
+    
+     category_name=category_name.split(',');
+     category_value=category_value.split(',');
+     let printCategory='<div>';
+        let sc=0;
+      category_name.forEach(name=>{
+         printCategory=printCategory.concat(`<p>${name}:-${category_value[sc]}</p>`)
+         sc++;
+     }) 
+    printCategory=printCategory.concat('</div>');
+    $('.sub_catagory_div').append(printCategory);
+              
        
     </script>
 </body>

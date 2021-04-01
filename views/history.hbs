@@ -13,18 +13,12 @@
         <div class="row">
           
             <div class="col-md-12">
-                 <form class="search-post" action="search.php" method ="GET">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search .....">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </span>
-            </div>
+             
         </form>
                 <!-- post-container -->
                 <div class="post-container">
                   <h2 class="page-heading">History of Your Orders</h2>
-                    <div class="post-content">
+                    <div class="post-content order-shop-div">
                         <div class="row">
 
 
@@ -59,12 +53,9 @@
              <tr>
                <th>Sr No</th>
                <th>img</th>
-               <th>Product Name</th>
-               <th>size</th>
-               <th>Class</th>
-               <th>Price</th>
+               <th>Product Name</th>`
                
-            </tr>`
+              
               let date=element.date_time.split('||');
               
                let year=date[1].split('/')
@@ -72,26 +63,44 @@
                let month=year[1];
                let day=year[0];
               
-        
+        let ct=1;
                 data.forEach(ele=>{
-                  let c=1;
+                  
                     let subdate=ele.date_time.split('||');
                     let subyear=subdate[1].split('/');
                   
                         suby=subyear[2];
                     let subm=subyear[1];
                     let subd=subyear[0];
+                    if(ct==1){
+                    ele.sub_category.category_name.forEach(name=>{
+                        output=output.concat(`<th>${name}</th>`);  
+                    })
+                     output=output.concat(`<th>Date</th><th>Price</th><th>Qty</th><th>Payment</th></tr>`);
+                    }
                     if(y==suby &&  month==subm && day==subd){
                         output=output.concat(`<tr>
-                          <td>${c}</td>
+                          <td>${ct}</td>
                           <td><img src='${ele.productId.images[0]}' style='width:5rem;height:5rem;'></td>
-                          <td>${ele.productId.product}</td>
-                          <td>${ele.category} inch</td>
-                          <td>${ele.pclass} class</td>
-                          <td>${ele.productId.total_price}</td>
+                          <td>${ele.productId.product}</td>`);
+                       ele.sub_category.category_value.forEach(val=>{
+                           output=output.concat(`<td>${val}</td>`)
+                       })  
+
+                         let orderDate=ele.date_time
+                         orderDate=orderDate.split('||');
+                         orderDate=orderDate[1]; 
+                          output=output.concat(`
+                          <td>${orderDate}</td>`);
+                             
+                          output=output.concat(`<td>${ele.price}</td>
+                           <td>${ele.qty}</td>
+                          <td><p style='padding:3px;background-color:lightgreen;width:60%;margin:auto;border-radius:5px;'>${ele.status}</p></td>
+                         
                         </tr>`);
                     }
-                    c++;
+                 
+                    ct++;
                 })
            
                  output=output.concat('</table>');

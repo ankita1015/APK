@@ -103,7 +103,7 @@ app.post('/delete-order',require('./customer-controller/delete-order'));
 app.get('/history',(req,res)=>{
     res.render('history');
 })
-app.post('/order-history',require('./customer-controller/order-history'));
+app.post('/order-history',auth,require('./customer-controller/order-history'));
 app.get('/logout',auth,require('./customer-controller/logout'));
 
 //admin panel//

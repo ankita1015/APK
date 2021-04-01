@@ -26,13 +26,18 @@ const shopOrderSchema=new mongoose.Schema({
         required:true,
     },
     category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'category'
+    },
+   sub_category:{
+        type:Object,
+        required:true
+    },
+    price:{
         type:String,
         required:true
     },
-    pclass:{
-        type:String,
-        required:true
-    },
+  
     userId:{
        type:mongoose.Schema.Types.ObjectId,
        ref:'User'

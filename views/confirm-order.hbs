@@ -46,10 +46,10 @@
                                     <p id='total_price' data-price={{price}}>Rs.{{price}}</p>
                                     
                                  <div class="col-sm-3">
-                                    <input type="hidden" name="product_id"  id="product_id" value="{{product.[0]._id}}">
+                                    <input type="hidden" name="product_id"  id="product_id" value="{{product.[0].productId._id}}">
                                     <input type="hidden" name="customer_id" id="customer_id" value="{{customerData.[0]._id}}" >
-    
-                                    
+                                    <input type="hidden" name="categoryId" id='categoryid' value="{{product.[0].productId.category}}">
+                                    <input type="hidden" name="cartid" id='cartid' value="{{cartid}}">
                                  </div>
                                  <br>
                                    <hr>
@@ -73,12 +73,12 @@
                                   <br>
      
                                                        
-                            <a class="read-more pull-left"   href="#">confirm-order</a>
+                            <a class="read-more pull-left confirm-order"  data-shopid={{product.[0].shopId}} href="#">confirm-order</a>
 
                                </div>
                              
                                </div> 
-                                  <input type="hidden" id="cart_id" value="{{cart_id}}" >
+                                 
                                   <input type="hidden" id='productid' value="{{product.[0]._id}}"
                           
                               </div>
@@ -107,44 +107,75 @@
           
              order_img.src=src;
         });
+
+     let category_name=$('#category_name').text();
+    
+     let category_value=$('#category_value').text();
+    
+     category_name=category_name.split(',');
+     category_value=category_value.split(',');
+     let printCategory='<div>';
+        let sc=0;
+      category_name.forEach(name=>{
+         printCategory=printCategory.concat(`<p>${name}:-${category_value[sc]}</p>`)
+         sc++;
+     }) 
+    printCategory=printCategory.concat('</div>');
+
+    $('#qty').change(function(){
+       let qty = $(this).val();
+       if(qty<=0){
+           return;
+            $('#total_price').text(`Rs.${price}`);
+       }
+        let price= $('#price').val();
+       
+        let totalprice= $('#total_price').data('price');
+       
+         $('#total_price').text(`Rs.${price*qty}`);
+
+     });
+    
+     $('.sub_catagory_div').append(printCategory);
+
         $(document).on('click','.confirm-order',function(){
-            let cart_id=$('#cart_id').val();
+            let cart_id=$('#cartid').val();
             let product_id=$("#product_id").val();
             let customer_id=$("#customer_id").val(); 
             let qty=$('#qty').val();
-            let pclass=$('#class').val();
-            let  category=$('#category').val();
-            let shopid=$(this).data('shop_id');
-            alert(shopid);
-         if(category==''){
-            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter category</p>");
+            let total_price= $('#total_price').text();
+                total_price=total_price.replace('Rs.','');
+                
+            
+            let  categoryid=$('#categoryid').val();
+            let  shopid=$(this).data('shopid');
+           
+        fetch('/confirm-order',{
+       method:'POST',
+       headers:{
+           'Content-Type':'application/json'
+       },
+       body:JSON.stringify({
+          category_name:category_name,
+          category_value:category_value,
+          categoryId:categoryid,
+          customerid:customer_id,
+          shopid,
+          product_id,
+          price,
+          qty,
+          total_price,
+          cart_id,
+          
+       })
+          
+ }).then((result)=>{
+     
+  window.location.assign('/order')
+ }).catch((err)=>{
 
-         }else if(pclass==''){
-            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter class</p>");
-
-
-         }else if(qty==''){
-            $('#order-msg').html("<p style='font-size:larger;color:red;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightpink;'>Please enter qty</p>");
-
-
-
-         }else{
-
-
-            $.ajax({
-                url:"/confirm-order",
-                type:"POST",
-                data:{product_id,customer_id,qty,pclass,category,cart_id,shopid},
-                success:function(data){
-                  if(data==1){
-
-                    window.location.assign('/order'); 
-                  $('#order-msg').html("<p style='font-size:larger;color:green;border:1px solid #dddd;padding:10px;text-align:center;background-color:lightgreen;'>Your Orders is Confirmed</p>");
-                    }
-
-                }
-            })
-         }
+ })
+     
              $('#order-msg').click(function(){
                  $(this).hide();
              });
@@ -172,34 +203,8 @@
         }) 
 
     });
-    let category_name=$('#category_name').text();
-    
-    let category_value=$('#category_value').text();
-    
-    category_name=category_name.split(',');
-    category_value=category_value.split(',');
-    let printCategory='<div>';
-        let sc=0;
-     category_name.forEach(name=>{
-         printCategory=printCategory.concat(`<p>${name}:-${category_value[sc]}</p>`)
-         sc++;
-     }) 
-    printCategory=printCategory.concat('</div>');
-    
-     $('.sub_catagory_div').append(printCategory);
-     $('#qty').change(function(){
-       let qty = $(this).val();
-       if(qty<=0){
-           return;
-            $('#total_price').text(`Rs.${price}`);
-       }
-        let price= $('#price').val();
-       
-        let totalprice= $('#total_price').data('price');
-       
-         $('#total_price').text(`Rs.${price*qty}`);
-
-     });
+   
+     
      </script>
 </body>
 </html>

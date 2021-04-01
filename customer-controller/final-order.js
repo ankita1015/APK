@@ -4,16 +4,17 @@ const cart=require('../modals/cartmodal')
 module.exports=async(req,res)=>{
     try{
 
-      
-      let productId=req.body.product_id;
-      let customerId=req.body.customer_id;
-      let qty=req.body.qty;
-      let pclass=req.body.pclass;
-      let category=req.body.category;
-      let user_id=req.user;
       let cart_id=req.body.cart_id;
+      let productId=req.body.product_id;
+      let customerId=req.body.customerid;
+      let qty=req.body.qty;
+      let category={category_name:req.body.category_name,
+                    category_value:req.body.category_value} 
+      let categoryid=req.body.categoryId;
+      let user_id=req.user;
+      let total_price=req.body.total_price;
       let shopId=req.body.shopid;
- console.log(shopId)
+ 
         const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
       ];
@@ -28,24 +29,27 @@ module.exports=async(req,res)=>{
         let curDate=`${curTime}||${date}/${monthNames[month]}/${year}`;
   
         const orders=new shoporderDocment({
-          productId,
+          productId:productId,
           qty,
-          category,
-          pclass,
+          sub_category:category,
+          category:categoryid,
           userId:user_id._id,
           payment:'Process',
           date_time:curDate,
-          customerId,
           shopId,
+          price:total_price,
+          customerId,
           status:'Process'
        
         });
         let orderDoc=await orders.save();
+        res.send('1');
+        if(cart_id!=null){
         let removecart=await cart.deleteMany({_id:cart_id});
-    
+        }
          req.order=orders;
-      
-          res.send('1');
+        
+          
 
 
     }catch(err){

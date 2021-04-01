@@ -56,11 +56,18 @@
                                           </div>
   
                                            <div class="col-md-5 orders-detail">
-                                            <h4>${element.productId.product}</h4>
-                                            <span>${element.category}/inch</span>
-                                            <span>${element.pclass}/class</span>
+                                            <h3>${element.productId.product}</h3>
+                                            <h4>${element.category.categoryname}</h4>
+                                            <div class="sub_catagory_div">`);
+                                              let sc=0;
+                                              element.sub_category.category_name.forEach(name=>{
+                                                output=output.concat(`<p>${name}:-${element.sub_category.category_value[sc]}</p>`)
+                                                sc++;
+                                              })
+                                           
+                                            output=output.concat(`</div>
                                             <span>Qty:-${element.qty}</span>
-                                            <p>Rs.${element.productId.total_price}</p>
+                                            <p>Rs.${element.price}</p>
                               
                                          <hr>
                                          <div class="col-md-12">

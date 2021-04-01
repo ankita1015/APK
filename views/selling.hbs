@@ -14,10 +14,8 @@
             <div class="col-md-12">
                  <form style='margin-top:5px;'class="search-post" action="#" method ="GET">
             <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Search .....">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </span>
+               
+                
             </div>
         </form>
                 <!-- post-container -->
@@ -57,8 +55,14 @@
                             <div class="col-md-8">
                                 <div class="inner-content clearfix">
                                     <h4><a href="">${element.productId.product}</a></h4>
-                                      <p>${element.productId.product_cat}</p>
-                                      <p>${element.date_time}</p>
+                                       <h4>${element.category.categoryname}</h4>
+                                            <div class="sub_catagory_div">`);
+                                              let sc=0;
+                                              element.sub_category.category_name.forEach(name=>{
+                                                output=output.concat(`<p>${name}:-${element.sub_category.category_value[sc]}</p>`)
+                                                sc++;
+                                              })
+                                     output=output.concat(`</div><p>${element.date_time}</p>
                                       <h5>Customer Details</h5>
                                       <p>${element.userId.name}</p>
                                       <p><span>${element.customerId.city},${element.customerId.state}</span></p>

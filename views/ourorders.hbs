@@ -18,7 +18,7 @@
                       
                          
                         </div>
-                            <h4 style="text-align: center;">view Orders(  <span>Date:28/2/2021</span>)</h4>
+                            <h4 style="text-align: center;">view Orders( <span id='date'></span>)</h4>
                     <hr>
                     <div class="order-shop-div">
                                 
@@ -117,6 +117,23 @@
                       }
                   })
             })
+
+  function currDate(){
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      
+        let date=new Date().getDate();
+        let month=new Date().getMonth();
+        let year=new Date().getFullYear('');
+
+        let hours=new Date().getHours();
+        let min =new Date().getMinutes();
+      
+          curDate=`${date}-${monthNames[month]}-${year}`;
+          $('#date').text(curDate);
+  }
+  currDate();
 
         })
     </script>
