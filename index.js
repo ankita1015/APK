@@ -136,6 +136,7 @@ app.get('/admin-logout',require('./admin-controller/admin-logout'));
 app.post('/add-category',require('./admin-controller/add-category'));
 app.post('/load-all-category',require('./admin-controller/load-category'));
 app.post('/delete-category',require('./admin-controller/delete-category'));
+app.post('/delete-sub-category',require('./admin-controller/delete-sub-category'));
 app.post('/edit-category',require('./admin-controller/edit-category'));
 app.post('/update-category',require('./admin-controller/update-category'));
 app.get('/sub-category',adminauth,(req,res)=>{
