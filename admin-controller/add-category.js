@@ -1,12 +1,19 @@
 const categorydocumnet = require('../modals/categorymodel');
 module.exports = async(req,res)=>{
     try{
-        console.log(req.body);
-     let category = new categorydocumnet({
-        categoryname:req.body.category
-     }) 
-     await category.save()
-     res.render('add-category');
+        await categorydocumnet.find({categoryname:req.body.category}).exec(async(err,data)=>{
+            if(data.length==0){
+                let category = new categorydocumnet({
+                    categoryname:req.body.category
+                 }) 
+                 await category.save()
+                 res.send(true);
+            }
+            else{
+                res.send(false);
+            }
+        })
+         
     }catch(err){
 
     }
