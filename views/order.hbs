@@ -25,6 +25,8 @@
              </div>
         </div>
     </div>
+    {{>footer}}
+    </body>
     <script src="./jquery.min.js"></script>
     <script>
     function loadorder(){
@@ -85,19 +87,12 @@
 
 
                                     
-                                           <br>
+                                          
                                          </div>
 
-                                         <div class="col-md-12">
-                                           <h4>Personal Details</h4>
-                                   
-                                           <p>Delivery Address:</p>
-                                           <p>${element.customerId.Address}</p>
-                                    
-                                           <br>
-                                         </div>
+                                        
                                          <a class="read-more pull-left cancle-order" data-id=${element._id}  href="#">Cancel Order</a>
-                                         </div></div></div><hr>`);
+                                         </div></div></div>`);
                      })
                   $('.single-post').html(output);
                }

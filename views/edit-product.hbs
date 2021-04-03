@@ -22,39 +22,42 @@
           </div>
           <div class="modal-body">
             <form action='/updated-product' method='POST'  class="row" id='productform'>
-                {{#each product}}
+                  <div class="form-group col-sm-12 ">
+               <label>Select Category</label>
+               <select name='categoryname' id='category' class="form-control">
+                 <option selected disabled>Select Category</option>
+                 {{#each category}}
+                   {{#if_eq this._id  product.[0].category}}
+                      <option  value="{{this._id}}">{{this.categoryname}}</option>
+                   
+                      
+                      {{/if}} 
+                   {{/each}}
+               </select>
+             </div>
                 <div class="form-group col-sm-12">
+          
                   <label for="product-name">Product name</label>
-                 <input type="text" class='form-control'  id="company-name" name="product" value="{{this.product}}"/>
+                 <input type="text" class='form-control'  id="company-name" name="product" value="{{product.[0].product}}"/>
                 
-                 <input type="hidden" id='productid' name="productid" value="{{this._id}}"/>
+                 <input type="hidden" id='productid' name="productid" value="{{product.[0]._id}}"/>
                 
                 </div>
              
                     <div class="form-group col-sm-12">
-                  <label for="category">Category</label>
-                  <input type="text" class="form-control" value='{{this.product_cat}}' name="category" id="company-name" placeholder="Add category*">
+                  <label for="category">Description</label>
+                  <textarea type="text" class="form-control" value='{{product.[0].description}}' name="category" id="company-name" placeholder="Description*"></textarea>
                 </div>
-                    <div class="form-group col-sm-3">
-                  <label for="gst">Gst</label>
-                  <input type="number" class="form-control" name='gst' id="gst"value={{this.gst}} placeholder="Gst(%)">
-                </div>
+                    
                 
-                <div class="form-group col-sm-4">
-                  <label for="price">Price</label>
-                  <input type="number" class="form-control" name='price' id="price" value="{{this.price}}" placeholder="Price*">
-                </div>
-                <div class="form-group col-sm-4">
-                  <label for="total_price">total Price(gst)</label>
-                  <input type="text" class="form-control" id="total_price" value="{{this.total_price}}" name="total_price" placeholder="Total Price" readonly>
-                </div>
+               
                
             <br>
                    
                     <button type="submit" class="btn btn-grey create-account" id='add-product'>Update Product</button>
     <hr>
             
-              {{/each}}
+              
             </form>
            
           </div>

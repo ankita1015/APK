@@ -24,6 +24,7 @@
           </div>
         </div>
       </div>
+      {{>footer}}
    
     <script src='./jquery.min.js'></script>
     <script>
@@ -36,8 +37,9 @@
             url:'/load-cart-products',
             type:'POST',
             success:function(data){
-              if(data==''){
-            $('.post-content').html('<div id="cart_error" style="border:1px solid #dddd;padding:10px;text-align:center;background-color:#eee;font-size:15px;">Your Cart Currently empty</div>')
+              
+              if(data.length==0){
+            $('.order-shop-div').html('<div id="cart_error" style="border:1px solid #dddd;padding:10px;text-align:center;background-color:#eee;font-size:15px;">Your Cart Currently empty</div>')
             return;
               }else{
                 data[0].sub_category.category_name.forEach(title=>{

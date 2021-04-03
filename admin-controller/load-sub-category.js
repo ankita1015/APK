@@ -5,6 +5,8 @@ module.exports=async(req,res)=>{
       let _id=req.body.id;
       await sub_category_document.find({categoryId:_id}).populate(['categoryId']).exec((err,data)=>{
           res.send(data);
+          
+        
       })
     }catch(err){
 

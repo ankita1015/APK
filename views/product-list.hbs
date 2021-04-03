@@ -16,7 +16,7 @@
                   
   
   <div class="container-fluid" style="padding:10px;">
-    <div id='product-title'> Products</div>
+    <div id='product-title'> Products {{data.[0].categoryId.categoryname}}</div>
     {{#each data}}
   <div class="products" data-id={{this._id}}>
     <div id='product'>
@@ -26,12 +26,13 @@
     </div>
     <div id='product-content'>
     <h6><b>{{this.product}}</b></h6>
-    <h6><b>Rs.{{this.total_price}}</b></h6>
+   
     
         </div>
   </div>
   
   {{/each}}
+  </div>
   </div>
   </div>
   {{>footer}}

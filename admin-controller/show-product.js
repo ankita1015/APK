@@ -1,10 +1,11 @@
+
 const productDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
     try{
        
-   const products=await productDocument.find().exec((err,data)=>{
- 
+   await productDocument.find().populate(['category']).exec((err,data)=>{
+
        res.send(data);
     
    });

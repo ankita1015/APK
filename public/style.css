@@ -59,8 +59,8 @@
    
     background-size:100%;
     background-position:fixed;
-    background: #f1f1f1;
-   font-family: Sans-serif;
+    /* background: #f1f1f1; */
+    font-family: Sans-serif;
     font-weight: 500;
 
     margin: 0px;
@@ -362,46 +362,6 @@ img.logo{
   box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
 }
 
-#admin-content .content-table{
-  border: 1px solid #000;
-  width: 100%;
-  margin: 0 0 20px;
-}
-
-#admin-content .content-table thead{
-  color: #fff;
-  background-color: #333;
-}
-
-#admin-content .content-table th{
-  padding: 10px;
-  border: 1px solid #fff;
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-#admin-content .content-table tbody{
-  color: #333;
-}
-
-#admin-content .content-table tbody tr{
-  background-color: #e7e7e7;
-}
-#admin-content .content-table tbody tr:nth-child(even){
-  background-color: transparent;
-}
-#admin-content .content-table tbody td{
-  padding: 10px;
-  border: 1px solid #fff;
-  text-align: center;
-
-}
-
-#admin-content .content-table tbody td:nth-child(2){
-  text-align: left;
-}
-
 #admin-content .admin-pagination{
   margin: 0;
 }
@@ -525,6 +485,7 @@ img {vertical-align: middle;}
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
   
 }
 
@@ -699,13 +660,14 @@ border-radius:5px;
 }
 
 #main-content .post-container{
-  background-color: #fff;
+  
   padding: 25px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+  height:80%;
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13); */
 }
 
 #main-content .post-content{
-  border-bottom: 1px solid #d1d1d1;
+  /* border-bottom: 1px solid #d1d1d1; */
   padding: 0 0 30px;
   margin-bottom:30px;
 }
@@ -956,19 +918,14 @@ margin: 0;
 
 
 /* Footer Styling */
-#footer{
-  color: #fff;
-  padding:15px 0;
-  text-align:center;
-  background-color:#1e90ff;
-}
-
-#footer  a{
-  color:#fff;
-}
-
-#footer  span  a:hover{
-  text-decoration: underline;
+.footer {
+  padding: 10px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#1da0f2;
+  color: white;
+  text-align: center;
 }
 
 /* ===================== */
