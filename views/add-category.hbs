@@ -10,15 +10,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                 <form action="/add-category" method="POST" style="background-color: white; margin-top:30px;padding:10px" >
+                 <form  id="category_form"  style="background-color: white; margin-top:30px;padding:10px" >
                      <h3 style="text-align: center;">Add Category</h3>
                  <div class="form-group">
                  <label for="Add-category">Add Category</label>
                  <input type="text" class="form-control" name="category" id="add-category"  placeholder="Enter Category">
               
                  </div>
-                 <button type="submit" class="btn btn-primary" style="margin-left:43%;">Add</button>
+                 <button type="submit" class="btn btn-primary add" style="margin-left:43%;">Add</button>
                  </form>
+                 <div id='error' style="display: none;">
+
+                 </div>
             </div>
             <div class="col-md-1">
 
@@ -87,6 +90,9 @@
         loadcategory();
         $(document).on('click','#delete-category',function(){
             let id = $(this).data('id');
+            let con=confirm('Are you sure you want to delete this category.');
+            if(con==true)
+            {
             $.ajax({
                 url:'/delete-category',
                 type:'POST',
@@ -97,6 +103,7 @@
                       }
                 }
             })
+            }
         })
         $(document).on('click','#edit-category',function(){
             let id=$(this).data('id');
@@ -129,7 +136,46 @@
         })
           $(document).on('click','.close',function(){
               $('#myModal').hide();
-          })        
+          })
+         $('#category_form').submit(function(e){
+              e.preventDefault();
+             let category=$('#add-category').val();
+             if(category=='' || category==undefined)
+             {
+                 $('#error').html(`<div id="category_success" style="border:1px solid red;padding:10px;text-align:center;background-color:tomato;font-size:15px;">Category Field can't be blank</div>`);
+                 $('#error').show();
+                setTimeout(function(){
+                    $('#error').hide();
+                },3000) 
+             }
+             else{
+                 $.ajax({
+                     url:'/add-category',
+                     method:'POST',
+                     data:{category},
+                     success:function(data){
+
+                         if(data){
+                             $('#add-category').val('');
+                             $('#error').html('<div id="category_success" style="border:1px solid green;padding:10px;text-align:center;background-color:lightgreen;font-size:15px;">Category has been added...</div>').show();
+                             setTimeout(function(){
+                             $('#error').hide();
+                             loadcategory();
+                             },2000)
+
+                         }else{
+                             $('#error').html('<div id="category_success" style="border:1px solid red;padding:10px;text-align:center;background-color:tomato;font-size:15px;">This category is already added...</div>').show();
+                             setTimeout(function(){
+                             $('#error').hide();
+                             loadcategory();
+                             },2000)
+                         }
+                     }
+                 })
+             }
+             })
+             
+              
     });
 
 </script>
