@@ -265,10 +265,10 @@ border-bottom: 2px solid #333;
 .add-new-category{
   margin:10px;
     float:right;
-  padding:2px;
+  padding:5px;
   font-size: small;
   text-decoration: none ;
-  background-color:#E6E2DD;
+  background-color:#D48166;
   color: #E6E2DD;
   border-radius: 3px;
 }

@@ -17,11 +17,10 @@ $(document).ready(function(){
    $(document).on('change','#input',function(event){
      const imagesArray=event.target.files;
      const uplaodImg=document.getElementById('imges');
-     
      if(imagesArray.length<=5){
-     for(item in imagesArray){
+     for(let item in imagesArray){
        
-     
+       console.log(item);
       let src=URL.createObjectURL(imagesArray[item]);
       let img=document.createElement('img');
       let div=document.createElement('div');
