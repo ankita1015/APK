@@ -174,7 +174,43 @@
                  })
              }
              })
-             
+
+             $('#search-input').keyup(function(){
+                 var search=$(this).val();
+                 $.ajax({
+                     url:'/search-category',
+                     type:'POST',
+                     data:{search},
+                     success:function(data){
+                         if(data.length==0){
+                    $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
+                    return;
+                }
+                    let output=` <table>
+                  <tr>
+                      <th>Sr.No</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                  </tr>`
+                  var c=1;
+                    data.forEach(element=>{
+                     output=output.concat(`<tr>
+                         <td>${c}</td>
+                         <td>${element.categoryname}</td>
+                         <td>
+                             <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
+                             <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
+                         </td>
+                         </tr>`)
+                         c++;
+                        })
+                    output=output.concat(`</table>`);
+                    $('.load-category').html(output);
+
+                
+                     }
+                 })
+             })
               
     });
 
