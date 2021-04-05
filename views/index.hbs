@@ -66,6 +66,7 @@
   </div>
   <div class="container-fluid" style="padding:10px;">
     <div id='product-title'>Products</div>
+    <div id='load-product'>
     {{#each products}}
   <div class="products" data-id={{this._id}}>
     <div id='product'>
@@ -81,6 +82,7 @@
   </div>
   
   {{/each}}
+  </div>
   </div>
   </div>
   {{>footer}}
@@ -101,6 +103,34 @@
            }
          })
     });
+    $('.search-btn').click(function(e){
+      e.preventDefault();
+     let searchproduct= $('#product-search').val();
+     $.ajax({
+       url:'/search-product',
+       type:'POST',
+       data:{searchproduct},
+       success:function(data){
+       let output=''
+       data.forEach(element=>{
+         output=output.concat(`<div class="products" data-id=${element._id}>
+    <div id='product'>
+     <a href="/single-product?product_id=${element._id}">
+     <img src='${element.images[0]}' alt='product'>
+     </a>
+    </div>
+    <div id='product-content'>
+    <h6 style="color:black;"><b>${element.product}</b></h6>
+
+    
+        </div>
+  </div>
+  `)
+       })
+        $('#load-product').html(output);
+       }
+     })
+    })
   });
 </script>
 

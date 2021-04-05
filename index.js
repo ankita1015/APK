@@ -100,6 +100,7 @@ app.get('/insert-order',auth,customer,require('./customer-controller/order-previ
 app.post('/edit-address',require('./customer-controller/edit-address'))
 app.post('/payment',require('./customer-controller/payment'));
 app.post('/delete-order',require('./customer-controller/delete-order'));
+app.post('/search-product',require('./customer-controller/search-product'));
 app.get('/history',(req,res)=>{
     res.render('history');
 })
@@ -154,6 +155,7 @@ app.get('/add-slider-img',adminauth,(req,res)=>{
     res.render('update-slider')
 })
 app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
+app.post('/search-category',require('./admin-controller/search-category'))
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

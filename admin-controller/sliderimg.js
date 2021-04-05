@@ -22,7 +22,7 @@ module.exports=async(req,res,next)=>{
                 img:uploadimages,
             })
             await slider.save();
-             res.send('update-slider')    
+             res.render('update-slider')    
       } 
     
 
