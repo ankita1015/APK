@@ -57,7 +57,7 @@ $('#more-category-btn').click(function(){
                  console.log(data);
                    let modal = ` <div class="modal-content">
                                  <span class="close">&times;</span>
-                                 <form action="/update-category" method="POST" style=" margin-top:30px;padding:10px" >
+                                 <form action="/update-sub-category" method="POST" style=" margin-top:30px;padding:10px" >
                                  <h3 style="text-align: center;">Edit Category</h3>
                                  <div class="form-group">
                                  <label for="Add-category">Edit category</label>
@@ -74,7 +74,8 @@ $('#more-category-btn').click(function(){
                             }else{
                         modal=modal.concat(`<div class="form-group">
                         <label for="Add-category">${cat_name}</label>
-                        <input type="text" value=${data[0].subcategory.category_value[st]} class="form-control" name="category"  placeholder="${cat_name}">
+                        <input type="text" value=${cat_name} class="form-control" name="category_name"  placeholder="${cat_name}">
+                        <input type="text" value=${data[0].subcategory.category_value[st]} class="form-control" name="category_value"  placeholder="${cat_name}">
                       </div>
                         `)
                         st++;
@@ -84,7 +85,7 @@ $('#more-category-btn').click(function(){
                      modal=modal.concat(`
                      <div class="form-group">
                      <label for="Add-category">Standard</label>
-                      <input type="text" value="${data[0].standard}" class="form-control" name="category"  placeholder="Standard#">
+                      <input type="text" value="${data[0].standard}" class="form-control" name="standard"  placeholder="Standard#">
                       <hr>
                      <button type="submit" class="btn btn-primary" style="margin-left:43%;">Update</button>
                      </form>

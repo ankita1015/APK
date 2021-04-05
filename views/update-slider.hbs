@@ -18,75 +18,21 @@
                            <h4 style="text-align: center;">Add Slider Images</h4>                      
                         <div class="det">
                           <div class="row" style="text-align: center;"> 
-                             
+                            <div class="slider-images">
+                              
+                            </div>
                            
-                           <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
-                           <label id='uploadlabel' style="height:15rem;width:25rem;">
-	                       
-                             <div id='imges' style="height:100%;">
-
-                             </div>
-                                 <input type="file" id='input' name='images[]' />
-                        
-                                </label>
-                                 <h5>Slider Image-1</h5>
-                                   <p id='upload-error'></p>
-                                </div>
-                                <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
-                           <label id='uploadlabel' style="height:15rem;width:25rem;">
-	                       
-                             <div id='imges' style="height:100%;">
-
-                             </div>
-                                 <input type="file" id='input' name='images[]' />
-                        
-                                </label>
-                                 <h5>Slider Image-2</h5>
-                                   <p id='upload-error'></p>
-                                </div>
-                                <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
-                           <label id='uploadlabel' style="height:15rem;width:25rem;">
-	                       
-                             <div id='imges' style="height:100%;">
-
-                             </div>
-                                 <input type="file" id='input' name='images[]' />
-                        
-                                </label>
-                                 <h5>Slider Image-3</h5>
-                                   <p id='upload-error'></p>
-                                </div>
-                                <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
-                           <label id='uploadlabel' style="height:15rem;width:24rem;">
-	                       
-                             <div id='imges' style="height:100%;">
-
-                             </div>
-                                 <input type="file" id='input' name='images[]' />
-                        
-                                </label>
-                                 <h5>Slider Image-4</h5>
-                                   <p id='upload-error'></p>
-                                </div>
-                                <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
-                           <label id='uploadlabel' style="height:15rem;width:25rem;">
-	                       
-                             <div id='imges' style="height:100%;">
-
-                             </div>
-                                 <input type="file" id='input' name='images[]' />
-                        
-                                </label>
-                                 <h5>Slider Image-5</h5>
-                                   <p id='upload-error'></p>
-                                </div>
-                            
-                             
+                          <div class='col-md-4'>
+                           <form action='/add-sliderimg' method='POST' id='input-form' enctype="multipart/form-data">
+                            <input type="file" name="images" multiple>
+                            <input type="submit" class="btn btn-primary">
+                          </form>
+                          </div>
+                          
                             </div>
 
                           </div>
-                         
-                   
+                          
                          
                    
                               
@@ -99,12 +45,11 @@
       <script src='./jquery.min.js'></script>
       <script src="./slider.js"></script>
     <script>
-      $(document).ready(function(){
-         
+           
        
            
         
-      });
+    
     </script>
 </body>
 </html>

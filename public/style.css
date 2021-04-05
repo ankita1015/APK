@@ -1,7 +1,4 @@
 
-  body{
-    background-color:white;
-  }
  
   a:focus, a:active {
     text-decoration: none;
@@ -248,16 +245,17 @@ border-bottom: 2px solid #333;
   color: #E6E2DD;
   border-radius: 3px;
 }
-form{
-  margin-top: 10rem;
+#input-form{
+  margin-top: 5rem;
   background: white;
   padding-bottom: 10px;
+  padding:10px ;
   
 }
 body{
   background-color: #CCCCFF;
 }
-form #form-heading,#form-heading{
+#input-form #form-heading,#form-heading{
   padding: 10px;
   text-align: center;
   font-size: 15px;
@@ -602,7 +600,6 @@ border-radius:5px;
   text-align: center;
   padding: 15px;
 }
-
 #logo{
   display: inline-block;
   width: 65%;
@@ -765,16 +762,7 @@ border: 1px solid #D48166;
 }
 
 /* Pagination  Styling */
-.pagination {
-  display: block;
-  text-align: center;
-  margin: 0;
-}
 
-.pagination li {
-  display:inline-block;
-  margin: 0 5px 0 0;
-}
 
 
 

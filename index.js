@@ -139,6 +139,9 @@ app.post('/delete-category',require('./admin-controller/delete-category'));
 app.post('/delete-sub-category',require('./admin-controller/delete-sub-category'));
 app.post('/edit-category',require('./admin-controller/edit-category'));
 app.post('/update-category',require('./admin-controller/update-category'));
+app.post('/update-sub-category',require('./admin-controller/update-sub-category'))
+app.post('/add-sliderimg',require('./admin-controller/sliderimg'))
+app.post('/load-slider-img',require('./admin-controller/load-slider-img'))
 app.get('/sub-category',adminauth,(req,res)=>{
      res.render('add-sub-category');
 })

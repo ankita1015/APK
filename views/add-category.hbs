@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                 <form  id="category_form">
+                 <form  id="input-form">
                      <h3 id="form-heading">Add Category</h3>
                  <div class="form-group">
                  <label for="Add-category">Add Category</label>
@@ -114,7 +114,7 @@
                 success:function(data){
                       let modal = ` <div class="modal-content">
                                     <span class="close">&times;</span>
-                                    <form action="/update-category" method="POST" style=" margin-top:30px;padding:10px" >
+                                    <form action="/update-category"id='input-form' method="POST" style=" margin-top:30px;padding:10px" >
                                     <h3 style="text-align: center;">Edit Category</h3>
                                     <div class="form-group">
                                     <label for="Add-category">Edit category</label>
@@ -137,7 +137,7 @@
           $(document).on('click','.close',function(){
               $('#myModal').hide();
           })
-         $('#category_form').submit(function(e){
+         $('#input-form').submit(function(e){
               e.preventDefault();
              let category=$('#add-category').val();
              if(category=='' || category==undefined)

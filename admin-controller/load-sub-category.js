@@ -7,13 +7,13 @@ module.exports=async(req,res)=>{
       if(action=='load'){
       await sub_category_document.find({categoryId:_id}).populate(['categoryId']).exec((err,data)=>{
           res.send(data);
-          console.log(data);
+        
         
       })
     }else {
       await sub_category_document.find({_id}).populate(['categoryId']).exec((err,data)=>{
         res.send(data);
-        console.log(data);
+        
       
     })
     }

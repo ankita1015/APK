@@ -178,20 +178,49 @@ function easingInOutQuad(t){
 
 
 $(document).ready(function(){
-  let total_price;
-  $('#price').keyup(function(){
+   let total_price;
+   $('#price').keyup(function(){
     
-    let price=$(this).val();
-    let gst=$('#gst').val();
-    let gstAmount = (price * gst)/100;
-    total_price=Number(gstAmount)+Number(price);
-    $('#total_price').val(total_price);
-  
-    
-  });
- 
+     let price=$(this).val();
+     let gst=$('#gst').val();
+     let gstAmount = (price * gst)/100;
+     total_price=Number(gstAmount)+Number(price);
+     $('#total_price').val(total_price);
+    });
+function  load_img_sliders(){
+  $.ajax({
+    url:'/load-slider-img',
+    type:'POST',
+    success:function(data){
+      const uplaodImg=document.getElementById('imges');
+      output='';
+      c=0;
+      if(data[0].img.length<=5){
+        data[0].img.forEach(img=>{
+          output=output.concat(` <div id="upload_button" class="col-md-3" style="margin-top:0px;margin-right:5px;">
+             <label id='uploadlabel' style="height:15rem;width:25rem;">
+             <div id='imges' style="height:100%;">
+             <div> 
+             <img src='${img}' style='height:100%;'>
+             </div>
+             </div>
+                <input type="file" id='input' name='images[]' />
+            </label>
+          
+            <h5>Slider Image-${++c}</h5>
+             <p id='upload-error'></p>
+         </div>`)
+        });
+        $('.slider-images').html(output);
+      }
+    }
+    });
 
-   $(document).on('change','#input',function(event){
+
+}  
+load_img_sliders() 
+
+$(document).on('change','#input',function(event){
      const imagesArray=event.target.files;
      const uplaodImg=document.getElementById('imges');
      
