@@ -7,22 +7,12 @@
 </head>
 <body>
     {{>admin_header}}
-    
-        
-    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-      <div class="modal-content">
-  
 
       <!-- Tab panes -->
-
-        <div role="tabpanel" class="tab-pane" id="register">
-          <div class="modal-header">
-            <h5>Add Admin</h5>
-          </div>
-          <div class="modal-body">
+         
+         <div class="col-md-offset-4 col-md-4">
             <form action='/admin-details' method='post'  class="row" id='productform'>
-        
+               <h5 id="form-heading">Add Admin</h5>
                 <div class="form-group col-sm-12">
                   <label for="email">email</label>
                   <input type="text" class="form-control" name="email" id="company-name" placeholder="email*">
@@ -37,17 +27,11 @@
                   <p>{{err}}</p>
                 </div>
                
-            <br>
-              <div class="modal-footer">
+                <br>
                     <button type="submit" class="btn btn-grey create-account" id='add-product'>Add Admin</button>
-    
-              </div>
             </form>
-           
-          </div>
-        </div>
-      </div>
-    </div>
+          </div> 
+         
   
 <script src="./jquery.min.js"></script>
 <script>

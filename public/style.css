@@ -105,30 +105,6 @@
     padding: 40px 60px 32px 60px;
     z-index: 99; 
   }
-  
-  .form-radio {
-    margin: 0 -10px;
-    margin-bottom: 40px; }
-    .form-radio input {
-      width: 0;
-      height: 0;
-      position: absolute;
-      left: -9999px; }
-    .form-radio input + label {
-      margin: 0 8px;
-      padding: 11px 31px;
-      box-sizing: border-box;
-      position: relative;
-      display: inline-block;
-      border: solid 2px #ebebeb;
-      background-color: #FFF;
-      font-size: 14px;
-      font-weight: 600;
-      color: #888;
-      text-align: center;
-      transition: border-color .15s ease-out,  color .25s ease-out,  background-color .15s ease-out, box-shadow .15s ease-out;
-      border-radius: 5px;
-  }
     
   input,select {
     border: solid 2px #E6E2DD;
@@ -272,7 +248,25 @@ border-bottom: 2px solid #333;
   color: #E6E2DD;
   border-radius: 3px;
 }
-
+form{
+  margin-top: 10rem;
+  background: white;
+  padding-bottom: 10px;
+  
+}
+body{
+  background-color: #CCCCFF;
+}
+form #form-heading,#form-heading{
+  padding: 10px;
+  text-align: center;
+  font-size: 15px;
+  background-color: #D48166;
+}
+form button{
+  background-color: #D48166;
+  margin-left: 20px;
+}
 #wrapper-admin{
   padding: 100px 0 0;
 }

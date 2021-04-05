@@ -9,13 +9,9 @@
     {{>seller_header}}
 
           <div class="col-md-offset-3  col-md-6"style='margin-top:15px;'>
-          
-        
-        
 
-          
-             <form action='/product' method='POST' class="row" id='productform' style="background-color:white;">
-                    <h5  style="background-color: #1da0f2;padding:12px;text-align:center;color:lightgrey;font-size:15px;">Add Product to {{shopname}}</h5>
+             <form action='/product' method='POST' class="row" id='productform'>
+                    <h5  id="form-heading" >Add Product to {{shopname}}</h5>
              <div class="form-group col-sm-12">
                   <label for="product-category">Category</label>
                   <p id='e-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
