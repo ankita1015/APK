@@ -4,6 +4,8 @@ const path = require('path');
 const app = express();
 const hbs=require('hbs');
 const bodyparser=require('body-parser');
+const jwt=require('jsonwebtoken');
+const UserDocument=require('./modals/user')
 
 
 
@@ -37,7 +39,18 @@ app.get('/',require('./customer-controller/show-shop-product'));
 app.get('/signup',(req,res)=>{
     res.render('signup');
 })
+app.post('/auth',async(req,res)=>{
+    const token=req.cookies.user;
+    const verifyuser=await jwt.verify(token,'mynameiskunjanbarotprogrammer');
+    const user= await UserDocument.findOne({_id:verifyuser._id});
+    req.token=token;
+    if(user.role=='0'){
+       let name=user.name;
+      
+          res.send(name);
 
+    }
+})
 app.post('/order',auth,require('./customer-controller/view-our-order'));
 app.post('/add-cart',auth,require('./customer-controller/add-cart'));
 app.post('/delete-cart-product',require('./customer-controller/delete-cart'));
