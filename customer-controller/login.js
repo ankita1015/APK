@@ -31,6 +31,7 @@ module.exports=async(req,res)=>{
                res.send('1')
               }else{
                 res.send('0')
+            
               }
               }else{
               res.status(500).send('password-not-match');
