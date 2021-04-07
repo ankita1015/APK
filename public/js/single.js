@@ -45,6 +45,7 @@ $.ajax({
                   }else{
                    
                    if(cat_name=='Kg' || cat_name =='KG' || cat_name=='kg'){
+                   category_name.push(cat_name)
                     sub_category=sub_category.concat(`<div class='col-md-3'>
                     <input type='hidden' name='category_name' id='category-name'value=${cat_name}>
                     <input type='number' class="form-control" id='sub_category' name='sub_category' placeholder='Kg#'></div>` )
@@ -53,7 +54,7 @@ $.ajax({
                    sub_category=sub_category.concat(`<div class="form-group col-sm-3 sub1">
                     <input type='hidden' name='category_name' id='category-name'value=${sub_title.subcategory.category_name[i]}>`);
                     category_name.push(sub_title.subcategory.category_name[i]);
-                    sub_category=sub_category.concat(`<select name='sub_category' id='sub_category' class="form-control">
+                    sub_category=sub_category.concat(`<select name='sub_category' class='${category_name[i]}' id='sub_category' class="form-control">
                     <option selected disabled>${sub_title.subcategory.category_name[i]}</option>`);
                    i++; 
                    
@@ -86,7 +87,7 @@ $('#sub-category').html(sub_category);
   }
 
 })
-var c1=Array();
+
 function loadShop(...args){
 
 
@@ -167,18 +168,34 @@ $('.cnt-gst').click(function(){
 
 })
 }
-
+let attribute=Array()
+let cat_name
+let cat_value=Array()
 $(document).on('change','#sub_category',function(){
-  let cat_name=$('#category-name').val();
+  cat_name=$('#category-name').val();
+  var c1=Array();
   if(cat_name != 'kg'){
-     c1.push($(this).val());
-     cat1=c1[0];
-     cat2=c1[1];
+    let class_=$(this).attr('class')
+    
+    if(!attribute.includes(class_)){
+      attribute.push(class_)
+      c1.push($(this).val());
+      cat1=c1[0];
+      cat2=c1[1];
+      alert(c1);
+      cat_value.push(c1)
+    }else{
+      if(class_==attribute[0]){
+        cat_value[0]=$(this).val()
+      }else if(class_==attribute[1]){
+        cat_value[1]=$(this).val()
+      }
+    }
 
     var p_id=$('#productid').val();
     loadShop(p_id,cat1,cat2)
   }else{
-    kg=$(this).val();
+    cat_value.push($(this).val());
    
  
    price=$('.select_shop').data('price');
@@ -206,7 +223,7 @@ $('.cart').click(function(){
       },
       body:JSON.stringify({
          category_name:category_name,
-         category_value:c1,
+         category_value:cat_value,
          categoryId:categoryid,
          shopid,
          productid,
