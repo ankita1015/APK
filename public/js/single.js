@@ -1,3 +1,6 @@
+
+
+
 $('.view-img').click(function(){
     let src=$(this).attr('src');
     const order_img=document.getElementById('order-img');
@@ -36,10 +39,18 @@ $.ajax({
       while(a){
           
             let cat_name=sub_title.subcategory.category_name[i];
+            
                   if(cat_name=='' || cat_name==undefined){
                    a=false
                   }else{
-                  sub_category=sub_category.concat(`<div class="form-group col-sm-3 sub1">
+                   
+                   if(cat_name=='Kg' || cat_name =='KG' || cat_name=='kg'){
+                    sub_category=sub_category.concat(`<div class='col-md-3'>
+                    <input type='hidden' name='category_name' id='category-name'value=${cat_name}>
+                    <input type='number' class="form-control" id='sub_category' name='sub_category' placeholder='Kg#'></div>` )
+                    break;
+                   }else{
+                   sub_category=sub_category.concat(`<div class="form-group col-sm-3 sub1">
                     <input type='hidden' name='category_name' id='category-name'value=${sub_title.subcategory.category_name[i]}>`);
                     category_name.push(sub_title.subcategory.category_name[i]);
                     sub_category=sub_category.concat(`<select name='sub_category' id='sub_category' class="form-control">
@@ -62,10 +73,12 @@ $.ajax({
                   }
                   break;
                   }
-                  }        
+                  sub_category=sub_category.concat(`</select>
+                  </div>`);  
+                  }
+                }        
                     
-                   sub_category=sub_category.concat(`</select>
-                   </div>`);               
+                               
           }
     })
    
@@ -74,16 +87,10 @@ $('#sub-category').html(sub_category);
 
 })
 var c1=Array();
-$(document).on('change','#sub_category',function(){
-  
-     c1.push($(this).val());
-     cat1=c1[0];
-     cat2=c1[1];
-
-    var p_id=$('#productid').val();
+function loadShop(...args){
 
 
-var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
+  var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
                      <hr><table id='shop-order'>
                            <tr>
                                <th>Shop Name</th>
@@ -96,48 +103,61 @@ var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
                                <th>Select</th>
                                
                            </tr>`
+                           let obj=JSON.stringify(args);
+                           $.post('/load-order-shop',
+                           {
+                            obj
+                           },function(data,status){
+                             console.log(data);
+                            data.forEach(element=>{
 
-$.ajax({
-    url:'/load-order-shop',
-    type:'POST',
-    data:{p_id,cat1,cat2},
-    success:function(data){
-        data.forEach(element=>{
-
-            output=output.concat(`<tr> 
-                <td>${element.shopId.shopname}</td>
-                <td>${element.shopId.state}</td>
-                <td>${element.shopId.city}</td>
-                <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
-                <td>${element.shopId.area_code}</td>
-                <td>${element.shopId.mobileNo}</td>
-                <td><button style='background-color:lightgreen;width:50px;padding:3px;' >available</button></td>
-                <td><button style='background-color:lightgreen;width:50px;padding:3px;' class='select_shop'  
-                   data-shop_id=${element.shopId._id} 
-                   data-price=${element.total_price}
-                   data-gst=${element.gst}>Select</button></td>
-            </tr>`)
-        })
-       output=output.concat(`</table>`);
-       $('.order-shop-div').html(output)   
-    }
-
-});
+                              output=output.concat(`<tr> 
+                                  <td>${element.shopId.shopname}</td>
+                                  <td>${element.shopId.state}</td>
+                                  <td>${element.shopId.city}</td>
+                                  <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
+                                  <td>${element.shopId.area_code}</td>
+                                  <td>${element.shopId.mobileNo}</td>
+                                  <td><button style='background-color:lightgreen;width:50px;padding:3px;' >available</button></td>
+                                  <td><button style='background-color:lightgreen;width:50px;padding:3px;' class='select_shop'  
+                                     data-shop_id=${element.shopId._id} 
+                                     data-price=${element.total_price}
+                                     data-gst=${element.gst}>Select</button></td>
+                              </tr>`)
+                          })
+                         output=output.concat(`</table>`);
+                         $('.order-shop-div').html(output) 
+                            
+                           })
+                        
+                          
 let price;
+
 $(document).on('click','.select_shop',function(){
-  
+  let cat_name=$('#category-name').val();
+ 
   price=$(this).data('price');
    $('#price').text(`Rs.${price}`)
    $('.cnt-gst').show();
-   $('#qty').show()
+   if(cat_name =='kg' || cat_name=='KG' || cat_name=='Kg'){
+    
+   }else{
+    $('#qty').show() 
+   }
+  
+ 
    $('#shopid').val($(this).data('shop_id'));
 
 })
 let qty
 $('#qty').change(function(){
+   
    qty=$(this).val();
+   
+ 
    price=$('.select_shop').data('price');
-   $('#price').text(`Rs.${price * qty}`)
+  
+  $('#price').text(`Rs.${price * qty}`)
 })
 $('.cnt-gst').click(function(){
    price=$('.select_shop').data('price');
@@ -146,7 +166,31 @@ $('.cnt-gst').click(function(){
   $('#price').text(`Rs.${((price * qty)% gst)+(price*qty)}`)
 
 })
+}
+
+$(document).on('change','#sub_category',function(){
+  let cat_name=$('#category-name').val();
+  if(cat_name != 'kg'){
+     c1.push($(this).val());
+     cat1=c1[0];
+     cat2=c1[1];
+
+    var p_id=$('#productid').val();
+    loadShop(p_id,cat1,cat2)
+  }else{
+    kg=$(this).val();
+   
+ 
+   price=$('.select_shop').data('price');
+  
+  $('#price').text(`Rs.${price * kg}`)
+  }
 });
+let pid=$('#productid').val();
+loadShop(pid);
+
+
+
 $('.cart').click(function(){
     let categoryid=$('#product-category').val();
     let productid=$('#productid').val();
@@ -178,6 +222,7 @@ $('.cart').click(function(){
  })
 })
 $('.order').click(function(){
+  
   let qty=$('#qty').val();
   let productid=$('#productid').val();
   let total_price=$('#price').text();
