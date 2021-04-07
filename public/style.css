@@ -11,7 +11,7 @@ body {
   background:#fff;
   border:1px solid #ccc;
   border-radius:4px;
-  width:20rem;   
+  width:max-content;   
 }
  .dropdown .fa-user{
    font-size:15px;
