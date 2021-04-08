@@ -152,7 +152,7 @@ $(document).on('click','.select_shop',function(){
 })
 let qty
 $('#qty').change(function(){
-   
+  
    qty=$(this).val();
    
  
@@ -161,11 +161,16 @@ $('#qty').change(function(){
   $('#price').text(`Rs.${price * qty}`)
 })
 $('.cnt-gst').click(function(){
-   price=$('.select_shop').data('price');
-  
- let gst=$('.select_shop').data('gst')
-  $('#price').text(`Rs.${((price * qty)% gst)+(price*qty)}`)
-
+  price=$('.select_shop').data('price');
+  let gst=$('.select_shop').data('gst');
+ 
+  if(!cat_name == 'kg' || cat_name == 'KG'|| cat_name =='Kg'){
+   $('#price').text(`Rs.${((price * qty)% gst)+(price*qty)}`)
+  }
+ else{
+   let kg = $('#sub_category').val();
+   $('#price').text(`Rs.${((price * kg)% gst)+(price*kg)}`)
+ }  
 })
 }
 let attribute=Array()
@@ -195,7 +200,8 @@ $(document).on('change','#sub_category',function(){
     var p_id=$('#productid').val();
     loadShop(p_id,cat1,cat2)
   }else{
-    cat_value.push($(this).val());
+    var kg = $(this).val();
+    cat_value[0]=$(this).val();
    
  
    price=$('.select_shop').data('price');

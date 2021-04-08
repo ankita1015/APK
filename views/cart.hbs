@@ -31,8 +31,8 @@
       $(document).ready(function(){
         loadProduct();
     function loadProduct(){
-    
-      let output="<table id='shop-order'><tr><th>img</th><th>product Name</th><th>Category</th>";
+       var pre_category = ''
+      let output=" ";
          $.ajax({
             url:'/load-cart-products',
             type:'POST',
@@ -42,7 +42,9 @@
             $('.order-shop-div').html('<div id="cart_error" style="border:1px solid #dddd;padding:10px;text-align:center;background-color:#eee;font-size:15px;">Your Cart Currently empty</div>')
             return;
               }else{
-                data[0].sub_category.category_name.forEach(title=>{
+                var category_name = data[0].category.categoryname
+                if(category_name==pre_category){
+                     data[0].sub_category.category_name.forEach(title=>{
                    
                        output=output.concat(`<th>${title}</th>`);
               
@@ -66,7 +68,38 @@
 
                    </tr>`);
                 
-               })
+               })  
+                }
+                else{
+                  pre_category=category_name;
+                 output= output.concat("<table id='shop-order'><tr><th>img</th><th>product Name</th><th>Category</th>");
+                  data[0].sub_category.category_name.forEach(title=>{
+                   
+                       output=output.concat(`<th>${title}</th>`);
+              
+                })
+                output=output.concat('<th>Price(%)</th><th>action</th></tr>');
+              data.forEach(element=>{
+               
+                 output=output.concat(`<tr>
+                               <td style="padding: 0px;">
+                                <img src="${element.productId.images}" alt=""style='width:5rem;height:5rem;'/>
+                              </td>
+                              <td>${element.productId.product}</td>
+                              <td>${element.category.categoryname}`);
+                              element.sub_category.category_value.forEach(value=>{
+                                output=output.concat(`<td>${value}</td>`);
+                              });
+                              output=output.concat(`<td>${element.price}</td>
+                              <td style="width:5rem;">
+                                 <a   href='#' id="remove-cart" data-id=${element._id} style='background-color:red;'><i class='fa fa-trash'></i></a>
+                                 <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}&cart_id=${element._id}" style='background-color:green;' >Order</a></td>
+
+                   </tr>`);
+                
+               })  
+                }
+                
              }
                  output=output.concat('</table>');
 
