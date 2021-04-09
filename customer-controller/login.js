@@ -19,6 +19,7 @@ module.exports=async(req,res)=>{
                
              });
             }else{
+              console.log(userEmail)
               res.cookie('shopuser',token,{
                 expire: 360000 + Date.now(),
                 httponly:true

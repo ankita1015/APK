@@ -6,7 +6,7 @@ $('.login').click(function(){
       type:"POST",
       data:{email,password},
       success:function(data){
-        alert(data);
+       
         if(data==1){
           window.location.assign('/shop'); 
         }
@@ -30,42 +30,42 @@ $(".save").click(function(){
       })
        if(name=='' || name==undefined){
           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span>Name can't be blank</span>`;
+          style='cursor:pointer'>X</span><span>Name can't be blank</span>`;
           $('#e-error').css("display","block");  
              return
        }else if(!name.match(letters)){
         document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-        style='margin-right:40%;cursor:pointer'>X</span><span>Name must be in Alphabetical only</span>`;
+        style='cursor:pointer'>X</span><span>Name must be in Alphabetical only</span>`;
          $('#e-error').css("display","block");  
            return
        }
        if(email=='' || email==undefined){
            document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span>Email can't be blank</span>`;
+          style='cursor:pointer'>X</span><span>Email can't be blank</span>`;
           $('#e-error').css("display","block");  
              return
        } else if(!filter.test(email)){
            document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span> Invalid email id</span>`;
+          style='cursor:pointer'>X</span><span> Invalid email id</span>`;
           $('#e-error').css("display","block");  
              return
        }
        if(password=='' || password==undefined){
            document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span>Password can't be blank</span>`;
+          style='cursor:pointer'>X</span><span>Password can't be blank</span>`;
           $('#e-error').css("display","block");  
               return
         }
        if(cpassword=='' || cpassword==undefined){
            document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span>Confirm-password can't be blank</span>`;
+          style='cursor:pointer'>X</span><span>Confirm-password can't be blank</span>`;
           $('#e-error').css("display","block");    
               return
         }
 
          if(password!=cpassword){
               document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='margin-right:40%;cursor:pointer'>X</span><span>password & confirm-password must be same </span>`;
+          style='cursor:pointer'>X</span><span>password & confirm-password must be same </span>`;
           $('#e-error').css("display","block");  
               return
         }
@@ -88,71 +88,12 @@ $(".save").click(function(){
        });
       });
 
-    $('#shopname').mouseout(function(){
-        var shopname=$('#shopname').val()
-      if(shopname=='' || shopname==undefined){
-         document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-         style='margin-right:40%;cursor:pointer'>X</span><span>Shop Name can't be blank</span>`;
-         $('#s-error').css("display","block");  
-         return
-     }  
-     })
-    $('#address1').mouseout(function(){
-      var address1=$('#address1').val()
-
-        if(address1=='' || address1==undefined){
-            document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-            style='margin-right:40%;cursor:pointer'>X</span><span>Shop Address can't be blank</span>`;
-            $('#s-error').css("display","block");  
-            return
-        }
-       
-    })
-    $('#address2').mouseout(function(){
-      var address2=$('#address2').val()
-       
-    })
-    $('#city').mouseout(function(){
-        var city=$('#city').val()
-    
-      if(city =='' || city==undefined){
-            document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-            style='margin-right:40%;cursor:pointer'>X</span><span>city can't be blank</span>`;
-            $('#s-error').css("display","block");  
-            return
-        }
-
-    })
-    $("#state").mouseout(function(){
-      var state=$('#state').val()
-
-    if(state =='' || state==undefined){
-        document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-        style='margin-right:40%;cursor:pointer'>X</span><span>State can't be blank</span>`;
-        $('#s-error').css("display","block");  
-        return
-        }
-
-    
-    })  
-    $('#code').mouseout(function(){
-      var code=$('#code').val()
-
-        if(code=='' || code==undefined){
-            document.getElementById('s-error').innerHTML=`<span class='error-icon' 
-            style='margin-right:40%;cursor:pointer'>X</span><span>Area code can't be blank</span>`;
-            $('#s-error').css("display","block");  
-            return
-        }
-        
-    })
-    $('#mobileNo').mouseout(function(){
-      var mobileNo=$('#mobileNo').val()
-
+   
       
       
-    $('.create-account').click(function(e){
-      var shopname=$('#shopname').val()  
+    $('#create-account').click(function(e){
+      e.preventDefault()
+      var shopname=$('#shopname').val() 
       var address1=$('#address1').val()
       var address2=$('#address2').val()
       var city=$('#city').val()
@@ -160,7 +101,36 @@ $(".save").click(function(){
       var code=$('#code').val()
       var mobileNo=$('#mobileNo').val()
       var gst=$('#gst').val()
-      e.preventDefault()
+     
+      if(shopname=='' || shopname==undefined){
+         document.getElementById('s-error').innerHTML=`<span>Shop Name can't be blank</span>`;
+         $('#s-error').css("display","block"); 
+
+         return
+     }  
+     
+        if(address1=='' || address1==undefined){
+            document.getElementById('s-error').innerHTML=`<span>Shop Address can't be blank</span>`;
+            $('#s-error').css("display","block");  
+            return
+        }
+  
+      if(city =='' || city==undefined){
+            document.getElementById('s-error').innerHTML=`<span>city can't be blank</span>`;
+            $('#s-error').css("display","block");  
+            return
+        }
+    if(state =='' || state==undefined){
+        document.getElementById('s-error').innerHTML=`<span>State can't be blank</span>`;
+        $('#s-error').css("display","block");  
+        return
+        }
+
+        if(code=='' || code==undefined){
+            document.getElementById('s-error').innerHTML=`<span>Area code can't be blank</span>`;
+            $('#s-error').css("display","block");  
+            return
+        }
        $.ajax({
            url:'/shop',
            type:'POST',
@@ -170,5 +140,6 @@ $(".save").click(function(){
            }
        })
   })
-
-    })
+ $('#s-error').click(function(){
+   $(this).hide();
+ })

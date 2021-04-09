@@ -1,97 +1,56 @@
-
-   
-<div class="col-md-12">
-    
-    <div class="row d-flex mt-200"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Start Selling</button> </div> <!-- Modal -->
-         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Complete Your Registration</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-                </div>
-                <div class="modal-body">
-                    <div id="smartwizard">
-                        <ul>
-                            <li><a href="#step-1">Step 1<br /><small>Account Info</small></a></li>
-                            <li><a href="#step-2">Step 2<br /><small>Company Info</small></a></li>
-                            <li><a href="#step-3">Step 3<br /><small>Add GST Number</small></a></li>
-                            <li><a href="#step-4">Step 4<br /><small>Confirm details</small></a></li>
-                        </ul>
-                        <div>
-                            <div id="step-1">
-                                <p id='e-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
-
-                                <div class="row">
-                                    <div class="col-md-6"> <input type="text" class="form-control" id='name' placeholder="Name" required> </div>
-                                    <div class="col-md-6"> <input type="text" class="form-control" id='email' placeholder="Email" required> </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"> <input type="password" class="form-control" id='password'     placeholder="Password" required> </div>
-                                    <div class="col-md-6"> <input type="password" class="form-control" id='re_password'  placeholder="Repeat password" required> </div>
-                                </div>
-                                <br>
-                            <button class="btn btn-primary save">Save</button>
-
-                            </div>
-                            <div id="step-2">
-                                <p id='s-error' style='color:red;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightpink;display:none;'></p> 
-
-                                <div class="row">
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="shopname" placeholder="Company Name" required> </div>
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="address1" placeholder="Address" required> </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="address2" placeholder="Alternative Address" required> </div>
-                                    <div class="col-md-6"> <input type="text" class="form-control"  id="code" placeholder="Area Code" required> </div>
-                                </div>
-                                <br>
-                                 <div class="row">
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="city" placeholder="City" required> </div>
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="state" placeholder="State" required> </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-6"> <input type="text" class="form-control" id="mobileNo" placeholder="Phone Number" required> </div>
-                                </div>
-                            </div>
-                            <div id="step-3" class="">
-                                <div class="row">
-                                    <div class="col-md-6"> <input type="number" class="form-control" id="gst" placeholder=" Add GST Number" required> </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6"> 
-                                        <br><br><input type="checkbox"  id="gst"  required><label for="phone">  I  Don't have a GST Number</label> <br><br><br>
-                                    </div>
-                                     
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary create-account">Create Account</button>
-                                </div>
-                            </div>
-                            <div id="step-4" class="">
-                                <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-5"> 
-                                    <h2 style="text-align: center;">Successfull...</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="btn-toolbar sw-toolbar sw-toolbar-bottom justify-content-end">
-                                <div class="btn-group mr-2 sw-btn-group" role="group">
-                                    <button class="btn btn-secondary sw-btn-prev disabled" type="button">Previous</button>
-                                    <button class="btn btn-secondary sw-btn-next" type="button">Next</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{{>styleing}}
+<div class="container">
+<div class="row">
+<div class=" col-md-offset-3 col-md-7">
+<form id="input-form">
+<h5 id="form-heading">Create/Add Company</h5>
+<div class="form-group">
+<label>Company Name:</label>
+<input type="text" class="form-control" id="shopname" placeholder="Company Name" required>
 </div>
- </div> 
- 
+<div class="form-group">
+<label>Address:</label>
+<input type="text" class="form-control" id="address1" placeholder="Address" required>
+</div>
+<div class="form-group">
+    <label>Alt Address:</label>
+    <input type="text" class="form-control" id="address2" placeholder="Alternative Address" required>
+</div>
+<div class="form-group col-md-6">
+    <label>Area Code:</label>
+    <input type="text" class="form-control"  id="code" placeholder="Area Code" required>
+</div>
+<div class="form-group col-md-6">
+    <label>City:</label>
+    <input type="text" class="form-control" id="city" placeholder="City" required>
+</div>
+<div class="form-group col-md-6">
+    <label>State:</label>
+    <input type="text" class="form-control" id="state" placeholder="State" required>
+</div>
+<div class="form-group col-md-6">
+    <label>Mobile No:</label>
+    <input type="text" class="form-control" id="mobileNo" placeholder="Phone Number" required>
+</div>
+<div class="form-group">
+    <label>GST:</label>
+    <input type="text" class="form-control" id="gst" placeholder="GST">
+</div>
+<div>
+ <div id="s-error" style="border:1px solid red;padding:10px;text-align:center;background-color:tomato;font-size:15px;display:none;margin-bottom:5px;">
+
+ </div>
+</div>
+<div class="form-group">
+    <input type="submit" class="btn btn-secondary" id= "create-account">
+</div>
+</form>
+</div>
+</div>
+</div>
+<script src="./jquery.min.js"></script>
 <script src="./shop-validation.js"></script>
+                               
 
     
    

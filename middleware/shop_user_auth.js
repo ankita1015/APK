@@ -12,7 +12,6 @@ const shopuser=async(req,res,next)=>{
         const verifyuser=await jwt.verify(token,'mynameiskunjanbarotprogrammer');
         const user= await UserDocument.findOne({_id:verifyuser._id});
         req.token=token;
-        
         req.shopuser=user; 
         
         next();

@@ -102,6 +102,7 @@ res.render('selling');
 
 });
 app.post('/total-selling',shopuser,shopAuth,require('./shop-controller/total-selling'))
+app.get('/shop-logout',shopuser,require('./shop-controller/shop-logout'));
 
 // Customer side Pages
 
@@ -173,6 +174,9 @@ app.get('/add-slider-img',adminauth,(req,res)=>{
 })
 app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
 app.post('/search-category',require('./admin-controller/search-category'))
+app.get('/l',(req,res)=>{
+    res.render('L1');
+})
 
 
 

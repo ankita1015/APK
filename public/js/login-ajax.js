@@ -6,8 +6,8 @@ $(document).on("click",".error-icon",function(){
  })
 login_btn.addEventListener('click',(e)=>{
     e.preventDefault();
-     let email=$('#login-email').val();
-     let password=$('#password').val();
+     let email=$('.login-email').val();
+     let password=$('.login-password').val();
      if(email==''){
      document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>email can't blank</span>";
      $('#e-error').css("display","block");
@@ -18,20 +18,14 @@ login_btn.addEventListener('click',(e)=>{
         $('#e-error').css("display","block");
         return;
     }
-    // else{
-    //     document.getElementById('e-error').innerHTML="";
-    // }
+    
 
     if(password==''){
      document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span> Password can't be blank</span>";
      $('#e-error').css("display","block");
      return;
      }
-    //  else{
-    //     document.getElementById('e-error').innerHTML="";
-    //     $('#e-error').css("display","block");
-    //  }
-    
+   
     
      
      $.ajax({
