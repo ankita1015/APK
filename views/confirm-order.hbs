@@ -33,7 +33,7 @@
                                   <div class="col-md-5 orders-detail">
                                     <h3>{{product.[0].productId.product}}</h3>
                                     <p style="display: none;" id='category_name'>{{product.[0].sub_category.category_name}}</p>
-                                    <p style="display: none;" id='category_value'>{{product.[0].sub_category.category_value}}</p>
+                                    <p style="display: none;" id='category_value'>{{category_value}}</p>
                                     <div class="sub_catagory_div">
 
                                     </div>
@@ -113,18 +113,27 @@
      let category_name=$('#category_name').text();
     
      let category_value=$('#category_value').text();
+       
+    if(category_name=='kg' || category_name=='Kg' || category_name=='KG'){
+     $('#qty').attr('placeholder',category_name)
+        $('#qty').val(category_value)
     
-     category_name=category_name.split(',');
+    }else{
+        category_name=category_name.split(',');
      category_value=category_value.split(',');
      let printCategory='<div>';
         let sc=0;
       category_name.forEach(name=>{
          printCategory=printCategory.concat(`<p>${name}:-${category_value[sc]}</p>`)
          sc++;
-     }) 
-    printCategory=printCategory.concat('</div>');
+         
+      })
+       printCategory=printCategory.concat('</div>');
+       $('.sub_catagory_div').html(printCategory)
+    }
+     
 
-    $('#qty').change(function(){
+    $('#qty').keyup(function(){
        let qty = $(this).val();
        if(qty<=0){
            return;
@@ -137,8 +146,6 @@
          $('#total_price').text(`Rs.${price*qty}`);
 
      });
-    
-     $('.sub_catagory_div').append(printCategory);
 
         $(document).on('click','.confirm-order',function(){
             let cart_id=$('#cartid').val();
@@ -152,7 +159,7 @@
             let  categoryid=$('#categoryid').val();
             let  shopid=$(this).data('shopid');
            
-        fetch('/confirm-order',{
+                   fetch('/confirm-order',{
        method:'POST',
        headers:{
            'Content-Type':'application/json'

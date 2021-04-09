@@ -248,10 +248,11 @@ $('.order').click(function(){
   
   let qty=$('#qty').val();
   let productid=$('#productid').val();
+  let sub_value=cat_value
   let total_price=$('#price').text();
   total_price=total_price.replace('Rs.','');
 
 
   
-   window.location.assign(`/insert-order?id=${productid}&qty=${qty}&price=${total_price}`)
+   window.location.assign(`/insert-order?id=${productid}&qty=${qty}&price=${total_price}&category_value=${cat_value}`)
 })
