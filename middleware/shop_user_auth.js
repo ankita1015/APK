@@ -18,7 +18,7 @@ const shopuser=async(req,res,next)=>{
         next();
          
     }catch(err){
-         res.render('add-shop',{
+         res.render('shop-login',{
              err:'1',
          });
 

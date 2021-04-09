@@ -1,8 +1,27 @@
+$('.login').click(function(){
+  var email=$('.login-email').val();
+  var password=$('.login-password').val();
+    $.ajax({
+      url:'/login',
+      type:"POST",
+      data:{email,password},
+      success:function(data){
+        alert(data);
+        if(data==1){
+          window.location.assign('/shop'); 
+        }
+      }
+       
+    })
+})
+
+
 $(".save").click(function(){
-    var name=$('#name').val();  
-    var email=$('#email').val()
-    var password=$('#password').val()
-    var cpassword=$('#re_password').val()
+    var name=$('.name').val();  
+  
+    var email=$('.email').val()
+    var password=$('.password').val()
+    var cpassword=$('.re_password').val()
 
     var letters = /^[A-Za-z\s]+$/;
    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -57,10 +76,11 @@ $(".save").click(function(){
                data:{name,email,password,cpassword,role},
                success:function(data){
       if(data==1){  
-      $('#name').val("")  
-      $('#email').val("")
-      $('#password').val("")
-      $('#re_password').val("")    
+      $('.name').val("")  
+      $('.email').val("")
+      $('.password').val("")
+      $('.re_password').val("")    
+      window.location.assign('/shop')   
       }
 
 

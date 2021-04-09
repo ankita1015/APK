@@ -2,6 +2,7 @@ const UserDocument=require('../modals/user');
 const bcrypt=require('bcryptjs');
 module.exports=async(req,res)=>{
     try{
+      
 
         const userEmail=await UserDocument.findOne({email:req.body.email});
         if(userEmail===null){

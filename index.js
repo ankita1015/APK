@@ -89,6 +89,10 @@ app.get('/view-order',(req,res)=>{
 })
 //viw product//
 app.get('/view-product',shopuser,shopAuth,require('./customer-controller/view'));
+app.get('/shop-login',(req,res)=>{
+    res.render('shop-login')
+})
+
 app.get('/shop',shopuser,shopAuth,(req,res)=>{
   res.status(200).render('ourorders');
 });
@@ -169,6 +173,10 @@ app.get('/add-slider-img',adminauth,(req,res)=>{
 })
 app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
 app.post('/search-category',require('./admin-controller/search-category'))
+
+
+
+
 app.get('*',(req,res)=>{
     res.status(404).render('404');
 })

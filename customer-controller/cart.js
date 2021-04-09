@@ -1,7 +1,10 @@
 const cartDocument=require('../modals/cartmodal');
 
 module.exports=async(req,res)=>{
-    const cartProducts=await cartDocument.find({'userId':req.user._id}).populate(['productId','category']).exec((err,data)=>{
+    const cartProducts=await cartDocument.find({'userId':req.user._id})
+ 
+    .populate(['productId','category'])
+    .exec((err,data)=>{
       
         if(data){
     
