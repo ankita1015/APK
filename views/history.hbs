@@ -46,91 +46,132 @@
           url:'/order-history',
           type:"POST",
           success:function(data){
-      
-                let output=''
-                data.forEach(ele=>{
-                
-                  let shopname=''
-                  let ct=1;
-                  
-                  let date=ele.date_time.split('||');
-              
+             let uniqueshop=Array();
+            let uniquedates=Array();
+            let output=''
+                data.forEach(shop=>{ 
+               if(!uniqueshop.includes(shop.shopId.shopname)){
+                  uniqueshop.push(shop.shopId.shopname);
+                 }
+                })
+            data.forEach(dates=>{
+              if(!uniquedates.includes(dates.date_time)){
+                uniquedates.push(dates.date_time)
+              }
+            })
+              let c=0
+           uniquedates.forEach(shopdate=>{
+              let date=shopdate.split('||');
                   let year=date[1].split('/')
-                  y=year[2];
+                  let y=year[2];
                   let month=year[1];
                   let day=year[0];
-                  data.forEach(subdata=>{      
-                    let subdate=subdata.date_time.split('||');
-                    let subyear=subdate[1].split('/');
-                  
-                    suby=subyear[2];
-                    let subm=subyear[1];
-                    let subd=subyear[0];
-                    if(y==suby &&  month==subm && day==subd){
-                      console.log(day);
-                      data.forEach(shopdata=>{
-                      if()
-                      if(shopname==shopdata.shopId.shopname){
-                        console.log(shopname);
-                        output=output.concat(`<tr>
-                        <td>${ct}</td>
-                        <td><img src='${shopdata.productId.images[0]}' style='width:5rem;height:5rem;'></td>
-                        <td>${shopdata.productId.product}</td>`);
-                        shopdata.sub_category.category_value.forEach(val=>{
-                          output=output.concat(`<td>${val}</td>`)
-                        })  
-
-                        let orderDate=shopdata.date_time
-                        orderDate=orderDate.split('||');
-                        orderDate=orderDate[1]; 
-                        output=output.concat(`
+                     
+             output=output.concat(`<h4 style='text-align:center'>${month}/${y}</h4><hr>`);
+             data.forEach(shopdata=>{
+               let subdate=shopdata.date_time.split('||');
+                     let subyear=subdate[1].split('/');
+                     let suby=subyear[2];
+                     let subm=subyear[1];
+                     let subd=subyear[0];
+                     let shopname
+             if(y==suby &&  month==subm && day==subd){
+                   
+                   data.forEach(shop=>{
+                      let sdate=shop.date_time.split('||');
+                      let syear=sdate[1].split('/');
+                      let sy=syear[2];
+                      let sm=subyear[1];
+                      let sd=subyear[0];
+                    if(y==sy &&  month==sm && day==sd){
+                        if(shopname==shop.shopId.shopname){
+                            output=output.concat(`<tr>
+                             <td>${1}</td>
+                             <td><img src='${shop.productId.images[0]}' style='width:5rem;height:5rem;'></td>
+                             <td>${shop.productId.product}</td>`);  
+                             if(!shop.sub_category.category_name=='kg' || shop.sub_category.category_name=='KG'){
+                               shop.sub_category.category_value.forEach(val=>{
+                               output=output.concat(`<td>${val}</td>`)
+                               console.log(val)
+                               })  
+                             }else{
+                               output=output.concat(`<td>${shop.sub_category.category_value[0]}</td>`)
+                              }
+                             let orderDate=shop.date_time
+                             orderDate=orderDate.split('||');
+                             orderDate=orderDate[1]; 
+                             output=output.concat(`
+                             <td>${orderDate}</td>`);
+                             output=output.concat(`<td>${shop.price}</td>
+                             <td>${shop.qty}</td>
+                             <td><p style='padding:3px;background-color:lightgreen;width:60%;margin:auto;border-radius:5px;'>${shop.status}</p></td>
+                             </tr>`)
+                        }else{
+                         let ct=1
+                         shopname=shop.shopId.shopname
+                         console.log(output);
+                         output=output.concat(`<table id="shop-order-div">
+                           <tr>
+                           <th>Sr No</th>
+                           <th>img</th>
+                           <th>Product Name</th>`)
+                           console.log(shop.sub_category.category_name)
+                           if(ct==1){
+                             if(!shop.sub_category.category_name=='kg'){
+                               shop.sub_category.category_name.forEach(name=>{
+                               console.log(name)
+                               output=output.concat(`<th>${name}</th>`);  
+                               })
+                             }else{
+                               shop.sub_category.category_name.forEach(name=>{
+                               console.log(name)
+                               output=output.concat(`<th>${name}</th>`);  
+                              })
+                            
+                               } 
+                            }
+                          output=output.concat(`<th>Date</th><th>Price</th><th>Qty</th><th>Payment</th></tr>`);
+                          output=output.concat(`<tr>
+                          <td>${1}</td>
+                          <td><img src='${shop.productId.images[0]}' style='width:5rem;height:5rem;'></td>
+                          <td>${shop.productId.product}</td>`);  
+                            
+                         if(!shop.sub_category.category_name=='kg' || shop.sub_category.category_name=='KG'){
+                              shop.sub_category.category_value.forEach(val=>{
+                              output=output.concat(`<td>${val}</td>`)
+                            })  
+                         }else{
+                             output=output.concat(`<td>${shop.sub_category.category_value[0]}</td>`)
+                          }
+                          let orderDate=shop.date_time
+                          orderDate=orderDate.split('||');
+                          orderDate=orderDate[1]; 
+                          output=output.concat(`
                           <td>${orderDate}</td>`);
                              
-                          output=output.concat(`<td>${shopdata.price}</td>
-                          <td>${shopdata.qty}</td>
-                          <td><p style='padding:3px;background-color:lightgreen;width:60%;margin:auto;border-radius:5px;'>${subdata.status}</p></td>
-                         
-                        </tr>`);
-                      }
-                      else{
-                        console.log(shopname);
-                        shopname=shopdata.shopId.shopname
-                        output=output.concat(`<table id="shop-order-div">
-                          <tr>
-                          <th>Sr No</th>
-                          <th>img</th>
-                          <th>Product Name</th>`)
-                          if(ct==1){
-                            shopdata.sub_category.category_name.forEach(name=>{
-                            output=output.concat(`<th>${name}</th>`);  
-                            })
-                          }
-                          output=output.concat(`<th>Date</th><th>Price</th><th>Qty</th><th>Payment</th></tr>`);
-                        
-                      }
-                      })
+                          output=output.concat(`<td>${shop.price}</td>
+                          <td>${shop.qty}</td>
+                          <td><p style='padding:3px;background-color:lightgreen;width:60%;margin:auto;border-radius:5px;'>${shop.status}</p></td>
+                          </tr>`)
+                    
+                           ct++;
+                       }
+                       
                     }
-                    else{
-                       date=subdata.date_time.split('||');
-              
-                      year=date[1].split('/')
-                      y=year[2];
-                       month=year[1];
-                       day=year[0];
-                    }
-                     ct++;
-                    })
+                  })               
+                   
                  
-                })
-           
-                 output=output.concat('</table>');
-               $('.post-content').html(output); 
-           
-
+             }
+             })
+            
+               
+           })
+           console.log(output)
+            $('.post-content').html(output); 
+         
           }
-        })
-
       })
+      });
     </script>
 
 </body>
