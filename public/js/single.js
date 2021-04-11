@@ -54,7 +54,7 @@ $.ajax({
                    sub_category=sub_category.concat(`<div class="form-group col-sm-3 sub1">
                     <input type='hidden' name='category_name' id='category-name'value=${sub_title.subcategory.category_name[i]}>`);
                     category_name.push(sub_title.subcategory.category_name[i]);
-                    sub_category=sub_category.concat(`<select name='sub_category' class='${category_name[i]}' id='sub_category' class="form-control">
+                    sub_category=sub_category.concat(`<select name='sub_category' class='${category_name[i]} form-control' id='sub_category' class="form-control">
                     <option selected disabled>${sub_title.subcategory.category_name[i]}</option>`);
                    i++; 
                    

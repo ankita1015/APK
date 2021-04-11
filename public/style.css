@@ -1,25 +1,26 @@
-body {
-  background:#ccc;
+body{
+  line-height: 1.8px;
 }
 .nav {
   position:absolute;
+  padding: 4px;
 }
 .nav>li>a:hover, .nav>li>a:focus, .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
   background:#fff;
 }
 .dropdown {
-  background:#fff;
-  border:1px solid #ccc;
-  border-radius:4px;
-  width:max-content;   
+
+  background-color:whitesmoke ;
+  margin-top: -6;
+  font-size:15px;
+  font-weight:bolder;
+  width:max-content;  
+
 }
  .dropdown .fa-user{
    font-size:15px;
  }
-.dropdown-menu>li>a {
-  color:#428bca;
-  
-}
+
 
 .dropdown ul.dropdown-menu {
   border-radius:4px;
@@ -102,7 +103,7 @@ body {
   
   body {
     font-size: 10px;
-    line-height: 1.8;
+    line-height: 1;
     color: #222;
    
     background-size:100%;
@@ -301,9 +302,7 @@ border-bottom: 2px solid #333;
   padding:10px ;
   
 }
-body{
-  background-color: floralwhite;
-}
+
 #input-form #form-heading,#form-heading{
   padding: 10px;
   text-align: center;
@@ -327,6 +326,7 @@ img.logo{
 #header-admin{
   background-color: #D48166;
   padding: 15px 0;
+  
 }
 
 #header-admin .admin-logout{
