@@ -9,6 +9,7 @@ module.exports=async(req,res)=>{
         res.send('email_error');
         }else{
           let ismatch=await bcrypt.compare(req.body.password.toString(),userEmail.password);
+            
           if(ismatch==true){
           
                const token =await userEmail.generateAuthoToken();
@@ -18,10 +19,9 @@ module.exports=async(req,res)=>{
                 httponly:true
                
              });
-            }else{
-              console.log(userEmail)
+             }else{
+             
               res.cookie('shopuser',token,{
-                expire: 360000 + Date.now(),
                 httponly:true
                
              });

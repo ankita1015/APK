@@ -164,12 +164,16 @@ $('.cnt-gst').click(function(){
   price=$('.select_shop').data('price');
   let gst=$('.select_shop').data('gst');
  
-  if(!cat_name == 'kg' || cat_name == 'KG'|| cat_name =='Kg'){
-   $('#price').text(`Rs.${((price * qty)% gst)+(price*qty)}`)
+  if(cat_name != 'kg' || cat_name != 'KG'|| cat_name !='Kg'){
+    let gstprice=(price * qty)+(price*gst)/100;
+    gstprice=Math.floor(gstprice)
+   $('#price').text(`Rs.${gstprice}`)
   }
  else{
    let kg = $('#sub_category').val();
-   $('#price').text(`Rs.${((price * kg)% gst)+(price*kg)}`)
+   let gstprice=(price * qty)+(price*gst)/100;
+   gstprice=Math.floor(gstprice)
+   $('#price').text(`Rs.${gstprice}`)
  }  
 })
 }

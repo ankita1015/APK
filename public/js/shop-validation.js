@@ -6,7 +6,7 @@ $('.login').click(function(){
       type:"POST",
       data:{email,password},
       success:function(data){
-       alert(data);
+  
         if(data==1){
           window.location.assign('/shop'); 
         }
