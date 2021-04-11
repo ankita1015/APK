@@ -1,4 +1,20 @@
 $(document).ready(function(){
+
+    $(document).on('click','#order',function(){
+        let price=$(this).data('price')
+       
+        let table=$(this).parent().parent().parent().parent()
+             
+        let qty=table.find('#qty').val()
+      
+        let productid=$('#productid').val();
+        let sub_value=cat_value
+        let total_price=price*qty
+   
+       window.location.assign(`/insert-order?id=${productid}&qty=${qty}&price=${total_price}&category_value=${cat_value}`)
+      })
+
+
        
     function loadProduct(){
        var pre_category = ''
@@ -57,7 +73,7 @@ $(document).ready(function(){
                                   <td data-price='${element.price}'>${element.price}</td>
                                   <td style="width:5rem;">
                                   <a   href='#' id="remove-cart" data-id=${element._id} style='background-color:red;'><i class='fa fa-trash'></i></a>
-                                  <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}&cart_id=${element._id}" style='background-color:green;' >Order</a></td>
+                                  <a   href="#" style='background-color:green;' id='order' >Order</a></td>
 
                                    </tr>`);
                               }else{
@@ -73,7 +89,7 @@ $(document).ready(function(){
                                    <td data-price='${element.price}'>${element.price}</td>
                                   <td style="width:5rem;">
                                   <a   href='#' id="remove-cart" data-id=${element._id} style='background-color:red;'><i class='fa fa-trash'></i></a>
-                                  <a   href="/insert-order?id=${element.productId._id}&qty=${element.qty}&price=${element.price}&cart_id=${element._id}" style='background-color:green;' >Order</a></td>
+                                  <a   href="#" style='background-color:green;' id='order' data-price='${element.price}' >Order</a></td>
 
                                    </tr>`);
 
@@ -133,17 +149,20 @@ $(document).ready(function(){
 
 
     })
+    let totalprice=''
  function loadTotal(){
     let price=$(this).parent().next().data('price')
     let input=$(this).val();
     if(input<=0){
        return;
     }
-    let totalprice=price*input;
+     totalprice=price*input;
     $(this).parent().next().text(totalprice)
     let table=$(this).parent().parent().parent().parent()
     table.find('#lstchd').html(`<td colspan='8' style='text-align:right;' id='totalAmount'><b>Total Amount:-</b>${totalprice}</td>`)
-
+   
  }
  loadTotal();
+
+
 });

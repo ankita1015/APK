@@ -177,7 +177,7 @@ function easingInOutQuad(t){
 
 
 
-$(document).ready(function(){
+$(document).ready(function(){ 
    let total_price;
    $('#price').keyup(function(){
     
