@@ -178,7 +178,9 @@ app.get('/temp',(req,res)=>{
     res.render('L1');
 })
 
-
+app.get('/si',(req,res)=>{
+    res.render('si');
+})
 
 
 app.get('*',(req,res)=>{
