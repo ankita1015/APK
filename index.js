@@ -174,7 +174,7 @@ app.get('/add-slider-img',adminauth,(req,res)=>{
 })
 app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
 app.post('/search-category',require('./admin-controller/search-category'))
-app.get('/l',(req,res)=>{
+app.get('/temp',(req,res)=>{
     res.render('L1');
 })
 

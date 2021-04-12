@@ -19,6 +19,7 @@ window.onload = function(){
   slider.init();
 }
 
+
 class DXslider{
   constructor(property){
     this.images = document.querySelector(property.element);
@@ -76,6 +77,7 @@ class DXslider{
       }
     }.bind(this), false);
   }
+  
   
   settingStyle(){
     this.imagesWidth = this.images.offsetWidth;

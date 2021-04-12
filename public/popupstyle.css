@@ -109,10 +109,10 @@ h1 {
   font-size: 12px;
 }
 .pen-title span .fa {
-  color: #ed2553;
+  color: #D48166;
 }
 .pen-title span a {
-  color: #ed2553;
+  color: #D48166;
   font-weight: 600;
   text-decoration: none;
 }
@@ -208,10 +208,10 @@ h1 {
 .login-card .login-title {
   position: relative;
   z-index: 1;
-  border-left: 5px solid #ed2553;
+  border-left: 5px solid #D48166;
   margin: 0 0 35px;
   padding: 10px 0 10px 50px;
-  color: #ed2553;
+  color: #D48166;
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -307,7 +307,7 @@ h1 {
   top: 50%;
   left: 50%;
   display: block;
-  background: #ed2553;
+  background: #D48166;
   width: 30px;
   height: 30px;
   border-radius: 100%;
@@ -316,10 +316,10 @@ h1 {
   transition: 0.3s ease;
 }
 .login-card .button-container button:hover, .login-card .button-container button:active, .login-card .button-container button:focus {
-  border-color: #ed2553;
+  border-color: #D48166;
 }
 .login-card .button-container button:hover span, .login-card .button-container button:active span, .login-card .button-container button:focus span {
-  color: #ed2553;
+  color: #D48166;
 }
 .login-card .button-container button:active span, .login-card .button-container button:focus span {
   color: #ffffff;
@@ -362,7 +362,7 @@ h1 {
 }
 .login-card.alt .toggle {
   position: relative;
-  background:#ed2553;
+  background:#D48166;
   width: 140px;
   height: 140px;
   border-radius: 100%;
@@ -432,7 +432,7 @@ h1 {
   border-color: #ffffff;
 }
 .login-card.alt .button-container button span {
-  color: #ed2553;
+  color: #D48166;
 }
 .login-card.alt .button-container button:hover {
   background: rgba(255, 255, 255, 0.9);

@@ -22,11 +22,14 @@ $(document).ready(function(){
             standerd:standerd
          })
     }).then((result)=>{
-        $('input[name="sub_cat_name[]"]')=val('')
+        
+        $('input[name="sub_cat_name[]"]').val('')
         $('input[name="sub_cat[]"]').val('');
         $('#add-sat').val('');
+
     })
  })
+
 
 $('#more-category-btn').click(function(){
         $('.more-category-field').show();

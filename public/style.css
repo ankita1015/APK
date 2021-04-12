@@ -324,11 +324,11 @@ img.logo{
 }
 
 #header-admin{
-  background-color: #D48166;
+  background-color:white;
   padding: 15px 0;
   
 }
-
+  
 #header-admin .admin-logout{
   margin: 10px 0;
   color: #E6E2DD;
