@@ -22,7 +22,7 @@ module.exports=async(req,res)=>{
         standard,
     })
     await subcategoryDoc.save();
-    res.send(1)
+    res.send('1')
     }catch(err){
 console.log(err);
     }

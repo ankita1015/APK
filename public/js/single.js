@@ -191,8 +191,7 @@ $(document).on('change','#sub_category',function(){
       c1.push($(this).val());
       cat1=c1[0];
       cat2=c1[1];
-      alert(c1);
-      cat_value.push(c1)
+         cat_value.push(c1)
     }else{
       if(class_==attribute[0]){
         cat_value[0]=$(this).val()
