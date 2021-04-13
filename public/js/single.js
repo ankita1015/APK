@@ -24,6 +24,7 @@ $('.fa-chevron-down').click(function(){
 
 
 let id=$('#product-category').val()
+
 let category_name=Array();
 $.ajax({
   url:'/load-single-sub-category',
@@ -46,12 +47,20 @@ $.ajax({
                    
                    if(cat_name=='Kg' || cat_name =='KG' || cat_name=='kg'){
                    category_name.push(cat_name)
-                    sub_category=sub_category.concat(`<div class='col-md-3'>
+
+                   
+                    $('#category-load').html(`
                     <input type='hidden' name='category_name' id='category-name'value=${cat_name}>
-                    <input type='number' class="form-control" id='sub_category' name='sub_category' placeholder='Kg#'></div>` )
+                    <div class="def-number-input number-input safari_only mb-0">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                      class="minus"></button>
+                    <input class="quantity" id='sub_category' min="0" name="quantity" value="1" type="number">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                      class="plus"></button>
+                  </div>`)
                     break;
                    }else{
-                   sub_category=sub_category.concat(`<div class="form-group col-sm-3 sub1">
+                   sub_category=sub_category.concat(`<div class="form-group col-sm-5 sub1">
                     <input type='hidden' name='category_name' id='category-name'value=${sub_title.subcategory.category_name[i]}>`);
                     category_name.push(sub_title.subcategory.category_name[i]);
                     sub_category=sub_category.concat(`<select name='sub_category' class='${category_name[i]} form-control' id='sub_category' class="form-control">
@@ -128,9 +137,9 @@ function loadShop(...args){
                           })
                          output=output.concat(`</table>`);
                          $('.order-shop-div').html(output) 
-                            
+                            console.log(output)
                            })
-                        
+                      
                           
 let price;
 
@@ -181,6 +190,7 @@ let attribute=Array()
 let cat_name
 let cat_value=Array()
 $(document).on('change','#sub_category',function(){
+  
   cat_name=$('#category-name').val();
   var c1=Array();
   if(cat_name != 'kg'){
@@ -201,6 +211,7 @@ $(document).on('change','#sub_category',function(){
     }
 
     var p_id=$('#productid').val();
+    console.log(p_id,)
     loadShop(p_id,cat1,cat2)
   }else{
     var kg = $(this).val();

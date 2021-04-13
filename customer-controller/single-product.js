@@ -8,7 +8,7 @@ const product=await productDocument.find({_id}).populate(['category']).exec((err
      
        
      
-    res.render('single',{
+    res.render('si',{
         data,
         
     })
