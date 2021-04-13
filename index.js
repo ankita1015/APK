@@ -182,6 +182,14 @@ app.get('/si',(req,res)=>{
     res.render('si');
 })
 
+app.get('/orderconfi',(req,res)=>{
+    res.render('orderconfi');
+})
+
+app.get('/pr',(req,res)=>{
+    res.render('pr');
+})
+
 
 app.get('*',(req,res)=>{
     res.status(404).render('404');
