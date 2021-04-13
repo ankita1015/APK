@@ -183,6 +183,9 @@ app.get('/order-done',(req,res)=>{
     res.render('order-done');
 })
 
+app.get('/shoppingcart',(req,res)=>{
+    res.render('shoppingcart');
+})
 
 
 
