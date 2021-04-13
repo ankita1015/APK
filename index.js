@@ -190,6 +190,9 @@ app.get('/pr',(req,res)=>{
     res.render('pr');
 })
 
+app.get('/shoppingcart',(req,res)=>{
+    res.render('shoppingcart');
+})
 
 app.get('*',(req,res)=>{
     res.status(404).render('404');
