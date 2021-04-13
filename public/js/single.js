@@ -100,19 +100,23 @@ $('#sub-category').html(sub_category);
 function loadShop(...args){
 
 
+
+
+
+
   var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
-                     <hr><table id='shop-order'>
+                     <hr><table style='background-color:white;' class='table table-striped table-bordered mt-3'><thead>
                            <tr>
-                               <th>Shop Name</th>
-                               <th>State</th>
-                               <th>City</th>
-                               <th>Address</th>
-                               <th>Pincode</th>
-                               <th>Mobile No</th>
-                               <th>Available</th>
-                               <th>Select</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Shop Name</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">State</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">City</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Address</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Pincode</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Mobile No</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Available</th>
+                               <th scope="row" class="w-150 dark-grey-text h6">Select</th>
                                
-                           </tr>`
+                           </tr></thead>`
                            let obj=JSON.stringify(args);
                            $.post('/load-order-shop',
                            {
@@ -121,20 +125,20 @@ function loadShop(...args){
                              console.log(data);
                             data.forEach(element=>{
 
-                              output=output.concat(`<tr> 
+                              output=output.concat(`<tbody><tr> 
                                   <td>${element.shopId.shopname}</td>
                                   <td>${element.shopId.state}</td>
                                   <td>${element.shopId.city}</td>
                                   <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
                                   <td>${element.shopId.area_code}</td>
                                   <td>${element.shopId.mobileNo}</td>
-                                  <td><button style='background-color:lightgreen;width:50px;padding:3px;' >available</button></td>
-                                  <td><button style='background-color:lightgreen;width:50px;padding:3px;' class='select_shop'  
+                                  <td><button style='width:80px;padding:7px;'  class='btn btn-green'disabled >Availabel</button></td>
+                                  <td><button style='width:70px;padding:7px;' class='btn btn-primary select_shop'  
                                      data-shop_id=${element.shopId._id} 
                                      data-price=${element.total_price}
                                      data-gst=${element.gst}>Select</button></td>
-                              </tr>`)
-                          })
+                              </tr></tbody`)
+                            })
                          output=output.concat(`</table>`);
                          $('.order-shop-div').html(output) 
                             console.log(output)

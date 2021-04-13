@@ -3,6 +3,7 @@
 <head>
 {{>styleing}}
 <link rel="stylesheet" href="./login.css">
+<link rel="stylesheet" href="./pr.css">
 </head>
 <body>
     {{>login}}
@@ -20,9 +21,9 @@
     {{#each data}}
   <div class="products" data-id={{this._id}}>
     <div id='product'>
-     <a href="/single-product?product_id={{this._id}}">
-     <img src='{{this.images.[0]}}' alt='product'>
-     </a>
+     {{!-- <a href="/single-product?product_id={{this._id}}"> --}}
+     <img src='{{this.images.[0]}}' data-id={{this._id}} id='product-img' alt='product'>
+     {{!-- </a> --}}
     </div>
     <div id='product-content'>
     <h6><b>{{this.product}}</b></h6>
@@ -36,12 +37,15 @@
   </div>
   </div>
   {{>footer}}
+  <div id="myModal" class="modal">
+
+  </div>
   <script src='./jquery.min.js'></script>
   <script src="./popup.js"></script>
   <script src="./add-cart.js"></script>
 <script>
   $(document).ready(function(){
-    $('.products').click(function(){
+    $('#product-img').click(function(){
       let id=$(this).data('id');
       
          $.ajax({
@@ -49,10 +53,37 @@
            type:'POST',
            data:{id},
            success:function(data){
+           
+           let output=''
+             if(data){
+   output=output.concat(`<div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center">
+        <div class="card p-2">
+            <div class="p-info px-3 py-3">
+                <div>
+                    <h5 class="mb-0">${data[0].product}</h5> <span>${data[0].category.categoryname}</span>
+                </div>
+              
+                <div class="heart"> <i class="bx bx-heart"></i> </div>
+            </div>
+            <div class="text-center p-image"> <img src="${data[0].images[0]}"> </div>
+            <div class="p-about">
+                <p>${data[0].description}</p>
+            </div>
+            <div class="buttons d-flex flex-row gap-3 px-3"> <a href='/more-information-product?productid=${data[0]._id}'><button class="btn btn-primary w-100 view-product">View</button></a><button class="btn btn-outline-danger w-100">Buy Now</button> </div>
+        </div>
+    </div>`)
+       $('.modal').html(output);
+       
+      $('.modal').show()
+             }
              
            }
          })
     });
+$(document).click(function(){
+     $('.modal').hide()
+})
   });
 </script>
 

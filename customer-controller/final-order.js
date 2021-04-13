@@ -43,6 +43,7 @@ module.exports=async(req,res)=>{
        
         });
         let orderDoc=await orders.save();
+      
         res.send('1');
         if(cart_id!=null){
         let removecart=await cart.deleteMany({_id:cart_id});

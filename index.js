@@ -75,7 +75,8 @@ app.get('/add-product',shopuser,(req,res)=>{
 });
 app.post('/load-all-products',require('./shop-controller/load-all-products'))
 app.post('/product',shopuser,shopAuth,require('./shop-controller/product'));
-app.get('/single-product',require('./customer-controller/single-product'));
+app.post('/single-product',require('./customer-controller/single-product'));
+app.get('/more-information-product',require('./customer-controller/more-product-infomation'))
 app.get('/ourorders',shopuser,shopAuth,(req,res)=>{
   res.render('ourorders');
 })
@@ -174,21 +175,15 @@ app.get('/add-slider-img',adminauth,(req,res)=>{
 })
 app.post('/load-single-sub-category',require('./admin-controller/load-single-sub-category'))
 app.post('/search-category',require('./admin-controller/search-category'))
-app.get('/temp',(req,res)=>{
-    res.render('L1');
+
+
+
+app.get('/order-done',(req,res)=>{
+   
+    res.render('order-done');
 })
 
-app.get('/si',(req,res)=>{
-    res.render('si');
-})
 
-app.get('/orderconfi',(req,res)=>{
-    res.render('orderconfi');
-})
-
-app.get('/pr',(req,res)=>{
-    res.render('pr');
-})
 
 
 app.get('*',(req,res)=>{

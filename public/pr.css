@@ -1,12 +1,22 @@
+.modal{
+
+}
 .card {
     width: 350px;
     border: none;
-    height: 350px;
+    height: 450px;
     border-radius: 3px;
     cursor: pointer;
     position: relative;
-    overflow: hidden
+    overflow: hidden;
+    margin:auto;
+    top:10;
+    background-color: white;
+    padding: 15px;
+    box-shadow: 15px 20px 250px rgb(51, 50, 50),-15px -20px 250px rgb(51, 50, 50);
+   
 }
+
 
 .p-info {
     display: flex;
@@ -42,7 +52,7 @@
 .p-about {
     position: absolute;
     width: 170px;
-    font-size: 10px;
+    font-size: 12px;
     top: 140px;
     left: -125px;
     opacity: 0
