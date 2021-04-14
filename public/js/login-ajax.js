@@ -5,9 +5,11 @@ $(document).on("click",".error-icon",function(){
     $('#e-error').css("display","none");
  })
 login_btn.addEventListener('click',(e)=>{
+
     e.preventDefault();
      let email=$('.login-email').val();
      let password=$('.login-password').val();
+     
      if(email==''){
      document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>email can't blank</span>";
      $('#e-error').css("display","block");
@@ -33,8 +35,9 @@ login_btn.addEventListener('click',(e)=>{
        type:'POST',
        data:{email,password},
        success:function(data){
+         
            if(data==0){
-window.location.assign('/');
+         window.location.assign('/');
      
       }
      }

@@ -20,7 +20,7 @@ const auth=async(req,res,next)=>{
         next();
          
     }catch(err){
-         res.render('index',{
+         res.render('login',{
              err:'1',
          });
 

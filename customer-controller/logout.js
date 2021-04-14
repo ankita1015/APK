@@ -8,7 +8,7 @@ module.exports=async(req,res)=>{
 res.clearCookie('user');
 res.clearCookie('shop');
 
-res.render('index');
+res.render('login');
 }
 
 

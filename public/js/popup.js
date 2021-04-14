@@ -1,4 +1,5 @@
 document.getElementById('loginbtn').addEventListener('click',()=>{
+  alert('hello');
   document.getElementById('myModal').style.display='block';
   document.getElementById('tabpanel').style.display='block';
   document.getElementById('register').style.display='none';

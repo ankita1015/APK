@@ -63,7 +63,9 @@ app.get('/order',(req,res)=>{
     res.render('order');
 })
 
-
+app.get('/login',(req,res)=>{
+    res.render('login')
+})
 app.post('/login',require('./customer-controller/login'));
 
 // seller side pages//
@@ -183,9 +185,6 @@ app.get('/order-done',(req,res)=>{
     res.render('order-done');
 })
 
-app.get('/shoppingcart',(req,res)=>{
-    res.render('shoppingcart');
-})
 
 
 

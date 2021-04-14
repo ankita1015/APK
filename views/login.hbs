@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="./login.css">
+
+<div id="myModal" class="modal">
+<div class="container" >
+  <form action='/' class="signUp">
+    <h3>Create Your Account</h3>
+    <p>Just enter your email address</br>
+and your password for join.
+    </p>
+    <input type="text" placeholder="Full Name" name='name' autocomplete='off' reqired />
+    <input class="w100" type="email" name="email" placeholder="Insert eMail" reqired autocomplete='off' />
+    <input type="password"  name="password" placeholder="Insert Password" reqired />
+    <input type="password"  name='cpassword'placeholder="Verify Password" reqired />
+    <button class="form-btn sx log-in" type="button" >Log In</button>
+    <button class="form-btn dx" type="submit">Sign Up</button>
+  </form>
+  <form   class="signIn">
+    <h3>Welcome</br>Back !</h3>
+    <button class="fb" type="button">Log In With Facebook</button>
+    <p>- or -</p>
+  
+    <input type="email" placeholder="Email" class='login-email' reqired />
+    <input type="password" placeholder="Password" class="login-password" reqired />
+    
+    <button class="form-btn sx back" type="button">Back</button>
+    <button class="form-btn dx" type="submit" id='login-btn'>Log In</button>
+  </form>
+</div>
+</div>
+
+<script src="./jquery.min.js"></script>
+<script src="./login-ajax.js"></script>
+<script>
+$(".log-in").click(function(){
+  $(".signIn").addClass("active-dx");
+  $(".signUp").addClass("inactive-sx");
+  $(".signUp").removeClass("active-sx");
+  $(".signIn").removeClass("inactive-dx");
+});
+
+$(".back").click(function(){
+  $(".signUp").addClass("active-sx");
+  $(".signIn").addClass("inactive-dx");
+  $(".signIn").removeClass("active-dx");
+  $(".signUp").removeClass("inactive-sx");
+});
+</script>

@@ -1,87 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-       {{>styleing}}
-    </head>
-    <body>
-        <!-- HEADER -->
-        <div id="header-admin">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <!-- LOGO -->
-                    <div class="col-md-offset-1 col-md-4">
-                         <form class="search-post">
-                       <div class="input-group">
-                          <input type="text" name="search" id='product-search' class="form-control" placeholder="Search .....">
-                          <span class="input-group-btn">
-                             <button type="submit" class="btn search-btn">Search</button>
-                          </span>
-                       </div>
-                  </form>
-                    </div>
-     
-                 
-                  <div class="col-md-offset-2 col-md-1">
-               
-                        <a href='/shop' class="admin-logout" id='storebtn'><i class="fas fa-store"></i></a>
-            </div>
-                    <div class="col-md-1">
-                          <a href="/cart"><p class='cart-det admin-logout'style='font-size:10px;'></p><i class="fal fa-shopping-cart admin-logout"></i></a>
-                    </div>
 
-                        <div class="col-md-2 loginuser">
-                       
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><l class="fa fa-user"></l></a>
-          <ul class="dropdown-menu">
-            <li><a href='#'  id='loginbtn'>Login<span class="glyphicon  pull-right"><i class="far fa-user"></i></span></a></li>
-            
-            <li class="divider"></li>
-            <li><a href="/logout" >Sign out<span class="glyphicon  pull-right"><i class="fas fa-sign-out-alt"></i></span></a></li>
-          </ul>
-        </li>
-      </ul>
-                    </div>
-                    <div class="col-md-1">
-
-                    </div>
-                    <!-- /LOGO-Out -->
-                </div>
-            </div>
-        </div>
-        <!-- /HEADER -->
-        <!-- Menu Bar -->
-        <div id="admin-menubar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11">
-                       <ul class="admin-menu">
-                           <li>
-                                <a href="/">home</a>
-                            </li>
-                           
-                            <li>
-                                <a href="/order">Orders</a>
-                            </li>
-                            <li>
-                                <a href="/history">History</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class='col-md-1'>
-                        <ul>
-                        <li>
-                              
-                            </li>
-                        </ul>
-                    </div>
-                     
-                </div>
-            </div>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    </script>
-        <!-- /Menu Bar -->
+
+<link rel="stylesheet" href="./gooleapis.css">
+ <link rel="stylesheet" href="./style.css">
+ <!-- Font Awesome -->
+<link rel="stylesheet" href="./fontsi.css">
+ <!-- Material Design Bootstrap -->
+<link rel="stylesheet" href="./mdbsi.min.css">
+  <!-- Material Design Bootstrap Ecommerce -->
+<link rel="stylesheet" href="./mdbecommercesi.min.css">
+ <!-- Bootstrap core CSS -->
+ <link rel="stylesheet" href="./botsrapsi.min.css">
+</head>
+
+<body class="skin-light">
+
+  <!--Main Navigation-->
+  <header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light fixed-top scrolling-navbar">
+      <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="/" >
+        <img src='/images/WhatsApp Image 2021-04-02 at 9.19.14 AM.jpeg' style="height:4rem;width:4rem;">
+
+        </a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+
+          <!-- Right -->
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="/cart" class="nav-link navbar-link-2 waves-effect">
+                <span class="badge badge-pill red">1</span>
+                <i class="fas fa-shopping-cart pl-0"></i>
+              </a>
+            </li>
+             <li class="nav-item">
+              <a href="/order" class="nav-link waves-effect">
+                Order
+              </a>
+            </li>
+             <li class="nav-item">
+              <a href="/history" class="nav-link waves-effect">
+                History
+              </a>
+            </li>
+           
+            <li class="nav-item">
+              <a href="/shop" class="nav-link waves-effect">
+                Shop
+              </a>
+            </li>
+           
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink3" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="true">
+                <i class="fas fa-user"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/login" ><i class=''></i>Sign up</a>
+                <a class="dropdown-item" href="/logout">Logout</a>
+        
+              </div>
+            </li>
+          </ul>
+
+        </div>
+        <!-- Links -->
+      </div>
+    </nav>
+        
+ 
+      
