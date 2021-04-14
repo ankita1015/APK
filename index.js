@@ -59,7 +59,7 @@ app.post('/confirm-order',auth,customer,require('./customer-controller/final-ord
 app.get('/make-order',auth,customer,(req,res)=>{
     res.status(200).render('make-order');
 })
-app.get('/order',(req,res)=>{ 
+app.get('/order',auth,(req,res)=>{ 
     res.render('order');
 })
 

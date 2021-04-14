@@ -2,6 +2,7 @@
 {{>header}}
 
 <link rel="stylesheet" href="./pr.css">
+<link rel='stylesheet' href="./slider.css">
  <br><br><br>
  <div class="container" style="padding: 30px;">
  <div class="row">
@@ -12,6 +13,7 @@
      {{/each}}
  </div>
  </div>
+ 
  <main>
   
     <div class="container">
@@ -67,6 +69,7 @@
     
 </div>
 <script src="./jquery.min.js"></script>
+<script src="./slider.js"></script>
 <script>
     $('#product-img').click(function(){
       let id=$(this).data('id');
@@ -108,4 +111,6 @@
     $(document).click(function(){
      $('.modal').hide()
 })  
+
+
 </script>
