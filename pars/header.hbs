@@ -82,34 +82,6 @@
                 </div>
             </div>
         </div>
-        <script src="./popup.js"></script>
-          <script src='./jquery.min.js'></script>
-    <script>
-      $(document).ready(function(){
-        
-            
-           $.ajax({
-                 url:'/total-cart-product',
-                 type:'POST',
-                 success:function(data){
-                     if(data>=0){
-                    $('.cart-det').text(data);
-                     }
-                }
-             })
-            $.ajax({
-                url:'/auth',
-                type:"POST",
-                success:function(data){
-                    if(data!=undefined || data!=''){
-                       
-                        $('.dropdown-toggle').text(`${data}`);
-                    }
-                    
-                }
-            })
-          
-        });
-      
+  
     </script>
         <!-- /Menu Bar -->

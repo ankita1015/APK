@@ -8,7 +8,7 @@ module.exports=async(req,res)=>{
       
         if(data){
     
-                console.log(data);
+           console.log(data)
            res.send(data);
     
        }else{

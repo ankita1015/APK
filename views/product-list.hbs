@@ -1,50 +1,60 @@
-<html>
+{{>h}}
 
-<head>
-{{>styleing}}
-<link rel="stylesheet" href="./login.css">
 <link rel="stylesheet" href="./pr.css">
-</head>
-<body>
-    {{>login}}
-{{>header}}
-
-    <div id="main-content">
-      <div class="container-fluid">
-        <div class="row main-container">
-                
-                <!-- post-container -->
-                  
+ <br><br><br>
+ <main>
   
-  <div class="container-fluid" style="padding:10px;">
-    <div id='product-title'> Products {{data.[0].categoryId.categoryname}}</div>
-    {{#each data}}
-  <div class="products" data-id={{this._id}}>
-    <div id='product'>
-     {{!-- <a href="/single-product?product_id={{this._id}}"> --}}
-     <img src='{{this.images.[0]}}' data-id={{this._id}} id='product-img' alt='product'>
-     {{!-- </a> --}}
-    </div>
-    <div id='product-content'>
-    <h6><b>{{this.product}}</b></h6>
-   
+    <div class="container">
     
-        </div>
-  </div>
-  
-  {{/each}}
-  </div>
-  </div>
-  </div>
-  {{>footer}}
-  <div id="myModal" class="modal">
+ <section class="text-center">
 
-  </div>
-  <script src='./jquery.min.js'></script>
-  <script src="./popup.js"></script>
-  <script src="./add-cart.js"></script>
+        <h4 class="text-center my-5"><strong>Related products</strong></h4>
+
+        <!-- Grid row -->
+        <div class="row">
+
+          <!-- Grid column -->
+          {{#each data}}
+          <div class="col-md-6 col-lg-3 mb-5">
+
+            <!-- Card -->
+            <div class="">
+
+              <div class="view zoom overlay z-depth-2 rounded">
+                <img class="img-fluid w-100"
+                  src="{{this.images.[0]}}" alt="Sample">
+                <a href="#" id='product-img' data-id={{this._id}}>
+                  <div class="mask">
+                    <img class="img-fluid w-100"
+                      src="{{this.images.[0]}}">
+                    <div class="mask rgba-black-slight"></div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="pt-4">
+
+                <h5>{{this.product}}</h5>
+         
+
+              </div>
+
+            </div>
+            <!-- Card -->
+
+          </div>
+          {{/each}}
+        </div>
+</section>
+</div>
+</main>
+
+{{>f}}
+<div id="myModal" class="modal">
+    
+</div>
+<script src="./jquery.min.js"></script>
 <script>
-  $(document).ready(function(){
     $('#product-img').click(function(){
       let id=$(this).data('id');
       
@@ -80,10 +90,9 @@
              
            }
          })
-    });
-$(document).click(function(){
+        
+    }); 
+    $(document).click(function(){
      $('.modal').hide()
-})
-  });
+})  
 </script>
-
