@@ -1,68 +1,143 @@
-<html>
 
-<head>
-{{>styleing}}
-
-</head>
-<body>
- {{>login}}   
-{{>header}}
- {{!-- output=`<h5 style='text-align:center; '>${mm}-${y}</h5><hr>` --}}
-    <div id="main-content">
-      <div class="container-fluid">
-        <div class="row">
-          
-            <div class="col-md-12">
-             
-        </form>
-                <!-- post-container -->
-                <div class="post-container">
-                  <h2 class="page-heading">History of Your Orders</h2>
-                    <div class="post-content order-shop-div">
-                     <div class="row" style="border-bottom: 2px solid black;">
-                
-                        <div class="col-md-12" style="padding:10px;border-bottom: 1px solid grey;">
-                          <h4 style="text-align: center;">Shops Name</h4><br>
-                         
-                            <div class="col-md-offset-1 col-md-2" style="height: 12rem;">
-                              <div ><img src="/images/bgimg.jpg" style="border-radius:5px;"></div>
-                            </div>
-                           <div class="col-md-6">
-                           <h5><b>Product Name:</b>xyz</h5>
-                           <h5><b>Category:</b></h5>
-                           <h5><b>Date:</b></h5>
-                           <h5><b>Qty:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Price:</b></h5>
-                           <h5></h5>
-                           <h5></h5>
-                           </div>
-
-                       </div>
-                         <div class="col-md-12" style="padding:10px;border-bottom: 1px solid grey;">
-                          <div class="col-md-offset-1 col-md-2" style="height: 12rem;">
-                              <div ><img src="/images/bgimg.jpg" style="border-radius:5px;"></div>
-                            </div>
-                           <div class="col-md-6">
-                           <h5><b>Product Name:</b>:xyz</h5>
-                           <h5><b>Category:</b></h5>
-                           <h5><b>Date:</b></h5>
-                           <h5><b>Qty:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Price:</b></h5>
-                           <h5></h5>
-                           </div> 
-
-                       </div>
-                   
-                     </div>
-                </div><!-- /post-container -->
-            </div>
-     
+    <!-- Navbar -->
+    {{>header}}
+  <title>Welcome to Your history Page</title>
+    <div class="jumbotron color-grey-light mt-70">
+      <div class="d-flex align-items-center h-100">
+        <div class="container text-center py-5">
+          <h3 class="mb-0">History of your orders</h3>
         </div>
       </div>
     </div>
+
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main>
+    <div class="container">
+
+      <!--Section: Block Content-->
+      <section class="mt-5 mb-4">
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-lg-8">
+
+            <!-- Card -->
+            <div class="card wish-list mb-4">
+              <div class="card-body history-body">
+
+                
+              
+           
+
+              </div>
+            </div>
+            <!-- Card -->
+
+            <!-- Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+
+                <h5 class="mb-4">Expected shipping delivery</h5>
+
+                <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
+              </div>
+            </div>
+            <!-- Card -->
+
+            <!-- Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+
+                <h5 class="mb-4">We accept</h5>
+
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                  alt="Visa">
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                  alt="American Express">
+                <img class="mr-2" width="45px"
+                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                  alt="Mastercard">
+                <img class="mr-2" width="45px"
+                  src="https://z9t4u9f6.stackpathcdn.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
+                  alt="PayPal acceptance mark">
+              </div>
+            </div>
+            <!-- Card -->
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-lg-4">
+
+            <!-- Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+
+                <h5 class="mb-3">The total amount of</h5>
+
+                <ul class="list-group list-group-flush">
+              
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                    <div>
+                      <strong>The total amount of</strong>
+                      <strong>
+                        <p class="mb-0">(including VAT)</p>
+                      </strong>
+                    </div>
+                    <span><strong id='totalamount'>$53.98</strong></span>
+                  </li>
+                </ul>
+
+                <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to
+                  checkout</button>
+
+              </div>
+            </div>
+            <!-- Card -->
+
+            <!-- Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+
+                <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
+                  aria-expanded="false" aria-controls="collapseExample">
+                  Add a discount code (optional)
+                  <span><i class="fas fa-chevron-down pt-1"></i></span>
+                </a>
+
+                <div class="collapse" id="collapseExample">
+                  <div class="mt-3">
+                    <div class="md-form md-outline mb-0">
+                      <input type="text" id="discount-code" class="form-control font-weight-light"
+                        placeholder="Enter discount code">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card -->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Block Content-->
+
     </div>
-    </div>
-    </div>
-    </body>
-    {{>footer}}
+  </main>
+ 
+ {{>footer}}
     <script src="./jquery.min.js"></script>
     <script>
       $(document).ready(function(){
@@ -71,26 +146,86 @@
           url:'/order-history',
           type:"POST",
           success:function(data){
-          let output=''
-     
-          let uniqueshop=Array(); 
-            data.forEach(shop=>{
-               if(!uniqueshop.includes(shop.shopId.shopname)){
-                  uniqueshop.push(shop.shopId.shopname);
-               }
-            })
-         
-           uniqueshop.forEach(ushop=>{
-                 data.forEach(shop=>{
-                   if(ushop==shop.shopId.shopname){
-                     console.log(shopname);
-                   }
-                 })
-           })
-      
-        }     
-      });
-      });
+          
+           let shoplist=Array()
+         data.forEach(e=>{
+                    
+        if(!shoplist.includes(e.shopId.shopname)){
+           shoplist.push(e.shopId.shopname)
+          } 
+         })
+           output=`<h5 class="mb-4">Orders (<span>${data.length}</span> items)</h5>`;
+                
+        data.forEach(element => {
+            
+       output=output.concat(`<hr class="mb-4">
+      <div class="row mb-4">
+      <div class="col-md-5 col-lg-3 col-xl-3">
+        <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+          <img class="img-fluid w-100"
+            src="${element.productId.images[0]}" alt="Sample">
+          <a href="#!">
+            <div class="mask waves-effect waves-light">
+              <img class="img-fluid w-100"
+                src="${element.productId.images[0]}">
+              <div class="mask rgba-black-slight waves-effect waves-light"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-9 col-xl-9">
+        <div>
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5>${element.productId.product}</h5>
+              <p class="mb-3 text-muted text-uppercase small">${element.category.categoryname}</p>`);
+              if(element.sub_category.category_name!='kg'){
+             let i=0
+                element.sub_category.category_name.forEach(cat=>{
+
+                    output=output.concat(`
+                <p class="mb-2 text-muted text-uppercase small">${cat}:${element.sub_category.category_value[i]}</p>
+                `)
+                i++;
+                    })
+                     output=output.concat(`
+                <p class="mb-2 text-muted text-uppercase small">Qty:${element.qty}</p>
+                `)
+   
+              }else{
+                output=output.concat(`
+                <p class="mb-2 text-muted text-uppercase small">${cat}:${element.sub_category.category_value}</p>
+                `)
+               
+              
+                  
+    
+              }
+            output=output.concat(`</div>
+           
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <a href="#!" type="button" id='remove-order'   class="card-link-secondary small text-uppercase mr-3"><i
+                  class="fas fa-trash-alt mr-1"></i>${element.date_time}</a>
+              
+            </div>
+            
+            <p class="mb-0"><span id='totalprice'><strong>Rs.${element.price}</strong></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    `);
+        });
+  
+
+   output=output.concat(`<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> .</p>`)
+    $('.history-body').html(output);
+}
+})
+   
+});
     </script>
 
 </body>

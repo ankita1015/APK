@@ -1,11 +1,11 @@
 section {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
   }
   
   .swiper-container {
     width: 100%;
-    height: 100%;
+    height: 90%;
   }
   
   .slide {
@@ -14,7 +14,7 @@ section {
     align-items: center;
     position: relative;
     text-align: center;
-    font-size: 18px;
+  
     background: #fff;
     overflow: hidden;
   }
@@ -28,7 +28,7 @@ section {
     background-size: cover;
   }
   .slide-title {
-    font-size: 4rem;
+
     line-height: 1;
     max-width: 50%;
     white-space: normal;
@@ -41,7 +41,7 @@ section {
   }
   @media (min-width: 45em) {
     .slide-title {
-      font-size: 7vw;
+    
       max-width: none;
     }
   }
@@ -149,7 +149,7 @@ section {
   @font-face {
     font-family: 'Oswald';
     font-style: normal;
-    font-weight: 500;
+  
     src: url(https://fonts.gstatic.com/s/oswald/v36/TK3_WkUHHAIjg75cFRf3bXL8LICs18NvsUJiZTaR.woff2) format('woff2');
     unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
   }

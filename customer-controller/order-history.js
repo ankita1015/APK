@@ -6,9 +6,9 @@ module.exports=async(req,res)=>{
 
       await shoporderdocument.find({$and:[{status:'Complete'},{userId:user._id}]})
       .sort({date_time:1})
-      .populate(['shopId','productId'])
+      .populate(['shopId','productId','category'])
       .exec((err,data)=>{
-          console.log(data);
+          
         res.send(data);    
 
       })
