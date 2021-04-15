@@ -184,7 +184,9 @@ app.get('/order-done',(req,res)=>{
    
     res.render('order-done');
 })
-
+app.get('/a',(req,res)=>{
+    res.render('a');
+})
 
 
 
