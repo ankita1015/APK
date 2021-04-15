@@ -122,7 +122,7 @@ function loadShop(...args){
                            {
                             obj
                            },function(data,status){
-                             console.log(data);
+                             
                             data.forEach(element=>{
 
                               output=output.concat(`<tbody><tr> 
@@ -141,7 +141,7 @@ function loadShop(...args){
                             })
                          output=output.concat(`</table>`);
                          $('.order-shop-div').html(output) 
-                            console.log(output)
+                           
                            })
                       
                           
@@ -161,7 +161,7 @@ $(document).on('click','.select_shop',function(){
   
  
    $('#shopid').val($(this).data('shop_id'));
-
+  
 })
 let qty
 $('#qty').change(function(){
@@ -215,7 +215,7 @@ $(document).on('change','#sub_category',function(){
     }
 
     var p_id=$('#productid').val();
-    console.log(p_id,)
+   
     loadShop(p_id,cat1,cat2)
   }else{
     var kg = $(this).val();
@@ -239,8 +239,9 @@ $('.cart').click(function(){
     let qty=$('#qty').val();
     let total_price=$('#price').text();
         total_price=total_price.replace('Rs.','');
-        
-    fetch('/add-cart',{
+        alert(shopid)
+      
+        fetch('/add-cart',{
       method:'POST',
       headers:{
           'Content-Type':'application/json'

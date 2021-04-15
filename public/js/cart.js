@@ -4,10 +4,20 @@ $.ajax({
     url:'/load-cart-products',
     type:'POST',
     success:function(data){
-      let output=`<h5 class="mb-4">Cart (<span>${data.length}</span> items)</h5>`;
+    
+      let shoplist=Array()
+      data.forEach(e=>{
+                    
+        if(!shoplist.includes(e.shopId.shopname)){
+           shoplist.push(e.shopId.shopname)
+        }
+     })
+      let output=''
+       shoplist.forEach(shops=>{
+       output=`<h5 class="mb-4"><span>${shops}</span>&nbsp;&nbsp;Cart(<span>${data.length}</span> items)</h5>`;
                 
         data.forEach(element => {
-            
+       if(shops==element.shopId.shopname){
        output=output.concat(`<hr class="mb-4">
       <div class="row mb-4">
       <div class="col-md-5 col-lg-3 col-xl-3">
@@ -65,12 +75,16 @@ $.ajax({
       </div>
     </div>
     `);
-        });
+            }      
+  });
 
    output=output.concat(`<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
     items to your cart does not mean booking them.</p>`)
-    $('.cart-body').html(output);
-    }
+    
+      });  
+      $('.cart-body').html(output);
+  }
+
 
    
 })

@@ -31,7 +31,7 @@ module.exports=async(req,res,next)=>{
             category:req.body.categoryId,
             price:req.body.total_price,
             qty:req.body.qty,
-            shopId:req.body.shopId,
+            shopId:req.body.shopid,
             sub_category:category,
 
         });
