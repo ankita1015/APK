@@ -6,7 +6,9 @@ module.exports=async(req,res)=>{
 
       let cart_id=req.body.cart_id;
       let productId=req.body.product_id;
-      let customerId=req.body.customerid;
+      let customerId= req.customer;
+          customerId=customerId._id
+
       let qty=req.body.qty;
       let category={category_name:req.body.category_name,
                     category_value:req.body.category_value} 

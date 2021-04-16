@@ -265,13 +265,35 @@ $('.cart').click(function(){
 })
 $('.order').click(function(){
   
-  let qty=$('#qty').val();
+  let categoryid=$('#product-category').val();
   let productid=$('#productid').val();
-  let sub_value=cat_value
+  let shopid=$('#shopid').val();
+  let qty=$('#qty').val();
   let total_price=$('#price').text();
-  total_price=total_price.replace('Rs.','');
+      total_price=total_price.replace('Rs.','');
+     
+    
+      fetch('/confirm-order',{
+    method:'POST',
+    headers:{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+       category_name:category_name,
+       category_value:cat_value,
+       categoryId:categoryid,
+       shopid,
+       product_id:productid,
+       price,
+       qty,
+       total_price,
+    })
+        
+}).then((result)=>{
+window.location.assign('/make-order')
+}).catch((err)=>{
 
-
+})
   
-   window.location.assign(`/insert-order?id=${productid}&qty=${qty}&price=${total_price}&category_value=${cat_value}`)
+  
 })

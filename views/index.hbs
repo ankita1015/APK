@@ -1,22 +1,34 @@
 
-<link rel="stylesheet" href="./pr.css">
-<link rel='stylesheet' href="./slider.css">
+   <link rel="stylesheet" href="./pr.css">
+   <link rel='stylesheet' href="./slider.css">
 
-<link rel="stylesheet" href="./a.css">
- <link rel="stylesheet" href="./Aswiper.min.css" >
+   <link rel="stylesheet" href="./a.css">
+   <link rel="stylesheet" href="./Aswiper.min.css" >
  {{>header}}
    <link rel="stylesheet" href="./Aall.css"  integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<script>!function(e){"undefined"==typeof module?this.charming=e:module.exports=e}(function(e,n){"use strict";n=n||{};var t=n.tagName||"span",o=null!=n.classPrefix?n.classPrefix:"char",r=1,a=function(e){for(var n=e.parentNode,a=e.nodeValue,c=a.length,l=-1;++l<c;){var d=document.createElement(t);o&&(d.className=o+r,r++),d.appendChild(document.createTextNode(a[l])),n.insertBefore(d,e)}n.removeChild(e)};return function c(e){for(var n=[].slice.call(e.childNodes),t=n.length,o=-1;++o<t;)c(n[o]);e.nodeType===Node.TEXT_NODE&&a(e)}(e),e});
-</script>
+   <script>!function(e){"undefined"==typeof module?this.charming=e:module.exports=e}(function(e,n){"use strict";n=n||{};var t=n.tagName||"span",o=null!=n.classPrefix?n.classPrefix:"char",r=1,a=function(e){for(var n=e.parentNode,a=e.nodeValue,c=a.length,l=-1;++l<c;){var d=document.createElement(t);o&&(d.className=o+r,r++),d.appendChild(document.createTextNode(a[l])),n.insertBefore(d,e)}n.removeChild(e)};return function c(e){for(var n=[].slice.call(e.childNodes),t=n.length,o=-1;++o<t;)c(n[o]);e.nodeType===Node.TEXT_NODE&&a(e)}(e),e});
+   </script>
  <br><br><br><br><br><br>
  <div class="container" style="padding: 30px;">
  <div class="row">
 
      {{#each uniqueProduct}}
+     
    
-     <a href="/product-list?product_id={{this._id}}"><button class="btn btn-primary btn-md mr-1 mb-2 order">{{this.categoryname}}</button></a>
+     <a href="/product-list?product_id={{this._id}} " class="order" 
+     style="text-decoration:none;
+            color:gray;
+            font-weight:10px;
+            margin-right:3rem;
+            
+            padding:5px;
+            border-radius: 10px;
+            ">
+     {{this.categoryname}}
+     </a>
      {{/each}}
  </div>
+ 
  </div>
  {{!-- slider designing --}}
  <section>
@@ -24,11 +36,23 @@
   <div class="swiper-container slideshow">
 
     <div class="swiper-wrapper">
-       {{#each sliderimg}}
+      {{#each sliderimg.[0].img}}
+     
       <div class="swiper-slide slide">
-        <div class="slide-image" style="background-image: url({{this}})"></div>
+        <div class="slide-image" style="background-image: url(/uploadimg/images-1617642687689.jpg)"></div>
         <span class="slide-title">Exotic places</span>
       </div>
+
+      <div class="swiper-slide slide">
+        <div class="slide-image" style="background-image: url(https://images.unsplash.com/photo-1500375592092-40eb2168fd21?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e07d2457879a4e15577ec75a31023e47&auto=format&fit=crop&w=2134&q=80"></div>
+        <span class="slide-title">Meet ocean</span>
+      </div>
+
+      <div class="swiper-slide slide">
+        <div class="slide-image" style="background-image: url(https://images.unsplash.com/photo-1482059470115-0aadd6bf6834?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=267bba9a4e280ec64388fe8fb01e9d1b&auto=format&fit=crop&w=1950&q=80"></div>
+        <span class="slide-title">Around the world</span>
+      </div>
+
       {{/each}}
 
      
@@ -37,8 +61,8 @@
     <div class="slideshow-pagination"></div>
 
     <div class="slideshow-navigation">
-      <div class="slideshow-navigation-button prev"><span class="fas fa-chevron-left"></span></div>
-      <div class="slideshow-navigation-button next"><span class="fas fa-chevron-right"></span></div>
+      <div class="slideshow-navigation-button prev"><span class="fa fa-chevron-left"></span></div>
+      <div class="slideshow-navigation-button next"><span class="fa fa-chevron-right"></span></div>
     </div>
 
   </div>
@@ -50,10 +74,11 @@
     
  <section class="text-center">
 
-        <h4 class="text-center my-5"><strong>Related products</strong></h4>
+        <h4 class="text-center my-5"><strong>products</strong></h4>
+        <hr>
 
         <!-- Grid row -->
-        <div class="row">
+        <div class="row" id='product-load'>
 
           <!-- Grid column -->
           {{#each products}}
@@ -100,8 +125,8 @@
 </div>
 <script src="./jquery.min.js"></script>
 <script src="./Aboot.min.js"></script>
- <script src="A2swiper.min.js"></script>
-<script src="AtweenMax.min.js"></script>
+ <script src="./A2swiper.min.js"></script>
+<script src="./AtweenMax.min.js"></script>
 <script>
 
   class Slideshow {
@@ -258,8 +283,7 @@
       this.DOM.activePaginationItem = paginationEl.querySelector('.slideshow-pagination-item.active');
       this.DOM.activePaginationItemLoader = this.DOM.activePaginationItem.querySelector('.pagination-separator-loader');
       
-      console.log(swiper.pagination);
-      // console.log(swiper.activeIndex);
+
       
       // Reset and animate
         TweenMax.set(this.DOM.paginationItemsLoader, {scaleX: 0});
@@ -275,8 +299,9 @@
 
 const slideshow = new Slideshow(document.querySelector('.slideshow'));
 
-    $('#product-img').click(function(){
+    $(document).on('click','#product-img',function(){
       let id=$(this).data('id');
+    
       
          $.ajax({
            url:'/single-product',
@@ -315,6 +340,55 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
     $(document).click(function(){
      $('.modal').hide()
 })  
+$('#search').change(function(){
+  let searchproduct=$(this).val();
+    $.ajax({
+      url:'/search-product',
+      type:"POST",
+      data:{searchproduct},
+      success:function(data){
+        console.log(data)
+        if(data.length==0){
+             $('#product-load').html(`<div style='color:red;text-align:center;width:100%;font-size:3rem;'>no search '${searchproduct}' found</div>`);
+          return
+        }
+        
+        data.forEach(element=>{
+          output=`<div class="col-md-6 col-lg-3 mb-5">
+
+            <!-- Card -->
+            <div class="">
+
+              <div class="view zoom overlay z-depth-2 rounded">
+                <img class="img-fluid w-100"
+                  src="${element.images[0]}" alt="Sample">
+                <a href="#" id='product-img' data-id=${element._id}>
+                  <div class="mask">
+                    <img class="img-fluid w-100"
+                      src="${element.images[0]}">
+                    <div class="mask rgba-black-slight"></div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="pt-4">
+
+                <h5>${element.product}</h5>
+         
+
+              </div>
+
+            </div>
+            <!-- Card -->
+
+          </div>`;
+
+        })
+       $('#product-load').html(output);
+      }
+
+    })
+})
 
 
 </script>

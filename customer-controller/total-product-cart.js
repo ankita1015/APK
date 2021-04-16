@@ -9,7 +9,7 @@ module.exports=async(req,res)=>{
         res.send(records.toString());
     
        }else{
-        res.send('')
+        res.send('0')
        }
   
     })

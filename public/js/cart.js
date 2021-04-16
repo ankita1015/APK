@@ -19,7 +19,14 @@ $.ajax({
         data.forEach(element => {
        if(shops==element.shopId.shopname){
        output=output.concat(`<hr class="mb-4">
-      <div class="row mb-4">
+      <div class="row mb-4 cart-card">
+      <input type='hidden' class='cat_name' value=${element.sub_category.category_name}>
+      <input type='hidden' class='cat_value' value=${element.sub_category.category_value}>
+      <input type='hidden' class='shopid' value=${element.shopId._id}>
+      <input type='hidden' class='productid' value=${element.productId._id}>
+      <input type='hidden' class='categoryid' value=${element.category._id}>
+      
+
       <div class="col-md-5 col-lg-3 col-xl-3">
         <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
           <img class="img-fluid w-100"
@@ -46,17 +53,16 @@ $.ajax({
                     output=output.concat(`
                 <p class="mb-2 text-muted text-uppercase small">${cat}:${element.sub_category.category_value[i]}</p>
                 `)
+                
                 i++;
             })
-   
-              }
-           output=output.concat(`</div>
+            output=output.concat(`</div>
             <div>
               <div class="def-number-input number-input safari_only mb-0 w-100">
               <input type='hidden' id='price' value=${element.price}>
                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                   class="minus"></button>
-                <input class="quantity" min="0" name="quantity" id='qty' value="1" type="number">
+                <input class="quantity" min="0" name="quantity" id='qty'  value="${element.qty}" type="number">
                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                   class="plus"></button>
               </div>
@@ -65,20 +71,51 @@ $.ajax({
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <a href="#!" type="button" id='remove-cart' data-id=${element._id} class="card-link-secondary small text-uppercase mr-3"><i
-                  class="fas fa-trash-alt mr-1"></i> Remove item </a>
+                  class="fa fa-trash mr-1"></i> Remove item </a>
               
             </div>
             
-            <p class="mb-0"><span id='totalprice'><strong>Rs.${element.price}</strong></span></p>
+            <p class="mb-0"><span class='totalprice'><strong>Rs.${element.price}</strong></span></p>
           </div>
         </div>
       </div>
-    </div>
+   
     `);
-            }      
+   
+              }else{
+                output=output.concat(`</div>
+                <div>
+                  <div class="def-number-input number-input safari_only mb-0 w-100">
+                  <input type='hidden' id='price' value=${element.price}>
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                      class="minus"></button>
+                    <input class="quantity" min="0" name="quantity" id='qty'  value="${element.sub_category.category_value}" type="number">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                      class="plus"></button>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <a href="#!" type="button" id='remove-cart' data-id=${element._id} class="card-link-secondary small text-uppercase mr-3"><i
+                      class="fa fa-trash mr-1"></i> Remove item </a>
+                  
+                </div>
+                
+                <p class="mb-0"><span class='totalprice'><strong>Rs.${element.price}</strong></span></p>
+              </div>
+            </div>
+          </div>
+       
+        `);
+
+              }
+       
+            }  
+            output=output.concat(` </div>`);    
   });
 
-   output=output.concat(`<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
+   output=output.concat(`<p class="text-primary mb-0"><i class="fa fa-info-circle mr-1"></i> Do not delay the purchase, adding
     items to your cart does not mean booking them.</p>`)
     
       });  
@@ -103,17 +140,17 @@ $(document).on('click','#remove-cart',function(){
 });
       
 $(document).on('keyup','#qty',function(){
-    
+   
     let qty=$(this).val()
     let price=$(this).parent().find('#price').val();
-    
+ 
    
     if(qty<=0){
        return;
     }
     let totalprice=qty*price;
    
-    let divprice=$(this).parent().parent().parent().parent().find('#totalprice').text(`Rs.${totalprice}`)
+    let divprice=$(this).parent().parent().parent().parent().find('.totalprice').text(`Rs.${totalprice}`)
     
 
 
@@ -121,7 +158,8 @@ $(document).on('keyup','#qty',function(){
 })
 
 const setTotalPrice=()=>{
-    let divprice=$('main').find('#totalprice')
+    let divprice=$('main').find('.totalprice')
+    
     let total=0
 
     for(let i=0;i<divprice.length;i++){
@@ -132,6 +170,77 @@ const setTotalPrice=()=>{
   $('main').find('#totalamount').text(`Rs.${total}`);
  
 }
-
 setTotalPrice()
+// let shop=Array()
+// let product=Array()
+// let category=Array()
+// let totalprice=Array()
+// let category=Array()
+// let Qty=Array()
+// let cat_name=Array()
+// let cat_value=Array()
+// $('.checkout').click(function(){
+//     shop=$('main').find('.shopid');
+//     product=$('main').find('.productid');
+//     category=$('main').find('.categoryid');
+//     totalprice=$('main').find('.totalprice');
+//     cat_name=$('main').find('.cat_name');
+//     cat_value=$('main').find('.cat_value');
+//     Qty=$('main').find('.quantity')
+
+//   let sid=Array();
+//   let pid=Array();
+//   let cid=Array();
+//   let category_name=Array()
+
+//     for(let i=0;i<shopid.length;i++){
+//       sid=shopid[i].value
+//       pid=shopid[i].value
+//       cid=shopid[i].value
+//       category_name=cat_name[i].value
+//       category_value=cat_value[i].value
+//       qty=Qty[i].value
+//       if(category_name!='kg'){
+
+//        $.ajax({
+//          url:'/confirm-order',
+//          type:'POST',
+//          data:{shopid:sid,
+//               product_id:pid,
+//               categoryid:cid,
+//               category_name:category_name,
+//               category_value:category_value,
+//               qty:qty},
+
+
+//          success:function(data){
+
+//          }
+//        })
+//       }else{
+//         console.log(qty)
+//         $.ajax({
+//           url:'/confirm-order',
+//           type:'POST',
+//           data:{shopid:sid,
+//             product_id:pid,
+//             categoryid:cid,
+//             category_name:category_name,
+//             category_value:qty,
+//             qty:0},
+//              success:function(data){
+            
+//           }
+//         })
+
+//       }
+   
+
+//     }
+    
+
+//     })
+     
+
+
 

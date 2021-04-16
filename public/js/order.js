@@ -64,7 +64,7 @@ function loadorder(){
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <a href="#!" type="button" id='remove-order'  data-id=${element._id} class="card-link-secondary small text-uppercase mr-3"><i
-                  class="fas fa-trash-alt mr-1"></i> Cancel Order</a>
+                  class="fa fa-trash mr-1"></i> Cancel Order</a>
               
             </div>
             
@@ -77,7 +77,7 @@ function loadorder(){
         });
   
 
-   output=output.concat(`<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> .</p>`)
+   output=output.concat(`<p class="text-primary mb-0"> .</p>`)
     $('.order-body').html(output);
 }
 })

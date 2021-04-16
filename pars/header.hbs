@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="./gooleapis.css">
  <link rel="stylesheet" href="./style.css">
  <!-- Font Awesome -->
-<link rel="stylesheet" href="./fontsi.css">
+{{!-- <link rel="stylesheet" href="./front.min.css"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
  <!-- Material Design Bootstrap -->
 <link rel="stylesheet" href="./mdbsi.min.css">
   <!-- Material Design Bootstrap Ecommerce -->
@@ -34,7 +36,7 @@
         <img src='/images/WhatsApp Image 2021-04-02 at 9.19.14 AM.jpeg' style="height:4rem;width:4rem;">
 
         </a>
-
+        <input type="text" id='search' class='form-control' style="width:30rem;" placeholder="Search here">
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
           aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,8 +50,8 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a href="/cart" class="nav-link navbar-link-2 waves-effect">
-                <span class="badge badge-pill red">1</span>
-                <i class="fas fa-shopping-cart pl-0"></i>
+                <span class="badge badge-pill red"></span>
+                <i class="fa fa-shopping-cart pl-0"></i>
               </a>
             </li>
              <li class="nav-item">
@@ -72,7 +74,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink3" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="true">
-                <i class="fas fa-user"></i>
+                <i class="fa fa-user"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/login" ><i class=''></i>Sign up</a>
@@ -86,6 +88,29 @@
         <!-- Links -->
       </div>
     </nav>
+    <script src="./jquery.min.js"></script>
+    <script>
+      $.ajax({
+        url:'/auth',
+        type:"POST",
+        success:function(data){
+         
+          $('#navbarDropdownMenuLink3').html(`<span>${data}</span>`)
+        }
+        
+      })
+    $.ajax({
+      url:'/total-cart-product',
+      type:"POST",
+      success:function(data){
+        console.log(data)
+        if(data<=0){
+         $('.badge-pill').text(data);
+        }
+       
+      }
+    })
+    </script>
         
  
       
