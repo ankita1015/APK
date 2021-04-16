@@ -1,4 +1,5 @@
 $(".register").submit(function(e){
+    
     var name=$("#name").val();
     var email=$("#s-email-address").val();
     var password=$("#s-password").val();
@@ -10,9 +11,10 @@ $(document).on("click",".error-icon",function(){
     $('#p-error').css("display","none");
  })
     if(name==''){
+        e.preventDefault();
         document.getElementById('p-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>name can't blank</span>";
         $('#p-error').css("display","block");
-        e.preventDefault();
+       
         return;  
     }else if(!name.match(letters)){
         document.getElementById('p-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>name must be in character only</span>";

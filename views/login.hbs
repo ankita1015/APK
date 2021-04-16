@@ -2,15 +2,14 @@
 
 <div id="myModal" class="modal">
 <div class="container" >
-  <form action='/' class="signUp">
+  <form action='/' method='post' class="register signUp">
     <h3>Create Your Account</h3>
-    <p>Just enter your email address</br>
-and your password for join.
+    <p id='p-error'>
     </p>
-    <input type="text" placeholder="Full Name" name='name' autocomplete='off' reqired />
-    <input class="w100" type="email" name="email" placeholder="Insert eMail" reqired autocomplete='off' />
-    <input type="password"  name="password" placeholder="Insert Password" reqired />
-    <input type="password"  name='cpassword'placeholder="Verify Password" reqired />
+    <input type="text" placeholder="Full Name" name='name' id='name' autocomplete='off' reqired />
+    <input class="w100" type="email" name="email" id="s-email-address" placeholder="Insert eMail" reqired autocomplete='off' />
+    <input type="password"  name="password" id='s-password' placeholder="Insert Password" reqired />
+    <input type="password"  name='cpassword' id='s-confirm-password' placeholder="Verify Password" reqired />
     <input type="hidden" name="role" value="0">
     <button class="form-btn sx log-in" type="button" >Log In</button>
     <button class="form-btn dx" type="submit">Sign Up</button>
@@ -31,6 +30,7 @@ and your password for join.
 
 
 <script src="./jquery.min.js"></script>
+<script src="./signup-validation.js"></script>
 <script src="./login-ajax.js"></script>
 <script>
 $(".log-in").click(function(){
