@@ -2,14 +2,14 @@ const productDocument=require('../modals/productsModal');
 
 module.exports=async(req,res)=>{
 try{
-    let product=req.query.product_id;
-
+    let product=req.body.product_id;
+   
+ 
 
     await productDocument.find({category:product}).exec((err,data)=>{
         
-        res.render('product-list',{
-            data,
-        });
+      res.send(data);
+ 
     
 
     });

@@ -1,4 +1,7 @@
-$('.login').click(function(){
+$('.login').click(function(e){
+  e.preventDefault();
+
+
   var email=$('.login-email').val();
   var password=$('.login-password').val();
     $.ajax({
@@ -16,10 +19,13 @@ $('.login').click(function(){
 })
 
 
-$(".save").click(function(){
+$(".save").click(function(e){
+
+  e.preventDefault();
     var name=$('.name').val();  
   
     var email=$('.email').val()
+   
     var password=$('.password').val()
     var cpassword=$('.re_password').val()
 
@@ -30,7 +36,7 @@ $(".save").click(function(){
       })
        if(name=='' || name==undefined){
           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span>Name can't be blank</span>`;
+            style='cursor:pointer;'>X</span><span style='color:red;'>Name can't be blank</span>`;
           $('#e-error').css("display","block");  
              return
        }else if(!name.match(letters)){
@@ -75,6 +81,7 @@ $(".save").click(function(){
                type:"POST",
                data:{name,email,password,cpassword,role},
                success:function(data){
+                
       if(data==1){  
       $('.name').val("")  
       $('.email').val("")

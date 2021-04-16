@@ -49,6 +49,9 @@ function loadorder(){
                 `)
                 i++;
                     })
+                    output=output.concat(`
+                    <p class="mb-2 text-muted text-uppercase small">Qty:${element.qty}</p>
+                    `)
    
               }else{
                 output=output.concat(`

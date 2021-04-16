@@ -112,6 +112,7 @@ app.get('/shop-logout',shopuser,require('./shop-controller/shop-logout'));
 // Customer side Pages
 
 app.get('/product-list',auth,require('./customer-controller/load-category-product'));
+app.post('/related-product',require('./customer-controller/related-product'))
 app.get('/cart',auth,(req,res)=>{   
   res.render('cart');
 })

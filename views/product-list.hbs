@@ -55,7 +55,7 @@
 </div>
 <script src="./jquery.min.js"></script>
 <script>
-    $('#product-img').click(function(){
+    $(document).on('click','#product-img',function(){
       let id=$(this).data('id');
       
          $.ajax({

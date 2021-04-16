@@ -150,15 +150,16 @@ $(document).on('keyup','#qty',function(){
     }
     let totalprice=qty*price;
    
-    let divprice=$(this).parent().parent().parent().parent().find('.totalprice').text(`Rs.${totalprice}`)
+    $(this).parent().parent().parent().parent().find('.totalprice').text(`Rs.${totalprice}`)
     
 
 
    setTotalPrice()
 })
+setTotalPrice()
+function setTotalPrice(){
+     divprice=$('main').find('.totalprice')
 
-const setTotalPrice=()=>{
-    let divprice=$('main').find('.totalprice')
     
     let total=0
 
@@ -170,7 +171,7 @@ const setTotalPrice=()=>{
   $('main').find('#totalamount').text(`Rs.${total}`);
  
 }
-setTotalPrice()
+
 // let shop=Array()
 // let product=Array()
 // let category=Array()

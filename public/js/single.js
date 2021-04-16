@@ -126,14 +126,14 @@ function loadShop(...args){
                             data.forEach(element=>{
 
                               output=output.concat(`<tbody><tr> 
-                                  <td>${element.shopId.shopname}</td>
-                                  <td>${element.shopId.state}</td>
-                                  <td>${element.shopId.city}</td>
-                                  <td id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
-                                  <td>${element.shopId.area_code}</td>
-                                  <td>${element.shopId.mobileNo}</td>
-                                  <td><button style='width:80px;padding:7px;'  class='btn btn-green'disabled >Availabel</button></td>
-                                  <td><button style='width:70px;padding:7px;' class='btn btn-primary select_shop'  
+                                  <td class='w-150 dark-grey-text'>${element.shopId.shopname}</td>
+                                  <td class='dark-grey-text'>${element.shopId.state}</td>
+                                  <td class='dark-grey-text'>${element.shopId.city}</td>
+                                  <td class='dark-grey-text' id='td-address'><p>${element.shopId.address}</p><p>${element.shopId.address2}</p></td>
+                                  <td class='dark-grey-text'>${element.shopId.area_code}</td>
+                                  <td class='dark-grey-text'>${element.shopId.mobileNo}</td>
+                                  <td class='dark-grey-text'><button style='width:80px;padding:7px;'  class='btn btn-green'disabled >Availabel</button></td>
+                                  <td class='dark-grey-text'><button style='width:70px;padding:7px;' class='btn btn-primary select_shop'  
                                      data-shop_id=${element.shopId._id} 
                                      data-price=${element.total_price}
                                      data-gst=${element.gst}>Select</button></td>
@@ -231,15 +231,15 @@ let pid=$('#productid').val();
 loadShop(pid);
 
 
-
+let categoryid=$('#product-category').val();
 $('.cart').click(function(){
-    let categoryid=$('#product-category').val();
+     categoryid=$('#product-category').val();
     let productid=$('#productid').val();
     let shopid=$('#shopid').val();
     let qty=$('#qty').val();
     let total_price=$('#price').text();
         total_price=total_price.replace('Rs.','');
-        alert(shopid)
+       
       
         fetch('/add-cart',{
       method:'POST',
@@ -265,7 +265,7 @@ $('.cart').click(function(){
 })
 $('.order').click(function(){
   
-  let categoryid=$('#product-category').val();
+      categoryid=$('#product-category').val();
   let productid=$('#productid').val();
   let shopid=$('#shopid').val();
   let qty=$('#qty').val();
@@ -297,3 +297,51 @@ window.location.assign('/make-order')
   
   
 })
+
+function relatedProduct(categoryid){
+  $.ajax({
+    url:'/related-product',
+    type:"POST",
+    data:{product_id:categoryid},
+    success:function(data){
+     let output=''
+
+     data.forEach(ele=>{
+       output=output.concat(` <div class="col-md-6 col-lg-3 mb-5">
+
+       <!-- Card -->
+       <div class="">
+
+         <div class="view zoom overlay z-depth-2 rounded">
+           <img class="img-fluid w-100"
+             src="${ele.images[0]}" alt="Sample" >
+           <a href="/more-information-product?productid=${ele._id}">
+             <div class="mask">
+               <img class="img-fluid w-100"
+                 src="${ele.images[0]}">
+               <div class="mask rgba-black-slight"></div>
+             </div>
+           </a>
+         </div>
+
+         <div class="pt-4">
+
+           <h5>${ele.product}</h5>
+          
+
+         </div>
+
+       </div>
+       <!-- Card -->
+
+     </div>`);
+     })
+     $('#related-product').html(output)
+    }
+
+  })
+     
+}
+
+
+relatedProduct(categoryid)
