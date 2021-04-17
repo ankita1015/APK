@@ -29,7 +29,7 @@ module.exports=async(req,res)=>{
         let min =new Date().getMinutes();
         let curTime=hours+":"+min;
         let curDate=`${curTime}||${date}/${monthNames[month]}/${year}`;
-  
+         console.log(req.body);
         const orders=new shoporderDocment({
           productId:productId,
           qty,
@@ -45,7 +45,7 @@ module.exports=async(req,res)=>{
        
         });
         let orderDoc=await orders.save();
-      
+      console.log(orderDoc);
         res.send('1');
         if(cart_id!=null){
         let removecart=await cart.deleteMany({_id:cart_id});

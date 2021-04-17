@@ -4,7 +4,7 @@ module.exports=async(req,res)=>{
     try{
          let shop=req.shop;
          let shopId=shop._id;
-         await shoporderdocument.find({shopId}).populate(['customerId','productId','userId']).exec((err,data)=>{
+         await shoporderdocument.find({$and:[{shopId},{status:'Process'}]}).populate(['customerId','productId','userId']).exec((err,data)=>{
          
              res.send(data);
          })

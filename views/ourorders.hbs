@@ -1,43 +1,36 @@
-<html>
-    <head>
-{{>styleing}}
+	{{>sh}}
 
-</head>
-<body>
-    {{>seller_header}}
-    <div id="main-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                  <!-- post-container -->
-                  
-                    <div class="post-container">
-                         <h4>{{shopname}}</h4>
-                        <div class="det">
-                       
-                      
-                         
-                        </div>
-                            <h4 style="text-align: center;">view Orders( <span id='date'></span>)</h4>
-                    <hr>
-                    <div class="order-shop-div">
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head">
+    		<h2>orders</h2>
+    	</div>
+         <div class="order-shop-div">
+
+         </div>
+
+      <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>sidebar}}
+	<div class="clearfix"> </div>
+</div>
+
+<!--slide bar menu end here-->
+
+                   
                                 
                                        
                     
-                              
-                    </div>           
-                        
-                          
-                            
-                        </div>
-                    
-                    <!-- /post-container -->
-                </div>
-               
-            </div>
-        </div>
-       
-    </div>
+                  
     <script src='./jquery.min.js'></script>
     <script>
         $(document).ready(function(){
@@ -47,6 +40,15 @@
                     type:"POST",
                     success:function(data){
                         let c=1;
+                        if(data.length==0){
+                            $('.order-shop-div').html(`<div style='
+                            height:15rem;font-size:3rem;
+                            color:red;margin:auto;
+                            background-color:lightgrey;
+                            text-align:center;
+                            padding-top:5rem;'>No Orders Yet</div>`);
+                            return
+                        }
                         let output=`<table id='shop-order'>
                                     <tr>
                                         <th>Sr No</th>

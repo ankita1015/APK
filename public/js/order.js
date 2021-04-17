@@ -4,6 +4,7 @@ function loadorder(){
         url:'/order',
         type:"POST",
         success:function(data){
+         
           if(data==1){
           let msg=` <p id='order-msg' style="font-size:larger;
                     color:black;

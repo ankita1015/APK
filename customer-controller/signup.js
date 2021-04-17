@@ -4,7 +4,7 @@ module.exports=async(req,res)=>{
     try{
         
             let password=await bcrypt.hash(req.body.password,10);
-               console.log(req.body);
+             
             const User=new UserDocument({
                     name:req.body.name,
                     email:req.body.email,

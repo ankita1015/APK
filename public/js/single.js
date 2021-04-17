@@ -264,14 +264,14 @@ $('.cart').click(function(){
  })
 })
 $('.order').click(function(){
-  
+ 
       categoryid=$('#product-category').val();
   let productid=$('#productid').val();
   let shopid=$('#shopid').val();
   let qty=$('#qty').val();
   let total_price=$('#price').text();
       total_price=total_price.replace('Rs.','');
-     
+      
     
       fetch('/confirm-order',{
     method:'POST',

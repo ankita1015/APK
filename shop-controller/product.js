@@ -14,6 +14,7 @@ try{
         productId:req.body.product,
         sub_category,
         category,
+        qty:req.body.qty,
         gst:req.body.gst,
         price:req.body.price,
         total_price:req.body.total_price,

@@ -1,146 +1,183 @@
-<html>
+	{{>sh}}
+<link rel="stylesheet" href="./pr.css">
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head">
+    		<h2>Products</h2>
+    	</div>
 
-<head>
-{{>styleing}}
-
-</head>
-<body>
-    
-{{>seller_header}}
-    <div id="main-content">
-      <div class="container-fluid">
-        <div class="row">
-        
-            <div class="col-md-12">
-                 
-         
-            </div>
-        </form>
-                <!-- post-container -->
-                <div class="post-container">
-                  <h2 class="page-heading">product-list</h2>
-                    <div class="post-content row">
-                          
-                             <div class="form-group col-md-6">
-                               <label>Select Product Category</label>
-                               <select class="form-control" id='category'>
-                                 <option selected disabled>Select Category</option>
-
-                               </select>
-                             </div>
-
-                          
-                        <div class="col-md-12 order-shop-div" style="margin-bottom:10px;border:1px solid #dddddd;padding:50px;">
-                    
-                  <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'>Select Category</p> 
-                        
-
-                          
-                    </div>
-                                      
-                                   
-
-                                </div>
-                            </div>
-                           
-                                                    
-                             <hr style='width:100%;color:black;'>
-                            </div>
-                          
-                          
-                        </div>
-                    </div>
-        
-                    
-                    
-                   
-                </div><!-- /post-container -->
-            </div>
-     
-        </div>
-      </div>
+      <div class="clearfix"> </div>
     </div>
-    <script src='./jquery.min.js'></script>
-     <script>
-         $(document).ready(function(){
-           $('#category').change(function(){
-              let id=$(this).val();
-               $.ajax({
-                url:'/load-all-shop-products',
-                type:'POST',
-                data:{id},
-                success:function(data){
-                
-                  if(data.length!=0){
-                    let c=1;
-    
-                let output=`<table id='shop-order'>
-                            <tr>
-                                <th>Sr.No</th>
-                                <th>Product name</th>
-                                <th>Size</th>
-                                <th>Price</th>
-                                <th>Batch Id</th>
-                                <th>img</th>
-                                <th>Action</th>
+</div>
 
 
-                          </tr>`;
-                data.forEach(element=>{
-              
-                    output=output.concat(`
-                    <tr>
-                      <td>${c}</td>
-                        <td>${element.productId.product}</td>
-                        <td>${element.product_cat}</td>
-                        <td>${element.total_price}</td>
-                        <td>${element.batchid}</td>
-                        <td><img src='${element.productId.images[0]}' alt='product image' style='width:5rem;height:5rem;'> </td>
-                        <td><a href='#'>Add more</a></td>
-                    </tr>`);
-                    c++;
-                });
-                  output=output.concat('</table>')
-                  $('.order-shop-div').html(output);
-                }else{
-                   document.getElementById('e-error').innerHTML=`<span>You have not Added Products</span>`;
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>sidebar}}
+	<div class="clearfix"> </div>
+</div>
+<div id="myModal" class="modal">
+
+</div>
+<!--slide bar menu end here-->
+
+<!--scrolling js-->
+    <script src="./jquery.min.js"></script>
+		<script src="./admin-js/jquery.nicescroll.js"></script>
+    <script src="./admin-js/bootstrap.js"></script>
+		<script src="./admin-js/scripts.js"></script>
+		<script type="text/javascript" src="./admin-js/nivo-lightbox.min.js"></script>
+			
+
+
+<script type="application/x-javascript"> 
+				  
+	$(document).ready(function() {
+			  var navoffeset=$(".header-main").offset().top;
+			  $(window).scroll(function(){
+				  var scrollpos=$(window).scrollTop(); 
+				  if(scrollpos >=navoffeset){
+					   $(".header-main").addClass("fixed");
+				  }else{
+					   $(".header-main").removeClass("fixed");
+				   }
+			  });
+         $('#nivo-lightbox-demo a').nivoLightbox({ effect: 'fade' });
+         var toggle = true;
+            
+        $(".sidebar-icon").click(function() {                
+          if (toggle){
+              $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+              $("#menu span").css({"position":"absolute"});
+          }else{
+              $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+              setTimeout(function() {
+                 $("#menu span").css({"position":"relative"});
+              }, 400);
+           }               
+              toggle = !toggle;
+          });
+			 
+	});
+
+    addEventListener("load", function() { 
+      setTimeout(hideURLbar, 0); }, false);
+      function hideURLbar(){ window.scrollTo(0,1); } 
+  function loadproducts(){
+  
  
-              }
-              }
-            });  
-           })
-           
-             $.ajax({
-            url:'/load-all-category',
-            type:'POST',
-            success:function(data){
-                  let=1;
-                    data.forEach(element=>{
-                        $('#category').append(`<option value=${element._id}>${element.categoryname}</option>`)
-                    })
-              }
-        });
+    $.ajax({
+      url:'/load-all-shop-products',
+      type:"POST",
+      success:function(data){
+      let output=`<div class="product-block">
+    	<div class="pro-head">
+    		<h2>Products</h2>
+    	</div>`
+      
+      data.forEach(ele=>{
+        output=output.concat(`<div class="col-md-3 product-grid" data-id=${ele._id}>
+    		<div class="product-items">
+	    		    <div class="project-eff">
+						<div id="nivo-lightbox-demo"> <p> <a href="#"data-lightbox-gallery="gallery1" id="nivo-lightbox-demo"><span class="rollover1"> </span> </a></p></div>     
+							<img class="img-responsive" src="${ele.productId.images[0]}"alt="">
+					</div>
+	    		<div class="produ-cost">
+	    			<h4>${ele.productId.product}</h4>
+	    			<h5>Rs.${ele.total_price}</h5>
+	    		</div>
+    		</div>
+    	</div>`);
+      })
+      output=output.concat(`</div>`)
+      $('.inner-block').html(output)
+      }
+    })
+  }
+  loadproducts()
 
-         });
-     </script>
-
+  function details_product(){
+    $(document).on('click','.product-grid',function(){
+      let id=$(this).data('id');
+      $.ajax({
+        url:'/load-single-shop-product',
+        type:"POST",
+        data:{id},
+        success:function(data){
+          console.log(data);
+           let output=''
+             if(data){
+               data.forEach(ele=>{
+       output=output.concat(`<div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center">
+        <div class="card p-2">
+            <div class="p-info px-3 py-3">
+                <div>
+                    <h5 class="mb-0">${ele.productId.product}</h5> <span>${ele.category.categoryname}</span>
+                </div>
+                <div class'col-md-2'></div>
+                <div class='close' style='margin-right:-10px;float:right;'>X</div>
+              
+                <div class="heart"> <i class="bx bx-heart"></i> </div>
+            </div>
+            <div class="text-center p-image"> <img src="${ele.productId.images[0]}"> </div>
+            <div class="p-about">`);
+              if(ele.sub_category.category_name!='kg'){
+                let i=0;
+                ele.sub_category.category_name.forEach(cat=>{
+                 output=output.concat(`<h5>${cat}:${ele.sub_category.category_value[i]}</h5>`)
+                i++;
+                })
+                 output=output.concat(`<h5 style='color:red;'>Only *${ele.qty} left</h5>`)    
+              }else{
+                 output=output.concat(`<h5>${ele.sub_category.category_name}:${ele.qty}</h5>`);
+                 output=output.concat(`<h5 style='color:red;'>Only *${ele.qty} left</h5>`)
+              }
+                
+                output=output.concat(`<h5>price:${ele.total_price}&nbsp;<i class='fa fa-rupee'></i></h5><br><h5>${ele.productId.description}</h5>
+            </div>
+            <div class='col-md-1'><input type'number' id='qty' placeholder='Add more'></div>
+            <div class="buttons btn btn-primary flex-row gap-3 px-3 add-qty" data-id=${ele._id}>Add</div>
+            
+        </div>
+    </div>`)
+               })
+       $('.modal').html(output);
+       
+      $('.modal').show()
+        }
+        }
+      })
+    })
+  }
+  details_product()
+  $(document).on('click','.close',function(){
+    $('.modal').hide()
+  });
+  
+  $(document).on('click','.add-qty',function(){
+     let id=$(this).data('id');
+     let qty=$('#qty').val();
+      $.ajax({
+        url:'/add-more-product',
+        type:"POST",
+        data:{id,qty},
+        success:function(data){
+         if(data){
+          details_product();
+          window.location.assign('/view-product');
+         }
+        }
+      })
+  })
+ </script>
 </body>
 </html>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                      
+						

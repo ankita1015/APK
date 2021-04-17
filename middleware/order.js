@@ -7,7 +7,6 @@ const order=async(req,res,next)=>{
         const user=req.user;
         
         const customer=await customerDocument.find({userId:user._id}).exec((err,data)=>{
-          
             if(data.length==0 || data==undefined){
 
                 res.render('make-order');

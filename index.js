@@ -77,6 +77,7 @@ app.get('/add-product',shopuser,(req,res)=>{
         shopname:req.shopname,
     });
 });
+app.post('/load-single-shop-product',require('./shop-controller/load-single-product'))
 app.post('/load-all-products',require('./shop-controller/load-all-products'))
 app.post('/product',shopuser,shopAuth,require('./shop-controller/product'));
 app.post('/single-product',require('./customer-controller/single-product'));
@@ -85,6 +86,7 @@ app.get('/ourorders',shopuser,shopAuth,(req,res)=>{
   res.render('ourorders');
 })
 app.post('/load-all-shop-products',shopuser,shopAuth,require('./shop-controller/load-all-shop-product'));
+app.post('/add-more-product',require('./shop-controller/add-more-products'));
 app.get('/order-details',shopuser,shopAuth,require('./shop-controller/order-details'))
 app.post('/shop-order',shopuser,shopAuth,require('./shop-controller/shop-order'))
 //view order//
@@ -120,9 +122,7 @@ app.post('/load-cart-products',auth,require('./customer-controller/cart'));
 app.post('/total-cart-product',auth,require('./customer-controller/total-product-cart'));
 app.post('/customer',auth,require('./customer-controller/customer'));
 app.post('/load-order-shop',require('./customer-controller/load-shop'));
-app.get('/mk',auth,(req,res)=>{
-    res.render('make-order')
-})
+
 app.post('/edit-address',require('./customer-controller/edit-address'))
 app.post('/payment',require('./customer-controller/payment'));
 app.post('/delete-order',require('./customer-controller/delete-order'));
@@ -189,7 +189,7 @@ app.get('/order-done',(req,res)=>{
    
     res.render('order-done');
 })
-app.get('/a',(req,res)=>{
+app.get('/a',shopuser,shopAuth,(req,res)=>{
     res.render('a');
 })
 
