@@ -1,30 +1,37 @@
 const login_btn=document.getElementById('login-btn');
 
 var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-$(document).on("click",".error-icon",function(){
-    $('#e-error').css("display","none");
- })
-login_btn.addEventListener('click',(e)=>{
 
+login_btn.addEventListener('click',(e)=>{
+    function Close() {
+    setTimeout(() => {
+        $('#e-error').css("display","none");
+       
+    },2000);
+}
     e.preventDefault();
      let email=$('.login-email').val();
      let password=$('.login-password').val();
      
      if(email==''){
-     document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>email can't blank</span>";
-     $('#e-error').css("display","block");
+        
+       document.getElementById('e-error').innerHTML="<span><b>email can't blank</b></span>";
+       $('#e-error').show()
+       Close()
      return;     
      }else if(!filter.test(email))
     {
-        document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span>Invalid email</span>";
+        document.getElementById('e-error').innerHTML="<span><b>Invalid email</b></span>";
         $('#e-error').css("display","block");
+        Close()
         return;
     }
     
 
     if(password==''){
-     document.getElementById('e-error').innerHTML="<span class='error-icon' style='margin-right:45%;cursor:pointer'>X</span><span> Password can't be blank</span>";
+     document.getElementById('e-error').innerHTML="<span><b>Password can't be blank</b></span>";
      $('#e-error').css("display","block");
+     Close()
      return;
      }
    

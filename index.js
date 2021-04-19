@@ -85,6 +85,7 @@ app.get('/more-information-product',require('./customer-controller/more-product-
 app.get('/ourorders',shopuser,shopAuth,(req,res)=>{
   res.render('ourorders');
 })
+app.post('/category-selling',shopuser,shopAuth,require('./shop-controller/category-selling'))
 app.post('/load-all-shop-products',shopuser,shopAuth,require('./shop-controller/load-all-shop-product'));
 app.post('/add-more-product',require('./shop-controller/add-more-products'));
 app.get('/order-details',shopuser,shopAuth,require('./shop-controller/order-details'))

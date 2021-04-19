@@ -29,11 +29,8 @@ $(".save").click(function(e){
     var password=$('.password').val()
     var cpassword=$('.re_password').val()
 
-    var letters = /^[A-Za-z\s]+$/;
-   var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      $(document).on("click",".error-icon",function(){
-      $('#e-error').css("display","none");
-      })
+   
+     
        if(name=='' || name==undefined){
           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
             style='cursor:pointer;'>X</span><span style='color:red;'>Name can't be blank</span>`;
