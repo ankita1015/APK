@@ -130,6 +130,7 @@ app.post('/search-product',require('./customer-controller/search-product'));
 app.get('/history',(req,res)=>{
     res.render('history');
 })
+app.post('/genrate-bill',require('./customer-controller/genrate-bill'))
 app.post('/order-history',auth,require('./customer-controller/order-history'));
 app.get('/logout',auth,require('./customer-controller/logout'));
 

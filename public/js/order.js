@@ -4,7 +4,7 @@ function loadorder(){
         url:'/order',
         type:"POST",
         success:function(data){
-         
+        
           if(data==1){
           let msg=` <p id='order-msg' style="font-size:larger;
                     color:black;
@@ -75,6 +75,41 @@ function loadorder(){
             <p class="mb-0"><span id='totalprice'><strong>Rs.${element.price}</strong></span></p>
           </div>
         </div>
+        <ol class="progtrckr" data-progtrckr-steps="5">`);
+        if(element.status=='order accept'){
+    output=output.concat(`<li class="progtrckr-todo">order Processing</li>`);
+    output=output.concat(`<li class="progtrckr-todo">order Production</li>`);
+    output=output.concat(`<li class="progtrckr-todo">order Shipped</li>`)
+    output=output.concat(`<li class="progtrckr-todo">order Diliverd</li>`) 
+        }
+        if(element.status=='Process'){
+    output=output.concat(`<li class="progtrckr-done">order Processing</li>`);
+    output=output.concat(`<li class="progtrckr-todo">order Production</li>`);
+    output=output.concat(`<li class="progtrckr-todo">order Shipped</li>`)
+    output=output.concat(`<li class="progtrckr-todo">order Diliverd</li>`)
+        }
+        if(element.status=='Production'){
+          output=output.concat(`<li class="progtrckr-done">order Processing</li>`);
+          output=output.concat(`<li class="progtrckr-done">order Production</li>`)
+          output=output.concat(`<li class="progtrckr-todo">order Shipped</li>`)
+          output=output.concat(`<li class="progtrckr-todo">order Diliverd</li>`)
+        }
+        if(element.status=='Shipped'){
+          output=output.concat(`<li class="progtrckr-done">order Processing</li>`);
+          output=output.concat(`<li class="progtrckr-done">order Production</li>`);
+          output=output.concat(`<li class="progtrckr-done">order Shipped</li>`)
+          output=output.concat(`<li class="progtrckr-todo">order Diliverd</li>`)
+        }
+        if(element.status=='Diliverd'){
+          output=output.concat(`<li class="progtrckr-done">order Processing</li>`);
+          output=output.concat(`<li class="progtrckr-done">order Production</li>`);
+          output=output.concat(`<li class="progtrckr-done">order Shipped</li>`)
+          output=output.concat(`<li class="progtrckr-done">order Diliverd</li>`)
+
+        }
+        
+        
+output=output.concat(`</ol>
       </div>
     </div>
     `);

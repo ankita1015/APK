@@ -15,15 +15,7 @@
      {{#each uniqueProduct}}
      
    
-     <a href="/product-list?product_id={{this._id}} " class="order" 
-     style="text-decoration:none;
-            color:gray;
-            font-weight:10px;
-            margin-right:3rem;
-            
-            padding:5px;
-            border-radius: 10px;
-            ">
+     <a href="/product-list?product_id={{this._id}} " class="order"id='top-link' >
      {{this.categoryname}}
      </a>
      {{/each}}
@@ -297,12 +289,12 @@
     
 }
 
-const slideshow = new Slideshow(document.querySelector('.slideshow'));
+//const slideshow = new Slideshow(document.querySelector('.slideshow'));
 
     $(document).on('click','#product-img',function(){
       let id=$(this).data('id');
     
-      
+      alert(id)
          $.ajax({
            url:'/single-product',
            type:'POST',

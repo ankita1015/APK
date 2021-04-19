@@ -7,7 +7,9 @@ module.exports=async(req,res)=>{
       let cart_id=req.body.cart_id;
       let productId=req.body.product_id;
       let customerId= req.customer;
-          customerId=customerId._id
+          customerId=customerId[0]._id
+         
+         
 
       let qty=req.body.qty;
       let category={category_name:req.body.category_name,
@@ -25,11 +27,9 @@ module.exports=async(req,res)=>{
         let month=new Date().getMonth();
         let year=new Date().getFullYear('');
 
-        let hours=new Date().getHours();
-        let min =new Date().getMinutes();
-        let curTime=hours+":"+min;
-        let curDate=`${curTime}||${date}/${monthNames[month]}/${year}`;
-         console.log(req.body);
+       
+        let curDate=`${year}/${monthNames[month]}/${date}`;
+        //  console.log(req.body);
         const orders=new shoporderDocment({
           productId:productId,
           qty,
@@ -41,11 +41,11 @@ module.exports=async(req,res)=>{
           shopId,
           price:total_price,
           customerId,
-          status:'Process'
+          status:'order accept'
        
         });
         let orderDoc=await orders.save();
-      console.log(orderDoc);
+     
         res.send('1');
         if(cart_id!=null){
         let removecart=await cart.deleteMany({_id:cart_id});

@@ -1,88 +1,144 @@
-<html>
-    <head>
-{{>styleing}}
-
-</head>
-<body>
+{{>urls}}
+	{{>sh}}
     
-    {{>seller_header}}
-     
-   
-    <div id="main-content">
-     
-        <div class="container-fluid">
-            <div class="row">
-                
-                <div class="col-md-12">
-                  <!-- post-container -->
-                
-                    <div class="post-container">
-                        <div class="post-content single-post">
-                        
-                    
-                            <div class="post-information container ">
-                               <div class="order-img row ">
-                                   <div class="col-md-1 side-images">
-                                       {{#each data.[0].productId.images}}
-                                        <img class='view-img' src="{{this}}">
-                                       {{/each}}
-                                   </div>
-                                <div class="col-md-3 img-container">
-                                <img id='order-img' src="{{data.[0].productId.images.[0]}}">
-                       
-                                 </div>
-                                 <div class="col-md-1"></div>
-                                  <div class="col-md-5 orders-detail">
-                                    <h4>{{data.[0].productId.product}}</h4>
-                                     <p style="display: none;" id='category_name'>{{data.[0].sub_category.category_name}}</p>
-                                    <p style="display: none;" id='category_value'>{{data.[0].sub_category.category_value}}</p>
-                                  <div class="sub_catagory_div">
 
-                                  </div>
-                                    <p>Qty.{{data.[0].qty}}</p>     
-                                    <p>Rs.{{data.[0].price}}</p>
-                           
-                                   <hr>   
-                                   <div class="col-md-10 orders-detail">
-                                   <h4>Customer Details</h4>
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head">
+    		<h2>Products</h2>
+    	</div>
+           <section class="mb-5">
+
+        <div class="row">
+          <div class="col-md-6 mb-4 mb-md-0">
+
+            <div id="mdb-lightbox-ui"></div>
+
+            <div class="mdb-lightbox">
+
+              <div class="row product-gallery mx-1">
+
+                <div class="col-12 mb-0">
+                  <input type="hidden" id='sho  pid' value="">
+                <input type="hidden" id='product-category' value="{{data.[0].category._id}}">
+                 <input type="hidden" id='productid' value="{{data.[0]._id}}">
+                  {{#each data.[0].productId.images}}
+                  <figure class="view overlay rounded z-depth-1 main-img" >
+                    <a href="{{data.[0].images.[0]}}"
+                      data-size="710x823">
+                      <img src="{{data.[0].images.[0]}}"
+                      class="img-fluid z-depth-1"  style="margin-top: -90px;">
+                    </a>
+                  </figure>
+                  {{/each}}
+              
+                </div>
+                <div class="col-12">
+                  <div class="row">
+                    {{#each data.[0].productId.images}}
+                    <div class="col-3">
+                      <div class="view overlay rounded z-depth-1 gallery-item hoverable">
+                        <img src="{{this}}"
+                          class="img-fluid">
+                        <div class="mask rgba-white-slight"></div>
+                      </div>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-md-6">
+
+            <h5>{{data.[0].productId.product}}</h5>
+            <p class="mb-2 text-muted text-uppercase small">{{data.[0].category.categoryname}}</p>
+            <hr>    
+         
+            <p><span class="mr-1"><strong id='price'></strong></span><p><button class="btn btn-primary cnt-gst btn-md mr-1 mb-2" style="display: none;">Count Gst</button></p>
+            <p class="pt-1">{{data.[0].productId.description}}</p>
+            <div class="table-responsive">
+  
+            </div>
+            <hr>
+            <div class="table-responsive mb-2">
+              <table class="table table-sm table-borderless">
+                <tbody>
+                  <tr>
+                    <td class="pl-0 pb-0 w-25">Quantity</td>
+                    
+
+                  </tr>
+                  <tr>
+                    <td class="pl-0" id='category-load'>
+                      <div class="def-number-input number-input safari_only mb-0">
+              
+                <input class="quantity" min="0" id='qty' name="quantity" id='qty' value="{{data.[0].qty}}" type="number" readonly>
+             
+                    </div>
+                  </td>
+                    <td>
+                      <div class="mt-1">
+                      <p style="display: none;" id='category_name'>{{data.[0].sub_category.category_name}}</p>
+                      <p style="display: none;" id='category_value'>{{data.[0].sub_category.category_value}}</p>
+                                 
+                      <div class='sub_catagory_div'>
+                        
+                      </div>
+                      </div>
+                     
+                    </td>
+                     
+                                 
+                  </tr>
+                  <tr>
+                       <td><h4>Customer Details</h4>
                                    <p><b></b>{{data.[0].userId.name}}</p>
                                    <p><b></b>{{data.[0].userId.email}}</p>
                                    <p><b></b>{{data.[0].customerId.mobile_no}}</p>
                                    <p><b></b>{{data.[0].customerId.city}}</p>
                                    <p><b></b>{{data.[0].customerId.state}}</p>
-                                 
-                                    <p><b>Delivery Address:</b></p>
+                                   
+                         <p><b>Delivery Address:</b></p>
                                     <p>{{data.[0].customerId.Address}},{{data.[0].customerId.area_code}}</p>
-                                    </div>
-                                    <input type="hidden" id="city" value="{{data.[0].customerId.city}}">
+                                   </td>
+
+                           <input type="hidden" id="city" value="{{data.[0].customerId.city}}">
                                     <input type="hidden" id="state" value="{{data.[0].customerId.state}}">
                                     <input type="hidden" id="custid" value="{{data.[0].customerId._id}}">
                                     <input type="hidden" id="prodid" value="{{data.[0].productId._id}}">
                                     <input type="hidden" id="ordid" value="{{data.[0]._id}}">
-                                 
-                               </div>
-                               
-                               
-                               </div> 
-                              
-
-                            </div>
-                           
-                        
-                           <hr>
-                        </div>
-                    </div>
-                    <!-- /post-container -->
-                </div>
-               
+                                
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <button type="button" class="btn btn-primary btn-md mr-1 mb-2" id='payment_btn' data-id="{{data.[0]._id}}">{{data.[0].payment}}</button>
+            <button type="button" class="btn btn-light btn-md mr-1 mb-2 cart" id='order-success'   data-id="{{data.[0]._id}}">{{data.[0].status}}</button>
+          </div>
         </div>
-        <div id='load-single-shop'>
 
-        </div>
-     
+      </section>
+
+      <div class="clearfix"> </div>
     </div>
+</div>
+
+
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>sidebar}}
+	<div class="clearfix"> </div>
+</div>
+
     <script src="./jquery.min.js"></script>
+    
     <script>
         $('.view-img').click(function(){
              let src=$(this).attr('src');
@@ -90,9 +146,11 @@
           
              order_img.src=src;
         });
+      
          
-       let category_name=$('#category_name').text();
+    let category_name=$('#category_name').text();
     
+      
      let category_value=$('#category_value').text();
     
      category_name=category_name.split(',');
@@ -106,7 +164,47 @@
     printCategory=printCategory.concat('</div>');
     $('.sub_catagory_div').append(printCategory);
               
-       
+       $('#payment_btn').click(function(){
+              var id=$(this).data('id');
+                  $.ajax({
+                      url:'/payment',
+                      type:"POST",
+                      data:{id,msg:'Complete'},
+                      success:function(data){
+                   
+                      }
+                  })
+       })
+       $(document).on('click','#order-success',function(){
+               
+               let status=$(this).text();
+              
+               if(status=='order accept'){
+                   status='Process';
+               }
+               else if(status=='Process'){
+                   status='Production';
+               }
+               else if(status=='Production'){
+                    status='Shipped';
+               }
+               else if(status=='Shipped'){
+                    status='Deliverd';
+
+               }
+                   
+                let oid=$(this).data('id');
+                  $.ajax({
+                      url:'/order-success',
+                      type:'POST',
+                      data:{oid,status},
+                      success:function(data){
+                          if(data==1){
+                          
+                          }
+                      }
+                  })
+            })
     </script>
-</body>
-</html>
+   
+

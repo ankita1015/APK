@@ -136,6 +136,7 @@ function loadShop(...args){
                                   <td class='dark-grey-text'><button style='width:70px;padding:7px;' class='btn btn-primary select_shop'  
                                      data-shop_id=${element.shopId._id} 
                                      data-price=${element.total_price}
+                                     data-qty=${element.qty}
                                      data-gst=${element.gst}>Select</button></td>
                               </tr></tbody`)
                             })
@@ -149,6 +150,8 @@ let price;
 
 $(document).on('click','.select_shop',function(){
   let cat_name=$('#category-name').val();
+  var leftqty=$(this).data('qty')
+  $('#qty-info').text(`only ${leftqty}* product left`)
  
   price=$(this).data('price');
    $('#price').text(`Rs.${price}`)
@@ -220,11 +223,12 @@ $(document).on('change','#sub_category',function(){
   }else{
     var kg = $(this).val();
     cat_value[0]=$(this).val();
-   
+ 
  
    price=$('.select_shop').data('price');
   
   $('#price').text(`Rs.${price * kg}`)
+ 
   }
 });
 let pid=$('#productid').val();
@@ -272,7 +276,7 @@ $('.order').click(function(){
   let total_price=$('#price').text();
       total_price=total_price.replace('Rs.','');
       
-    
+     console.log(price)
       fetch('/confirm-order',{
     method:'POST',
     headers:{
@@ -290,7 +294,7 @@ $('.order').click(function(){
     })
         
 }).then((result)=>{
-window.location.assign('/make-order')
+window.location.assign('/order')
 }).catch((err)=>{
 
 })

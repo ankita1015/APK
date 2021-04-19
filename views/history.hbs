@@ -42,17 +42,6 @@
             <div class="card mb-4">
               <div class="card-body">
 
-                <h5 class="mb-4">Expected shipping delivery</h5>
-
-                <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
-              </div>
-            </div>
-            <!-- Card -->
-
-            <!-- Card -->
-            <div class="card mb-4">
-              <div class="card-body">
-
                 <h5 class="mb-4">We accept</h5>
 
                 <img class="mr-2" width="45px"
@@ -148,17 +137,32 @@
           success:function(data){
           
            let shoplist=Array()
+           let datelist=Array()
+           let product=Array()
+           let output=''
          data.forEach(e=>{
                     
         if(!shoplist.includes(e.shopId.shopname)){
            shoplist.push(e.shopId.shopname)
           } 
          })
-          
-         shoplist.forEach(shop=>{    
-          output=`<h5 class="mb-4">Orders (<span>${data.length}</span> items)</h5>`;
+         data.forEach(e=>{
+          if(!datelist.includes(e.date_time)){
+           datelist.push(e.date_time)
+          } 
+         })
+
+         datelist.forEach(datewise=>{
+           output=output.concat(`<h5 class="mb-4" style='text-align:center';>Date: (<span>${datewise}</span>)</h5>`);
+           data.forEach(ele=>{
+            
+          if(datewise==ele.date_time){
+         shoplist.forEach(shop=>{
+              
         data.forEach(element => {
-         if(shop==element.shopId.shopname){    
+          if(shop==element.shopId.shopname && datewise==element.date_time && (!product.includes(element._id))){   
+           product.push(element._id) 
+        output=output.concat(`<h5 class="mb-4" style='text-align:center;'><span>${element.shopId.shopname}</span></h5>`);
        output=output.concat(`<hr class="mb-4">
       <div class="row mb-4">
       <div class="col-md-5 col-lg-3 col-xl-3">
@@ -213,24 +217,48 @@
             </div>
             
             <p class="mb-0"><span id='totalprice'><strong>Rs.${element.price}</strong></span></p>
+           
           </div>
         </div>
       </div>
- 
+    </div>
+      <button class='btn btn-primary' id='getbill' data-shop='${element.shopId._id}'data-date='${element.date_time}'>Get Bill</button>
     `);
       }
         });
            output=output.concat(`</div>`);
 
          });
+          }
+         })
+        })
   
 
    output=output.concat(`<p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> .</p>`)
     $('.history-body').html(output);
 }
 })
+$(document).on('click','#getbill',function(){
+ let date=$(this).data('date');
+ let shop=$(this).data('shop')
+
+  $.ajax({
+    url:'/genrate-bill',
+    type:'POST',
+    data:{date,shop},
+    success:function(data){
+    if(data){
+      data=data.replace('/\/','/')
+      alert(data)
+      window.location.assign(data)
+    }
+
+    }
+  })
+})
    
 });
+
     </script>
 
 </body>

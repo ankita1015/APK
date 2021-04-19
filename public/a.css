@@ -7,6 +7,19 @@ section {
     width: 100%;
     height: 90%;
   }
+  #top-link{
+           text-decoration:none;
+            color:gray;
+            font-weight:10px;
+            margin-right:3rem;
+            
+            padding:5px;
+            border-radius: 10px;
+  }
+  #top-link:hover{
+    color:blue;
+    font-weight: bolder;
+  }
   
   .slide {
     display: flex;

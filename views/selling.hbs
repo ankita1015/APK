@@ -1,4 +1,5 @@
 	{{>sh}}
+    
 <div class="inner-block">
     <div class="product-block">
     	<div class="pro-head">
@@ -11,9 +12,7 @@
 </div>
 
 
-<!--copy rights start here-->
 
-<!--COPY rights end here-->
 </div>
 </div>
 <!--slider menu-->
@@ -41,9 +40,10 @@
                           if(data.length!=0){
                           let output=''
                         data.forEach(element=>{
-                            output=output.concat(`     <div class="row">
 
-                            <div class="col-md-2">
+                            output=output.concat(`<div class="row">
+
+                            <div class="col-md-1">
                                 <a class="post-img" href='#'><img src="${element.productId.images[0]}" alt=""/></a>
                             </div>
                             <div class="col-md-8">
