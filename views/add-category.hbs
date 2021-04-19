@@ -1,17 +1,17 @@
 
+{{>admin_header}}
 
-<html>
-<head>
-<link rel="stylesheet" href="./popupstyle.css"> 
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head" >
+    		<h2>Add Category</h2>
+    	</div>
 
-</head>
-<body>
-    {{>admin_header}}
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-4">
                  <form  id="input-form">
-                     <h3 id="form-heading">Add Category</h3>
+                   
                  <div class="form-group">
                  <label for="Add-category">Add Category</label>
                  <input type="text" class="form-control" name="category" id="add-category"  placeholder="Enter Category">
@@ -29,7 +29,7 @@
             <div class="col-md-6" style="text-align: center; background-color:white;margin-top:30px; padding:10px;">
               <h3 id="form-heading" >List of Categories</h3>
               <hr>
-              <div class="load-category" >
+              <div class="shop-order-div" >
                   
               </div>
              
@@ -37,8 +37,25 @@
         </div>
     </div>
  
+  
+      <div class="clearfix"> </div>
+    </div>
+</div>
 
-<!-- The Modal -->
+
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>admin_sidebar}}
+	<div class="clearfix"> </div>
+</div>
+
+         
+
+
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -59,10 +76,10 @@
             type:'POST',
             success:function(data){
                 if(data.length==0){
-                    $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
+                    $('.shop-order-div').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
                     return;
                 }
-                    let output=` <table>
+                    let output=` <table id='shop-order'>
                   <tr>
                       <th>Sr.No</th>
                       <th>Category Name</th>
@@ -74,14 +91,14 @@
                          <td>${c}</td>
                          <td>${element.categoryname}</td>
                          <td>
-                             <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
-                             <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
+                             <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fa fa-edit' style='color:black;'></i></a>
+                             <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fa fa-trash' style='color:red;'></i></a>
                          </td>
                          </tr>`)
                          c++;
                         })
                     output=output.concat(`</table>`);
-                    $('.load-category').html(output);
+                    $('.shop-order-div').html(output);
 
                 }
             

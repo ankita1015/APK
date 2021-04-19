@@ -4731,18 +4731,23 @@ ul.dropdown-menu {
    overflow: auto; /* Enable scroll if needed */
    background-color:rgba(32, 19, 19, 0.7); /* Black w/ opacity */
  }
- #shop-order{
+ .modal .modal-content{
+     width:30rem;
+     margin: auto;
+
+ }
+ table{
      width:100%;
      border-radius: 5px;
  }
- .order-shop-div th{
+ table th{
   background-color: light;
   font-size: small;
   border:1px solid grey;
   width: min-content;
   text-align: center;
 }
-.order-shop-div td{
+table td{
   font-size:12px;
   padding:5px;
   border:1px solid grey;
@@ -4750,22 +4755,18 @@ ul.dropdown-menu {
   text-align: center;
 
 }
-.order-shop-div td button{
+table td button{
   font-size:10px;
   border:none;
-  padding:5px;
+  padding:3px;
   border-radius:3px;
  
 }
-.order-shop-div td a{
-  font-size:10px;
+table td a{
+  font-size:8px;
   border:none;
-  padding:8px;
+  padding:2px;
   border-radius: 5px;
   background-color: blue;
   color:white;
 }
-.order-shop-div td{
-  width:5rem;
-}
- 

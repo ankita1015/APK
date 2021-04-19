@@ -163,8 +163,8 @@ $('#more-category-btn').click(function(){
                                                            }              
                                                         }
                                                         sub_category_table=sub_category_table.concat(`<td>${element.standard}</td>
-                                                                                                       <td>  <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-edit' style='color:black;'></i></a>
-                                                                                                        <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fas fa-trash-alt' style='color:red;'></i></a>
+                                                                                                       <td>  <a href='#' data-id=${element._id} id='edit-category'  style='margin:5px;background-color:white;font-size:13px'><i class='fa fa-edit' style='color:black;'></i></a>
+                                                                                                        <a href='#' data-id=${element._id} id='delete-category' style='margin:5px;background-color:white;font-size:13px'><i class='fa fa-trash' style='color:red;'></i></a>
                                                                                                         </td><tr>`)    
                                                                     
               cnt++; 

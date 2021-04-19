@@ -1,26 +1,16 @@
+{{>admin_header}}
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head" >
+    		<h2>Add Product</h2>
+    	</div>
 
 
-<html>
-    <head>
-{{>styleing}}
-{{>uploadcss}}
-</head>
-<body>
-    {{>admin_header}}
+           <div class="col-md-6">
     
-        
-  
-
-      <!-- Tab panes -->
-       
-           <div class=" col-lg-offset-3 col-md-6">
+          
+            <form action='/admin-product' method='POST' id='input-form' enctype="multipart/form-data" >
              
-          
-             <div class="row" >       
-          
-          
-            <form action='/admin-product' method='POST' id='input-form' enctype="multipart/form-data" class="row" id='productform' style="background-color: white;">
-               <h5 id="form-heading">Add Product</h5>
              <div class="form-group col-sm-12 ">
                <label>Select Category</label>
                <select name='categoryname' id='category' class="form-control">
@@ -40,19 +30,15 @@
                 
              <div class="row"> 
                 <div id="upload_button" class="col-md-offset-1 col-md-2" style="margin-top:0px;margin-right:10px;">
-                       <label id='uploadlabel'>
-	                       
-                          <i class="fa fa-plus"></i>
+                    
                           <input type="file" id='input' name='images' multiple/>
-                        
-                         </label>
+                    
                  </div>
                           <p id='upload-error'></p>
 
-                       <div id='images' class="col-md-9">
-
-                        </div>
+                     
             </div>
+            <br>
           
                     &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" style='item-align:center;margin-bottom:20px;' id='add-product'>Add Product</button>
     
@@ -60,7 +46,24 @@
             </form>
            
        
-        </div>
+       
+       
+      <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>admin_sidebar}}
+	<div class="clearfix"> </div>
+</div>
+
+         
       
 <script src="./jquery.min.js"></script>
 <script src="./file.js"></script>

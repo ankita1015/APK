@@ -828,9 +828,11 @@ border: 1px solid #D48166;
 .order-shop-div th{
   background-color: light;
   font-size: small;
+  border:1px solid grey;
 }
 .order-shop-div td{
   font-size:12px;
+  border: 1px solid grey;
 
 }
 .order-shop-div td button{
@@ -904,7 +906,7 @@ margin: 0;
 ol.progtrckr {
   margin: 0;
   padding: 0;
-  list-style-type none;
+  list-style-type:none;
 }
 
 ol.progtrckr li {

@@ -150,6 +150,9 @@ app.get('/add-admin',(req,res)=>{
 app.get('/users',adminauth,(req,res)=>{
     res.render('users');
 })
+app.get('/load-admin-product',adminauth,(req,res)=>{
+    res.render('admin-index')
+})
 app.post('/users',require('./admin-controller/show-users'))
 app.post('/products',require('./admin-controller/show-product'))
 app.post('/admin-login',require('./admin-controller/admin-login'));

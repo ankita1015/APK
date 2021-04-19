@@ -5,7 +5,7 @@
     	<div class="pro-head">
     		<h2>Selling</h2>
     	</div>
-<div class="post-content"></div>
+<div class="sell-post"></div>
 
       <div class="clearfix"> </div>
     </div>
@@ -41,13 +41,13 @@
                           let output=''
                         data.forEach(element=>{
 
-                            output=output.concat(`<div class="row">
+                            output=output.concat(`<div>
 
-                            <div class="col-md-1">
-                                <a class="post-img" href='#'><img src="${element.productId.images[0]}" alt=""/></a>
-                            </div>
+                            
+                                <a  href='#'><img src="${element.productId.images[0]}" alt=""/></a>
+                
                             <div class="col-md-8">
-                                <div class="inner-content clearfix">
+                                <div class="">
                                     <h4><a href="">${element.productId.product}</a></h4>
                                        <h4>${element.category.categoryname}</h4>
                                             <div class="sub_catagory_div">`);
@@ -71,10 +71,10 @@
                             </div>
                            <hr>`)
                         })
-                    $('.post-content').html(output);
+                    $('.sell-post').html(output);
                       }else{
               
-                      $('.post-content').html(` <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>You don't have Selling Yet</span></p>`);
+                      $('.sell-post').html(` <p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>You don't have Selling Yet</span></p>`);
                           
                       }
                       }

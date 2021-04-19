@@ -1,18 +1,15 @@
+	{{>admin_header}}
 
+<div class="inner-block">
+    <div class="product-block">
+    	<div class="pro-head" >
+    		<h2>Add Admin</h2>
+    	</div>
 
-<html>
-    <head>
-
-
-</head>
-<body>
-    {{>admin_header}}
-
-      <!-- Tab panes -->
          
-         <div class="col-md-offset-4 col-md-4">
+         <div class="col-md-8">
             <form action='/admin-details' method='post' id='input-form' class="row" id='productform'>
-               <h5 id="form-heading">Add Admin</h5>
+              
                 <div class="form-group col-sm-12">
                   <label for="email">email</label>
                   <input type="text" class="form-control" name="email" id="company-name" placeholder="email*">
@@ -31,6 +28,22 @@
                     <button type="submit" class="btn btn-grey create-account" id='add-product'>Add Admin</button>
             </form>
           </div> 
+      
+      <div class="clearfix"> </div>
+    </div>
+</div>
+
+
+<!--copy rights start here-->
+
+<!--COPY rights end here-->
+</div>
+</div>
+<!--slider menu-->
+   {{>admin_sidebar}}
+	<div class="clearfix"> </div>
+</div>
+
          
   
 <script src="./jquery.min.js"></script>

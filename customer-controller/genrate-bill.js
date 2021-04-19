@@ -8,17 +8,15 @@ module.exports=async(req,res)=>{
     try{
       let date=req.body.date;
       let shopId=req.body.shop
-      console.log(date);
-      console.log(shopId);
-     
+      let userId=req.body.userId
+      console.log(userId)
 
       await shoporderdocument
-                .find({$and:[{date_time:date},{'shopId._id':shopId}]})
+                .find({$and:[{date_time:date},{shopId:shopId},{userId}]})
                 .populate(['customerId','userId','productId','category'])
                 .exec((err,data)=>{
-                  console.log(data);
-                 
-                  const invoiceData = {
+                  console.log(data)
+                const invoiceData = {
                     addresses: {
                         shipping: {
                             name: data[0].userId.name,

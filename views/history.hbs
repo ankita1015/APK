@@ -222,7 +222,7 @@
         </div>
       </div>
     </div>
-      <button class='btn btn-primary' id='getbill' data-shop='${element.shopId._id}'data-date='${element.date_time}'>Get Bill</button>
+      <button class='btn btn-primary' id='getbill' data-user='${element.userId}' data-shop='${element.shopId._id}' data-date='${element.date_time}'>Get Bill</button>
     `);
       }
         });
@@ -241,15 +241,17 @@
 $(document).on('click','#getbill',function(){
  let date=$(this).data('date');
  let shop=$(this).data('shop')
+ let userId=$(this).data('user')
+
 
   $.ajax({
     url:'/genrate-bill',
     type:'POST',
-    data:{date,shop},
+    data:{date,shop,userId},
     success:function(data){
     if(data){
       data=data.replace('/\/','/')
-      alert(data)
+     
       window.location.assign(data)
     }
 
