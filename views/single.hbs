@@ -67,7 +67,8 @@
             <p class="mb-2 text-muted text-uppercase small">{{data.[0].category.categoryname}}</p>
          
             <p><span class="mr-1"><strong id='price'></strong></span><p><button class="btn btn-primary cnt-gst btn-md mr-1 mb-2" style="display: none;">Count Gst</button></p>
-            <p class="pt-1">{{data.[0].description}}</p>
+            <p class="pt-1" class="product-details" style="display:block;"></p>
+            <input type='hidden' id="description" value="{{data.[0].description}}">
             <div class="table-responsive">
   
             </div>

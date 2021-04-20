@@ -2,25 +2,17 @@
 
 
 
-$('.view-img').click(function(){
-    let src=$(this).attr('src');
-    const order_img=document.getElementById('order-img');
-   
-    order_img.src=src;
 
-
-});
 
 var description=$('#description').val();
      description=description.split('.')
+     console.log(description)
      description.forEach(data=>{
          $('.product-details').append(`<h5><i class="fas fa-chevron-right"></i> ${data}</h5>`)
-     })
-$('.fa-chevron-down').click(function(){
-  $('.product-details').show();
-  $('#up-down').html('<i class="fas fa-chevron-up"></i>')
+           
+        })
+      
 
-});
 
 
 
