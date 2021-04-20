@@ -13,6 +13,7 @@ module.exports = async(req,res)=>{
 
         }else{
           category=[req.body.args[1],req.body.args[2]]
+          console.log(category)
                 await shop_productDocument.find({$and:[{productId:args[0]},{'sub_category.category_value':category}]}).populate(['shopId']).exec((err,data)=>{
                 res.send(data);
            })  

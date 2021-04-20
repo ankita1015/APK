@@ -68,26 +68,9 @@
 
             <!-- Card -->
             <div class="card mb-4">
-              <div class="card-body">
+              <div class="card-body rlt-product">
 
-                <h5 class="mb-3">The total amount of</h5>
-
-                <ul class="list-group list-group-flush">
               
-                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                    <div>
-                      <strong>The total amount of</strong>
-                      <strong>
-                        <p class="mb-0">(including VAT)</p>
-                      </strong>
-                    </div>
-                    <span><strong id='totalamount'>$53.98</strong></span>
-                  </li>
-                </ul>
-
-                <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to
-                  checkout</button>
-
               </div>
             </div>
             <!-- Card -->
@@ -258,7 +241,40 @@ $(document).on('click','#getbill',function(){
     }
   })
 })
-   
+function loadrandom(){
+  $.ajax({
+    url:'/related-product',
+    type:"POST",
+    success:function(data){
+      let output='<h4>Related Products</h4>'
+      data.forEach(ele=>{
+        output=output.concat(`
+             <div style='padding:1px;'>
+                <h5 class="mb-3"></h5>
+
+                <ul class="list-group list-group-flush">
+              
+                  <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                    <div>
+                     
+                      <strong >
+                       <a href='/more-information-product?productid=${ele._id}'><img src=${ele.images[0]} style='width:5rem;heigth:5rem;'></a>
+                      </strong>
+                    </div>
+                    <span><strong>${ele.product}</strong></span>
+                  </li>
+                </ul>
+                </div> 
+                <hr>
+`);
+
+      })
+      $('.rlt-product').html(output);
+
+    }
+  })
+}
+   loadrandom()
 });
 
     </script>

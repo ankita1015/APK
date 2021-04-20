@@ -4,7 +4,7 @@
 <div class="container" >
   <form action='/' class="signUp">
     <h3>Create Your Account</h3>
-    <p id='e-error'>
+    <p id='p-error' style="display:none;color: red;border:1px solid red;background-color:pink;padding:3px;">
     </p>
     <input type="text" placeholder="Full Name" name='name' class="name" autocomplete='off' reqired />
     <input class="w100 email" type="email" name="email"  placeholder="Insert eMail" reqired autocomplete='off' />
@@ -16,8 +16,6 @@
   </form>
   <form   class="signIn">
     <h3>Welcome</br>Back !</h3>
-    <button class="fb" type="button">Log In With Facebook</button>
-    <p>- or -</p>
   
     <input type="email" placeholder="Email" class='login-email' reqired />
     <input type="password" placeholder="Password" class="login-password" reqired />

@@ -14,7 +14,7 @@ $.ajax({
      })
       let output=''
        shoplist.forEach(shops=>{
-       output=`<h5 class="mb-4"><span>${shops}</span>&nbsp;&nbsp;Cart(<span>${data.length}</span> items)</h5>`;
+       output=output.concat(`<h5 class="mb-4"><span>${shops}</span>&nbsp;&nbsp;</span>)</h5>`);
                 
         data.forEach(element => {
        if(shops==element.shopId.shopname){

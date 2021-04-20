@@ -1,6 +1,7 @@
 
 
 
+
 $('.view-img').click(function(){
     let src=$(this).attr('src');
     const order_img=document.getElementById('order-img');
@@ -275,8 +276,20 @@ $('.order').click(function(){
   let qty=$('#qty').val();
   let total_price=$('#price').text();
       total_price=total_price.replace('Rs.','');
-      
-     console.log(price)
+    
+  
+   if(cat_value=='' || cat_value==undefined){
+    alert('You have not selected Category')
+    return
+   }
+   if(price=='' ||price==undefined){
+   alert('Select Shop Where you want to order')
+   return
+   }
+   if(qty=='' || qty==undefined){
+     alert('select Qty')
+     return
+   }
       fetch('/confirm-order',{
     method:'POST',
     headers:{

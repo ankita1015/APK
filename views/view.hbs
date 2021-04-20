@@ -138,9 +138,10 @@
                  output=output.concat(`<h5 style='color:red;'>Only *${ele.qty} left</h5>`)
               }
                 
-                output=output.concat(`<h5>price:${ele.total_price}&nbsp;<i class='fa fa-rupee'></i></h5><br><h5>${ele.productId.description}</h5>
+                output=output.concat(`<h5>price:${ele.total_price}&nbsp;<i class='fa fa-rupee'></i></h5><br><h5 style='margin-bottom:5px;'>${ele.productId.description}</h5>
             </div>
-            <div class='col-md-1'><input type'number' id='qty' placeholder='Add more'></div>
+            <br>
+            <div class='col-md-1'style='margin-top:10px;'><input type'number' id='qty' placeholder='Add more'></div>
             <div class="buttons btn btn-primary flex-row gap-3 px-3 add-qty" data-id=${ele._id}>Add</div>
             
         </div>

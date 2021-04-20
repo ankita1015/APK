@@ -28,50 +28,69 @@ $(".save").click(function(e){
    
     var password=$('.password').val()
     var cpassword=$('.re_password').val()
+    var letters = /^[a-z][a-z\s]*$/;
+ var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    function Close() {
+      setTimeout(() => {
+          $('#p-error').css("display","none");
+         
+      },2000);
+      
+  }
+      if(name==''){
+          
+          document.getElementById('p-error').innerHTML="<span>name can't blank</span>";
+          $('#p-error').css("display","block");
+          Close();
+          e.preventDefault();
+          return;  
+      }else if(name.match(letters)==false){
+          document.getElementById('p-error').innerHTML="<span>name must be in character only</span>";
+          $('#p-error').css("display","block");
+          Close();
+          e.preventDefault();
+          return; 
+      }
+  
+      if(email==''){
+       document.getElementById('p-error').innerHTML="<span>email can't blank</span>";
+       $('#p-error').css("display","block");
+       Close();
+       e.preventDefault();
+       return;  
+      }else if(!filter.test(email)){
+       document.getElementById('p-error').innerHTML="<span>Invalid email</span>";
+       $('#p-error').css("display","block");
+       Close();
+       e.preventDefault();
+       return;
+      }
+  
+      if(password==''){
+          document.getElementById('p-error').innerHTML="<span> Password can't be blank</span>";
+          $('#p-error').css("display","block");
+          Close();
+          e.preventDefault();
+          return;
+      }
+  
+      if(conpassword==''){
+          document.getElementById('p-error').innerHTML="<span> Confirm Password can't be blank</span>";
+          $('#p-error').css("display","block");
+          Close();
+          e.preventDefault();
+          return;
+      }else if(password!=conpassword){
+          document.getElementById('p-error').innerHTML="<span>Password and Confirm password both are not same</span>";
+          $('#p-error').css("display","block");
+          Close();
+          e.preventDefault();
+          return;
+      }
 
    
      
-       if(name=='' || name==undefined){
-          document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-            style='cursor:pointer;'>X</span><span style='color:red;'>Name can't be blank</span>`;
-          $('#e-error').css("display","block");  
-             return
-       }else if(!name.match(letters)){
-        document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-        style='cursor:pointer'>X</span><span>Name must be in Alphabetical only</span>`;
-         $('#e-error').css("display","block");  
-           return
-       }
-       if(email=='' || email==undefined){
-           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span>Email can't be blank</span>`;
-          $('#e-error').css("display","block");  
-             return
-       } else if(!filter.test(email)){
-           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span> Invalid email id</span>`;
-          $('#e-error').css("display","block");  
-             return
-       }
-       if(password=='' || password==undefined){
-           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span>Password can't be blank</span>`;
-          $('#e-error').css("display","block");  
-              return
-        }
-       if(cpassword=='' || cpassword==undefined){
-           document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span>Confirm-password can't be blank</span>`;
-          $('#e-error').css("display","block");    
-              return
-        }
-
-         if(password!=cpassword){
-              document.getElementById('e-error').innerHTML=`<span class='error-icon' 
-          style='cursor:pointer'>X</span><span>password & confirm-password must be same </span>`;
-          $('#e-error').css("display","block");  
-              return
-        }
+     
        let role=1
        $.ajax({
                url:'/',
