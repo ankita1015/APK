@@ -38,27 +38,7 @@
             </div>
             <!-- Card -->
 
-            <!-- Card -->
-            <div class="card mb-4">
-              <div class="card-body">
-
-                <h5 class="mb-4">We accept</h5>
-
-                <img class="mr-2" width="45px"
-                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-                  alt="Visa">
-                <img class="mr-2" width="45px"
-                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-                  alt="American Express">
-                <img class="mr-2" width="45px"
-                  src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-                  alt="Mastercard">
-                <img class="mr-2" width="45px"
-                  src="https://z9t4u9f6.stackpathcdn.com/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.png"
-                  alt="PayPal acceptance mark">
-              </div>
-            </div>
-            <!-- Card -->
+          
 
           </div>
           <!--Grid column-->
@@ -75,27 +55,6 @@
             </div>
             <!-- Card -->
 
-            <!-- Card -->
-            <div class="card mb-4">
-              <div class="card-body">
-
-                <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample"
-                  aria-expanded="false" aria-controls="collapseExample">
-                  Add a discount code (optional)
-                  <span><i class="fas fa-chevron-down pt-1"></i></span>
-                </a>
-
-                <div class="collapse" id="collapseExample">
-                  <div class="mt-3">
-                    <div class="md-form md-outline mb-0">
-                      <input type="text" id="discount-code" class="form-control font-weight-light"
-                        placeholder="Enter discount code">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Card -->
 
           </div>
           <!--Grid column-->
@@ -205,7 +164,8 @@
         </div>
       </div>
     </div>
-      <button class='btn btn-primary' id='getbill' data-user='${element.userId}' data-shop='${element.shopId._id}' data-date='${element.date_time}'>Get Bill</button>
+      <button class='btn btn-primary' id='getbill' data-user='${element.userId}' data-shop='${element.shopId._id}' data-date='${element.date_time}'>Genrate Bill</button><br>
+      <a class'btn btn-primary'  class='download' href='#' style='display:none;'>Download</a>
     `);
       }
         });
@@ -225,7 +185,8 @@ $(document).on('click','#getbill',function(){
  let date=$(this).data('date');
  let shop=$(this).data('shop')
  let userId=$(this).data('user')
-
+   
+   let a=$(this).parent().find('.download')
 
   $.ajax({
     url:'/genrate-bill',
@@ -233,9 +194,11 @@ $(document).on('click','#getbill',function(){
     data:{date,shop,userId},
     success:function(data){
     if(data){
+      console.log(data)
       data=data.replace('/\/','/')
-     
-      window.location.assign(data)
+      $(a).attr({'href':`${data}`})
+      $(a).show();
+      window.open(`${data}`,null)
     }
 
     }
@@ -275,6 +238,7 @@ function loadrandom(){
   })
 }
    loadrandom()
+   
 });
 
     </script>

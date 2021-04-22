@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:false}));
 
 app.use(express.static(path.join(__dirname, '/public/')))
 app.use(express.static(path.join(__dirname, '/public/js')))
-
+app.use(express.static(path.join(__dirname,'./public/bills/')))
 //set Engine
 hbs.registerPartials(path.join(__dirname, './pars'));
 app.set('view engine', 'hbs');

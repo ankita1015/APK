@@ -5,7 +5,7 @@ const adminauth=require('../middleware/adminauth')
 router.get('/admin-login',(req,res)=>{
     res.render('admin-login');
 })
-router.get('/admin',adminauth,(req,res)=>{
+router.get('/admins',adminauth,(req,res)=>{
     res.render('admin-index');
 })
 router.get('/add-products',adminauth,(req,res)=>{
@@ -20,6 +20,26 @@ router.get('/users',adminauth,(req,res)=>{
 router.get('/load-admin-product',adminauth,(req,res)=>{
     res.render('admin-index')
 })
+router.get('/order-done',(req,res)=>{
+   
+    res.render('order-done');
+})
+router.get('/sub-category',adminauth,(req,res)=>{
+    res.render('add-sub-category');
+})
+router.get('/category',adminauth,(req,res)=>{
+    res.render('add-category');
+})
+router.get('/add-slider-img',adminauth,(req,res)=>{
+    res.render('update-slider')
+})
+router.get('/add-website-footer',adminauth,(req,res)=>{
+    res.render('website-footer')
+    
+})
+router.post('/add-website-footer',require('../admin-controller/add-footer'))
+
+
 router.post('/users',require('../admin-controller/show-users'))
 router.post('/products',require('../admin-controller/show-product'))
 router.post('/admin-login',require('../admin-controller/admin-login'));
@@ -40,26 +60,11 @@ router.post('/update-category',require('../admin-controller/update-category'));
 router.post('/update-sub-category',require('../admin-controller/update-sub-category'))
 router.post('/add-sliderimg',require('../admin-controller/sliderimg'))
 router.post('/load-slider-img',require('../admin-controller/load-slider-img'))
-router.get('/sub-category',adminauth,(req,res)=>{
-     res.render('add-sub-category');
-})
 router.post('/sub-category',require('../admin-controller/add-sub-category'));
-router.get('/category',adminauth,(req,res)=>{
-    res.render('add-category');
-})
 router.post('/load-sub-category',require('../admin-controller/load-sub-category'))
-router.get('/add-slider-img',adminauth,(req,res)=>{
-    res.render('update-slider')
-})
 router.post('/load-single-sub-category',require('../admin-controller/load-single-sub-category'))
 router.post('/search-category',require('../admin-controller/search-category'))
 
-
-
-router.get('/order-done',(req,res)=>{
-   
-    res.render('order-done');
-})
 
 
 module.exports=router

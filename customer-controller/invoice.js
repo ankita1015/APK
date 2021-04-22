@@ -1,5 +1,6 @@
 const PDFGenerator = require('pdfkit')
 const fs = require('fs')
+const path=require('path')
 
 class InvoiceGenerator {
     constructor(invoice) {
@@ -7,22 +8,38 @@ class InvoiceGenerator {
     }
 
     generateHeaders(doc) {
-        const billingAddress = this.invoice.addresses.billing
-
+         const billingAddress = this.invoice.addresses.billing
+        doc 
+        .text(`INVOICE`,100,30,{align: 'center',color:'red'})
         doc
-            
+          
             .fillColor('#000')
-            .fontSize(20)
+            
+            
+            .text(`${this.invoice.shopname}`,50,50,{align: 'left'})
+            .fontSize(10)
+            .text(`${this.invoice.shopaddress}`,{align: 'left'})
+            .text(`${this.invoice.shopcity},${this.invoice.shopstate}\n${this.invoice.shopcode}`,{align: 'left'})
+            .text(`${this.invoice.shopmobile}`,{align: 'left'})
+       
             .text('INVOICE', 275, 50, {align: 'right'})
             .fontSize(10)
             .text(`Invoice Number: ${this.invoice.invoiceNumber}`, {align: 'right'})
             .text(`Due: ${this.invoice.dueDate}`, {align: 'right'})
-            .text(`Balance Due: $${this.invoice.subtotal - this.invoice.paid}`, {align: 'right'})
             .moveDown()
             .text(`Billing Address:\n ${billingAddress.name}\n${billingAddress.address}\n${billingAddress.city}\n${billingAddress.state}, ${billingAddress.postalCode}`, {align: 'right'})
     
         const beginningOfPage = 50
         const endOfPage = 550
+    
+        doc.moveTo(beginningOfPage,40)
+            .lineTo(endOfPage,40)
+            .stroke()
+
+
+        doc.moveTo(beginningOfPage,200)
+            .lineTo(endOfPage,200)
+            .stroke()
 
         doc.moveTo(beginningOfPage,200)
             .lineTo(endOfPage,200)
@@ -37,17 +54,21 @@ class InvoiceGenerator {
 
     generateTable(doc) {
         const tableTop = 270
-        const itemCodeX = 50
-        const descriptionX = 100
-        const quantityX = 250
-        const priceX = 300
-        const amountX = 350
+        const itemCodeX=50
+        const descriptionX = 120
+        const dateX = 280
+        const quantityX = 400
+        // const gstX=450
+        const amountX = 500
+      
 
         doc
             .fontSize(10)
-            .text('Item Code', itemCodeX, tableTop, {bold: true})
-            .text('Description', descriptionX, tableTop)
+            .text('Sr no', itemCodeX, tableTop, {bold: true})
+            .text('Order Date',dateX,tableTop)
+            .text('Product name', descriptionX, tableTop)
             .text('Quantity', quantityX, tableTop)
+       
             .text('Amount', amountX, tableTop)
 
         const items = this.invoice.items
@@ -60,10 +81,12 @@ class InvoiceGenerator {
 
             doc
                 .fontSize(10)
-                .text(item.itemCode, itemCodeX, y)
+                .text(i+1,itemCodeX, y)
                 .text(item.description, descriptionX, y)
                 .text(item.quantity, quantityX, y)
                 .text(`Rs. ${item.amount}`, amountX, y)
+             
+                .text(item.date,dateX,y)
         }
     }
 
@@ -78,7 +101,7 @@ class InvoiceGenerator {
     generate() {
         let theOutput = new PDFGenerator 
 
-        console.log(this.invoice)
+        
 
         const fileName = `Invoice ${this.invoice.addresses.shipping.name}${this.invoice.addresses.shipping.postalCode}.pdf`
 
@@ -96,7 +119,7 @@ class InvoiceGenerator {
 
         // write out file
         theOutput.end()
-        return fileName
+       return fileName
      
     }
 }

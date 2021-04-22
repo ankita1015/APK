@@ -112,15 +112,15 @@
            let output=''
              if(data){
                data.forEach(ele=>{
-       output=output.concat(`<div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
+       output=output.concat(`   <div class'col-md-offset-3 col-md-2'></div>
+                <div class='close' style='margin-right:40px;float:right;'>X</div><div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
     <div class="container d-flex justify-content-center">
         <div class="card p-2">
             <div class="p-info px-3 py-3">
                 <div>
                     <h5 class="mb-0">${ele.productId.product}</h5> <span>${ele.category.categoryname}</span>
                 </div>
-                <div class'col-md-2'></div>
-                <div class='close' style='margin-right:-10px;float:right;'>X</div>
+             
               
                 <div class="heart"> <i class="bx bx-heart"></i> </div>
             </div>
@@ -141,7 +141,7 @@
                 output=output.concat(`<h5>price:${ele.total_price}&nbsp;<i class='fa fa-rupee'></i></h5><br><h5 style='margin-bottom:5px;'>${ele.productId.description}</h5>
             </div>
             <br>
-            <div class='col-md-1'style='margin-top:10px;'><input type'number' id='qty' placeholder='Add more'></div>
+            <div class='col-md-1'style='margin-top:10px;'><input type'number' id='qty' placeholder='Add Qty'></div>
             <div class="buttons btn btn-primary flex-row gap-3 px-3 add-qty" data-id=${ele._id}>Add</div>
             
         </div>

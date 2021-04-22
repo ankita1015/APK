@@ -9,13 +9,37 @@ module.exports=async(req,res)=>{
       let date=req.body.date;
       let shopId=req.body.shop
       let userId=req.body.userId
-      console.log(userId)
-
+   
+ 
       await shoporderdocument
                 .find({$and:[{date_time:date},{shopId:shopId},{userId}]})
-                .populate(['customerId','userId','productId','category'])
+                .populate(['shopId','customerId','userId','productId','category'])
                 .exec((err,data)=>{
-                  console.log(data)
+                  let totalAmount=0
+                  let ordrerData=Array()
+                  let address=data[0].shopId.address.split(',')
+                  let newadd=''
+                      address.forEach(add=>{
+                         newadd+=add+'\n';
+                      })
+                  
+   
+                       
+
+          
+                  data.forEach(ele =>{
+                    let order={
+               
+                      description:ele.productId.product,
+                      quantity:ele.qty,
+          
+                      amount:ele.price,
+                      date:ele.date_time
+                  }
+                  totalAmount=totalAmount+Math.floor(ele.price);
+                  ordrerData.push(order)
+               });
+              
                 const invoiceData = {
                     addresses: {
                         shipping: {
@@ -33,31 +57,35 @@ module.exports=async(req,res)=>{
                           postalCode:data[0].customerId.area_code
                         }
                     },
-                    items: [{
-                            itemCode: 12341,
-                            description: data[0].productId.product,
-                            quantity: data[0].qty,
-                            amount:data[0].price
-                    },
-                    ],
-                    subtotal:data[0].price ,
+                    items: ordrerData,
+                    
+                    subtotal:totalAmount ,
                     paid: 0,
                     invoiceNumber: 1234,
-                    dueDate: data[0].date_time
+                    dueDate: data[0].date_time,
+                    shopname:data[0].shopId.shopname,
+                    shopaddress:newadd,
+                    shopcity:data[0].shopId.city,
+                    shopstate:data[0].shopId.state,
+                    shopmobile:data[0].shopId.mobileNo,
+                    shopcode:data[0].shopId.area_code
                   }
                   const ig = new InvoiceGenerator(invoiceData)
                           let filename=ig.generate()
-                      
+                          let currpath=path.join(__dirname,'../',filename)
+                        
+                           let newpath=path.join(__dirname,'../public/bills/',filename)
+                                                        
+                           fs.rename(currpath,newpath,(err)=>{
+                           if(err){
+                            throw err
+                          }
+                           })
                           
-                          res.send(filename)
+                          res.send(newpath)
                            
                 })
 
-
-
-    
-
-     
        
     }catch(er){
 
