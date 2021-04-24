@@ -128,7 +128,7 @@ $('#more-category-btn').click(function(){
                     $('.load-category').html(`<p id='e-error' style='text-align:center;border:1px solid lightgrey;padding:3px;margin:5px;background-color:lightgrey;'><span>No categories have been added yet.</span></p>`)
                     return;
                 }        
-               let sub_category_table=`<table class='shop-table'><tr>
+               let sub_category_table=`<table id='shop-order'><tr>
                  <th>Sr No</th>
                  <th>Category Name</th>`;
              data.forEach(element=>{

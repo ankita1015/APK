@@ -74,13 +74,13 @@ $(".save").click(function(e){
           return;
       }
   
-      if(conpassword==''){
+      if(cpassword==''){
           document.getElementById('p-error').innerHTML="<span> Confirm Password can't be blank</span>";
           $('#p-error').css("display","block");
           Close();
           e.preventDefault();
           return;
-      }else if(password!=conpassword){
+      }else if(password!=cpassword){
           document.getElementById('p-error').innerHTML="<span>Password and Confirm password both are not same</span>";
           $('#p-error').css("display","block");
           Close();

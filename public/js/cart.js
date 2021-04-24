@@ -25,7 +25,7 @@ $.ajax({
       <input type='hidden' class='shopid' value=${element.shopId._id}>
       <input type='hidden' class='productid' value=${element.productId._id}>
       <input type='hidden' class='categoryid' value=${element.category._id}>
-      
+      <input type='hidden' class='cartid' value=${element._id}>
 
       <div class="col-md-5 col-lg-3 col-xl-3">
         <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
@@ -172,76 +172,72 @@ function setTotalPrice(){
  
 }
 
-// let shop=Array()
-// let product=Array()
-// let category=Array()
-// let totalprice=Array()
-// let category=Array()
-// let Qty=Array()
-// let cat_name=Array()
-// let cat_value=Array()
-// $('.checkout').click(function(){
-//     shop=$('main').find('.shopid');
-//     product=$('main').find('.productid');
-//     category=$('main').find('.categoryid');
-//     totalprice=$('main').find('.totalprice');
-//     cat_name=$('main').find('.cat_name');
-//     cat_value=$('main').find('.cat_value');
-//     Qty=$('main').find('.quantity')
-
-//   let sid=Array();
-//   let pid=Array();
-//   let cid=Array();
-//   let category_name=Array()
-
-//     for(let i=0;i<shopid.length;i++){
-//       sid=shopid[i].value
-//       pid=shopid[i].value
-//       cid=shopid[i].value
-//       category_name=cat_name[i].value
-//       category_value=cat_value[i].value
-//       qty=Qty[i].value
-//       if(category_name!='kg'){
-
-//        $.ajax({
-//          url:'/confirm-order',
-//          type:'POST',
-//          data:{shopid:sid,
-//               product_id:pid,
-//               categoryid:cid,
-//               category_name:category_name,
-//               category_value:category_value,
-//               qty:qty},
-
-
-//          success:function(data){
-
-//          }
-//        })
-//       }else{
-//         console.log(qty)
-//         $.ajax({
-//           url:'/confirm-order',
-//           type:'POST',
-//           data:{shopid:sid,
-//             product_id:pid,
-//             categoryid:cid,
-//             category_name:category_name,
-//             category_value:qty,
-//             qty:0},
-//              success:function(data){
-            
-//           }
-//         })
-
-//       }
-   
-
-//     }
+let shop
+let product
+let category
+let totalprice
+let Qty
+let cat_name
+let cat_value
+let price
+let cartid
+$('.checkout').click(function(){
+  let shops=Array()
+  let products=Array()
+  let categorys=Array()
+  let prices=Array()
+  let category_name=Array()
+  let category_value=Array()
+  let qtys=Array()
+  let carts=Array()
+    cartid=$('main').find('.cartid')
+    shop=$('main').find('.shopid')
+    product=$('main').find('.productid');
+    category=$('main').find('.categoryid');
+    price=$('main').find('.totalprice');
+    cat_name=$('main').find('.cat_name');
+    cat_value=$('main').find('.cat_value');
+    Qty=$('main').find('.quantity') 
     
 
-//     })
+   
+ 
+ 
+    for(let i=0;i<shop.length;i++){
+          carts.push(cartid[i].value)
+          shops.push(shop[i].value)
+          products.push(product[i].value)
+          categorys.push(category[i].value)
+          prices.push(price[i].innerText)
+          category_name.push(cat_name[i].value)
+          category_value.push(cat_value[i].value)
+          qtys.push(Qty[i].value)
+   }
+
+      shops=JSON.stringify(shops)
+      products=JSON.stringify(products)
+      categorys=JSON.stringify(categorys)
+      prices=JSON.stringify(prices)
+      category_name=JSON.stringify(category_name)
+      category_value=JSON.stringify(category_value)
+      qtys=JSON.stringify(qtys)
+      carts=JSON.stringify(carts)
+       $.post('/confirm-order',{
+        carts,
+        shops,
+        products,
+        categorys,
+        prices,
+        qtys,
+        category_name,
+        category_value,
+        tn:1
+            
+       }).then((err,data)=>{
+         alert(data);
+       })
      
-
-
-
+        
+   
+  
+    })

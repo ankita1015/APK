@@ -19,7 +19,7 @@
                                     <tr>
                                         <th>Sr No</th>
                                         <th>Customer Name</th>
-                                        <th>Address</th>
+                                        <th style='width:20rem;'>Address</th>
                                         <th>City</th>
                                         <th>State</th>
                                         <th>Mobile No.</th>

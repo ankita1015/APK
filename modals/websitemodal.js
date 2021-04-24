@@ -10,10 +10,10 @@ aboutus:{
     type:String,
     required:true,
 },
-office:[{
-    type:Object,
+office:{
+    type:String,
     required:true
-}],
+},
 contact:{
     type:Number,
     required:true

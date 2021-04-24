@@ -9,7 +9,7 @@
            <div class="col-md-12">
     
           
-            <form action='/admin-footer' method='POST' id='input-form' >
+            <form>
              
             
                    
@@ -48,7 +48,7 @@
            
             <br>
           
-                    &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-primary" style='item-align:center;margin-bottom:20px;' id='add-footer'>Save</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button  class="btn btn-primary" style='item-align:center;margin-bottom:20px;' id='add-footer'>Save</button>
     
             
             </form>
@@ -75,7 +75,7 @@
       
 <script src="./jquery.min.js"></script>
 <script>
-    let links=Array()
+    let links=Object()
     $('#medias').change(function(){
      let media=$(this).val();
      let val=$('#link').val();
@@ -84,33 +84,32 @@
      
 
        }
- 
-        
+      
     })
     $('#add-footer').click(function(e){
+      e.preventDefault()
+     
         let about=$('#aboutus').val();
         let office=$('#office').val();
         let contact=$('#number').val();
         let address=$('#address').val();
-        fetch('/add-website-footer',{
-      method:'POST',
-      headers:{
-          'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-         links
-         about,
-         office,
-         contact,
-         address,
-      
-      })
-          
- }).then((result)=>{
-  window.location.assign('/add-website-footer')
- }).catch((err)=>{
-        
-    })
+    fetch('/add-website-footer',{
+         method:'POST',
+         headers:{
+             'Content-Type':'application/json'
+         },
+         body:JSON.stringify({
+           about,
+           office,
+           contact,
+           address,
+           links
+         })
+
+}).then((err,data)=>{
+
+})
+})
 </script>
 
 </body>

@@ -2,9 +2,7 @@
     <link rel="stylesheet" href="./pr.css">
 <div class="inner-block">
     <div class="product-block">
-    	<div class="pro-head">
-    		<h2>Products</h2>
-    	</div>
+    	
 
       <div class="clearfix"> </div>
     </div>
@@ -44,7 +42,7 @@
       success:function(data){
       let output=`<div class="product-block">
     	<div class="pro-head">
-    		<h2>Products</h2>
+    		<h2>Products Selling</h2>
     	</div>`
       
       data.forEach(ele=>{
@@ -78,7 +76,7 @@
             success:function(data){
                 
                 let c=1
-                      let output=`<h3 style='text-align:center;'>${data[0].category.categoryname} selling</h3><hr><table><tr>
+                      let output=`<h3 style='text-align:center;'>${data[0].category.categoryname} selling</h3><hr><table id='shop-order'><tr>
                           <th>Sr No</th>
                           <th>Customer name</th>
                           <th>Mobile no</th>

@@ -10,7 +10,7 @@
            <section class="mb-5">
 
         <div class="row">
-          <div class="col-md-6 mb-4 mb-md-0">
+          <div class="col-md-4 mb-4 mb-md-0">
 
             <div id="mdb-lightbox-ui"></div>
 
@@ -39,7 +39,7 @@
                     <div class="col-3">
                       <div class="view overlay rounded z-depth-1 gallery-item hoverable">
                         <img src="{{this}}"
-                          class="img-fluid">
+                          class="img-fluid" style="width:20rem;margin:auto;">
                         <div class="mask rgba-white-slight"></div>
                       </div>
                     </div>
@@ -75,7 +75,7 @@
                     <td class="pl-0" id='category-load'>
                       <div class="def-number-input number-input safari_only mb-0">
               
-                <input class="quantity" min="0" id='qty' name="quantity" id='qty' value="{{data.[0].qty}}" type="number" readonly>
+                <input class="quantity" min="0" id='qty' name="quantity" id='qty' value="{{data.[0].qty}}" type="number" readonly style="width:5rem;">
              
                     </div>
                   </td>
@@ -95,12 +95,11 @@
                   </tr>
                   <tr>
                        <td><h4>Customer Details</h4>
-                                   <p><b></b>{{data.[0].userId.name}}</p>
-                                   <p><b></b>{{data.[0].userId.email}}</p>
-                                   <p><b></b>{{data.[0].customerId.mobile_no}}</p>
-                                   <p><b></b>{{data.[0].customerId.city}}</p>
-                                   <p><b></b>{{data.[0].customerId.state}}</p>
-                                   
+                                   <p><b>Name:-</b>{{data.[0].userId.name}}</p>
+                                   <p><b>Email:-</b>{{data.[0].userId.email}}</p>
+                                   <p><b>Mobile No.</b>{{data.[0].customerId.mobile_no}}</p>
+                                   <p><b>City/State:-</b>{{data.[0].customerId.city}},{{data.[0].customerId.state}}</p>
+                                 
                          <p><b>Delivery Address:</b></p>
                                     <p>{{data.[0].customerId.Address}},{{data.[0].customerId.area_code}}</p>
                                    </td>

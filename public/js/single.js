@@ -6,7 +6,6 @@
 
 var description=$('#description').val();
      description=description.split('.')
-     console.log(description)
      description.forEach(data=>{
          $('.product-details').append(`<h5><i class="fas fa-chevron-right"></i> ${data}</h5>`)
            
@@ -39,7 +38,7 @@ $.ajax({
                   }else{
                    
                    if(cat_name=='Kg' || cat_name =='KG' || cat_name=='kg'){
-                   category_name.push(cat_name)
+                   
 
                    
                     $('#category-load').html(`
@@ -187,35 +186,41 @@ $('.cnt-gst').click(function(){
 })
 }
 let attribute=Array()
-let cat_name
-let cat_value=Array()
+let cate_value=Array()
+
 $(document).on('change','#sub_category',function(){
   
   cat_name=$('#category-name').val();
+ 
   var c1=Array();
   if(cat_name != 'kg'){
     let class_=$(this).attr('class')
-    
+    class_=class_.replace('form-control','')
     if(!attribute.includes(class_)){
+      
       attribute.push(class_)
+   
       c1.push($(this).val());
+     
       cat1=c1[0];
       cat2=c1[1];
-         cat_value.push(c1)
+         console.log(c1)
+         cate_value.push(c1)
+         console.log(cate_value)
     }else{
       if(class_==attribute[0]){
-        cat_value[0]=$(this).val()
+        cate_value[0]=$(this).val()
       }else if(class_==attribute[1]){
-        cat_value[1]=$(this).val()
+        cate_value[1]=$(this).val()
       }
     }
-
+     console.log(cate_value)
     var p_id=$('#productid').val();
    
     loadShop(p_id,cat1,cat2)
   }else{
     var kg = $(this).val();
-    cat_value[0]=$(this).val();
+    cate_value[0]=$(this).val();
  
  
    price=$('.select_shop').data('price');
@@ -237,6 +242,9 @@ $('.cart').click(function(){
     let total_price=$('#price').text();
         total_price=total_price.replace('Rs.','');
        
+      console.log(category_name)
+      console.log(cate_value)
+    
       
         fetch('/add-cart',{
       method:'POST',
@@ -245,7 +253,7 @@ $('.cart').click(function(){
       },
       body:JSON.stringify({
          category_name:category_name,
-         category_value:cat_value,
+         category_value:cate_value,
          categoryId:categoryid,
          shopid,
          productid,
@@ -268,13 +276,13 @@ $('.order').click(function(){
   let qty=$('#qty').val();
   let total_price=$('#price').text();
       total_price=total_price.replace('Rs.','');
-    
+      
   
-   if(cat_value=='' || cat_value==undefined){
+   if(cate_value=='' || cate_value==undefined){
     alert('You have not selected Category')
     return
    }
-   if(price=='' ||price==undefined){
+   if(total_price=='' ||total_price==undefined){
    alert('Select Shop Where you want to order')
    return
    }
@@ -289,13 +297,14 @@ $('.order').click(function(){
     },
     body:JSON.stringify({
        category_name:category_name,
-       category_value:cat_value,
+       category_value:cate_value,
        categoryId:categoryid,
        shopid,
        product_id:productid,
        price,
        qty,
        total_price,
+       tn:0
     })
         
 }).then((result)=>{

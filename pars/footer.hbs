@@ -58,7 +58,7 @@
           <h5>About us</h5>
           <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
 
-          <p class="foot-desc mb-0">Here you can use rows and columns to organize your footer content. Lorem
+          <p class="foot-desc mb-0 about">Here you can use rows and columns to organize your footer content. Lorem
             ipsum dolor sit amet,
             consectetur
             adipisicing elit.</p>
@@ -75,19 +75,8 @@
           <h5>Offices</h5>
           <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
 
-          <ul class="list-unstyled foot-desc">
-            <li class="mb-2">
-              <a href="#!">MDBootstrap</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">MDWordPress</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">BrandFlow</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">Bootstrap Angular</a>
-            </li>
+          <ul class="list-unstyled foot-desc office">
+           
           </ul>
 
         </div>
@@ -96,30 +85,7 @@
         <hr class="clearfix w-100 d-md-none">
 
         <!-- Grid column -->
-        <div class="col-md-3 mx-auto mt-3 mt-md-0 mb-0 mb-md-4">
-
-          <!-- Links -->
-          <h5>Useful links</h5>
-          <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
-
-          <ul class="list-unstyled foot-desc">
-            <li class="mb-2">
-              <a href="#!">Your Account</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">Become an Affiliate</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">Shipping Rates</a>
-            </li>
-            <li class="mb-2">
-              <a href="#!">Help</a>
-            </li>
-          </ul>
-
-        </div>
-        <!-- Grid column -->
-
+     
         <hr class="clearfix w-100 d-md-none">
 
         <!-- Grid column -->
@@ -130,11 +96,11 @@
           <hr class="color-primary mb-4 mt-0 d-inline-block mx-auto w-60">
 
           <ul class="fa-ul foot-desc ml-4">
-            <li class="mb-2"><span class="fa-li"><i class="fa fa-map"></i></span>New York, Avenue Street 10
+            <li class="mb-2" id='address'>
             </li>
-            <li class="mb-2"><span class="fa-li"><i class="fa fa-phone"></i></span>042 876 836 908</li>
-            <li class="mb-2"><span class="fa-li"><i class="fa fa-envelope"></i></span>company@example.com</li>
-            <li><span class="fa-li"><i class="fa fa-clock"></i></span>Monday - Friday: 10-17</li>
+            <li class="mb-2" id='contact'></li>
+           
+            
           </ul>
 
         </div>
@@ -148,7 +114,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+      <a href="https://ongc.com/"> matirials.com</a>
     </div>
     <!-- Copyright -->
 
@@ -164,4 +130,23 @@
   <script type="text/javascript" src="./mdbsi.min.js"></script>
     <!-- MDB Ecommerce JavaScript -->
     <script type="text/javascript" src="./mdbecommercesi.min.js"></script>
+    <script>
+     
+      $.ajax({
+        url:"/show-web-footer",
+        type:'POST',
+        success:function(data){
+          let Office=data[0].office.split(',')
+          Office.forEach(off=>{
+            $('.office').append(`<li class="mb-2">
+              <a href="#!">${off}</a>
+            </li>`);
+          })
+          $('.about').text(data[0].aboutus)
+          $('#address').html(`<span class="fa-li"><i class="fa fa-map"></i></span>${data[0].address}`)
+          $('#contact').html(`<span class="fa-li"><i class="fa fa-phone"></i></span>${data[0].contact}`);
+        
+        }
+      })
+    </script>
  

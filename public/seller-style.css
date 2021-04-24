@@ -4736,18 +4736,18 @@ ul.dropdown-menu {
      margin: auto;
 
  }
- table{
+ #shop-order{
      width:100%;
      border-radius: 5px;
  }
- table th{
+ #shop-order th{
   background-color: light;
   font-size: small;
   border:1px solid grey;
   width: min-content;
   text-align: center;
 }
-table td{
+#shop-order td{
   font-size:12px;
   padding:5px;
   border:1px solid grey;
@@ -4755,14 +4755,14 @@ table td{
   text-align: center;
 
 }
-table td button{
+#shop-order td button{
   font-size:10px;
   border:none;
   padding:3px;
   border-radius:3px;
  
 }
-table td a{
+#table td a{
   font-size:8px;
   border:none;
   padding:2px;

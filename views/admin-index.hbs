@@ -5,7 +5,7 @@
 <div class="inner-block">
     <div class="product-block">
     	<div class="pro-head" >
-    		<h2>Add Sub-Category</h2>
+    		<h2>Products</h2>
     	</div>
     <div id="main-content">
         <div class="container-fluid">
@@ -24,7 +24,7 @@
                         </div>
                             <h4 id='product-tit' style="text-align: center;"></h4>
                     <hr>
-                    <div id='categorys'>
+                    <div id='categorys' class="shop-order-div">
 
                     </div>
                               
@@ -62,14 +62,14 @@
                  type:'POST',
                  success:function(data){
                 
- let output="<table id='description-table'style='margin:auto;'><tr><th>Sr No</th><th>Product Name</th><th>Category</th><th>Picture</th><th>view</th></tr>";
+ let output="<table id='shop-order'style='margin:auto;'><tr><th>Sr No</th><th>Product Name</th><th>Category</th><th>Picture</th><th>view</th></tr>";
                     data.forEach(element=>{
                           
                     output=output.concat(`<tr>
                                         <td>${c}</td>
                                         <td>${element.product}</td>
                                         <td>${element.category.categoryname}</td>
-                                        <td><img src='${element.images[0]}' style='width:8rem;height:8rem;'></td>
+                                        <td><img src='${element.images[0]}' style='width:3rem;height:3rem;'></td>
                                         <td> <a href="/edit-product?id=${element._id}" style='margin:5px;background-color:white; font-size:20px'><i class='fa fa-edit' style='color:black;'></i></a>
                                              <a href="#" id='delete-product' data-id=${element._id} style='margin:5px;background-color:white; font-size:20px'><i class='fa fa-trash' style='color:red;'></i></a>
                                         </td>

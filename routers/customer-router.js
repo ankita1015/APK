@@ -69,5 +69,6 @@ router.get('/history',(req,res)=>{
 router.post('/genrate-bill',require('../customer-controller/genrate-bill'))
 router.post('/order-history',auth,require('../customer-controller/order-history'));
 router.get('/logout',auth,require('../customer-controller/logout'));
+router.post('/show-web-footer',require('../customer-controller/show-footer'))
 
 module.exports=router
