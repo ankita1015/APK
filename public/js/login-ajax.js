@@ -42,11 +42,22 @@ login_btn.addEventListener('click',(e)=>{
        type:'POST',
        data:{email,password},
        success:function(data){
+
          
            if(data==0){
          window.location.assign('/');
      
-      }
+        }else if(data=='email_error'){
+          document.getElementById('e-error').innerHTML="<span><b>Email does not exist</b></span>";
+          $('#e-error').css("display","block");
+          Close()
+
+        }else if(data=='password_error'){
+          document.getElementById('e-error').innerHTML="<span><b>Wrong Password</b></span>";
+          $('#e-error').css("display","block");
+          Close()
+ 
+        }
      }
      });
 

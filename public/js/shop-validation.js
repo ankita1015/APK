@@ -1,9 +1,40 @@
+function Close() {
+  setTimeout(() => {
+      $('#e-error').css("display","none");
+      $('#p-error').css("display","none");
+     
+  },2000);
+  
+}
+
 $('.login').click(function(e){
   e.preventDefault();
 
 
   var email=$('.login-email').val();
   var password=$('.login-password').val();
+  if(email==''){
+    document.getElementById('e-error').innerHTML="<span>email can't blank</span>";
+    $('#e-error').css("display","block");
+    Close();
+  
+    return;  
+   }else if(!filter.test(email)){
+     document.getElementById('e-error').innerHTML="<span>Invalid email</span>";
+     $('#e-error').css("display","block");
+     Close();
+   
+    return;
+   }
+
+   if(password==''){
+       document.getElementById('e-error').innerHTML="<span> Password can't be blank</span>";
+       $('#e-error').css("display","block");
+       Close();
+       e.preventDefault();
+       return;
+   }
+
     $.ajax({
       url:'/login',
       type:"POST",
@@ -12,6 +43,18 @@ $('.login').click(function(e){
   
         if(data==1){
           window.location.assign('/shop'); 
+        }else if(data=='email_error'){
+          document.getElementById('e-error').innerHTML="<span>email does not exist</span>";
+          $('#e-error').css("display","block");
+          Close();
+
+        }else if(data=='password_error'){
+          document.getElementById('e-error').innerHTML="<span>wrong password</span>";
+          $('#e-error').css("display","block");
+          Close();
+
+
+      
         }
       }
        
@@ -30,13 +73,7 @@ $(".save").click(function(e){
     var cpassword=$('.re_password').val()
     var letters = /^[a-z][a-z\s]*$/;
  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    function Close() {
-      setTimeout(() => {
-          $('#p-error').css("display","none");
-         
-      },2000);
-      
-  }
+   
       if(name==''){
           
           document.getElementById('p-error').innerHTML="<span>name can't blank</span>";
