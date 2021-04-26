@@ -1,4 +1,5 @@
 	{{>admin_header}}
+    {{>uploadcss}}
 
 <div class="inner-block">
     <div class="product-block">
@@ -12,8 +13,8 @@
             
           
           
-            <form action='/updated-product' method='POST'  class="row" id='input-form'>
-             <h5  id="form-heading" ><b>Edit Product</b></h5>
+            <form action='/updated-product' method='POST'  class="row" id='input-form' enctype="multipart/form-data">
+            
                 <div class="form-group col-sm-12">
           
                   <label for="product-name">Product name</label>
@@ -22,18 +23,30 @@
                  <input type="hidden" id='productid' name="productid" value="{{product.[0]._id}}"/>
                 
                 </div>
-             
-                    <div class="form-group col-sm-12">
-                  <label for="category">Description</label>
-                  <textarea type="text" class="form-control" value='{{product.[0].description}}' name="category" id="company-name" placeholder="Description*"></textarea>
-                </div>
-                    
-                
+                   <div class="form-group col-sm-12">
+                   <label for="category">Description</label>
+                   <input type="text" class="form-control" value='{{product.[0].description}}' name="category" id="company-name" placeholder="Description*" style="height:5rem;padding:0px;">
+                  </div>
+                  <div>
+                  {{#each product.[0].images}}
+                      <div class="col-md-2" id='upload_button'>
+
+                      <label id='upload-label'>
+                        <input type="hidden" name="imgsrc" value="{{this}}" multiple>
+                       <img src="{{this}}" class="img" style="width:3.5rem;height:3.5rem;">
+                      <input type="file" name="images" class="imges" multiple>
+                      </label>
+
+                  </div>
+                  
+                  </div>
+                {{/each}}
+                                    
                
-               
-            <br>
-                   
-                   &nbsp;&nbsp;&nbsp; <button type="submit" class="btn btn-primary create-account" id='add-product'>Update Product</button>
+               <br>
+         <div class="col-md-12">
+    &nbsp;&nbsp;&nbsp; <button type="submit" class="btn btn-primary create-account" id='add-product'>Update Product</button>
+    </div>
     <hr>
             
               
@@ -57,7 +70,23 @@
  
   
 <script src="./jquery.min.js"></script>
-<script src="./file.js"></script>
+<script>
+    $(document).ready(function(){
+      $('.imges').change(function(event){
+        
+        const imagesArray=event.target.files[0];
+        let src=window.URL.createObjectURL(imagesArray)
+        let uploadDiv=$(this).parent().parent().find('.img')
+               console.log(uploadDiv)
+        uploadDiv[0].src=src
+      
+        
+        
+         
+
+      })
+    })
+</script>
 
 <script>
   

@@ -6,6 +6,8 @@ function Close() {
   },2000);
   
 }
+var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
 
 $('.login').click(function(e){
   e.preventDefault();
@@ -72,7 +74,6 @@ $(".save").click(function(e){
     var password=$('.password').val()
     var cpassword=$('.re_password').val()
     var letters = /^[a-z][a-z\s]*$/;
- var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
    
       if(name==''){
           
