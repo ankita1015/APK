@@ -117,10 +117,10 @@
       <!-- Classic tabs -->
       <div class="classic-tabs">
 
-        <ul class="nav tabs-primary nav-justified" id="advancedTab" role="tablist">
-          <li class="nav-item">
+        <ul class="nav tabs-primary nav-justified" id="advancedTab" role="tablist" style="background-color:white;">
+          <li class="nav-item" >
             <a class="nav-link active show" id="description-tab" data-toggle="tab" href="#description" role="tab"
-              aria-controls="description" aria-selected="true">Description</a>
+              aria-controls="description" aria-selected="true" >Description</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
@@ -136,12 +136,12 @@
             <p class="pt-1">{{data.[0].description}}</p>
           </div>
          
-          <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+          <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab" style="background-color: white;">
             <h5><span>Related Shops List</span></h5>
             <div class="media mt-3 mb-4">
             
               <div class="media-body">
-                 <div class="order-shop-div"></div>
+                 <div id="order-shop-div"></div>
            
           </div>
                

@@ -10,7 +10,7 @@ module.exports=async(req,res)=>{
       await productDocument.find({}).sort({product:-1}).exec(async(err,products)=>{
           await categorydocument.find({}).limit(15).exec(async(err,uniqueProduct)=>{
             await sliderdocument.find({}).exec((err,sliderimg)=>{
-            
+            console.log(sliderimg);
               res.status(200).render('index',{
                 products,
                 uniqueProduct,

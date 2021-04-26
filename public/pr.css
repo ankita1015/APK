@@ -13,7 +13,7 @@
  
 
 .card {
-    width: 450px;
+    width: 600px;
     border: none;
     height: 450px;
     border-radius: 3px;
@@ -61,7 +61,7 @@
 
 .p-about {
     position: absolute;
-    width: 170px;
+    width: 300px;
     font-size: 12px;
     top: 140px;
     left: -125px;

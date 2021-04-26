@@ -98,7 +98,7 @@ function loadShop(...args){
 
   var output=` <h4 style="text-align: center;">Select Your Shop/Company</h4>
                      <hr><table style='background-color:white;' class='table table-striped table-bordered mt-3'><thead>
-                           <tr>
+                           <tr style='background-color:lightblue;'>
                                <th scope="row" class="w-150 dark-grey-text h6">Shop Name</th>
                                <th scope="row" class="w-150 dark-grey-text h6">State</th>
                                <th scope="row" class="w-150 dark-grey-text h6">City</th>
@@ -133,7 +133,7 @@ function loadShop(...args){
                               </tr></tbody`)
                             })
                          output=output.concat(`</table>`);
-                         $('.order-shop-div').html(output) 
+                         $('#order-shop-div').html(output) 
                            
                            })
                       
